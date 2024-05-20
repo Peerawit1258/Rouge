@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827c4f8ac7d1c4c4b8782176243823e7, type: 3}
+  m_Name: Event101_MysteryBag
+  m_EditorClassIdentifier: 
+  eventId: Event101
+  eventName: MysteryBag
+  eventImage: {fileID: 21300000, guid: 13cb87c0adc0fd444ac4bb4150a6608e, type: 3}
+  description: 'You found unknow bag.Whose bag is it?
+
+    But now,It''s yours.'
+  choices:
+  - type: 1
+    sentence: Open it!
+    reward:
+      isRandom: 1
+      rewardType: 0
+      min: 10
+      max: 200
+      skills:
+      - {fileID: 11400000, guid: 09998b01e4a23bf44b2b1d17f508136f, type: 2}
+      - {fileID: 11400000, guid: e4b9a4f34eca3c84b97f76545fc32da5, type: 2}
+      - {fileID: 11400000, guid: b96d1ccb195793d4587882d1a69ec230, type: 2}
+    heal:
+      isAll: 0
+      healType: 0
+      percentHeal: 0
+      removeEffect: {fileID: 0}
+    status: []
+    removeType: 0
+    value: 0
+    afterEventImg: {fileID: 21300000, guid: d589952d97bfbeb459de357fc7fdc3fc, type: 3}
+    afterEventDes: You got REPLACE.
+  - type: 0
+    sentence: Do nothing
+    reward:
+      isRandom: 0
+      rewardType: 0
+      min: 0
+      max: 0
+      skills: []
+    heal:
+      isAll: 0
+      healType: 0
+      percentHeal: 0
+      removeEffect: {fileID: 0}
+    status: []
+    removeType: 2
+    value: 0
+    afterEventImg: {fileID: 0}
+    afterEventDes: This bag isn't mine.

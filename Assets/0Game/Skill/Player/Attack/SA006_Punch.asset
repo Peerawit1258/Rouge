@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527b5e7a31fb5af41bffa1ee16130bda, type: 3}
+  m_Name: SA006_Punch
+  m_EditorClassIdentifier: 
+  id: SA006
+  skillName: Punch
+  skillIcon: {fileID: 0}
+  frame: {fileID: 21300000, guid: eb1ca71453326334e9162a52d2471c66, type: 3}
+  targetType: 0
+  particleEffect: {fileID: 0}
+  descrition: 
+  actionDetail:
+    skillType: 0
+    percentDMG: 32000000
+    isRemoveBuff: 0
+    statusEnemy: []
+    statusSelf: []
+    removeBuff: 0
+    damageSpecific:
+      damageForEffect: {fileID: 0}
+      percentEffect: 0
+    isHeal: 0
+    healType: 1
+    percentHeal: 0
+    removeEffect: {fileID: 0}
+    isTakeDamage: 0
+    percentHp: 0
+    hpCompare: 0
+    hpAbility:
+      hpCompare: 0
+      hpPercent: 0
+      type: 0
+      percentSkill: 0
+      status:
+        statusEffect: {fileID: 0}
+        count: 0
+      percentHeal: 0
+  conditionDetail:
+    isCondition: 1
+    lockNum: 0100000004000000
+    condition: 1
+    bonusSlotDamage: 10
+    c_skillType: 0
+    percentDmg: 0
+    isRemove: 0
+    c_removeBuff: 0
+    c_status:
+      statusEffect: {fileID: 0}
+      count: 0
+    healType: 0
+    isPercent: 0
+    c_heal: 0
+    removeEffect: {fileID: 0}

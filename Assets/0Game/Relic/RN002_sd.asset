@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 282601f5b429a9e48a380149eaddb12b, type: 3}
+  m_Name: RN002_sd
+  m_EditorClassIdentifier: 
+  id: RN002
+  relicName: sd
+  icon: {fileID: 0}
+  relicType: 0
+  rarity: 0
+  destroyWhenUse: 0
+  description: Increase Attack 20%
+  relicDetails:
+  - type: 0
+    isSlot: 0
+    statValues:
+    - type: 0
+      value: 20
+    - type: 1
+      value: -10
+    slots: []
+    trigger: 0
+    statusType: 0
+    status:
+      statusEffect: {fileID: 0}
+      count: 0
+    isStack: 0
+    stack: 0
+    dotID: 
+    dotDamage: 0
+    isShop: 0
+    discount: 0
+    extraMoney: 0
+    increaseRandomSkill: 0

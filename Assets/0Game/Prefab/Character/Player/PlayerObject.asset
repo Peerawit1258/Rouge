@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b2398380e91401498d98425e65bb784, type: 3}
+  m_Name: PlayerObject
+  m_EditorClassIdentifier: 
+  character: {fileID: 8832231464212794842, guid: 23fc0f413e417af4a88ed21d8a043337, type: 3}
+  characterName: Player
+  characterType: 0
+  e_type: 0
+  goldDrop: 0
+  expDrop: 0
+  orderSkill: 0
+  allSkill: []
+  skillDrop: []
+  relicDrop: []
+  maxHP: 50
+  atk: 20
+  def: 10
+  damageBonus: 0
+  damageReduce: 10

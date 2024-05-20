@@ -1,0 +1,456 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using DG.Tweening;
+using Sirenix.OdinInspector;
+using UnityEngine.UI;
+
+public class EnemyController : CharacterValue
+{
+    [Title("EnemyController")]
+
+    [SerializeField] GameObject enemyObj;
+    public AnimationAction animationAction;
+    [SerializeField, ReadOnly] Vector3 enemyPos;
+    [SerializeField] Transform gaugePos;
+    
+    [TabGroup("1","Setup"), ReadOnly] public GaugeHpWidget gaugeHP;
+    [TabGroup("1","Setup"), ReadOnly] public List<SkillAction> allSkill;
+    [TabGroup("1", "Drop"), SerializeField, ReadOnly] List<SkillAction> dropSkills = new List<SkillAction>();
+    [TabGroup("1", "Drop"), SerializeField, ReadOnly] List<Relic> dropRelics = new List<Relic>();
+    [TabGroup("1", "Drop"), SerializeField, ReadOnly] int gold;
+
+    SkillAction currentSkill;
+    public void SetDrop(List<SkillAction> skills, List<Relic> relics, int gold)
+    {
+        foreach(var skill in skills)
+            dropSkills.Add(skill);
+        
+        foreach (var relic in relics)
+            dropRelics.Add(relic);
+        this.gold = gold;
+    }
+
+    [ReadOnly] public EnemyType e_type;
+
+    TurnManager turnManager;
+    StatusEffectSystem statusEffectSystem;
+    // Start is called before the first frame update
+    void Start()
+    {
+        enemyPos = transform.position;
+        turnManager = GameManager.instance.turnManager;
+        statusEffectSystem = GameManager.instance.statusEffectSystem;
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void OnMouseEnter()
+    {
+        //Debug.Log("over");
+    }
+
+    public void OnMouseExit()
+    {
+        //Debug.Log("Pver");
+    }
+
+    public void OnMouseUp()
+    {
+        if (turnManager.actionTurn != ActionTurn.player) return;
+        turnManager.targetEnemy = this;
+        GameManager.instance.battleSetup.arrow.position = gameObject.transform.position + new Vector3(0, 0.45f, 0) ;
+
+    }
+    bool orderSkill;
+    int indexSkill = 0;
+    public void SetInfoEnemy(CharacterDetail detail)
+    {
+        SetStatValue(detail.maxHP, detail.atk, detail.def, detail.damageBonus, detail.damageReduce);
+        allSkill = detail.allSkill;
+
+        orderSkill = detail.orderSkill;
+        indexSkill = 0;
+        e_type = detail.e_type;
+
+        if(!orderSkill)
+            currentSkill = GetRandomSkill();
+        else
+        {
+            currentSkill = GetSkill();
+            indexSkill++;
+            if (indexSkill >= allSkill.Count) indexSkill = 0;
+        }
+        ShowNextAction(currentSkill);
+    }
+
+    #region taken
+    float ratio;
+    public void StartDamageTaken(int damage, float delay = 0, bool notDie = false, GameObject effect = null)=> StartCoroutine(DamageTaken(damage, delay, notDie, effect));
+
+    IEnumerator DamageTaken(int damage, float delay, bool notDie, GameObject effect)
+    {
+        yield return new WaitForSeconds(delay);
+        hpValue -= damage;
+        if(effect != null) Instantiate(effect, gameObject.transform);
+        yield return new WaitForSeconds(0.2f);
+        GameManager.instance.numberDamageSystem.CreateDamageNumber(gameObject.transform, damage);
+        if (hpValue <= 0)
+        {
+            if (notDie)
+            {
+                hpValue = 1;
+                ratio = (float)hpValue / maxHpValue;
+                gaugeHP.HpGaugeChange(ratio);
+
+            }
+            else
+            {
+                hpValue = 0;
+                ratio = (float)hpValue / maxHpValue;
+                gaugeHP.HpGaugeChange(ratio);
+                yield return new WaitForSeconds(0.5f);
+                DestroySelf();
+            }
+        }
+        else
+        {
+            ratio = (float)hpValue / maxHpValue;
+            gaugeHP.HpGaugeChange(ratio);
+        }
+    }
+
+    public void StartDamageFromDebuff(int damage, float delay, StatusEffect status) => StartCoroutine(DamageFromDebuff(damage, delay, status));
+    IEnumerator DamageFromDebuff(int damage, float delay, StatusEffect status)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if(status.id == "DD001")
+        {
+
+        }
+        hpValue -= damage;
+        GameManager.instance.numberDamageSystem.CreateDamageNumber(gameObject.transform, damage, status);
+        if (hpValue <= 0) hpValue = 0;
+
+        float ratio = (float)hpValue / maxHpValue;
+        gaugeHP.HpGaugeChange(ratio);
+        if (hpValue <= 0) DestroySelf();
+    }
+
+    public void StartHealHP(int value, float delay) => StartCoroutine(HealHP(value, delay));
+
+    IEnumerator HealHP(int value, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        hpValue += value;
+        if (hpValue > maxHpValue) hpValue = maxHpValue;
+
+        GameManager.instance.numberDamageSystem.CreateHealNumber(gameObject.transform, value.ToString());
+
+        float ratio = (float)hpValue / maxHpValue;
+        gaugeHP.HpGaugeChange(ratio);
+
+    }
+    #endregion
+    #region DealDamage
+    public void StartEnemyAttack() => StartCoroutine(ActiveSkillAttack());
+
+    IEnumerator ActiveSkillAttack()
+    {
+        if (turnManager.player.hpValue <= 0)
+        {
+            yield break;
+        }
+
+        statusEffectSystem.TriggerStatusCount(TriggerStatus.Start, this);
+        if(hpValue <= 0)
+        {
+            GameManager.instance.enemyTurnSystem.DecreaseCurrentEnemy();
+            DestroySelf();
+        }
+
+        statusEffectSystem.TriggerStatusAction(currentSkill.GetSkillType(), this);
+        GameManager.instance.detailPanel.ShowSkillActionName(currentSkill.skillName);
+        switch (currentSkill.GetSkillType())
+        {
+            case SkillType.Attack:
+                AttackSkill(currentSkill);
+                break;
+            case SkillType.Debuff:
+                DebuffSkill(currentSkill);
+                break;
+            case SkillType.Buff:
+                BuffSkill(currentSkill);
+                break;
+            case SkillType.Heal:
+                HealSkill(currentSkill);
+                break;
+        }
+        if (currentSkill.GetCheckTakeDamage())
+            StartDamageTaken(maxHpValue * currentSkill.GetTakeDamagePercent() / 100, 0, true);
+        yield return new WaitForSeconds(0.5f);
+        statusEffectSystem.TriggerStatusCount(TriggerStatus.End, this);
+
+        if (!orderSkill)
+            currentSkill = GetRandomSkill();
+        else
+        {
+            currentSkill = GetSkill();
+            indexSkill++;
+            if (indexSkill >= allSkill.Count) indexSkill = 0;
+        }
+
+        ShowNextAction(currentSkill);
+    }
+
+    public SkillAction GetSkill()
+    {
+        SkillAction skill = new SkillAction();
+        do
+        {
+            skill = allSkill[Random.Range(0, allSkill.Count)];
+        }while(allSkill.Count > 0);
+        
+        return skill;
+    }
+
+    private SkillAction GetRandomSkill()
+    {
+        if (allSkill.Count < 3) return allSkill[Random.Range(0, allSkill.Count)];
+        SkillAction skill = new SkillAction();
+        do
+        {
+            skill = allSkill[Random.Range(0, allSkill.Count)];
+        }while(!CheckRandomSkill(skill));
+        return skill;
+    }
+    
+    private bool CheckRandomSkill(SkillAction skill)
+    {
+        if(skill.GetSkillType() == SkillType.Buff)
+        {
+            foreach(var self in skill.GetStatusSelf())
+                foreach (var widget in gaugeHP.statusWidgets)
+                    if (widget.GetStatus().id == self.statusEffect.id)
+                        if(widget.GetCount() == 1) return true;
+                        else return false;
+        }else if(skill.GetSkillType() == SkillType.Heal)
+        {
+            if (skill.GetHealType() == HealType.Heal)
+            {
+                int heal = maxHpValue * skill.GetPercentHeal(hpValue / maxHpValue) / 100;
+                if (hpValue + heal > maxHpValue) return false;
+                else return true;
+            }
+            else if (skill.GetHealType() == HealType.RemoveDebuff)
+            {
+                if (gaugeHP.GetAmountBuffDebuff(StatusType.Debuff) == 0) return false;
+                else return true;
+            }
+            else
+            {
+                if (gaugeHP.GetStatuswithStatus(skill.GetRemoveDebuff()) == null) return false;
+                else return true;
+            }
+        }else if(skill.GetSkillType() == SkillType.Debuff)
+        {
+            if (skill.GetCheckRemoveBuff())
+            {
+                if (turnManager.player.gaugeHp.GetAmountBuffDebuff(StatusType.Buff) == 0) return false;
+            }
+        }
+
+        return true;
+    }
+
+    int heal = 0;
+    private void AttackSkill(SkillAction skill)
+    {
+        animationAction.AttackAction();
+        float ratio = hpValue / maxHpValue;
+        for (int i = 0; i < skill.GetPercentDamage().Count; i++)
+        {
+            int percentSkill = skill.GetPercentDamage()[i] + 
+                skill.GetDamageSpecific().CheckStatus(turnManager.player.gaugeHp.CheckSameStatus(skill.GetDamageSpecific().damageForEffect)) +
+                skill.GetHpPercentSkill(ratio);
+
+            int damage = GameManager.instance.damageCalculator.DamageResult((int)atkValue,percentSkill,
+                                            (int)turnManager.player.defValue, GetDamageBonus(), turnManager.player.GetDamageReduce());
+
+            turnManager.player.StartDamageTaken(damage, i * 0.2f + animationAction.attackTime, skill.particleEffect);
+            if (turnManager.player.hpValue <= 0) return;
+
+            if (skill.GetIsHeal())
+            {
+                if (skill.GetHealType() == HealType.Heal)
+                {
+                    heal = (damage * skill.GetPercentHeal(ratio)) / 100;
+                    StartHealHP(heal, i);
+                }
+                else if (skill.GetHealType() == HealType.RemoveDebuff && i == 0)
+                {
+                    GameManager.instance.statusEffectSystem.RemoveDebuff(null, this);
+                }
+                else if (skill.GetHealType() == HealType.RemoveSpecific && i == 0)
+                {
+                    GameManager.instance.statusEffectSystem.RemoveDebuff(skill.GetRemoveDebuff(), this);
+                }
+            }
+
+            if (skill.GetStatusTarget().Count > 0)
+                foreach (var status in skill.GetStatusTarget())
+                    GameManager.instance.statusEffectSystem.GetStatusInPlayer(status);
+        }
+
+        if (skill.GetStatusSelf().Count > 0)
+            foreach (var status in skill.GetStatusSelf())
+                GameManager.instance.statusEffectSystem.GetStatusInPlayer(status);
+
+        if (skill.GetCheckHpCompare())
+            if (skill.GetHpAbility().type == SkillType.Buff)
+                statusEffectSystem.GetStatusInEnemy(this, skill.GetHpStatus(ratio));
+    }
+    private void DebuffSkill(SkillAction skill)
+    {
+        animationAction.AttackAction();
+        if (skill.GetCheckRemoveBuff())
+        {
+            statusEffectSystem.RemoveBuff(skill.GetRemoveEffectType());
+        }
+        else
+        {
+            foreach (var status in skill.GetStatusTarget())
+            {
+                statusEffectSystem.GetStatusInPlayer(status);
+            }
+        }
+    }
+
+    private void BuffSkill(SkillAction skill)
+    {
+        float ratio = turnManager.player.hpValue / turnManager.player.maxHpValue;
+        animationAction.BuffAction();
+        foreach (var status in skill.GetStatusSelf())
+        {
+            if(skill.targetType == TargetType.Team)
+            {
+                foreach(var enemy in turnManager.enemies)
+                    statusEffectSystem.GetStatusInEnemy(enemy, status);
+            }else if(skill.targetType == TargetType.Self)
+            {
+                statusEffectSystem.GetStatusInEnemy(this, status);
+            }
+                
+        }
+
+        if (skill.GetCheckHpCompare())
+            if (skill.GetHpAbility().type == SkillType.Buff)
+                statusEffectSystem.GetStatusInEnemy(this, skill.GetHpStatus(ratio));
+    }
+
+    private void HealSkill(SkillAction skill)
+    {
+        float ratio = 0;
+        animationAction.BuffAction();
+        if (skill.GetHealType() == HealType.Heal)
+        {
+            if (skill.targetType == TargetType.Team)
+            {
+                foreach (var enemy in turnManager.enemies)
+                {
+                    ratio = enemy.hpValue / enemy.maxHpValue;
+                    heal = (enemy.maxHpValue * skill.GetPercentHeal(ratio)) / 100;
+                    enemy.StartHealHP(heal, 0);
+                }
+            }
+            else if (skill.targetType == TargetType.Self)
+            {
+                ratio = hpValue / maxHpValue;
+                heal = (maxHpValue * skill.GetPercentHeal(ratio)) / 100;
+                StartHealHP(heal, 0);
+            }
+        }
+        else if (skill.GetHealType() == HealType.RemoveDebuff)
+        {
+            if (skill.targetType == TargetType.Team)
+            {
+                foreach (var enemy in turnManager.enemies)
+                    statusEffectSystem.RemoveDebuff(null, enemy);
+            }
+            else if (skill.targetType == TargetType.Self)
+            {
+                statusEffectSystem.RemoveDebuff(null, this);
+            }
+        }
+        else
+        {
+            if (skill.targetType == TargetType.Team)
+            {
+                foreach (var enemy in turnManager.enemies)
+                    statusEffectSystem.RemoveDebuff(skill.GetRemoveDebuff(), enemy);
+            }
+            else if (skill.targetType == TargetType.Self)
+            {
+                statusEffectSystem.RemoveDebuff(skill.GetRemoveDebuff(), this);
+            }
+        }
+    }
+    #endregion
+    void DestroySelf(float delay = 0.5f)
+    {
+        if (GameManager.instance.relicManagerSystem.CheckRelicWithID("RN010"))
+        {
+            statusEffectSystem.GetStatusInPlayer(GameManager.instance.allData.GetStatusWithID("BN002"));
+        }
+
+        //GameManager.instance.skillOrderSystem.RemoveEnemyinSlot(this);
+        GameManager.instance.encounterManagementSystem.AddDrop(RandomSkillDrop(), RandomRelicDrop(), gold);
+        Destroy(gaugeHP.gameObject, delay);
+        GameManager.instance.turnManager.RemoveEnemy(this);
+        Destroy(gameObject, delay);
+    }
+
+    private void ShowNextAction(SkillAction skill)
+    {
+
+    }
+    public Transform GetGuagePos() => gaugePos;
+    public void SetGaugePos(Transform pos) => gaugePos = pos;
+    public List<StatusWidget> GetStatusWidgets() => gaugeHP.statusWidgets;
+
+    private SkillAction RandomSkillDrop()
+    {
+        if (dropSkills.Count == 0) return null;
+        SkillAction skill = new SkillAction();
+        int num = 0;
+        do
+        {
+            skill = dropSkills[Random.Range(0, dropSkills.Count)];
+            if (num == dropSkills.Count) return null;
+            num++;
+        } while (GameManager.instance.encounterManagementSystem.CheckAlreadyHaveSkill(skill));
+
+        return skill;
+    }
+
+    private Relic RandomRelicDrop()
+    {
+        if(dropRelics.Count == 0) return null;
+        Relic relic = new Relic();
+        int num = 0;
+        do
+        {
+            relic = dropRelics[Random.Range(0, dropRelics.Count)];
+            if (num == dropSkills.Count) return null;
+            num++;
+        } while (GameManager.instance.encounterManagementSystem.CheckAlreadyHaveRelic(relic));
+
+        return relic;
+    }
+}

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b2398380e91401498d98425e65bb784, type: 3}
+  m_Name: EnemyTest
+  m_EditorClassIdentifier: 
+  character: {fileID: 5179728947092172437, guid: 84e14bb5b56375745826e25076febe36, type: 3}
+  characterName: Test
+  characterType: 1
+  e_type: 0
+  goldDrop: 100
+  allSkill:
+  - {fileID: 11400000, guid: 662d9df003a1e5443a94097b4db7a0ab, type: 2}
+  - {fileID: 11400000, guid: 61e453f84ccdd9a43a741a78d85ec701, type: 2}
+  skillDrop:
+  - {fileID: 11400000, guid: 239877b3023f64d43b51f412a233f080, type: 2}
+  - {fileID: 11400000, guid: ea05e7eb3206ee54b84887eb6bedde16, type: 2}
+  - {fileID: 11400000, guid: 8ba8ea7c3babe644da1be921da07eb59, type: 2}
+  maxHP: 50
+  atk: 5
+  def: 5
+  damageBonus: 0
+  damageReduce: 10
