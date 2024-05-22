@@ -1190,15 +1190,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atk: 25
-  atkBonus: 32000000
-  percentSkill: 64000000
-  damageBonus: 0a000000
+  atkBonus: 
+  percentSkill: 46000000
+  damageBonus: 
   def: 10
   defBonus: 
   damageReduce: 0a000000
-  result: 'Atk : 37
+  result: 'Atk : 25
 
-    DamageBonus : 10%
+    DamageBonus : 0%
 
     Def : 10
 
@@ -1206,7 +1206,7 @@ MonoBehaviour:
 
 
     Hit1:
-    27'
+    6'
 --- !u!1 &616881667
 GameObject:
   m_ObjectHideFlags: 0
@@ -2110,7 +2110,7 @@ MonoBehaviour:
   posion: {r: 0.14382114, g: 0.4528302, b: 0.06578852, a: 1}
   burn: {r: 0.9245283, g: 0.2974853, b: 0.038376607, a: 1}
   bleed: {r: 0.6392157, g: 0, b: 0, a: 1}
-  curse: {r: 0.37017915, g: 0.16838731, b: 0.5188679, a: 1}
+  curse: {r: 0.24705882, g: 0.07988606, b: 0.38431373, a: 1}
 --- !u!1 &1159371638
 GameObject:
   m_ObjectHideFlags: 0
@@ -2829,6 +2829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSlot: 0
   slotCount: 3
+  skillCount: 0
   skillPrefab: {fileID: 7931926909436880801, guid: 7423d8b1c1a7eb646a17c4a5e244b25e, type: 3}
   skillPlace: {fileID: 1845942159}
   slotPrefab: {fileID: 6103661208178158205, guid: ae7b65af23397494bbfc2869ea0feef8, type: 3}
@@ -3491,7 +3492,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   increaseMoney: 0
   discount: 0
-  increaseSkill: 0
+  increaseExp: 0
+  randomSkill: 0
+  dropSkill: 0
   increaseStack: 0
   posionDmg: 0
   burnDmg: 0

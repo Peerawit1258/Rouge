@@ -10,39 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 282601f5b429a9e48a380149eaddb12b, type: 3}
-  m_Name: RN012_WarriorHelmet
+  m_Name: RN007_SprigganClaw
   m_EditorClassIdentifier: 
-  id: RN012
-  relicName: Warrior Helmet
+  id: RN007
+  relicName: Spriggan Claw
   icon: {fileID: 0}
   relicType: 0
-  rarity: 0
+  rarity: 2
   destroyWhenUse: 0
   description: 
   relicDetails:
-  - type: 1
-    isSlot: 0
-    hpCompare: 0
-    compare: 0
-    hpPercent: 0
-    statValues: []
-    slots: []
-    trigger: 0
-    statusType: 0
-    status:
-      statusEffect: {fileID: 0}
-      count: 0
-    isStack: 0
-    stack: 0
-    dotID: 
-    dotDamage: 0
-    isShop: 0
-    discount: 0
-    extraMoney: 0
-    skillRelic: 0
-    increaseRandomSkill: 0
-    increaseDropSkill: 0
-    percentExp: 0
   - type: 0
     isSlot: 0
     hpCompare: 0
@@ -65,6 +42,6 @@ MonoBehaviour:
     discount: 0
     extraMoney: 0
     skillRelic: 0
-    increaseRandomSkill: 0
+    increaseRandomSkill: 1
     increaseDropSkill: 0
     percentExp: 0

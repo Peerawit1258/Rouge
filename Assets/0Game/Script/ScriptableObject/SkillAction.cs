@@ -161,7 +161,7 @@ public class ActionDetail
 public class HpAbility
 {
     public Compare hpCompare;
-    public int hpPercent;
+    public float hpPercent;
     public SkillType type;
     [ShowIf("@type == SkillType.Attack")] public int percentSkill;
     [ShowIf("@type == SkillType.Buff")] public AddStatus status;

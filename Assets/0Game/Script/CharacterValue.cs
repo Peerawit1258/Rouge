@@ -52,8 +52,6 @@ public class CharacterValue : MonoBehaviour
         }
     }
 
-    public void AttackUp(int percent) => atkValue += (b_atk * percent / 100);
-
     public void StatUp(StatValue stat, bool assign = true)
     {
         if (assign)

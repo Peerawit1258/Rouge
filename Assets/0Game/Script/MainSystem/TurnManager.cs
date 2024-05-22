@@ -48,7 +48,6 @@ public class TurnManager : MonoBehaviour
         GameManager.instance.detailPanel.ShowActionTurn(actionTurn, () =>
         {
             GameManager.instance.statusEffectSystem.TriggerStatusCount(TriggerStatus.Start);
-            GameManager.instance.relicManagerSystem.TriggerRelicEffect(TriggerStatus.Start);
             skillOrderSystem.ClearSlotSkill();
             skillOrderSystem.isSkillActive = false;
             skillOrderSystem.slotPlace.gameObject.SetActive(true);
@@ -67,6 +66,7 @@ public class TurnManager : MonoBehaviour
 
         if (targetEnemy == null) targetEnemy = enemies[0];
 
+        if(turnCount == 0) GameManager.instance.relicManagerSystem.TriggerRelicEffect(TriggerStatus.Start);
         targetEnemy.OnMouseUp();
         turnCount++;
 

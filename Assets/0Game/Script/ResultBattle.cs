@@ -125,6 +125,8 @@ public class ResultBattle : MonoBehaviour
         {
             winPanel.gameObject.SetActive(false);
             encounterManagementSystem.CreateNextDoorNode();
+            GameManager.instance.relicManagerSystem.TriggerRelicEffect(TriggerStatus.End);
+            GameManager.instance.turnManager.turnCount = 0;
             nextButton.gameObject.SetActive(false);
         });
         //titleText.DOFade(1, time);

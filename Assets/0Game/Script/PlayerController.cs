@@ -26,6 +26,13 @@ public class PlayerController : CharacterValue
             atkValue = 9999;
     }
 
+    public float GetPlayerDef()
+    {
+        float currentDef = defValue + 
+            ((defValue * GameManager.instance.relicManagerSystem.GetBonusStatFromHpCompare(hpValue/maxHpValue, StatType.Def))/100);
+        return currentDef;
+    }
+
     float ratio;
     public void StartDamageTaken(int damage, float delay = 0, bool notDie = false, GameObject effect = null) => StartCoroutine(DamageTaken(damage, delay, notDie, effect));
 

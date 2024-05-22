@@ -9,6 +9,7 @@ public class SkillOrderSystem : MonoBehaviour
 {
     [ReadOnly] public int currentSlot = 0;
     public int slotCount;
+    public int skillCount;
     [Header("SkillCreate")]
     public GameObject skillPrefab;
     public Transform skillPlace;
@@ -68,7 +69,6 @@ public class SkillOrderSystem : MonoBehaviour
             SkillAction skill = allSlot[currentSkill].skill;
 
             statusEffectSystem.TriggerStatusAction(skill.GetSkillType());
-            relicManagerSystem.TriggerRelicEffect(TriggerStatus.Action);
 
             GameManager.instance.detailPanel.ShowSkillActionName(skill.skillName);
             switch (skill.GetSkillType())
@@ -107,7 +107,6 @@ public class SkillOrderSystem : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             statusEffectSystem.TriggerStatusCount(TriggerStatus.End);
-            relicManagerSystem.TriggerRelicEffect(TriggerStatus.End);
             turnManager.StartEnemyTurn();
         }
     }
@@ -171,7 +170,7 @@ public class SkillOrderSystem : MonoBehaviour
 
         List<EnemyController> enemies = new List<EnemyController>();
         List<EnemyController> randomEnemy = new List<EnemyController>();
-        float ratio = (float)turnManager.player.hpValue / turnManager.player.maxHpValue;
+        float ratio = turnManager.player.hpValue / turnManager.player.maxHpValue;
         //Debug.Log("Hp: " + ratio);
         turnManager.player.animationAction.AttackAction();
 
@@ -356,7 +355,7 @@ public class SkillOrderSystem : MonoBehaviour
     public void CreateSkillSlot()
     {
         skillPlace.gameObject.SetActive(true);
-        for(int i = 0; i < slotCount; i++)
+        for(int i = 0; i < skillCount + relicManagerSystem.randomSkill; i++)
         {
             if (i > GameManager.instance.playerData.currentSkills.Count - 1)
             {

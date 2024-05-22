@@ -10,18 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 282601f5b429a9e48a380149eaddb12b, type: 3}
-  m_Name: RN005_sd
+  m_Name: RN005_EnegyPotion
   m_EditorClassIdentifier: 
   id: RN005
-  relicName: sd
+  relicName: Enegy Potion
   icon: {fileID: 0}
   relicType: 0
   rarity: 1
   destroyWhenUse: 0
-  description: 
+  description: When battle is start,Apply 1 Attack Boost
   relicDetails:
   - type: 1
     isSlot: 0
+    hpCompare: 0
+    compare: 0
+    hpPercent: 0
     statValues:
     - type: 1
       value: 20
@@ -38,4 +41,7 @@ MonoBehaviour:
     isShop: 0
     discount: 0
     extraMoney: 0
+    skillRelic: 0
     increaseRandomSkill: 1
+    increaseDropSkill: 0
+    percentExp: 0

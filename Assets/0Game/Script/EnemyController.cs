@@ -313,7 +313,7 @@ public class EnemyController : CharacterValue
                 skill.GetHpPercentSkill(ratio);
 
             int damage = GameManager.instance.damageCalculator.DamageResult((int)atkValue,percentSkill,
-                                            (int)turnManager.player.defValue, GetDamageBonus(), turnManager.player.GetDamageReduce());
+                                            (int)turnManager.player.GetPlayerDef(), GetDamageBonus(), turnManager.player.GetDamageReduce());
 
             turnManager.player.StartDamageTaken(damage, i * 0.2f + animationAction.attackTime, skill.particleEffect);
             if (turnManager.player.hpValue <= 0) return;

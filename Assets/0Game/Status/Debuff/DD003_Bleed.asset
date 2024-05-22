@@ -16,13 +16,18 @@ MonoBehaviour:
   statusName: Bleed
   statusIcon: {fileID: 21300000, guid: 115dba203a9ee3c449264f059a316046, type: 3}
   type: 1
+  use: 0
   trigger: 1
-  skill: 1
+  skill: 0
+  color: {r: 0.6392157, g: 0, b: 0, a: 1}
   particleEffect: {fileID: 0}
   canStack: 1
+  useAllStack: 0
   descrition: 
   effect: 3
+  isSlot: 0
   statValues: []
+  slots: []
   heal: 0
   damage: 7
   capStack: 7

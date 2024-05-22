@@ -19,8 +19,10 @@ MonoBehaviour:
   use: 0
   trigger: 0
   skill: 0
+  color: {r: 0.32953006, g: 0.71416867, b: 0.9339623, a: 1}
   particleEffect: {fileID: 0}
   canStack: 1
+  useAllStack: 0
   descrition: 
   effect: 0
   isSlot: 0

@@ -5,9 +5,11 @@ using Sirenix.OdinInspector;
 
 public class RelicManagerSystem : MonoBehaviour
 {
-    [TabGroup("Game"), SerializeField, Unit(Units.Percent), ReadOnly] int increaseMoney;
-    [TabGroup("Game"), SerializeField, Unit(Units.Percent), ReadOnly] int discount;
-    [TabGroup("Game"), SerializeField, Unit(Units.Percent), ReadOnly] int increaseSkill;
+    [TabGroup("Game"), Unit(Units.Percent), ReadOnly] public int increaseMoney;
+    [TabGroup("Game"), Unit(Units.Percent), ReadOnly] public int discount;
+    [TabGroup("Game"), Unit(Units.Percent), ReadOnly] public int increaseExp;
+    [TabGroup("Game"), Unit(Units.Percent), ReadOnly] public int randomSkill;
+    [TabGroup("Game"), Unit(Units.Percent), ReadOnly] public int dropSkill;
 
     [TabGroup("DOT"), SerializeField, ReadOnly] int increaseStack;
     [Header("Damage")]
@@ -52,17 +54,21 @@ public class RelicManagerSystem : MonoBehaviour
                     }
                     else
                     {
-                        StatValue set = new StatValue();
-                        foreach (var stat in detail.statValues)
+                        if (!detail.hpCompare)
                         {
-                            set.type = stat.type;
-                            set.value = stat.value;
+                            StatValue set = new StatValue();
+                            foreach (var stat in detail.statValues)
+                            {
+                                set.type = stat.type;
+                                set.value = stat.value;
+                            }
+                            player.StatUp(set);
                         }
-                        player.StatUp(set);
+                        
                     }
                     break;
                 case RelicEffectType.Skill:
-                    increaseSkill += detail.increaseRandomSkill;
+                    randomSkill += detail.increaseRandomSkill;
                     break;
                 case RelicEffectType.DOT:
                     if (detail.isStack)
@@ -89,9 +95,9 @@ public class RelicManagerSystem : MonoBehaviour
                         }
                     }
                     break;
-                case RelicEffectType.BuffDebuff:
+                //case RelicEffectType.BuffDebuff:
 
-                    break;
+                //    break;
                 case RelicEffectType.Money:
                     if (detail.isShop)
                         discount += detail.discount;
@@ -135,7 +141,7 @@ public class RelicManagerSystem : MonoBehaviour
                     
                     break;
                 case RelicEffectType.Skill:
-                    increaseSkill -= detail.increaseRandomSkill;
+                    randomSkill -= detail.increaseRandomSkill;
                     break;
                 case RelicEffectType.DOT:
                     if (detail.isStack)
@@ -162,9 +168,9 @@ public class RelicManagerSystem : MonoBehaviour
                         }
                     }
                     break;
-                case RelicEffectType.BuffDebuff:
+                //case RelicEffectType.BuffDebuff:
 
-                    break;
+                //    break;
                 case RelicEffectType.Money:
                     if (detail.isShop)
                         discount -= detail.discount;
@@ -200,13 +206,34 @@ public class RelicManagerSystem : MonoBehaviour
     public void TriggerRelicEffect(TriggerStatus trigger)
     {
         if (GameManager.instance.allData.r.Count == 0) return;
-        
-        foreach(var relic in GameManager.instance.allData.r)
+
+        foreach (var relic in GameManager.instance.allData.r)
             foreach (var detail in relic.relicDetails)
                 if (detail.type == RelicEffectType.BuffDebuff)
                     if (detail.trigger == trigger)
                         statusEffectSystem.GetStatusInPlayer(detail.status);
     }
+
+    public int GetBonusStatFromHpCompare(float ratio, StatType type)
+    {
+        int stat = 0;
+        foreach(var relic in GameManager.instance.playerData.currentRelics)
+        {
+            foreach(var detail in relic.relicDetails)
+            {
+                if (detail.hpCompare && detail.CheckHpCompare(ratio))
+                {
+                    foreach(var st in detail.statValues)
+                    {
+                        if(st.type == type)
+                            stat += st.value;
+                    }
+                }
+            }
+        }
+        return stat;
+    }
+
     #region Dot
     public int DamageDOTIncrease(string dotID, int damage)
     {

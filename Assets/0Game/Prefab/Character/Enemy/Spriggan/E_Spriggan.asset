@@ -19,11 +19,21 @@ MonoBehaviour:
   goldDrop: 0
   expDrop: 0
   orderSkill: 0
-  allSkill: []
-  skillDrop: []
-  relicDrop: []
-  maxHP: 0
-  atk: 0
-  def: 0
+  allSkill:
+  - {fileID: 11400000, guid: 9bcf053ee3df072458ac287d1d748861, type: 2}
+  - {fileID: 11400000, guid: 449c2bb5b744b9c47b0407bc5ebee6e4, type: 2}
+  - {fileID: 11400000, guid: 9f6a9fd888bbb9f4ea181f1ec3bf1934, type: 2}
+  - {fileID: 11400000, guid: 859ce62386aafb84c847f4ea957514f3, type: 2}
+  skillDrop:
+  - {fileID: 11400000, guid: 129f104ac86b4194caa5f101567c5eee, type: 2}
+  - {fileID: 11400000, guid: 9b0a2018e3d9ea64ba7887e6c1263284, type: 2}
+  - {fileID: 11400000, guid: 3716748fd0275984aa557ab588128a2d, type: 2}
+  - {fileID: 11400000, guid: 2ddc122ffa46c67468b88ea64dfefe7a, type: 2}
+  relicDrop:
+  - {fileID: 11400000, guid: d54db220dae61a340a6187486e9dedf6, type: 2}
+  maxHP: 30
+  atk: 25
+  def: 7
   damageBonus: 0
-  damageReduce: 0
+  damageReduce: 10
+  startEffect: []

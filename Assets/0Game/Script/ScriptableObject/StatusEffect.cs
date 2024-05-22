@@ -14,6 +14,7 @@ public class StatusEffect : ScriptableObject
     [SerializeField] UseThisObject use;
     [EnumToggleButtons] public TriggerStatus trigger;
     [ShowIf("@trigger == TriggerStatus.Action"), EnumToggleButtons, HideLabel] public SkillType skill;
+    public Color color;
     public GameObject particleEffect;
     public bool canStack;
     public bool useAllStack;
@@ -57,7 +58,8 @@ public enum StatType
     Atk,
     Def,
     DmgBonus,
-    DmgReduce
+    DmgReduce,
+    Hp
 }
 
 public enum TriggerStatus
