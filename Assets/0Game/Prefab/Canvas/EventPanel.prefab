@@ -812,6 +812,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Exit
       objectReference: {fileID: 0}
+    - target: {fileID: 8144401317209998522, guid: ce452f6b0d629bc408051fa96f58603a, type: 3}
+      propertyPath: exit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8454070747181888852, guid: ce452f6b0d629bc408051fa96f58603a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

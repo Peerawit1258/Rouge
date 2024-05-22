@@ -18,7 +18,9 @@ MonoBehaviour:
   relicType: 0
   rarity: 1
   destroyWhenUse: 0
-  description: When battle is start,Apply 1 Attack Boost
+  description: 'When battle is start,
+
+    Apply 1 <color=#D63F3F>AttackBoost</color>'
   relicDetails:
   - type: 1
     isSlot: 0

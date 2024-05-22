@@ -16,7 +16,7 @@ MonoBehaviour:
   relicName: Spriggan Claw
   icon: {fileID: 0}
   relicType: 0
-  rarity: 2
+  rarity: 0
   destroyWhenUse: 0
   description: 
   relicDetails:

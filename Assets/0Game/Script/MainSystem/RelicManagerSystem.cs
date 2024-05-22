@@ -24,6 +24,8 @@ public class RelicManagerSystem : MonoBehaviour
     [TabGroup("DOT"), SerializeField, ReadOnly] int bleedCap;
     [TabGroup("DOT"), SerializeField, ReadOnly] int curseCap;
 
+   public GameObject relicPrefab;
+
     PlayerController player;
     StatusEffectSystem statusEffectSystem;
     // Start is called before the first frame update
@@ -205,9 +207,9 @@ public class RelicManagerSystem : MonoBehaviour
     }
     public void TriggerRelicEffect(TriggerStatus trigger)
     {
-        if (GameManager.instance.allData.r.Count == 0) return;
+        if (GameManager.instance.playerData.currentRelics.Count == 0) return;
 
-        foreach (var relic in GameManager.instance.allData.r)
+        foreach (var relic in GameManager.instance.playerData.currentRelics)
             foreach (var detail in relic.relicDetails)
                 if (detail.type == RelicEffectType.BuffDebuff)
                     if (detail.trigger == trigger)

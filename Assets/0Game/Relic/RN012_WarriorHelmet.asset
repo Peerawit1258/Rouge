@@ -16,9 +16,13 @@ MonoBehaviour:
   relicName: Warrior Helmet
   icon: {fileID: 0}
   relicType: 0
-  rarity: 0
+  rarity: 1
   destroyWhenUse: 0
-  description: 
+  description: 'Defense +20%
+
+    When battle is start,
+
+    Apply 3 <color=#D63F3F>DamageBoost</color>'
   relicDetails:
   - type: 1
     isSlot: 0
@@ -30,8 +34,8 @@ MonoBehaviour:
     trigger: 0
     statusType: 0
     status:
-      statusEffect: {fileID: 0}
-      count: 0
+      statusEffect: {fileID: 11400000, guid: e738dfa65b41faa4688e646e40c0e452, type: 2}
+      count: 3
     isStack: 0
     stack: 0
     dotID: 

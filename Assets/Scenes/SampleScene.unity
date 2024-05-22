@@ -3505,6 +3505,7 @@ MonoBehaviour:
   burnCap: 0
   bleedCap: 0
   curseCap: 0
+  relicPrefab: {fileID: 2261808178645346150, guid: f9e991a5c68a1e04dab4b8df6df03341, type: 3}
 --- !u!1001 &2862811582024360213
 PrefabInstance:
   m_ObjectHideFlags: 0

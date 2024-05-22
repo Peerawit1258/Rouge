@@ -18,10 +18,15 @@ MonoBehaviour:
   relicType: 0
   rarity: 1
   destroyWhenUse: 0
-  description: 
+  description: Money +30%
   relicDetails:
   - type: 3
+    isSlot: 0
+    hpCompare: 0
+    compare: 0
+    hpPercent: 0
     statValues: []
+    slots: []
     trigger: 0
     statusType: 0
     status:
@@ -34,4 +39,7 @@ MonoBehaviour:
     isShop: 0
     discount: 20
     extraMoney: 30
+    skillRelic: 0
     increaseRandomSkill: 0
+    increaseDropSkill: 0
+    percentExp: 0

@@ -18,10 +18,13 @@ MonoBehaviour:
   relicType: 0
   rarity: 0
   destroyWhenUse: 0
-  description: Increase Attack 20%
+  description: 
   relicDetails:
   - type: 0
     isSlot: 0
+    hpCompare: 0
+    compare: 0
+    hpPercent: 0
     statValues:
     - type: 1
       value: 20
@@ -38,4 +41,7 @@ MonoBehaviour:
     isShop: 0
     discount: 0
     extraMoney: 0
+    skillRelic: 0
     increaseRandomSkill: 0
+    increaseDropSkill: 0
+    percentExp: 0

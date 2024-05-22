@@ -10,26 +10,51 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 282601f5b429a9e48a380149eaddb12b, type: 3}
-  m_Name: RN002_sd
+  m_Name: RN013_BattleAxe
   m_EditorClassIdentifier: 
-  id: RN002
-  relicName: sd
+  id: RN013
+  relicName: BattleAxe
   icon: {fileID: 0}
   relicType: 0
-  rarity: 0
+  rarity: 1
   destroyWhenUse: 0
-  description: 
+  description: 'Defense +20%
+
+    When battle is start,
+
+    Apply 3 <color=#D63F3F>DamageBoost</color>'
   relicDetails:
+  - type: 1
+    isSlot: 0
+    hpCompare: 0
+    compare: 0
+    hpPercent: 0
+    statValues: []
+    slots: []
+    trigger: 0
+    statusType: 0
+    status:
+      statusEffect: {fileID: 11400000, guid: e738dfa65b41faa4688e646e40c0e452, type: 2}
+      count: 3
+    isStack: 0
+    stack: 0
+    dotID: 
+    dotDamage: 0
+    isShop: 0
+    discount: 0
+    extraMoney: 0
+    skillRelic: 0
+    increaseRandomSkill: 0
+    increaseDropSkill: 0
+    percentExp: 0
   - type: 0
     isSlot: 0
     hpCompare: 0
     compare: 0
     hpPercent: 0
     statValues:
-    - type: 0
-      value: 20
     - type: 1
-      value: -10
+      value: 20
     slots: []
     trigger: 0
     statusType: 0

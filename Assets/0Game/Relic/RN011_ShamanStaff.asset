@@ -10,32 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 282601f5b429a9e48a380149eaddb12b, type: 3}
-  m_Name: RN002_sd
+  m_Name: RN011_ShamanStaff
   m_EditorClassIdentifier: 
-  id: RN002
-  relicName: sd
+  id: RN011
+  relicName: Shaman Staff
   icon: {fileID: 0}
   relicType: 0
   rarity: 0
   destroyWhenUse: 0
-  description: 
+  description: 'When battle is start,
+
+    Apply 1 <color=#D63F3F>DefenseBoost</color>'
   relicDetails:
-  - type: 0
+  - type: 1
     isSlot: 0
     hpCompare: 0
     compare: 0
     hpPercent: 0
-    statValues:
-    - type: 0
-      value: 20
-    - type: 1
-      value: -10
+    statValues: []
     slots: []
     trigger: 0
     statusType: 0
     status:
-      statusEffect: {fileID: 0}
-      count: 0
+      statusEffect: {fileID: 11400000, guid: 9dc4325823290e5409966d12a6d9dd31, type: 2}
+      count: 1
     isStack: 0
     stack: 0
     dotID: 
