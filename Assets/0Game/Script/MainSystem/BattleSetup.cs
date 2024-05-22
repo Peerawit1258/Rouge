@@ -58,11 +58,17 @@ public class BattleSetup : SerializedMonoBehaviour
     public void SetupPlayerBattle(CharacterDetail player)
     {
         PlayerController character = Instantiate(player.character, playerPos).GetComponent<PlayerController>();
-        character.SetStatValue(player.maxHP, player.atk, player.def, player.damageBonus, player.damageReduce);
+        character.SetStatValue(player.maxHP, player.atk, player.def, player.damageReduce);
         character.name = player.characterName;
 
         GameManager.instance.gaugeHpEnemy.SetPlayerHpWidget(character);
         GameManager.instance.turnManager.player = character;
+    }
+
+    public void SetPositionArrow(Transform pos)
+    {
+        if (GameManager.instance.turnManager.CheckEnemyTaunt()) return;
+        arrow.position = pos.position + new Vector3(0, 0.3f, 0);
     }
 
     public List<Transform> GetEnemyPos() => enemyPos;

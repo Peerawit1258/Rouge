@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b2398380e91401498d98425e65bb784, type: 3}
+  m_Name: E_Warrior
+  m_EditorClassIdentifier: 
+  character: {fileID: 1168759277638874933, guid: 7595efb3d52ec3f49ab2e6ad42224572, type: 3}
+  characterName: Warrior
+  characterType: 1
+  e_type: 1
+  goldDrop: 120
+  expDrop: 20
+  orderSkill: 0
+  allSkill:
+  - {fileID: 11400000, guid: ed88fa7b48427a848b7ab8c2f5becdbf, type: 2}
+  - {fileID: 11400000, guid: 27ef27d4a41aef44b8d555e81ef902ac, type: 2}
+  - {fileID: 11400000, guid: 403755209bb521d409c65d1fc1aec0c9, type: 2}
+  - {fileID: 11400000, guid: 859ce62386aafb84c847f4ea957514f3, type: 2}
+  skillDrop:
+  - {fileID: 11400000, guid: 262265fe4f856b44c881bfacd6cfb1c0, type: 2}
+  - {fileID: 11400000, guid: d8c02aa16d5e35c46852d262ba46c9b4, type: 2}
+  - {fileID: 11400000, guid: 969c513e05c858949875dc9a4457cf07, type: 2}
+  - {fileID: 11400000, guid: 239877b3023f64d43b51f412a233f080, type: 2}
+  relicDrop:
+  - {fileID: 11400000, guid: 1db6bd7ef840dc34f93dcde07e8b2912, type: 2}
+  - {fileID: 11400000, guid: a2bd0bb8cde966342a86a1be4d3b54c4, type: 2}
+  - {fileID: 11400000, guid: b3b762f33315ff8429016a0f2e1daf12, type: 2}
+  - {fileID: 11400000, guid: a80bf61fea10eec4f80878511b1997f7, type: 2}
+  maxHP: 40
+  atk: 25
+  def: 10
+  damageBonus: 0
+  damageReduce: 10
+  startEffect: []

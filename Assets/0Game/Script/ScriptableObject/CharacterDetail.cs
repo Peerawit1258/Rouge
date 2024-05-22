@@ -27,6 +27,9 @@ public class CharacterDetail : ScriptableObject
     [TabGroup("Stat"), Unit(Units.Percent)] public int damageBonus;
     [TabGroup("Stat"), Unit(Units.Percent)] public int damageReduce;
 
+    [Header("StatusEffect")]
+    [TabGroup("Stat")] public List<AddStatus> startEffect;
+
     [Button]
     public void ResetValue()
     {
@@ -35,6 +38,12 @@ public class CharacterDetail : ScriptableObject
         maxHP = 50;
         atk = 20;
         def = 10;
+    }
+    
+    [Button]
+    public void SetName()
+    {
+        characterName = name.Split("_")[1];
     }
 }
 

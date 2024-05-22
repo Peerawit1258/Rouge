@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b2398380e91401498d98425e65bb784, type: 3}
+  m_Name: N_Scout
+  m_EditorClassIdentifier: 
+  character: {fileID: 8432554987119666472, guid: 961d4f5b070a17948a2bd2a146e68dff, type: 3}
+  characterName: Scout
+  characterType: 1
+  e_type: 0
+  goldDrop: 60
+  expDrop: 10
+  orderSkill: 0
+  allSkill:
+  - {fileID: 11400000, guid: dcc6164a0e380f1468763d22db0dd00b, type: 2}
+  - {fileID: 11400000, guid: cb90a3a9a77756d44919c8c689a73381, type: 2}
+  - {fileID: 11400000, guid: 859ce62386aafb84c847f4ea957514f3, type: 2}
+  skillDrop:
+  - {fileID: 11400000, guid: 4e4dfa7b8b62d104aa15e5842b8f573f, type: 2}
+  - {fileID: 11400000, guid: 262265fe4f856b44c881bfacd6cfb1c0, type: 2}
+  relicDrop: []
+  maxHP: 32
+  atk: 15
+  def: 7
+  damageBonus: 0
+  damageReduce: 10
+  startEffect: []

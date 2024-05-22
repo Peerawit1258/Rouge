@@ -143,6 +143,7 @@ public class ActionDetail
 
     [ShowIf("@skillType == SkillType.Attack")] public DamageSpecific damageSpecific;
 
+    [Title("Heal")]
     [ShowIf("@skillType == SkillType.Attack")] public bool isHeal;
     [ShowIf("@(skillType == SkillType.Attack && isHeal)|| skillType == SkillType.Heal")] public HealDetail healDetail;
  
@@ -211,7 +212,8 @@ public enum SkillType
     Attack,
     Buff,
     Debuff,
-    Heal
+    Heal,
+    Wait
 }
 
 public enum TargetType

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b2398380e91401498d98425e65bb784, type: 3}
+  m_Name: N_MiniGolem
+  m_EditorClassIdentifier: 
+  character: {fileID: 575632567392266518, guid: cca14d93db39e6f4e8812d1b62fc5095, type: 3}
+  characterName: Mini Golem
+  characterType: 1
+  e_type: 0
+  goldDrop: 0
+  expDrop: 0
+  orderSkill: 0
+  allSkill:
+  - {fileID: 11400000, guid: 7d7b55829a29490479cc575ee6954639, type: 2}
+  - {fileID: 11400000, guid: c9e72d7b87f766a4c8d83d6319842e2d, type: 2}
+  - {fileID: 11400000, guid: 859ce62386aafb84c847f4ea957514f3, type: 2}
+  skillDrop:
+  - {fileID: 11400000, guid: 09998b01e4a23bf44b2b1d17f508136f, type: 2}
+  - {fileID: 11400000, guid: 5ab29488f148c964db8b8bab213e987e, type: 2}
+  - {fileID: 11400000, guid: 262265fe4f856b44c881bfacd6cfb1c0, type: 2}
+  - {fileID: 11400000, guid: ea05e7eb3206ee54b84887eb6bedde16, type: 2}
+  relicDrop: []
+  maxHP: 30
+  atk: 20
+  def: 10
+  damageBonus: 0
+  damageReduce: 10
+  startEffect: []

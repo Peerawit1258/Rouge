@@ -90,6 +90,40 @@ public class TurnManager : MonoBehaviour
             targetEnemy = enemies[0];
         targetEnemy.OnMouseUp();
     }
+
+    public bool CheckEnemyTaunt()
+    {
+        foreach(var enemy in enemies)
+            if(enemy.gaugeHP.CheckStatuswithID("SN_001"))
+                return true;
+
+        return false;
+    }
+
+    public bool CheckHpEnemy(int heal)
+    {
+        foreach (var enemy in enemies)
+            if (enemy.hpValue + heal <= enemy.maxHpValue)
+                return true;
+
+        return false;
+    }
+
+    public EnemyController GetEnemyLowestHP()
+    {
+        EnemyController target = new EnemyController();
+        foreach (var enemy in enemies)
+        {
+            if (target == null) target = enemy;
+            else
+            {
+                if (enemy.hpValue/enemy.maxHpValue < target.hpValue / target.maxHpValue)
+                    target = enemy;
+            }
+        }
+
+        return target;
+    }
 }
 
 public enum ActionTurn

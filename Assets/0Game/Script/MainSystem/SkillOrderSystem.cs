@@ -89,7 +89,7 @@ public class SkillOrderSystem : MonoBehaviour
             
             yield return new WaitUntil(() => !turnManager.player.animationAction.isAction);
             if (skill.GetCheckTakeDamage())
-                turnManager.player.StartDamageTaken(turnManager.player.maxHpValue * skill.GetTakeDamagePercent() / 100, 0, true);
+                turnManager.player.StartDamageTaken((int)turnManager.player.maxHpValue * skill.GetTakeDamagePercent() / 100, 0, true);
 
             if (skill.GetHaveCondition() && skill.GetConditonType() == ConditionType.EffectOrder &&
                 allSlot[currentSkill].sameConditon && skill.GetSkillType() != SkillType.Attack && skill.GetSkillType() != SkillType.Debuff)
@@ -147,7 +147,7 @@ public class SkillOrderSystem : MonoBehaviour
                 if (condition.healType == HealType.Heal)
                 {
                     if (condition.isPercent)
-                        heal = (turnManager.player.maxHpValue * condition.c_heal) / 100;
+                        heal = ((int)turnManager.player.maxHpValue * condition.c_heal) / 100;
                     else
                         heal = condition.c_heal;
                     turnManager.player.StartHealHP(heal, 0);
@@ -329,7 +329,7 @@ public class SkillOrderSystem : MonoBehaviour
         turnManager.player.animationAction.BuffAction();
         if (skill.GetHealType() == HealType.Heal)
         {
-            heal = (turnManager.player.maxHpValue * skill.GetPercentHeal(ratio)) / 100;
+            heal = ((int)turnManager.player.maxHpValue * skill.GetPercentHeal(ratio)) / 100;
             turnManager.player.StartHealHP(heal, 0);
         }
         else if (skill.GetHealType() == HealType.RemoveDebuff)

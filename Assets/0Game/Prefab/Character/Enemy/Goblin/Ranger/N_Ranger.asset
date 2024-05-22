@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b2398380e91401498d98425e65bb784, type: 3}
+  m_Name: N_Ranger
+  m_EditorClassIdentifier: 
+  character: {fileID: 3036331658540377032, guid: 4663dd419a5371a47925af43e1a335d8, type: 3}
+  characterName: Ranger
+  characterType: 1
+  e_type: 0
+  goldDrop: 60
+  expDrop: 10
+  orderSkill: 0
+  allSkill:
+  - {fileID: 11400000, guid: 781a0844dc67589489071dafda83fad8, type: 2}
+  - {fileID: 11400000, guid: 94269dbd5d4d5f24d8e99ad1a4efe07f, type: 2}
+  - {fileID: 11400000, guid: 859ce62386aafb84c847f4ea957514f3, type: 2}
+  skillDrop:
+  - {fileID: 11400000, guid: 239877b3023f64d43b51f412a233f080, type: 2}
+  relicDrop: []
+  maxHP: 30
+  atk: 20
+  def: 5
+  damageBonus: 0
+  damageReduce: 10
+  startEffect: []

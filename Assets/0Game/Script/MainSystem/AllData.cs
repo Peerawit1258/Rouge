@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class AllData : MonoBehaviour
 {
-    public List<SkillAction> allSkill;
-    public List<SkillAction> s;
-    public List<Relic> allRelics;
-    public List<Relic> r;
+    [TabGroup("PlayerData")] public List<SkillAction> allSkill;
+    [TabGroup("PlayerData")] public List<SkillAction> s;
+    [TabGroup("PlayerData")] public List<Relic> allRelics;
+    [TabGroup("PlayerData")] public List<Relic> r;
 
-    public List<StatusEffect> allStatus;
+    [TabGroup("EnemyData")] public List<CharacterDetail> allEnemy;
+
+    [TabGroup("GameData")] public List<StatusEffect> allStatus;
 
     private void Start()
     {

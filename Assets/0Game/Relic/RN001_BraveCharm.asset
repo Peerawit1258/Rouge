@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 282601f5b429a9e48a380149eaddb12b, type: 3}
-  m_Name: RN001_AttackCoin
+  m_Name: RN001_BraveCharm
   m_EditorClassIdentifier: 
   id: RN001
-  relicName: Attack Coin
+  relicName: Brave Charm
   icon: {fileID: 0}
   relicType: 0
   rarity: 0
@@ -24,7 +24,7 @@ MonoBehaviour:
     isSlot: 0
     statValues:
     - type: 0
-      value: 10
+      value: 20
     slots: []
     trigger: 0
     statusType: 0

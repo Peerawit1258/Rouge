@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 
 public class CharacterValue : MonoBehaviour
 {
-    [TabGroup("Base")] public int maxHpValue;
+    [TabGroup("Base")] public float maxHpValue;
     [TabGroup("Base")] public int hpValue;
     [TabGroup("Base")] public float atkValue;
     [TabGroup("Base")] public float defValue;
@@ -21,7 +21,7 @@ public class CharacterValue : MonoBehaviour
     int p_def;
     int p_bonus;
     int p_reduce;
-    public void SetStatValue(int hp, int atk, int def, int dmgBonus, int dmgReduce)
+    public void SetStatValue(int hp, int atk, int def, int dmgReduce)
     {
         maxHpValue = hp;
         hpValue = hp;
@@ -31,7 +31,7 @@ public class CharacterValue : MonoBehaviour
         b_atk = atkValue;
         b_def = defValue;
 
-        damageBonus = dmgBonus;
+        //damageBonus = dmgBonus;
         damageReduce = dmgReduce;
     }
 

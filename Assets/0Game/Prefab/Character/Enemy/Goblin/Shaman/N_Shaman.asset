@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b2398380e91401498d98425e65bb784, type: 3}
+  m_Name: N_Shaman
+  m_EditorClassIdentifier: 
+  character: {fileID: 7711796872545768980, guid: 8ea987d993294c7488dc23a45fc975d2, type: 3}
+  characterName: Shaman
+  characterType: 1
+  e_type: 0
+  goldDrop: 50
+  expDrop: 15
+  orderSkill: 0
+  allSkill:
+  - {fileID: 11400000, guid: 4aca9f15620cd664ab7daa5d7f499eb2, type: 2}
+  - {fileID: 11400000, guid: 23192c615cf90f04ca7c2a18e4ddd3fe, type: 2}
+  - {fileID: 11400000, guid: dd31b3c36c3d2944cbada37e289d6706, type: 2}
+  - {fileID: 11400000, guid: 859ce62386aafb84c847f4ea957514f3, type: 2}
+  skillDrop: []
+  relicDrop: []
+  maxHP: 24
+  atk: 17
+  def: 3
+  damageBonus: 0
+  damageReduce: 10
+  startEffect: []

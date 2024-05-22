@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b2398380e91401498d98425e65bb784, type: 3}
+  m_Name: E_Spriggan
+  m_EditorClassIdentifier: 
+  character: {fileID: 5993041742015010791, guid: 5e1aeee7a0e0482428b1ad61bd5beeeb, type: 3}
+  characterName: Spriggan
+  characterType: 1
+  e_type: 1
+  goldDrop: 0
+  expDrop: 0
+  orderSkill: 0
+  allSkill: []
+  skillDrop: []
+  relicDrop: []
+  maxHP: 0
+  atk: 0
+  def: 0
+  damageBonus: 0
+  damageReduce: 0

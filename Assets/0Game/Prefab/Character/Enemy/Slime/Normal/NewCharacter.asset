@@ -10,19 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b2398380e91401498d98425e65bb784, type: 3}
-  m_Name: Mimic
+  m_Name: NewCharacter
   m_EditorClassIdentifier: 
-  character: {fileID: 5179728947092172437, guid: b48f46e1ae8ad724495aea6118375573, type: 3}
-  characterName: Mimic
+  character: {fileID: 0}
+  characterName: 
   characterType: 1
-  e_type: 3
-  goldDrop: 1000
+  e_type: 0
+  goldDrop: 0
+  expDrop: 0
+  orderSkill: 0
   allSkill:
-  - {fileID: 11400000, guid: 662d9df003a1e5443a94097b4db7a0ab, type: 2}
-  - {fileID: 11400000, guid: 61e453f84ccdd9a43a741a78d85ec701, type: 2}
+  - {fileID: 11400000, guid: 3898f24e1cd9a9041a44acdd354918fc, type: 2}
   skillDrop: []
-  maxHP: 500
-  atk: 50
+  relicDrop: []
+  maxHP: 0
+  atk: 0
   def: 0
   damageBonus: 0
   damageReduce: 0
+  startEffect: []

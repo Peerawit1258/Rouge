@@ -109,7 +109,7 @@ public class PlayerController : CharacterValue
         }
 
         if (hpValue + value > maxHpValue)
-            value = maxHpValue - hpValue;
+            value = (int)maxHpValue - hpValue;
         hpValue += value;
 
         if (effect != null) Instantiate(effect, gameObject.transform);

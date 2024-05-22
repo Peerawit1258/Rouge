@@ -95,6 +95,16 @@ public class GaugeHpWidget : MonoBehaviour
         return false;
     }
 
+    public bool CheckStatuswithID(string id)
+    {
+        if (statusWidgets.Count == 0) return false;
+        foreach (StatusWidget wid in statusWidgets)
+            if (wid.GetStatus().id == id)
+                return true;
+
+        return false;
+    }
+
     public int GetAmountBuffDebuff(StatusType type)
     {
         int num = 0;

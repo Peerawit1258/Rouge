@@ -64,14 +64,14 @@ public class EnemyController : CharacterValue
     {
         if (turnManager.actionTurn != ActionTurn.player) return;
         turnManager.targetEnemy = this;
-        GameManager.instance.battleSetup.arrow.position = gameObject.transform.position + new Vector3(0, 0.45f, 0) ;
+        GameManager.instance.battleSetup.arrow.position = gaugePos.position + new Vector3(0, 0.3f, 0) ;
 
     }
     bool orderSkill;
     int indexSkill = 0;
     public void SetInfoEnemy(CharacterDetail detail)
     {
-        SetStatValue(detail.maxHP, detail.atk, detail.def, detail.damageBonus, detail.damageReduce);
+        SetStatValue(detail.maxHP, detail.atk, detail.def, detail.damageReduce);
         allSkill = detail.allSkill;
 
         orderSkill = detail.orderSkill;
@@ -149,7 +149,7 @@ public class EnemyController : CharacterValue
     {
         yield return new WaitForSeconds(delay);
         hpValue += value;
-        if (hpValue > maxHpValue) hpValue = maxHpValue;
+        if (hpValue > maxHpValue) hpValue = (int)maxHpValue;
 
         GameManager.instance.numberDamageSystem.CreateHealNumber(gameObject.transform, value.ToString());
 
@@ -193,7 +193,7 @@ public class EnemyController : CharacterValue
                 break;
         }
         if (currentSkill.GetCheckTakeDamage())
-            StartDamageTaken(maxHpValue * currentSkill.GetTakeDamagePercent() / 100, 0, true);
+            StartDamageTaken((int)maxHpValue * currentSkill.GetTakeDamagePercent() / 100, 0, true);
         yield return new WaitForSeconds(0.5f);
         statusEffectSystem.TriggerStatusCount(TriggerStatus.End, this);
 
@@ -228,9 +228,25 @@ public class EnemyController : CharacterValue
         {
             skill = allSkill[Random.Range(0, allSkill.Count)];
         }while(!CheckRandomSkill(skill));
+        if (skill.GetSkillType() == SkillType.Wait)
+        {
+            isWait = true;
+            cd_wait = 3;
+        }
+        else
+        {
+            if (cd_wait > 0)
+            {
+                cd_wait--;
+                if(cd_wait <= 0) isWait = false;
+            }
+        }  
+
         return skill;
     }
-    
+
+    bool isWait;
+    int cd_wait;
     private bool CheckRandomSkill(SkillAction skill)
     {
         if(skill.GetSkillType() == SkillType.Buff)
@@ -242,11 +258,22 @@ public class EnemyController : CharacterValue
                         else return false;
         }else if(skill.GetSkillType() == SkillType.Heal)
         {
+            
             if (skill.GetHealType() == HealType.Heal)
             {
-                int heal = maxHpValue * skill.GetPercentHeal(hpValue / maxHpValue) / 100;
-                if (hpValue + heal > maxHpValue) return false;
-                else return true;
+                int heal = (int)maxHpValue * skill.GetPercentHeal(hpValue / maxHpValue) / 100;
+                if (skill.targetType == TargetType.Self)
+                { 
+                    //if(heal == maxHpValue)
+                    if (hpValue + heal > maxHpValue) return false;
+                    else return true;
+                }
+                else
+                {
+                    if (turnManager.CheckHpEnemy(heal)) return true;
+                    else return false;
+                }
+                
             }
             else if (skill.GetHealType() == HealType.RemoveDebuff)
             {
@@ -264,6 +291,11 @@ public class EnemyController : CharacterValue
             {
                 if (turnManager.player.gaugeHp.GetAmountBuffDebuff(StatusType.Buff) == 0) return false;
             }
+        }else if(skill.GetSkillType() == SkillType.Wait)
+        {
+            if(isWait) return false;
+            //if(currentSkill != null)
+            //    if (currentSkill.GetSkillType() == SkillType.Wait) return false;
         }
 
         return true;
@@ -360,20 +392,25 @@ public class EnemyController : CharacterValue
         animationAction.BuffAction();
         if (skill.GetHealType() == HealType.Heal)
         {
+            ratio = hpValue / maxHpValue;
             if (skill.targetType == TargetType.Team)
             {
                 foreach (var enemy in turnManager.enemies)
                 {
-                    ratio = enemy.hpValue / enemy.maxHpValue;
-                    heal = (enemy.maxHpValue * skill.GetPercentHeal(ratio)) / 100;
+                    heal = ((int)enemy.maxHpValue * skill.GetPercentHeal(ratio)) / 100;
                     enemy.StartHealHP(heal, 0);
                 }
             }
             else if (skill.targetType == TargetType.Self)
             {
-                ratio = hpValue / maxHpValue;
-                heal = (maxHpValue * skill.GetPercentHeal(ratio)) / 100;
+                heal = ((int)maxHpValue * skill.GetPercentHeal(ratio)) / 100;
                 StartHealHP(heal, 0);
+            }
+            else if(skill.targetType == TargetType.SingleTarget)
+            {
+                EnemyController lowest = turnManager.GetEnemyLowestHP();
+                heal = ((int)lowest.maxHpValue * skill.GetPercentHeal(ratio)) / 100;
+                lowest.StartHealHP(heal, 0);
             }
         }
         else if (skill.GetHealType() == HealType.RemoveDebuff)

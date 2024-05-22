@@ -22,8 +22,9 @@ MonoBehaviour:
   allSkill: []
   skillDrop: []
   relicDrop: []
-  maxHP: 50
+  maxHP: 80
   atk: 20
-  def: 10
+  def: 5
   damageBonus: 0
   damageReduce: 10
+  startEffect: []
