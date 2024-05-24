@@ -17,9 +17,9 @@ public class ResultBattle : MonoBehaviour
     [TabGroup("Win"), SerializeField] TMP_Text skillDropText;
     [TabGroup("Win"), SerializeField] RectTransform skillPlace;
     [TabGroup("Win"), SerializeField] CanvasGroup skillPlaceCanvas;
-    [TabGroup("Win"), SerializeField] RectTransform fragmentPos;
-    [TabGroup("Win"), SerializeField] TMP_Text fragmentText;
-    [TabGroup("Win"), SerializeField] TMP_Text fragmentValue;
+    [TabGroup("Win"), SerializeField] RectTransform goldPos;
+    [TabGroup("Win"), SerializeField] TMP_Text goldText;
+    [TabGroup("Win"), SerializeField] TMP_Text goldValue;
     [TabGroup("Win"), SerializeField] GameObject nextButton;
     [TabGroup("Setup"), SerializeField] float time;
 
@@ -52,8 +52,8 @@ public class ResultBattle : MonoBehaviour
         winPanel.gameObject.SetActive(true);
         titleText.alpha = 0;
         skillDropText.alpha = 0;
-        fragmentText.alpha = 0;
-        fragmentValue.text = "";
+        goldText.alpha = 0;
+        //goldValue.text = "";
         yield return new WaitForSeconds(0.1f);
         //winPanel.gameObject.SetActive(true);
 
@@ -61,10 +61,10 @@ public class ResultBattle : MonoBehaviour
         titleText.DOFade(1, time);
         titlePos.DOAnchorPosX(400, time).From().SetEase(Ease.InOutQuart);
 
-        fragmentPos.DOAnchorPosX(-255, time).From().SetEase(Ease.InOutQuart).SetDelay(time / 4);
-        fragmentText.DOFade(1, time).SetDelay(time / 4).OnComplete(() =>
+        goldPos.DOAnchorPosX(-255, time).From().SetEase(Ease.InOutQuart).SetDelay(time / 4);
+        goldText.DOFade(1, time).SetDelay(time / 4).OnComplete(() =>
         {
-            DOVirtual.Int(0, encounterManagementSystem.gold, time, (x) => fragmentText.text = "Fragment : +" + x.ToString());
+            DOVirtual.Int(0, encounterManagementSystem.gold, time, (x) => goldText.text = "Gold : +" + x.ToString());
             GameManager.instance.playerData.gold += encounterManagementSystem.gold;
         });
 
@@ -115,8 +115,8 @@ public class ResultBattle : MonoBehaviour
         titleText.DOFade(0, time);
         titlePos.DOAnchorPosX(400, time).SetEase(Ease.InOutQuart).OnComplete(()=> titlePos.anchoredPosition = new Vector2(545, titlePos.anchoredPosition.y));
 
-        fragmentPos.DOAnchorPosX(-255, time).SetEase(Ease.InOutQuart).SetDelay(time / 4).OnComplete(() => fragmentPos.anchoredPosition = new Vector2(-205, fragmentPos.anchoredPosition.y)); ;
-        fragmentText.DOFade(0, time).SetDelay(time / 4);
+        goldPos.DOAnchorPosX(-255, time).SetEase(Ease.InOutQuart).SetDelay(time / 4).OnComplete(() => goldPos.anchoredPosition = new Vector2(-205, goldPos.anchoredPosition.y)); ;
+        goldText.DOFade(0, time).SetDelay(time / 4);
 
         skillDropPos.DOAnchorPosX(-280, time).SetEase(Ease.InOutQuart).SetDelay(time / 2).OnComplete(() => skillDropPos.anchoredPosition = new Vector2(-230, skillDropPos.anchoredPosition.y)); ;
         skillDropText.DOFade(0, time).SetDelay(time / 2);

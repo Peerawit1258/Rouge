@@ -10,6 +10,7 @@ public class InventoryManager : MonoBehaviour, IDropHandler
     [SerializeField] private RectTransform inventoryPos;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private RectTransform skillPlace;
+    [SerializeField] private RectTransform skillSparePos;
     [SerializeField] private RectTransform skillSparePlace;
     [SerializeField] private GameObject skillPrefab;
     [SerializeField] private List<PlaceForSkill> place;

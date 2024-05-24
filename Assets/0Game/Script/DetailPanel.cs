@@ -11,6 +11,8 @@ public class DetailPanel : MonoBehaviour
     [SerializeField] private TMP_Text skillText;
     [SerializeField] private TMP_Text actionTurnText;
     [SerializeField] private RectTransform actionTurnPos;
+    [SerializeField] private RectTransform relicPlace;
+    [SerializeField] private TMP_Text relicCount;
     
     // Start is called before the first frame update
     void Start()
@@ -59,4 +61,11 @@ public class DetailPanel : MonoBehaviour
             });
         }
     }
+
+    public void OrderRelic()
+    {
+
+    }
+
+    public RectTransform GetRelicPlace() => relicPlace;
 }

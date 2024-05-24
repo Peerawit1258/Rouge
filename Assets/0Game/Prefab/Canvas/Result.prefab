@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 507332955534614946}
   - component: {fileID: 250651196553129419}
   m_Layer: 5
-  m_Name: FragmentText
+  m_Name: GoldText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1035,9 +1035,9 @@ MonoBehaviour:
   skillDropText: {fileID: 6982214283570966163}
   skillPlace: {fileID: 3331808407184716454}
   skillPlaceCanvas: {fileID: 9187116467573322350}
-  fragmentPos: {fileID: 7284296376817233161}
-  fragmentText: {fileID: 250651196553129419}
-  fragmentValue: {fileID: 5728105527895834695}
+  goldPos: {fileID: 7284296376817233161}
+  goldText: {fileID: 250651196553129419}
+  goldValue: {fileID: 5728105527895834695}
   nextButton: {fileID: 3162785397995729770}
   time: 1
   skillShowPrefab: {fileID: 6491009326671684425, guid: 12c1d46d8bda5de4298008d05ceb604b, type: 3}
