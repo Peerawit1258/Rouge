@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04794c435ce819144b161962df04fb20, type: 3}
+  m_Name: BN_111
+  m_EditorClassIdentifier: 
+  nodeID: BN_104
+  icon: {fileID: 21300000, guid: 089349f0d8cf3134b858a2ef291376fe, type: 3}
+  node: 0
+  enemyGroup: {fileID: 11400000, guid: 4605b1b6849429c4e8e4e3948c266ffc, type: 2}
+  eventInfo: {fileID: 0}
+  chest: {fileID: 0}

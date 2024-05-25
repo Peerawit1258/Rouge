@@ -17,6 +17,7 @@ public class ResultBattle : MonoBehaviour
     [TabGroup("Win"), SerializeField] TMP_Text skillDropText;
     [TabGroup("Win"), SerializeField] RectTransform skillPlace;
     [TabGroup("Win"), SerializeField] CanvasGroup skillPlaceCanvas;
+    [TabGroup("Win"), SerializeField] RectTransform relicPlace;
     [TabGroup("Win"), SerializeField] RectTransform goldPos;
     [TabGroup("Win"), SerializeField] TMP_Text goldText;
     [TabGroup("Win"), SerializeField] TMP_Text goldValue;
@@ -24,8 +25,10 @@ public class ResultBattle : MonoBehaviour
     [TabGroup("Setup"), SerializeField] float time;
 
     [SerializeField] GameObject skillShowPrefab;
+    [SerializeField] GameObject relicDetailPrefab;
 
     List<SkillShow> skillShows = new List<SkillShow>();
+    List<RelicDetailWidget> relicDetails = new List<RelicDetailWidget>();
 
     EncounterManagementSystem encounterManagementSystem;
     // Start is called before the first frame update
@@ -73,6 +76,8 @@ public class ResultBattle : MonoBehaviour
         {
             //Debug.Log(encounterManagementSystem.skillDrops.Count);
             skillPlaceCanvas.alpha = 1;
+            if (encounterManagementSystem.relicDrops.Count > 0)
+                CreateRelicDetail(encounterManagementSystem.relicDrops);
             if(encounterManagementSystem.skillDrops.Count > 0)
             {
                 for (int i = 0; i < encounterManagementSystem.skillDrops.Count; i++)
@@ -110,6 +115,12 @@ public class ResultBattle : MonoBehaviour
         GameManager.instance.inventoryManager.removeCount = 0;
         GameManager.instance.inventoryManager.recieveCount = 0;
 
+        if (relicDetails.Count > 0)
+        {
+            foreach (var detail in relicDetails)
+                detail.GetWidgettoInventory();
+        }
+
         // winPanel.gameObject.SetActive(false);
         result = false;
         titleText.DOFade(0, time);
@@ -123,23 +134,25 @@ public class ResultBattle : MonoBehaviour
         skillPlace.DOAnchorPosX(190, time).SetDelay(3*time / 4).OnComplete(()=> skillPlace.anchoredPosition = new Vector2(240, skillPlace.anchoredPosition.y));
         skillPlaceCanvas.DOFade(0, time).SetDelay(3*time / 4).OnComplete(() =>
         {
+            
             winPanel.gameObject.SetActive(false);
             encounterManagementSystem.CreateNextDoorNode();
             GameManager.instance.relicManagerSystem.TriggerRelicEffect(TriggerStatus.End);
             GameManager.instance.turnManager.turnCount = 0;
             nextButton.gameObject.SetActive(false);
         });
-        //titleText.DOFade(1, time);
-        //titlePos.DOAnchorPosX(400, time).SetEase(Ease.InOutQuart);
+    }
 
-        //fragmentPos.DOAnchorPosX(-255, time).From().SetEase(Ease.InOutQuart).SetDelay(time / 4);
-        //fragmentText.DOFade(1, time).SetDelay(time / 4).OnComplete(() =>
-        //{
-        //    DOVirtual.Int(0, encounterManagementSystem.fragment, time, (x) => fragmentValue.text = "+" + x.ToString());
-        //});
+    void CreateRelicDetail(List<Relic> relics)
+    {
+        for(int i = 0;i < relics.Count; i++)
+        {
+            RelicDetailWidget detail = Instantiate(relicDetailPrefab, relicPlace).GetComponent<RelicDetailWidget>();
+            detail.GetPos().anchoredPosition = new Vector2(i * 400, 0);
+            detail.SetupDetail(relics[i], i);
 
-        //skillDropPos.DOAnchorPosX(-280, time).From().SetEase(Ease.InOutQuart).SetDelay(time / 2);
-        //skillDropText.DOFade(1, time).SetDelay(time / 2).
+            relicDetails.Add(detail);
+        }
     }
  
 

@@ -13,7 +13,9 @@ public class DetailPanel : MonoBehaviour
     [SerializeField] private RectTransform actionTurnPos;
     [SerializeField] private RectTransform relicPlace;
     [SerializeField] private TMP_Text relicCount;
-    
+
+    List<RelicWidget> relicWidgets = new List<RelicWidget>();
+    public List<RelicWidget> GetRelicWidgets() => relicWidgets;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,7 +66,15 @@ public class DetailPanel : MonoBehaviour
 
     public void OrderRelic()
     {
+        if(relicWidgets.Count == 0) return;
+        for(int i = 0;i < relicWidgets.Count;i++)
+        {
+            if (relicWidgets[i].GetWidgetPos().sizeDelta != Vector2.one)
+                relicWidgets[i].GetWidgetPos().DOScale(1, 0.5f);
 
+            relicWidgets[i].GetWidgetPos().DOAnchorPos(new Vector2(i * 65, 0), 0.5f);
+            if (i > 10) relicWidgets[i].GetCanvasGroup().DOFade(0, 0.5f);
+        }
     }
 
     public RectTransform GetRelicPlace() => relicPlace;

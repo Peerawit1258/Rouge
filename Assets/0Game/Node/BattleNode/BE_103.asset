@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04794c435ce819144b161962df04fb20, type: 3}
-  m_Name: BN_103
+  m_Name: BE_103
   m_EditorClassIdentifier: 
-  nodeID: BN_103
+  nodeID: BE_103
   icon: {fileID: 21300000, guid: 089349f0d8cf3134b858a2ef291376fe, type: 3}
   node: 0
-  enemyGroup: {fileID: 11400000, guid: 3c4c812b70d6d574faaa51991d751341, type: 2}
+  enemyGroup: {fileID: 11400000, guid: 61aab3c827906144681b154f2ce51f83, type: 2}
   eventInfo: {fileID: 0}
   chest: {fileID: 0}

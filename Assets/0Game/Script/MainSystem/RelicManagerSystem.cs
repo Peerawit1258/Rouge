@@ -24,7 +24,8 @@ public class RelicManagerSystem : MonoBehaviour
     [TabGroup("DOT"), SerializeField, ReadOnly] int bleedCap;
     [TabGroup("DOT"), SerializeField, ReadOnly] int curseCap;
 
-   public GameObject relicPrefab;
+    public GameObject relicPrefab;
+
 
     PlayerController player;
     StatusEffectSystem statusEffectSystem;

@@ -1785,13 +1785,40 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5b3b9dda3fcc5b04dbe43dfb3384a7a1, type: 2}
     - {fileID: 11400000, guid: b8996a8c6d7f30f499ea03c71fced536, type: 2}
     - {fileID: 11400000, guid: dfe845cd10691904c8ceb0d6cf992908, type: 2}
-    eliteNode: []
+    - {fileID: 11400000, guid: 1042de6144e4593488b1a3656a87b38a, type: 2}
+    - {fileID: 11400000, guid: 429cad187e50a4547b16eef2d0bf6910, type: 2}
+    - {fileID: 11400000, guid: 661f6c22ccd034a4e94cada695674c4a, type: 2}
+    - {fileID: 11400000, guid: d3f95efdf12d2b14bb48ffb8951864cc, type: 2}
+    - {fileID: 11400000, guid: 1a4e6e9ac1d3a5344b36206ef2ff0d32, type: 2}
+    - {fileID: 11400000, guid: c7e8e6d5d5ecb7245b9307b9988860bd, type: 2}
+    - {fileID: 11400000, guid: ceddfd15970d3d14cad6e69d28ad1878, type: 2}
+    - {fileID: 11400000, guid: c2158d002a9022f4b954d4e2f3674f9c, type: 2}
+    - {fileID: 11400000, guid: c196017f665468d479ad64502e3b1432, type: 2}
+    - {fileID: 11400000, guid: 32b39502fe64d4b4bb8a15c98dcdca10, type: 2}
+    - {fileID: 11400000, guid: 396a2cd89e116f54ba9ef7ecb0692f2a, type: 2}
+    - {fileID: 11400000, guid: c8fe4f6cbf5640f4587119db5239fdbf, type: 2}
+    eliteNode:
+    - {fileID: 11400000, guid: e19335c5cb518e44f908dd6186a5f69f, type: 2}
+    - {fileID: 11400000, guid: f9ca63a818f366448a88a2cffc369979, type: 2}
+    - {fileID: 11400000, guid: dafca7294b0e4ce449d642157121d99b, type: 2}
+    - {fileID: 11400000, guid: b10e1a5bc4fdc4140b3bfda5e8cd7409, type: 2}
+    - {fileID: 11400000, guid: fad16543c83029f4babfe23ee1a141ed, type: 2}
+    - {fileID: 11400000, guid: af67265cf826bf147810d34b0bb28231, type: 2}
+    - {fileID: 11400000, guid: e8cb233046fec5141ba10865155a1489, type: 2}
+    - {fileID: 11400000, guid: 591b7e1dd7fc31747ae65e3fb87b08f9, type: 2}
+    - {fileID: 11400000, guid: bae7fe1b228557e46837074e0dda1c7e, type: 2}
+    - {fileID: 11400000, guid: 86e2dc45a9cfe224498b8e474c48add2, type: 2}
+    - {fileID: 11400000, guid: cd775fb99b1b841478efa18a12467b23, type: 2}
+    - {fileID: 11400000, guid: d5061f67fa477e242a808a6189fb5e5e, type: 2}
+    - {fileID: 11400000, guid: 1ae5ced9a7d20414c8528acc61ccaa57, type: 2}
+    - {fileID: 11400000, guid: eff631def37e1e748b70482c1df8439e, type: 2}
+    - {fileID: 11400000, guid: 50556c6922631574898afd57cbcbb3cb, type: 2}
     eventNode:
     - {fileID: 11400000, guid: bffe66bfe678de04cb0f3de4c9f1a7c0, type: 2}
     - {fileID: 11400000, guid: f7a0af0df52ba0e4782c9f22c8d1da61, type: 2}
     treasureNode:
     - {fileID: 11400000, guid: 64acc5b78cf4cd34382413f6d6e243b8, type: 2}
-    bossNode: {fileID: 0}
+    bossNode: {fileID: 11400000, guid: 4da0839ce88e9794b803a193d9b9cac7, type: 2}
   - encounterMap: {fileID: 197091903}
     stageName: Test2
     stageCount: 8
@@ -2829,7 +2856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSlot: 0
   slotCount: 3
-  skillCount: 0
+  skillCount: 3
   skillPrefab: {fileID: 7931926909436880801, guid: 7423d8b1c1a7eb646a17c4a5e244b25e, type: 3}
   skillPlace: {fileID: 1845942159}
   slotPrefab: {fileID: 6103661208178158205, guid: ae7b65af23397494bbfc2869ea0feef8, type: 3}

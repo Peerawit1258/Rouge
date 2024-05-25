@@ -112,8 +112,8 @@ public class EnemyController : CharacterValue
             else
             {
                 hpValue = 0;
-                ratio = (float)hpValue / maxHpValue;
-                gaugeHP.HpGaugeChange(ratio);
+                //ratio = (float)hpValue / maxHpValue;
+                gaugeHP.HpGaugeChange(0);
                 yield return new WaitForSeconds(0.5f);
                 DestroySelf();
             }

@@ -7,6 +7,7 @@ public class RelicWidget : MonoBehaviour
 {
     [SerializeField] private Image icon;
     [SerializeField] private RectTransform widgetPos;
+    [SerializeField] private CanvasGroup canvasGroup;
 
     Relic relic;
     // Start is called before the first frame update
@@ -22,4 +23,5 @@ public class RelicWidget : MonoBehaviour
     }
 
     public RectTransform GetWidgetPos() => widgetPos;
+    public CanvasGroup GetCanvasGroup() => canvasGroup;
 }

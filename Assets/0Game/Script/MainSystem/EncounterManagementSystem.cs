@@ -259,13 +259,29 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
         gold = 0;
     }
 
-
+    [Button]
+    public void SetAllIDNode()
+    {
+        foreach(var stage in stageDetail)
+        {
+            foreach (var node in stage.normalNode)
+                node.SetID();
+            foreach (var node in stage.eliteNode)
+                node.SetID();
+            foreach (var node in stage.eventNode)
+                node.SetID();
+            foreach (var node in stage.treasureNode)
+                node.SetID();
+            
+            if(stage.bossNode != null) stage.bossNode.SetID();
+        }
+    }
 }
 
 [Serializable]
 public class StageDetail
 {
-    [PreviewField]public GameObject encounterMap;
+    public GameObject encounterMap;
     public string stageName;
     [TabGroup("Detail", "Detail")]public int stageCount;
     [TabGroup("Detail", "Detail")]public List<EncounterNode> normalNode;
