@@ -24,4 +24,5 @@ public class RelicWidget : MonoBehaviour
 
     public RectTransform GetWidgetPos() => widgetPos;
     public CanvasGroup GetCanvasGroup() => canvasGroup;
+    public Relic GetRelic() => relic;
 }

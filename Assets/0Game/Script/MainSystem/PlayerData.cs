@@ -26,4 +26,26 @@ public class PlayerData : MonoBehaviour
         }
     }
 
+    public bool CheckAlreadyHaveSkill(SkillAction skill)
+    {
+        foreach (var sk in currentSkills)
+        {
+            if (sk.id == skill.id)
+                return true;
+        }
+
+        return false;
+    }
+
+    public bool CheckAlreadyHaveRelic(Relic relic)
+    {
+        foreach (var rl in currentRelics)
+        {
+            if (rl.id == relic.id)
+                return true;
+        }
+
+        return false;
+    }
+
 }

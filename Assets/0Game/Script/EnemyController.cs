@@ -471,7 +471,7 @@ public class EnemyController : CharacterValue
             skill = dropSkills[Random.Range(0, dropSkills.Count)];
             if (num == dropSkills.Count) return null;
             num++;
-        } while (GameManager.instance.encounterManagementSystem.CheckAlreadyHaveSkill(skill));
+        } while (GameManager.instance.playerData.CheckAlreadyHaveSkill(skill));
 
         return skill;
     }
@@ -486,7 +486,7 @@ public class EnemyController : CharacterValue
             relic = dropRelics[Random.Range(0, dropRelics.Count)];
             if (num == dropSkills.Count) return null;
             num++;
-        } while (GameManager.instance.encounterManagementSystem.CheckAlreadyHaveRelic(relic));
+        } while (GameManager.instance.playerData.CheckAlreadyHaveRelic(relic));
 
         return relic;
     }

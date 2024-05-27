@@ -11,6 +11,9 @@ public class RelicManagerSystem : MonoBehaviour
     [TabGroup("Game"), Unit(Units.Percent), ReadOnly] public int randomSkill;
     [TabGroup("Game"), Unit(Units.Percent), ReadOnly] public int dropSkill;
 
+    [TabGroup("Turn"), ReadOnly] public List<AddStatus> startStatus;
+    [TabGroup("Turn"), ReadOnly] public List<AddStatus> endStatus;
+
     [TabGroup("DOT"), SerializeField, ReadOnly] int increaseStack;
     [Header("Damage")]
     [TabGroup("DOT"), SerializeField, Unit(Units.Percent), ReadOnly] float posionDmg;
@@ -98,9 +101,9 @@ public class RelicManagerSystem : MonoBehaviour
                         }
                     }
                     break;
-                //case RelicEffectType.BuffDebuff:
+                case RelicEffectType.BuffDebuff:
 
-                //    break;
+                    break;
                 case RelicEffectType.Money:
                     if (detail.isShop)
                         discount += detail.discount;
@@ -110,7 +113,7 @@ public class RelicManagerSystem : MonoBehaviour
             }
         }
 
-        GameManager.instance.allData.r.Add(relic);
+        GameManager.instance.playerData.currentRelics.Add(relic);
     }
 
     public void RemoveRelic(Relic relic)

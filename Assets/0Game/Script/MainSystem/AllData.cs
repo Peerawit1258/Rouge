@@ -13,6 +13,7 @@ public class AllData : MonoBehaviour
     [TabGroup("EnemyData")] public List<CharacterDetail> allEnemy;
 
     [TabGroup("GameData")] public List<StatusEffect> allStatus;
+    [TabGroup("GameData")] public List<Relic> relicReward = new List<Relic>();
 
     private void Start()
     {

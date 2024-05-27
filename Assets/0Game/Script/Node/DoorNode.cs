@@ -21,9 +21,7 @@ public class DoorNode : MonoBehaviour
         if (encounter == null) return;
         door.SetTrigger("Open");
         GameManager.instance.encounterManagementSystem.StartSetupNextEncounter(encounter);
-        //GameManager.instance.battleSetup.SetupEnemyBattle(GameManager.instance.group.enemies);
-
-        
+        GameManager.instance.encounterManagementSystem.ClearDoorNode();
         return;
     }
 
@@ -35,6 +33,8 @@ public class DoorNode : MonoBehaviour
         encounter = node;
         gameObject.SetActive(true);
     }
+
+    public void ClearDoor() => encounter = null;
 
     public EncounterNode GetEncounter() => encounter;
 }

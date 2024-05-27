@@ -12,6 +12,7 @@ public class ResultBattle : MonoBehaviour
 
     [TabGroup("Result"), SerializeField] TMP_Text titleText;
     [TabGroup("Result"), SerializeField] RectTransform titlePos;
+
     [TabGroup("Win"), SerializeField] CanvasGroup winPanel;
     [TabGroup("Win"), SerializeField] RectTransform skillDropPos;
     [TabGroup("Win"), SerializeField] TMP_Text skillDropText;
@@ -22,6 +23,13 @@ public class ResultBattle : MonoBehaviour
     [TabGroup("Win"), SerializeField] TMP_Text goldText;
     [TabGroup("Win"), SerializeField] TMP_Text goldValue;
     [TabGroup("Win"), SerializeField] GameObject nextButton;
+
+    [TabGroup("Reward"), SerializeField] GameObject rewardObj;
+    [TabGroup("Reward"), SerializeField] RectTransform rewardPlace;
+    //[TabGroup("Reward"), SerializeField] List<CanvasGroup> rewardCanvas;
+    //[TabGroup("Reward"), SerializeField] List<RectTransform> rewardPos;
+    [TabGroup("Reward"), SerializeField] TMP_Text selectText;
+
     [TabGroup("Setup"), SerializeField] float time;
 
     [SerializeField] GameObject skillShowPrefab;
@@ -38,9 +46,11 @@ public class ResultBattle : MonoBehaviour
         //resultObj.SetActive(false);
         //resultText.gameObject.SetActive(false);
         winPanel.gameObject.SetActive(false);
+        rewardObj.SetActive(false);
         nextButton.SetActive(false);
     }
 
+    #region Result
     [Button]
     public void StartWinResult() => StartCoroutine(WinResult());
     [ReadOnly] public bool result = false;
@@ -120,6 +130,7 @@ public class ResultBattle : MonoBehaviour
             foreach (var detail in relicDetails)
                 detail.GetWidgettoInventory();
         }
+        relicDetails.Clear();
 
         // winPanel.gameObject.SetActive(false);
         result = false;
@@ -143,6 +154,53 @@ public class ResultBattle : MonoBehaviour
         });
     }
 
+    #endregion
+    #region Reward
+    [Button]
+    public void StartRewardPanel() => StartCoroutine(RewardPanel());
+    IEnumerator RewardPanel()
+    {
+        rewardObj.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        selectText.GetComponent<RectTransform>().DOAnchorPosX(50, time).From().SetEase(Ease.InOutQuart);
+        selectText.DOFade(1, time);
+        yield return new WaitForSeconds(0.5f);
+        CreateSelectRelicDetail();
+        //for(int i = 0; i < 3; i++)
+        //{
+        //    rewardCanvas[i].DOFade(1, time).SetDelay(i * 0.3f);
+        //    rewardPos[i].DOAnchorPosY(50, time).SetDelay(i * 0.3f).SetEase(Ease.InOutQuart);
+        //}
+    }
+
+    public void CloseReward(RelicDetailWidget widget)
+    {
+        if (widget != null)
+        {
+            foreach (RelicDetailWidget detail in relicDetails)
+                if (detail.GetWidget().GetRelic().id == widget.GetWidget().GetRelic().id)
+                    detail.GetWidgettoInventory();
+                else
+                    detail.CloseDetailWidget();
+        }
+        else
+        {
+            foreach (RelicDetailWidget detail in relicDetails)
+                detail.CloseDetailWidget();
+
+        }
+        relicDetails.Clear();
+
+        selectText.GetComponent<RectTransform>().DOAnchorPosX(-50, time).SetEase(Ease.InOutQuart);
+        selectText.DOFade(0, time).OnComplete(() =>
+        {
+            selectText.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+            GameManager.instance.encounterManagementSystem.CreateNextDoorNode();
+            rewardObj.SetActive(false);
+        });
+    }
+    #endregion
+
     void CreateRelicDetail(List<Relic> relics)
     {
         for(int i = 0;i < relics.Count; i++)
@@ -154,7 +212,35 @@ public class ResultBattle : MonoBehaviour
             relicDetails.Add(detail);
         }
     }
- 
+
+    void CreateSelectRelicDetail()
+    {
+        int num = GameManager.instance.allData.relicReward.Count;
+        for (int i = 0; i < 3; i++)
+        {
+            Relic relic = new Relic();
+            do
+            {
+                relic = GameManager.instance.allData.relicReward[Random.Range(0, num)];
+            }while(!CheckRandomRelic(relic));
+            RelicDetailWidget detail = Instantiate(relicDetailPrefab, rewardPlace).GetComponent<RelicDetailWidget>();
+            detail.GetPos().anchoredPosition = new Vector2(-400 + (i * 400), 0);
+            detail.SetupDetail(relic, i, true);
+
+            relicDetails.Add(detail);
+        }
+    }
+
+    private bool CheckRandomRelic(Relic relic)
+    {
+        if (GameManager.instance.playerData.CheckAlreadyHaveRelic(relic) || relic == null) return false;
+        foreach (var detail in relicDetails)
+            if (detail.GetWidget().GetRelic().id == relic.id)
+                return false;
+
+        return true;
+    }
+
 
     private void ClearResult()
     {

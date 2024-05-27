@@ -8,6 +8,7 @@ public class ChestReward : MonoBehaviour
 {
     [SerializeField] int spawnRate;
     [SerializeField] Animator animator;
+    [SerializeField] SpriteRenderer sprite;
     [TabGroup("Detail"), SerializeField] CharacterDetail mimicDetail;
     [TabGroup("Detail"), SerializeField] Transform gaugePos;
     [TabGroup("Drop"), SerializeField] List<SkillAction> skills;
@@ -56,6 +57,7 @@ public class ChestReward : MonoBehaviour
 
     private bool SpawnMimic()
     {
+        if (GameManager.instance.encounterManagementSystem.stageName == "The Cave") return false;
         int num = Random.Range(0, 100);
         Debug.Log("Random : " + num);
         if(spawnRate == 0) return false;
@@ -68,10 +70,12 @@ public class ChestReward : MonoBehaviour
     IEnumerator RewardChest()
     {
         animator.SetTrigger("Open");
-        yield return new WaitForSeconds(2);
-        //GameManager.instance.encounterManagementSystem.CreateNextDoorNode();
-
-
+        
+        yield return new WaitForSeconds(0.25f);
+        sprite.DOFade(0, 0.5f);
+        yield return new WaitForSeconds(0.25f);
+        GameManager.instance.resultBattle.StartRewardPanel();
+        Destroy(gameObject);
     }
 
     IEnumerator MimicSetup()

@@ -39,40 +39,19 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
         }
         if(relic != null)
         {
-            if(!CheckAlreadyHaveRelic(relic))
+            if(!CheckAlreadyRelicDrop(relic))
                 relicDrops.Add(relic);
         }
 
         gold += value;
     }
 
-    public bool CheckAlreadyHaveSkill(SkillAction skill)
-    {
-        foreach (var sk in GameManager.instance.playerData.currentSkills)
-        {
-            if (sk.id == skill.id)
-                return true;
-        }
-
-        return false;
-    }
 
     public bool CheckAlreadySkillDrop(SkillAction skill)
     {
         foreach (var sk in skillDrops)
         {
             if (sk.id == skill.id)
-                return true;
-        }
-
-        return false;
-    }
-
-    public bool CheckAlreadyHaveRelic(Relic relic)
-    {
-        foreach (var rl in GameManager.instance.playerData.currentRelics)
-        {
-            if (rl.id == relic.id)
                 return true;
         }
 
@@ -152,7 +131,7 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
                 if (door.GetEncounter().nodeID == node.nodeID)
                     return true;
 
-        if (previousNode.Contains(node.nodeID))
+        if (node.node != Node.Treasure && previousNode.Contains(node.nodeID))
             return true;
 
 
@@ -163,6 +142,13 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
     {
         foreach(var door in doors)
             door.gameObject.SetActive(active);
+    }
+
+    public void ClearDoorNode()
+    {
+        foreach (var door in doors)
+            if (door.GetEncounter() != null)
+                door.ClearDoor();
     }
     #endregion
     #region Stage

@@ -117,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRate: 5
   animator: {fileID: 2290129073344750718}
+  sprite: {fileID: 1302134009576735620}
   mimicDetail: {fileID: 11400000, guid: 383840bf0d183af4cb351683604c1fee, type: 2}
   gaugePos: {fileID: 7802615692600556238}
   skills: []
