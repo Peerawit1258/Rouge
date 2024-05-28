@@ -191,24 +191,12 @@ public class RelicManagerSystem : MonoBehaviour
         foreach(var re in GameManager.instance.playerData.currentRelics)
             if(re.id == relic.id)
             {
-                GameManager.instance.allData.r.Remove(re);
+                GameManager.instance.playerData.currentRelics.Remove(re);
                 break;
             }
                 
     }
 
-    public bool CheckRelicWithID(string id)
-    {
-        if (GameManager.instance.allData.r.Count == 0) return false;
-
-        foreach(var relic in GameManager.instance.playerData.currentRelics)
-        {
-            if(relic.id == id)
-                return true;
-        }
-
-        return false;
-    }
     public void TriggerRelicEffect(TriggerStatus trigger)
     {
         if (GameManager.instance.playerData.currentRelics.Count == 0) return;

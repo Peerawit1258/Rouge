@@ -233,7 +233,7 @@ public class ResultBattle : MonoBehaviour
 
     private bool CheckRandomRelic(Relic relic)
     {
-        if (GameManager.instance.playerData.CheckAlreadyHaveRelic(relic) || relic == null) return false;
+        if (GameManager.instance.playerData.CheckAlreadyHaveRelic(relic.id) || relic == null) return false;
         foreach (var detail in relicDetails)
             if (detail.GetWidget().GetRelic().id == relic.id)
                 return false;

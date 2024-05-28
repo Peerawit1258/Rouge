@@ -67,6 +67,7 @@ public class PlayerController : CharacterValue
         {
             ratio = (float)hpValue / maxHpValue;
             gaugeHp.HpGaugeChange(ratio);
+            animationAction.TakeDamageAction();
         }
         
 

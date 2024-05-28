@@ -26,22 +26,22 @@ public class PlayerData : MonoBehaviour
         }
     }
 
-    public bool CheckAlreadyHaveSkill(SkillAction skill)
+    public bool CheckAlreadyHaveSkill(string id)
     {
         foreach (var sk in currentSkills)
         {
-            if (sk.id == skill.id)
+            if (sk.id == id)
                 return true;
         }
 
         return false;
     }
 
-    public bool CheckAlreadyHaveRelic(Relic relic)
+    public bool CheckAlreadyHaveRelic(string id)
     {
         foreach (var rl in currentRelics)
         {
-            if (rl.id == relic.id)
+            if (rl.id == id)
                 return true;
         }
 

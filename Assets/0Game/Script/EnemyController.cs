@@ -122,6 +122,7 @@ public class EnemyController : CharacterValue
         {
             ratio = (float)hpValue / maxHpValue;
             gaugeHP.HpGaugeChange(ratio);
+            animationAction.TakeDamageAction();
         }
     }
 
@@ -441,16 +442,21 @@ public class EnemyController : CharacterValue
     #endregion
     void DestroySelf(float delay = 0.5f)
     {
-        if (GameManager.instance.relicManagerSystem.CheckRelicWithID("RN010"))
+        if (GameManager.instance.playerData.CheckAlreadyHaveRelic("RN010"))
         {
             statusEffectSystem.GetStatusInPlayer(GameManager.instance.allData.GetStatusWithID("BN002"));
         }
 
-        //GameManager.instance.skillOrderSystem.RemoveEnemyinSlot(this);
-        GameManager.instance.encounterManagementSystem.AddDrop(RandomSkillDrop(), RandomRelicDrop(), gold);
-        Destroy(gaugeHP.gameObject, delay);
         GameManager.instance.turnManager.RemoveEnemy(this);
-        Destroy(gameObject, delay);
+        //GameManager.instance.skillOrderSystem.RemoveEnemyinSlot(this);
+        animationAction.DieAction(() =>
+        {
+            GameManager.instance.encounterManagementSystem.AddDrop(RandomSkillDrop(), RandomRelicDrop(), gold);
+            Destroy(gaugeHP.gameObject, delay);
+            
+            Destroy(gameObject, delay);
+        });
+        
     }
 
     private void ShowNextAction(SkillAction skill)
@@ -471,7 +477,7 @@ public class EnemyController : CharacterValue
             skill = dropSkills[Random.Range(0, dropSkills.Count)];
             if (num == dropSkills.Count) return null;
             num++;
-        } while (GameManager.instance.playerData.CheckAlreadyHaveSkill(skill));
+        } while (GameManager.instance.playerData.CheckAlreadyHaveSkill(skill.id));
 
         return skill;
     }
@@ -486,7 +492,7 @@ public class EnemyController : CharacterValue
             relic = dropRelics[Random.Range(0, dropRelics.Count)];
             if (num == dropSkills.Count) return null;
             num++;
-        } while (GameManager.instance.playerData.CheckAlreadyHaveRelic(relic));
+        } while (GameManager.instance.playerData.CheckAlreadyHaveRelic(relic.id));
 
         return relic;
     }

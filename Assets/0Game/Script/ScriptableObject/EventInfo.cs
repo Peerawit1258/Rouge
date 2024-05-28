@@ -32,7 +32,15 @@ public class ChoiceDetail
 {
     public ChoiceType type;
     public string sentence;
-    
+
+    [Title("Required")]
+    public bool required;
+    [ShowIf("@required")]public RewardType requiredType;
+    [ShowIf("@required && requiredType == RewardType.Gold")]public int useGold;
+    [ShowIf("@required && requiredType == RewardType.Skill")]public SkillAction useSkill;
+    [ShowIf("@required && requiredType == RewardType.Relic")]public Relic useRelic;
+
+    [Title("Choice")]
     [ShowIf("@type == ChoiceType.Reward")] public RewardDetail reward;
     [ShowIf("@type == ChoiceType.Heal")] public HealDetail heal;
     [ShowIf("@type == ChoiceType.BuffDebuff")] public List<AddStatus> status;
@@ -44,11 +52,6 @@ public class ChoiceDetail
     [PreviewField(50)] public Sprite afterEventImg;
     [TextArea(2,4)]public string afterEventDes;
 
-    [Title("Condition")]
-    public bool haveCondition;
-    [ShowIf("@haveCondition")] public RewardType conditionType;
-    [ShowIf("@haveCondition && conditionType == RewardType.Gold")] public int requiredMoney;
-    [ShowIf("@haveCondition && conditionType == RewardType.Relic")] public Relic requiredRelic;
 }
 
 [Serializable]
@@ -107,4 +110,5 @@ public enum RewardType
     Skill,
     Relic
 }
+
 

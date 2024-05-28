@@ -13,6 +13,8 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     [ReadOnly, SerializeField] ChoiceDetail choiceDetail;
     EventManager eventManager;
+
+    bool notPass;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,29 +26,54 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         choiceDetail = detail;
         txt.text = choiceDetail.sentence;
 
-        if (choiceDetail.haveCondition)
+        if (!CheckRequired(detail)) 
+        { 
+            notPass = true;
+
+        }
+    }
+
+    private bool CheckRequired(ChoiceDetail detail)
+    {
+        if (choiceDetail.required)
         {
-            if (choiceDetail.conditionType == RewardType.Gold)
+            if (choiceDetail.requiredType == RewardType.Gold)
             {
-                if (GameManager.instance.playerData.gold < choiceDetail.requiredMoney) { }
+                if (GameManager.instance.playerData.gold < choiceDetail.useGold)
+                {
                     Debug.Log("less money");
-            }    
-            else if(choiceDetail.conditionType == RewardType.Relic)
+                    return false;
+                }
+            }
+            else if (choiceDetail.requiredType == RewardType.Relic)
             {
-                if (GameManager.instance.relicManagerSystem.CheckRelicWithID(choiceDetail.requiredRelic.id))
+                if (!GameManager.instance.playerData.CheckAlreadyHaveRelic(choiceDetail.useRelic.id))
+                {
                     Debug.Log("not found");
+                    return false;
+                }
+            }
+            else if (choiceDetail.requiredType == RewardType.Skill)
+            {
+                if (!GameManager.instance.playerData.CheckAlreadyHaveSkill(choiceDetail.useSkill.id))
+                {
+                    Debug.Log("not found");
+                    return false;
+                }
             }
         }
+
+        return true;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-
+        if (notPass) return;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-
+        if (notPass) return;
     }
     int gold = 0;
     SkillAction skill;
@@ -54,6 +81,7 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     string replace;
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (notPass) return;
         if (exit)
         {
             eventManager.ExitEvent();

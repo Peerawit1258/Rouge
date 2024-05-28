@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  character: {fileID: 0}
   attackPos: -0.17
   attackTime: 0.15
   attackEase: 13
@@ -130,6 +131,10 @@ MonoBehaviour:
   power: 0.2
   numJump: 2
   buffTime: 0.7
+  dieTime: 0.5
+  takeTime: 0.15
+  takePos: 0.05
+  takeEase: 31
   isAction: 0
 --- !u!1 &5951439677284066382
 GameObject:
