@@ -17,8 +17,13 @@ MonoBehaviour:
   eventImage: {fileID: 0}
   description: 
   choices:
-  - type: 1
+  - type: 3
     sentence: 
+    required: 0
+    requiredType: 0
+    useGold: 0
+    useSkill: {fileID: 0}
+    useRelic: {fileID: 0}
     reward:
       isRandom: 0
       rewardType: 0
@@ -35,9 +40,7 @@ MonoBehaviour:
     removeType: 0
     value: 0
     enemyGroup: {fileID: 0}
+    next: 0
+    nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
     afterEventDes: 
-    haveCondition: 0
-    conditionType: 0
-    requiredMoney: 0
-    requiredRelic: {fileID: 0}

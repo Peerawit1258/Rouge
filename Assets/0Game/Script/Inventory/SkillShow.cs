@@ -9,7 +9,7 @@ using Sirenix.OdinInspector;
 public class SkillShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler
 {
     [ReadOnly, SerializeField] string id;
-    [SerializeField] CanvasGroup skillCanvas;
+    [SerializeField] public CanvasGroup skillCanvas;
     [SerializeField] RectTransform objPos;
     [SerializeField] RectTransform skillPos;
     [SerializeField] Image frame;
@@ -100,7 +100,7 @@ public class SkillShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         skillCanvas.DOFade(0, 1f).From().SetDelay(delay);
     }
 
-    public void SetSkillShow(SkillAction skill)
+    public void SetSkillShow(SkillAction skill, bool isInventory = true)
     {
         frame.sprite = skill.frame;
         icon.sprite = skill.skillIcon;
@@ -108,7 +108,7 @@ public class SkillShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         id = skill.id;
         name = skill.name;
         skillAction = skill;
-        inventory = true;
+        inventory = isInventory;
     }
 
     public void ResetCurrentPos() => currentPos = objPos.anchoredPosition;

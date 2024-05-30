@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class InventoryManager : MonoBehaviour, IDropHandler
 {
@@ -15,6 +17,11 @@ public class InventoryManager : MonoBehaviour, IDropHandler
     [SerializeField] private GameObject skillPrefab;
     [SerializeField] private List<PlaceForSkill> place;
     [SerializeField] private List<PlaceForSkill> spare;
+    [SerializeField] private Button iconBtn;
+    [SerializeField] private Button backBtn;
+    [SerializeField] private CanvasGroup placeCanvas;
+    [SerializeField] private RectTransform placePos;
+    [SerializeField] private TMP_Text placeText;
 
     [TabGroup("Setting"), SerializeField] float time;
     [TabGroup("Setting"), SerializeField] Ease ease;
@@ -29,6 +36,12 @@ public class InventoryManager : MonoBehaviour, IDropHandler
     void Start()
     {
         resultBattle = GameManager.instance.resultBattle;
+        iconBtn.interactable = true;
+        backBtn.interactable = false;
+
+        placeCanvas.alpha = 0;
+        placeCanvas.blocksRaycasts = false;
+        placeCanvas.interactable = false;
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -57,34 +70,73 @@ public class InventoryManager : MonoBehaviour, IDropHandler
 
                 }
             }
-            
-            
-            //show.gameObject.transform.parent = skillPlace;
         }
     }
 
-    [Button]
+    public void SkillMoveToPlace()
+    {
+        foreach(var show in skillShows)
+        {
+            if (!show.inventory)
+            {
+                PlaceForSkill place = GetPlace();
+                place.SetSkill(show);
+            }
+        }
+    }
+
+    //public void 
+    bool isActive = false;
+
     public void OpenInventory()
     {
+        if (isActive) return;
         canvasGroup.interactable = false;
+        isActive = true;
+        iconBtn.interactable = !iconBtn.interactable;
+        backBtn.interactable = !backBtn.interactable;
         if (isOpen)
         {
             isOpen = false;
-            inventoryPos.DOAnchorPosX(-710, time).SetEase(ease);
+            inventoryPos.DOAnchorPosX(-710, time).SetEase(ease).OnComplete(()=>isActive = false);
         }
         else
         {
             isOpen = true;
-            inventoryPos.DOAnchorPosX(710, time).SetEase(ease).OnComplete(() => canvasGroup.interactable = true);
+            inventoryPos.DOAnchorPosX(710, time).SetEase(ease).OnComplete(() =>
+            {
+                canvasGroup.interactable = true;
+                isActive = false;
+            });
         }
     }
-
+    [Button]
     public void CreateSkillShow(SkillAction skill)
     {
-        SkillShow show = Instantiate(skillPrefab, skillPlace).GetComponent<SkillShow>();
-        show.SetSkillShow(skill);
+        SkillShow show = Instantiate(skillPrefab, placePos).GetComponent<SkillShow>();
+        show.SetSkillShow(skill, false);
+        show.GetObjPos().sizeDelta = Vector2.zero;
+        show.GetObjPos().DOSizeDelta(new Vector2(100, 100), time);
+        show.GetObjPos().DOAnchorPosY(show.GetObjPos().anchoredPosition.y - 40, time).From().SetEase(Ease.InOutQuart).OnComplete(() =>
+        {
+            skillShows.Add(show);
+            if(skillShows.Count <= 20)
+            {
+                show.GetObjPos().DOAnchorPos(new Vector2(-810, -540), 1).SetDelay(1);
+                show.GetObjPos().DOSizeDelta(Vector2.zero, 1).SetDelay(1).OnComplete(() =>
+                {
+                    show.GetObjPos().sizeDelta = new Vector2(100, 100);
+                    PlaceForSkill place = GetPlace();
+                    place.SetSkill(show);
+                });
+                
+            }
+        });
+        //show.skillCanvas.alpha = 0;
 
-        skillShows.Add(show);
+        //if(!isOpen) OpenInventory();
+        //show.skillCanvas.DOFade(1, time);
+        
     }
 
     public void CreateSkillSpareShow(SkillAction skill)

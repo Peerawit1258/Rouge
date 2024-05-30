@@ -32,6 +32,10 @@ public class ChoiceDetail
 {
     public ChoiceType type;
     public string sentence;
+    public int change;
+    //[ShowIf("@change != 0")] public CostType cost;
+    //[ShowIf("@change != 0 && cost == CostType.Hp"), Unit(Units.Percent)] public int costHp;
+    //[ShowIf("@change != 0 && cost == CostType.Gold")] public int costGold;
 
     [Title("Required")]
     public bool required;
@@ -39,6 +43,7 @@ public class ChoiceDetail
     [ShowIf("@required && requiredType == RewardType.Gold")]public int useGold;
     [ShowIf("@required && requiredType == RewardType.Skill")]public SkillAction useSkill;
     [ShowIf("@required && requiredType == RewardType.Relic")]public Relic useRelic;
+    [ShowIf("@required && requiredType == RewardType.Hp"), Unit(Units.Percent)] public int useHp;
 
     [Title("Choice")]
     [ShowIf("@type == ChoiceType.Reward")] public RewardDetail reward;
@@ -49,8 +54,10 @@ public class ChoiceDetail
     [ShowIf("@type == ChoiceType.Enemy")] public EnemyGroup enemyGroup;
 
     [Title("After")]
-    [PreviewField(50)] public Sprite afterEventImg;
-    [TextArea(2,4)]public string afterEventDes;
+    public bool next;
+    [ShowIf("@next")] public EventInfo nextEvent;
+    [ShowIf("@!next"), PreviewField(50)] public Sprite afterEventImg;
+    [ShowIf("@!next"), TextArea(2,4)]public string afterEventDes;
 
 }
 
@@ -101,14 +108,23 @@ public enum ChoiceType
     Heal,
     BuffDebuff,
     Remove,
-    Enemy
+    Enemy,
+    Change
 }
 
 public enum RewardType
 {
     Gold,
     Skill,
-    Relic
+    Relic,
+    Hp
 }
 
+public enum CostType
+{
+    None,
+    Hp,
+    Gold,
+    skill
+}
 

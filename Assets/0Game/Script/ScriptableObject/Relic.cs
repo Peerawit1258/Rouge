@@ -40,10 +40,11 @@ public class RelicDetail
     [ShowIf("@type == RelicEffectType.Stat && isSlot")] public List<DamageSlot> slots;
 
     //[ShowIf("@type == RelicEffectType.HpAbility")] public HpAbility hpAbility;
-    [ShowIf("@type == RelicEffectType.BuffDebuff")] public TriggerStatus trigger;
-    [ShowIf("@type == RelicEffectType.BuffDebuff")] public StatusType statusType;
-    //[ShowIf("@type == RelicType.BuffDebuff && statusType == StatusType.Debuff")] public AddStatus statu;
-    [ShowIf("@type == RelicEffectType.BuffDebuff")] public AddStatus status;
+    [ShowIf("@type == RelicEffectType.TurnTrigger")] public TriggerStatus trigger;
+    [ShowIf("@type == RelicEffectType.TurnTrigger")] public ActionTurn main;
+    [ShowIf("@type == RelicEffectType.TurnTrigger")] public SkillType mainTrigger;
+    [ShowIf("@type == RelicEffectType.TurnTrigger && (mainTrigger == SkillType.Buff || mainTrigger == SkillType.Debuff)")] public AddStatus status;
+    [ShowIf("@type == RelicEffectType.TurnTrigger && mainTrigger == SkillType.Heal")] public int healTrigger;
 
     [ShowIf("@type == RelicEffectType.DOT")] public bool isStack;
     [ShowIf("@type == RelicEffectType.DOT && isStack")] public int stack;
@@ -85,7 +86,7 @@ public class RelicDetail
 
 public enum RelicEffectType{
     Stat,
-    BuffDebuff,
+    TurnTrigger,
     DOT,
     Money,
     Skill,

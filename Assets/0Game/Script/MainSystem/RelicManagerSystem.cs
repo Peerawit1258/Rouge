@@ -101,7 +101,7 @@ public class RelicManagerSystem : MonoBehaviour
                         }
                     }
                     break;
-                case RelicEffectType.BuffDebuff:
+                case RelicEffectType.TurnTrigger:
 
                     break;
                 case RelicEffectType.Money:
@@ -201,11 +201,11 @@ public class RelicManagerSystem : MonoBehaviour
     {
         if (GameManager.instance.playerData.currentRelics.Count == 0) return;
 
-        foreach (var relic in GameManager.instance.playerData.currentRelics)
-            foreach (var detail in relic.relicDetails)
-                if (detail.type == RelicEffectType.BuffDebuff)
-                    if (detail.trigger == trigger)
-                        statusEffectSystem.GetStatusInPlayer(detail.status);
+        //foreach (var relic in GameManager.instance.playerData.currentRelics)
+        //    foreach (var detail in relic.relicDetails)
+        //        if (detail.type == RelicEffectType.BuffDebuff)
+        //            if (detail.trigger == trigger)
+        //                statusEffectSystem.GetStatusInPlayer(detail.status);
     }
 
     public int GetBonusStatFromHpCompare(float ratio, StatType type)

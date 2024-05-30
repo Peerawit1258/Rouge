@@ -88,6 +88,23 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             GameManager.instance.encounterManagementSystem.CreateNextDoorNode();
             return;
         }
+        if (choiceDetail.required)
+        {
+            switch (choiceDetail.requiredType)
+            {
+                case RewardType.Skill:
+                    break;
+                case RewardType.Relic:
+                    break;
+                case RewardType.Gold:
+                    GameManager.instance.playerData.gold -= choiceDetail.useGold;
+                    if (GameManager.instance.playerData.gold < 0) GameManager.instance.playerData.gold = 0;
+                    break;
+                case RewardType.Hp:
+                    GameManager.instance.turnManager.player.StartDamageTaken(choiceDetail.useHp, 0, true);
+                    break;
+            }
+        }
         switch (choiceDetail.type) 
         {
             case ChoiceType.Reward:
@@ -102,12 +119,14 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     {
                         case 0:
                             //int gold = choiceDetail.reward.RandomReward<int>();
-                            gold = GameManager.instance.playerData.gold += choiceDetail.reward.RandomGold();
+                            gold = choiceDetail.reward.RandomGold();
+                            GameManager.instance.playerData.gold += gold;
                             replace = "+" + gold.ToString() + " Gold";
                             
                             break;
                         case 1:
                             skill = choiceDetail.reward.RandomSkill();
+                            //GameManager.instance.
                             replace = skill.skillName + "(Skill)";
                             //GameManager.instance.allData.s.Add()
                             break;

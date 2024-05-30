@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using Sirenix.OdinInspector;
 using TMPro;
 using DG.Tweening;
@@ -18,6 +19,8 @@ public class EventManager : MonoBehaviour
     [SerializeField] GameObject choicePrefab;
     [SerializeField] ChoiceWidget exitChoice;
     List<ChoiceWidget> choiceLists = new List<ChoiceWidget>();
+
+    public UnityAction afterAction;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,16 +51,44 @@ public class EventManager : MonoBehaviour
 
         FadeIn();
     }
+
+    public void NextEvent(EventInfo info)
+    {
+        if (info == null) return;
+        if (exitChoice != null) exitChoice.gameObject.SetActive(false);
+
+        eventImg.sprite = info.eventImage;
+        eventDetail.text = info.description;
+
+        ClearChoice();
+
+        for (int i = 0; i < info.choices.Count; i++)
+        {
+            ChoiceWidget choiceWidget = Instantiate(choicePrefab, choicePlace).GetComponent<ChoiceWidget>();
+            choiceWidget.ChoiceSetup(info.choices[i]);
+            choiceWidget.gameObject.name += "_" + i.ToString();
+            choiceLists.Add(choiceWidget);
+        }
+
+    }
     #region After
     public void AfterSelectChoice(ChoiceDetail choice)
     {
-        eventImg.sprite = choice.afterEventImg;
-        eventDetail.text = choice.afterEventDes;
+        if (choice.next)
+        {
+            NextEvent(choice.nextEvent);
+        }
+        else
+        {
+            eventImg.sprite = choice.afterEventImg;
+            eventDetail.text = choice.afterEventDes;
 
-        eventImg.DOColor(Color.black, time).From();
+            eventImg.DOColor(Color.black, time).From();
 
-        ClearChoice();
-        if(exitChoice != null) exitChoice.gameObject.SetActive(true);
+            ClearChoice();
+            if (exitChoice != null) exitChoice.gameObject.SetActive(true);
+        }
+        
     }
 
     public void AfterSelectChoice(ChoiceDetail choice, string replace) // Reward Gold
@@ -82,7 +113,12 @@ public class EventManager : MonoBehaviour
         {
             panel.blocksRaycasts = true;
             panel.interactable = true;
-            
+            if(afterAction != null)
+            {
+                afterAction.Invoke();
+                afterAction = null;
+                if (afterAction == null) Debug.Log("Event Complete");
+            }
         });
     }
 
