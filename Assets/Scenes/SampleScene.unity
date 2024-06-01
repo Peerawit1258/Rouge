@@ -1196,17 +1196,7 @@ MonoBehaviour:
   def: 10
   defBonus: 
   damageReduce: 0a000000
-  result: 'Atk : 25
-
-    DamageBonus : 0%
-
-    Def : 10
-
-    DamageReduce : 10%
-
-
-    Hit1:
-    6'
+  result: 
 --- !u!1 &616881667
 GameObject:
   m_ObjectHideFlags: 0
@@ -3538,6 +3528,8 @@ MonoBehaviour:
   increaseExp: 0
   randomSkill: 0
   dropSkill: 0
+  startStatus: []
+  endStatus: []
   increaseStack: 0
   posionDmg: 0
   burnDmg: 0

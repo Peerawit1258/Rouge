@@ -17,15 +17,16 @@ MonoBehaviour:
   eventImage: {fileID: 0}
   description: 
   choices:
-  - type: 3
+  - type: 4
     sentence: 
+    rate: 0
     required: 0
-    requiredType: 0
+    requiredType: 2
     useGold: 0
     useSkill: {fileID: 0}
     useRelic: {fileID: 0}
+    useHp: 0
     reward:
-      isRandom: 0
       rewardType: 0
       min: 0
       max: 0
@@ -37,8 +38,6 @@ MonoBehaviour:
       percentHeal: 0
       removeEffect: {fileID: 0}
     status: []
-    removeType: 0
-    value: 0
     enemyGroup: {fileID: 0}
     next: 0
     nextEvent: {fileID: 0}
