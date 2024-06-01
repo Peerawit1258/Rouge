@@ -73,7 +73,7 @@ public class DetailPanel : MonoBehaviour
                 relicWidgets[i].GetWidgetPos().DOScale(1, 0.5f);
 
             relicWidgets[i].GetWidgetPos().DOAnchorPos(new Vector2(i * 65, 0), 0.5f);
-            if (i > 10) relicWidgets[i].GetCanvasGroup().DOFade(0, 0.5f);
+            if (i > 8) relicWidgets[i].GetCanvasGroup().DOFade(0, 0.5f);
         }
     }
 

@@ -113,23 +113,23 @@ public class EventManager : MonoBehaviour
         {
             panel.blocksRaycasts = true;
             panel.interactable = true;
-            if(afterAction != null)
-            {
-                afterAction.Invoke();
-                afterAction = null;
-                if (afterAction == null) Debug.Log("Event Complete");
-            }
+            
         });
     }
 
     private void FadeOut()
     {
-        
         panel.DOFade(0, time).OnComplete(() =>
         {
             panel.blocksRaycasts = false;
             panel.interactable = false;
             panel.gameObject.SetActive(false);
+            if (afterAction != null)
+            {
+                afterAction.Invoke();
+                afterAction = null;
+                if (afterAction == null) Debug.Log("Event Complete");
+            }
         });
     }
 
@@ -143,4 +143,6 @@ public class EventManager : MonoBehaviour
             choiceLists.Clear();
         }
     }
+
+    public void SetAfterEvent(UnityAction action) => afterAction = action;
 } 

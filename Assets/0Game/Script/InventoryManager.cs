@@ -19,9 +19,9 @@ public class InventoryManager : MonoBehaviour, IDropHandler
     [SerializeField] private List<PlaceForSkill> spare;
     [SerializeField] private Button iconBtn;
     [SerializeField] private Button backBtn;
-    [SerializeField] private CanvasGroup placeCanvas;
+    //[SerializeField] private CanvasGroup placeCanvas;
     [SerializeField] private RectTransform placePos;
-    [SerializeField] private TMP_Text placeText;
+    //[SerializeField] private TMP_Text placeText;
 
     [TabGroup("Setting"), SerializeField] float time;
     [TabGroup("Setting"), SerializeField] Ease ease;
@@ -39,9 +39,9 @@ public class InventoryManager : MonoBehaviour, IDropHandler
         iconBtn.interactable = true;
         backBtn.interactable = false;
 
-        placeCanvas.alpha = 0;
-        placeCanvas.blocksRaycasts = false;
-        placeCanvas.interactable = false;
+        //placeCanvas.alpha = 0;
+        //placeCanvas.blocksRaycasts = false;
+        //placeCanvas.interactable = false;
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -116,14 +116,14 @@ public class InventoryManager : MonoBehaviour, IDropHandler
         SkillShow show = Instantiate(skillPrefab, placePos).GetComponent<SkillShow>();
         show.SetSkillShow(skill, false);
         show.GetObjPos().sizeDelta = Vector2.zero;
-        show.GetObjPos().DOSizeDelta(new Vector2(100, 100), time);
-        show.GetObjPos().DOAnchorPosY(show.GetObjPos().anchoredPosition.y - 40, time).From().SetEase(Ease.InOutQuart).OnComplete(() =>
+        show.GetObjPos().DOSizeDelta(new Vector2(100, 100), time /2);
+        show.GetObjPos().DOJumpAnchorPos(show.GetObjPos().anchoredPosition,30,1, time).SetEase(Ease.OutBounce).OnComplete(() =>
         {
             skillShows.Add(show);
             if(skillShows.Count <= 20)
             {
-                show.GetObjPos().DOAnchorPos(new Vector2(-810, -540), 1).SetDelay(1);
-                show.GetObjPos().DOSizeDelta(Vector2.zero, 1).SetDelay(1).OnComplete(() =>
+                show.GetObjPos().DOAnchorPos(new Vector2(-810, -540), 1).SetDelay(0.3f);
+                show.GetObjPos().DOSizeDelta(Vector2.zero, 1).SetEase(Ease.OutQuart).SetDelay(1).OnComplete(() =>
                 {
                     show.GetObjPos().sizeDelta = new Vector2(100, 100);
                     PlaceForSkill place = GetPlace();
@@ -154,18 +154,18 @@ public class InventoryManager : MonoBehaviour, IDropHandler
             removeCount = skillShows.Count + recieveCount - 20;
     }
 
-    public void RemoveSkill(SkillShow skill)
+    public void RemoveSkill(SkillAction remove)
     {
-        if (skill == null) return;
         foreach (var p in place)
         {
-            if (p.GetSkill().GetId() == skill.GetId())
+            if (p.GetSkill().GetId() == remove.id)
+            {
+                skillShows.Remove(p.GetSkill());
+                Destroy(p.GetSkill().gameObject);
                 p.ClearValue();
-            else
-                return;
+            }   
         }
-
-        skillShows.Remove(skill);
+        GameManager.instance.playerData.RemoveCurrentSkill(remove);
     }
 
     void ClearSpare()

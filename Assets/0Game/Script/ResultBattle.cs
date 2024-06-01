@@ -173,7 +173,7 @@ public class ResultBattle : MonoBehaviour
         //}
     }
 
-    public void CloseReward(RelicDetailWidget widget)
+    public void CloseReward(RelicDetailWidget widget = null)
     {
         if (widget != null)
         {
@@ -229,6 +229,19 @@ public class ResultBattle : MonoBehaviour
 
             relicDetails.Add(detail);
         }
+    }
+    public void StartCreateSpecificRelicDetail(Relic relic) => StartCoroutine(CreateSpecificRelicDetail(relic));
+    IEnumerator CreateSpecificRelicDetail(Relic relic)
+    {
+        rewardObj.SetActive(true);
+        RelicDetailWidget detail = Instantiate(relicDetailPrefab, rewardPlace).GetComponent<RelicDetailWidget>();
+        detail.GetPos().anchoredPosition = new Vector2(0, 0);
+        detail.SetupDetail(relic);
+
+        relicDetails.Add(detail);
+
+        yield return new WaitForSeconds(1.5f);
+        CloseReward(detail);
     }
 
     private bool CheckRandomRelic(Relic relic)

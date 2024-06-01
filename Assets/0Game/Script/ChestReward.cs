@@ -57,11 +57,11 @@ public class ChestReward : MonoBehaviour
 
     private bool SpawnMimic()
     {
-        if (GameManager.instance.encounterManagementSystem.stageName == "The Cave") return false;
+        if (GameManager.instance.encounterManagementSystem.stageName == "The Cave" || spawnRate == 0) return false;
         int num = Random.Range(0, 100);
         Debug.Log("Random : " + num);
-        if(spawnRate == 0) return false;
-        if(num % (100 / spawnRate) == 0)
+        
+        if(num < spawnRate)
             return true;
 
         return false;

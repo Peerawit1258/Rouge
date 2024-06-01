@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 using Sirenix.OdinInspector;
+using DG.Tweening;
 
 public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -88,11 +89,13 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             GameManager.instance.encounterManagementSystem.CreateNextDoorNode();
             return;
         }
+
         if (choiceDetail.required)
         {
             switch (choiceDetail.requiredType)
             {
                 case RewardType.Skill:
+                    GameManager.instance.inventoryManager.RemoveSkill(choiceDetail.useSkill);
                     break;
                 case RewardType.Relic:
                     break;
@@ -105,57 +108,37 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     break;
             }
         }
+
+        if(choiceDetail.rate > 0)
+        {
+            int random = Random.Range(0, 100);
+            if (random >= choiceDetail.rate)
+            {
+                eventManager.AfterSelectChoice(choiceDetail);
+                return;
+            }
+                
+        }
         switch (choiceDetail.type) 
         {
             case ChoiceType.Reward:
-                if (choiceDetail.reward.isRandom)
+                if (choiceDetail.reward.rewardType == RewardType.Gold)
                 {
-                    int num;
-                    do
-                    {
-                        num = Random.Range(0, 3);
-                    }while(!CheckRandomItem(num));
-                    switch (num)
-                    {
-                        case 0:
-                            //int gold = choiceDetail.reward.RandomReward<int>();
-                            gold = choiceDetail.reward.RandomGold();
-                            GameManager.instance.playerData.gold += gold;
-                            replace = "+" + gold.ToString() + " Gold";
-                            
-                            break;
-                        case 1:
-                            skill = choiceDetail.reward.RandomSkill();
-                            //GameManager.instance.
-                            replace = skill.skillName + "(Skill)";
-                            //GameManager.instance.allData.s.Add()
-                            break;
-                        case 2:
-                            relic = choiceDetail.reward.RandomRelic();
-                            replace = relic.relicName + "(Relic)";
-                            break;
-                        default:
-                            //int n = choiceDetail.reward.RandomReward<int>();
-                        break;
-                    }
+                    gold = choiceDetail.reward.RandomGold();
+                    GameManager.instance.playerData.gold += gold;// Change
+                    replace = "+" + gold.ToString() + " Gold";
+                }
+                else if (choiceDetail.reward.rewardType == RewardType.Skill)
+                {
+                    skill = choiceDetail.reward.RandomSkill();
+                    eventManager.SetAfterEvent(() => GameManager.instance.inventoryManager.CreateSkillShow(skill));
+                    replace = skill.skillName + "(Skill)";
                 }
                 else
                 {
-                    if (choiceDetail.reward.rewardType == RewardType.Gold)
-                    {
-                        GameManager.instance.playerData.gold += choiceDetail.reward.RandomGold();
-                        replace = "+" + gold.ToString() + " Gold";
-                    }
-                    else if(choiceDetail.reward.rewardType == RewardType.Skill)
-                    {
-                        skill = choiceDetail.reward.RandomSkill();
-                        replace = skill.skillName + "(Skill)";
-                    }
-                    else
-                    {
-                        relic = choiceDetail.reward.RandomRelic();
-                        replace = relic.relicName + "(Relic)";
-                    }
+                    relic = choiceDetail.reward.RandomRelic();
+                    eventManager.SetAfterEvent(() => GameManager.instance.resultBattle.StartCreateSpecificRelicDetail(relic));
+                    replace = relic.relicName + "(Relic)";
                 }
                 eventManager.AfterSelectChoice(choiceDetail, replace);
             break;
@@ -163,33 +146,34 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 if(choiceDetail.heal.healType == HealType.Heal)
                 {
                     int value = GameManager.instance.turnManager.player.hpValue * choiceDetail.heal.percentHeal / 100;
-                    GameManager.instance.turnManager.player.StartHealHP(value, 0);
+                    eventManager.SetAfterEvent(() => GameManager.instance.turnManager.player.StartHealHP(value, 0));
                     replace = "+" + value.ToString() + " HP";
                 }
                 else
                 {
                     if (choiceDetail.heal.isAll)
-                    {
-                        GameManager.instance.statusEffectSystem.RemoveAllStatus(StatusType.Special, true);
-                    }
+                        eventManager.SetAfterEvent(() => GameManager.instance.statusEffectSystem.RemoveAllStatus(StatusType.Special, true));
                     else
-                    {
-                        GameManager.instance.statusEffectSystem.RemoveAllStatus(StatusType.Debuff);
-                    }
+                        eventManager.SetAfterEvent(() => GameManager.instance.statusEffectSystem.RemoveAllStatus(StatusType.Debuff));
                 }
                 eventManager.AfterSelectChoice(choiceDetail);
                 break;
             case ChoiceType.BuffDebuff:
-                foreach(var status in choiceDetail.status)
-                {
-                    GameManager.instance.statusEffectSystem.GetStatusInPlayer(status);
-                }
-                    
+                eventManager.SetAfterEvent(() => {
+                    foreach (var status in choiceDetail.status)
+                        GameManager.instance.statusEffectSystem.GetStatusInPlayer(status);
+                });
                 break;
-            case ChoiceType.Remove:
-
-            break;
             case ChoiceType.Enemy:
+                eventManager.SetAfterEvent(() =>
+                {
+                    GameManager.instance.battleSetup.SetupEnemyBattle(choiceDetail.enemyGroup.enemies);
+                    DOVirtual.DelayedCall(1, () =>
+                    {
+                        Debug.Log("Create");
+                        GameManager.instance.turnManager.StartTurn();
+                    });
+                });
                 break;
             default:
                 eventManager.AfterSelectChoice(choiceDetail);

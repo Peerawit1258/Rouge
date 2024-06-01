@@ -32,46 +32,39 @@ public class ChoiceDetail
 {
     public ChoiceType type;
     public string sentence;
-    public int change;
+    public int rate;
     //[ShowIf("@change != 0")] public CostType cost;
     //[ShowIf("@change != 0 && cost == CostType.Hp"), Unit(Units.Percent)] public int costHp;
     //[ShowIf("@change != 0 && cost == CostType.Gold")] public int costGold;
 
-    [Title("Required")]
-    public bool required;
-    [ShowIf("@required")]public RewardType requiredType;
-    [ShowIf("@required && requiredType == RewardType.Gold")]public int useGold;
-    [ShowIf("@required && requiredType == RewardType.Skill")]public SkillAction useSkill;
-    [ShowIf("@required && requiredType == RewardType.Relic")]public Relic useRelic;
-    [ShowIf("@required && requiredType == RewardType.Hp"), Unit(Units.Percent)] public int useHp;
+    [TitleGroup("Required")] public bool required;
+    [TitleGroup("Required"), ShowIf("@required")]public RewardType requiredType;
+    [TitleGroup("Required"), ShowIf("@required && requiredType == RewardType.Gold")]public int useGold;
+    [TitleGroup("Required"), ShowIf("@required && requiredType == RewardType.Skill")]public SkillAction useSkill;
+    [TitleGroup("Required"), ShowIf("@required && requiredType == RewardType.Relic")]public Relic useRelic;
+    [TitleGroup("Required"), ShowIf("@required && requiredType == RewardType.Hp"), Unit(Units.Percent)] public int useHp;
 
-    [Title("Choice")]
-    [ShowIf("@type == ChoiceType.Reward")] public RewardDetail reward;
-    [ShowIf("@type == ChoiceType.Heal")] public HealDetail heal;
-    [ShowIf("@type == ChoiceType.BuffDebuff")] public List<AddStatus> status;
-    [ShowIf("@type == ChoiceType.Remove")] public RewardType removeType;
-    [ShowIf("@type == ChoiceType.Remove && removeType == RewardType.Gold")] public int value;
-    [ShowIf("@type == ChoiceType.Enemy")] public EnemyGroup enemyGroup;
+    [TitleGroup("Choice"), ShowIf("@type == ChoiceType.Reward")] public RewardDetail reward;
+    [TitleGroup("Choice"), ShowIf("@type == ChoiceType.Heal")] public HealDetail heal;
+    [TitleGroup("Choice"), ShowIf("@type == ChoiceType.BuffDebuff")] public List<AddStatus> status;
+    [TitleGroup("Choice"), ShowIf("@type == ChoiceType.Enemy")] public EnemyGroup enemyGroup;
 
-    [Title("After")]
-    public bool next;
-    [ShowIf("@next")] public EventInfo nextEvent;
-    [ShowIf("@!next"), PreviewField(50)] public Sprite afterEventImg;
-    [ShowIf("@!next"), TextArea(2,4)]public string afterEventDes;
+    [TitleGroup("After")] public bool next;
+    [TitleGroup("After"), ShowIf("@next")] public EventInfo nextEvent;
+    [TitleGroup("After"), ShowIf("@!next"), PreviewField(50)] public Sprite afterEventImg;
+    [TitleGroup("After"), ShowIf("@!next"), TextArea(2,4)]public string afterEventDes;
 
 }
 
 [Serializable]
 public class RewardDetail
 {
-    public bool isRandom;
-    [ShowIf("@!isRandom")] public RewardType rewardType;
+    public RewardType rewardType;
     
-    //[ShowIf("@type == RewardType.Gold && !isRandom")] public int gold;
-    [ShowIf("@rewardType == RewardType.Gold || isRandom")] public int min;
-    [ShowIf("@rewardType == RewardType.Gold || isRandom")] public int max;
-    [ShowIf("@rewardType == RewardType.Skill || isRandom")] public List<SkillAction> skills;
-    [ShowIf("@rewardType == RewardType.Relic || isRandom")] public List<Relic> relics;
+    [ShowIf("@rewardType == RewardType.Gold")] public int min;
+    [ShowIf("@rewardType == RewardType.Gold")] public int max;
+    [ShowIf("@rewardType == RewardType.Skill")] public List<SkillAction> skills;
+    [ShowIf("@rewardType == RewardType.Relic")] public List<Relic> relics;
     //[ShowIf("@type == Relic")]
 
     //public R RandomReward<R>()
@@ -107,7 +100,6 @@ public enum ChoiceType
     Reward,
     Heal,
     BuffDebuff,
-    Remove,
     Enemy,
     Change
 }

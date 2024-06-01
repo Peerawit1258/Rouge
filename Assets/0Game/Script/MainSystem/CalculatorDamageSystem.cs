@@ -50,6 +50,37 @@ public class CalculatorDamageSystem : MonoBehaviour
     [ButtonGroup, GUIColor("red")]
     public void Clear() => result = "";
 
+    [Button]
+    public void Change(int value)
+    {
+        if (value == 0) return;
+        int a = 0;
+        int b = 0;
+        for(int i = 0; i < 100; i++)
+        {
+            int target = Random.Range(0, 100);
+            if (target < value) a++;
+            else b++;
+        }
+
+        Debug.Log(a + ":" + b);
+    }
+
+    [Button]
+    public void CheckChange(int value)
+    {
+        if(value == 0) return;
+        int a = 0;
+        int b = 0;
+        for (int i = 0; i < 100; i++)
+        {
+            if (i % (100 / value) == 0) a++;
+            else b++;
+        }
+
+        Debug.Log(a + ":" + b);
+    }
+
     int TotalDamageBonus()
     {
         int total = 0;
