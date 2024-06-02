@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827c4f8ac7d1c4c4b8782176243823e7, type: 3}
+  m_Name: Event04_SmileGuy
+  m_EditorClassIdentifier: 
+  eventId: Event04
+  eventName: Smile Guy
+  eventImage: {fileID: 21300000, guid: 13cb87c0adc0fd444ac4bb4150a6608e, type: 3}
+  description: "HEY YOU!!! I have offer for you.\nJust select one in my hand, and
+    \nit help you.But you must choose just\none side.\n"
+  unlockEvent: []
+  choices:
+  - type: 1
+    sentence: Right Hand
+    rate: 0
+    required: 0
+    requiredType: 0
+    useGold: 0
+    useSkill: {fileID: 0}
+    useRelic: {fileID: 0}
+    useHp: 0
+    reward:
+      rewardType: 1
+      min: 0
+      max: 0
+      skills: []
+      relics: []
+    heal:
+      isAll: 0
+      healType: 0
+      percentHeal: 0
+      removeEffect: {fileID: 0}
+    status: []
+    enemyGroup: {fileID: 0}
+    statType: 0
+    statValue: 0
+    next: 0
+    nextEvent: {fileID: 0}
+    afterEventImg: {fileID: 21300000, guid: 17ceab46e3fcbfb448eabb617aecf934, type: 3}
+    afterEventDes: This REPLACE is yours.
+  - type: 1
+    sentence: Left Hand
+    rate: 0
+    required: 0
+    requiredType: 0
+    useGold: 0
+    useSkill: {fileID: 0}
+    useRelic: {fileID: 0}
+    useHp: 0
+    reward:
+      rewardType: 2
+      min: 0
+      max: 0
+      skills: []
+      relics: []
+    heal:
+      isAll: 0
+      healType: 0
+      percentHeal: 0
+      removeEffect: {fileID: 0}
+    status: []
+    enemyGroup: {fileID: 0}
+    statType: 0
+    statValue: 0
+    next: 0
+    nextEvent: {fileID: 0}
+    afterEventImg: {fileID: 0}
+    afterEventDes: 
+  - type: 1
+    sentence: Both
+    rate: 0
+    required: 0
+    requiredType: 0
+    useGold: 0
+    useSkill: {fileID: 0}
+    useRelic: {fileID: 0}
+    useHp: 0
+    reward:
+      rewardType: 0
+      min: 0
+      max: 0
+      skills: []
+      relics: []
+    heal:
+      isAll: 0
+      healType: 0
+      percentHeal: 0
+      removeEffect: {fileID: 0}
+    status: []
+    enemyGroup: {fileID: 0}
+    statType: 0
+    statValue: 0
+    next: 0
+    nextEvent: {fileID: 0}
+    afterEventImg: {fileID: 0}
+    afterEventDes: 'Smile guy is not satisfied that you choose.
+
+      He walk away
+      inside the dark.
+
+      When he dissapear
+
+      you got something in your
+      hand.'

@@ -12,6 +12,7 @@ public class EventInfo : ScriptableObject
     public string eventName;
     [PreviewField(100)] public Sprite eventImage;
     [TextArea(2,4)] public string description;
+    public List<string> unlockEvent;
 
     [Title("Choice")]
     public List<ChoiceDetail> choices;
@@ -48,6 +49,8 @@ public class ChoiceDetail
     [TitleGroup("Choice"), ShowIf("@type == ChoiceType.Heal")] public HealDetail heal;
     [TitleGroup("Choice"), ShowIf("@type == ChoiceType.BuffDebuff")] public List<AddStatus> status;
     [TitleGroup("Choice"), ShowIf("@type == ChoiceType.Enemy")] public EnemyGroup enemyGroup;
+    [TitleGroup("Choice"), ShowIf("@type == ChoiceType.BaseStat")] public StatType statType;
+    [TitleGroup("Choice"), ShowIf("@type == ChoiceType.BaseStat")] public int statValue;
 
     [TitleGroup("After")] public bool next;
     [TitleGroup("After"), ShowIf("@next")] public EventInfo nextEvent;
@@ -101,7 +104,7 @@ public enum ChoiceType
     Heal,
     BuffDebuff,
     Enemy,
-    Change
+    BaseStat
 }
 
 public enum RewardType

@@ -10,20 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 827c4f8ac7d1c4c4b8782176243823e7, type: 3}
-  m_Name: Event102_TheNest1
+  m_Name: Event03_TreasureRoom
   m_EditorClassIdentifier: 
-  eventId: Event102
-  eventName: TheNest 1
+  eventId: Event03
+  eventName: Treasure Room
   eventImage: {fileID: 21300000, guid: 13cb87c0adc0fd444ac4bb4150a6608e, type: 3}
-  description: 'You found unknow bag.Whose bag is it?
+  description: 'You go to this room and The Chest is place.
 
-    But now,It''s yours.'
+    What something inside?'
+  unlockEvent: []
   choices:
   - type: 1
-    sentence: Open it!
+    sentence: Open Chest
+    rate: 0
+    required: 1
+    requiredType: 3
+    useGold: 0
+    useSkill: {fileID: 0}
+    useRelic: {fileID: 0}
+    useHp: 5
     reward:
-      isRandom: 1
-      rewardType: 0
+      rewardType: 2
       min: 10
       max: 200
       skills:
@@ -37,22 +44,29 @@ MonoBehaviour:
       percentHeal: 0
       removeEffect: {fileID: 0}
     status: []
-    removeType: 0
-    value: 0
     enemyGroup: {fileID: 0}
-    afterEventImg: {fileID: 21300000, guid: d589952d97bfbeb459de357fc7fdc3fc, type: 3}
-    afterEventDes: You got REPLACE.
-    haveCondition: 0
-    conditionType: 0
-    requiredMoney: 0
-    requiredRelic: {fileID: 0}
+    statType: 0
+    statValue: 0
+    next: 0
+    nextEvent: {fileID: 0}
+    afterEventImg: {fileID: 306701449, guid: f8061cbd7a8029945be0521a2339905e, type: 3}
+    afterEventDes: 'When you open it,Trap is activate.
+
+      it hurt you but you
+      got something in chest.'
   - type: 0
-    sentence: Do nothing
+    sentence: 'It '
+    rate: 0
+    required: 0
+    requiredType: 0
+    useGold: 0
+    useSkill: {fileID: 0}
+    useRelic: {fileID: 0}
+    useHp: 0
     reward:
-      isRandom: 0
       rewardType: 0
-      min: 0
-      max: 0
+      min: 30
+      max: 200
       skills: []
       relics: []
     heal:
@@ -61,12 +75,10 @@ MonoBehaviour:
       percentHeal: 0
       removeEffect: {fileID: 0}
     status: []
-    removeType: 2
-    value: 0
     enemyGroup: {fileID: 0}
-    afterEventImg: {fileID: 0}
-    afterEventDes: This bag isn't mine.
-    haveCondition: 0
-    conditionType: 0
-    requiredMoney: 0
-    requiredRelic: {fileID: 0}
+    statType: 0
+    statValue: 0
+    next: 0
+    nextEvent: {fileID: 0}
+    afterEventImg: {fileID: -1945859540, guid: f8061cbd7a8029945be0521a2339905e, type: 3}
+    afterEventDes: 

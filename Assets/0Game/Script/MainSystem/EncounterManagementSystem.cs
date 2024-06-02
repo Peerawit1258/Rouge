@@ -126,6 +126,22 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
 
     private bool CheckAlreadyHaveEncounter(EncounterNode node)
     {
+        int count = 0;
+        if (node.node == Node.Event)
+        {
+            if (node.eventInfo.unlockEvent.Count > 0)
+            {
+                foreach (string id in node.eventInfo.unlockEvent)
+                    if (previousNode.Contains(id))
+                        count++;
+                if (count == node.eventInfo.unlockEvent.Count)
+                    return true;
+                else 
+                    return false;
+            }    
+        }
+            
+
         foreach (var door in doors)
             if (door.GetEncounter() != null)
                 if (door.GetEncounter().nodeID == node.nodeID)
