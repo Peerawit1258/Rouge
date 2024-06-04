@@ -52,7 +52,7 @@ public class EventManager : MonoBehaviour
         FadeIn();
     }
 
-    public void NextEvent(EventInfo info)
+    public void NextEvent(EventInfo info, bool invoke = false)
     {
         if (info == null) return;
         if (exitChoice != null) exitChoice.gameObject.SetActive(false);
@@ -70,6 +70,12 @@ public class EventManager : MonoBehaviour
             choiceLists.Add(choiceWidget);
         }
 
+        if (invoke)
+        {
+            afterAction.Invoke();
+            afterAction = null;
+            if (afterAction == null) Debug.Log("Event Complete");
+        }
     }
     #region After
     public void AfterSelectChoice(ChoiceDetail choice)
@@ -89,6 +95,14 @@ public class EventManager : MonoBehaviour
             if (exitChoice != null) exitChoice.gameObject.SetActive(true);
         }
         
+    }
+
+    public void AfterSelectChoice(ChoiceDetail choice, bool pass)
+    {
+        if (pass)
+            NextEvent(choice.passEvent);
+        else
+            NextEvent(choice.failEvent);
     }
 
     public void AfterSelectChoice(ChoiceDetail choice, string replace) // Reward Gold

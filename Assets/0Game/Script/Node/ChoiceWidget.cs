@@ -95,7 +95,9 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             switch (choiceDetail.requiredType)
             {
                 case RewardType.Skill:
-                    GameManager.instance.inventoryManager.RemoveSkill(choiceDetail.useSkill);
+                    if(choiceDetail.disappear)
+                        GameManager.instance.inventoryManager.RemoveSkill(choiceDetail.useSkill);
+                    
                     break;
                 case RewardType.Relic:
                     break;
@@ -114,10 +116,9 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             int random = Random.Range(0, 100);
             if (random >= choiceDetail.rate)
             {
-                eventManager.AfterSelectChoice(choiceDetail);
+                eventManager.NextEvent(choiceDetail.failEvent);
                 return;
-            }
-                
+            } 
         }
         switch (choiceDetail.type) 
         {
@@ -140,8 +141,14 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     eventManager.SetAfterEvent(() => GameManager.instance.resultBattle.StartCreateSpecificRelicDetail(relic));
                     replace = relic.relicName + "(Relic)";
                 }
-                eventManager.AfterSelectChoice(choiceDetail, replace);
-            break;
+                if(choiceDetail.rate <= 0)
+                {
+                    if (choiceDetail.exit) eventManager.ExitEvent();
+                    else eventManager.AfterSelectChoice(choiceDetail, replace);
+                }else
+                    eventManager.NextEvent(choiceDetail.passEvent, true);
+                break;
+
             case ChoiceType.Heal:
                 if(choiceDetail.heal.healType == HealType.Heal)
                 {
@@ -156,14 +163,29 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     else
                         eventManager.SetAfterEvent(() => GameManager.instance.statusEffectSystem.RemoveAllStatus(StatusType.Debuff));
                 }
-                eventManager.AfterSelectChoice(choiceDetail);
+                if(choiceDetail.rate <= 0)
+                {
+                    if (choiceDetail.exit) eventManager.ExitEvent();
+                    else eventManager.AfterSelectChoice(choiceDetail);
+                }else
+                    eventManager.NextEvent(choiceDetail.passEvent, true);
                 break;
+
             case ChoiceType.BuffDebuff:
                 eventManager.SetAfterEvent(() => {
                     foreach (var status in choiceDetail.status)
                         GameManager.instance.statusEffectSystem.GetStatusInPlayer(status);
                 });
+
+                if (choiceDetail.rate <= 0)
+                {
+                    if (choiceDetail.exit) eventManager.ExitEvent();
+                    else eventManager.AfterSelectChoice(choiceDetail);
+                }
+                else
+                    eventManager.NextEvent(choiceDetail.passEvent, true);
                 break;
+
             case ChoiceType.Enemy:
                 eventManager.SetAfterEvent(() =>
                 {
@@ -174,7 +196,27 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                         GameManager.instance.turnManager.StartTurn();
                     });
                 });
+
+                if (choiceDetail.rate <= 0)
+                {
+                    if (choiceDetail.exit) eventManager.ExitEvent();
+                    else eventManager.AfterSelectChoice(choiceDetail);
+                }
+                else
+                    eventManager.NextEvent(choiceDetail.passEvent, true);
                 break;
+
+            case ChoiceType.BaseStat:
+                eventManager.SetAfterEvent(() => GameManager.instance.turnManager.player.BaseStatUpdate(choiceDetail.statValue));
+                if (choiceDetail.rate <= 0)
+                {
+                    if (choiceDetail.exit) eventManager.ExitEvent();
+                    else eventManager.AfterSelectChoice(choiceDetail);
+                }
+                else
+                    eventManager.NextEvent(choiceDetail.passEvent, true);
+                break;
+
             default:
                 eventManager.AfterSelectChoice(choiceDetail);
                 break;

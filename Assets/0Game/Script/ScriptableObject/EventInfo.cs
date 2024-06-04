@@ -33,12 +33,14 @@ public class ChoiceDetail
 {
     public ChoiceType type;
     public string sentence;
-    public int rate;
+    [Range(0, 100)] public int rate;
+    public bool exit;
     //[ShowIf("@change != 0")] public CostType cost;
     //[ShowIf("@change != 0 && cost == CostType.Hp"), Unit(Units.Percent)] public int costHp;
     //[ShowIf("@change != 0 && cost == CostType.Gold")] public int costGold;
 
     [TitleGroup("Required")] public bool required;
+    [TitleGroup("Required"), ShowIf("@required")] public bool disappear;
     [TitleGroup("Required"), ShowIf("@required")]public RewardType requiredType;
     [TitleGroup("Required"), ShowIf("@required && requiredType == RewardType.Gold")]public int useGold;
     [TitleGroup("Required"), ShowIf("@required && requiredType == RewardType.Skill")]public SkillAction useSkill;
@@ -49,13 +51,14 @@ public class ChoiceDetail
     [TitleGroup("Choice"), ShowIf("@type == ChoiceType.Heal")] public HealDetail heal;
     [TitleGroup("Choice"), ShowIf("@type == ChoiceType.BuffDebuff")] public List<AddStatus> status;
     [TitleGroup("Choice"), ShowIf("@type == ChoiceType.Enemy")] public EnemyGroup enemyGroup;
-    [TitleGroup("Choice"), ShowIf("@type == ChoiceType.BaseStat")] public StatType statType;
-    [TitleGroup("Choice"), ShowIf("@type == ChoiceType.BaseStat")] public int statValue;
+    [TitleGroup("Choice"), ShowIf("@type == ChoiceType.BaseStat")] public StatValue statValue;
 
-    [TitleGroup("After")] public bool next;
-    [TitleGroup("After"), ShowIf("@next")] public EventInfo nextEvent;
-    [TitleGroup("After"), ShowIf("@!next"), PreviewField(50)] public Sprite afterEventImg;
-    [TitleGroup("After"), ShowIf("@!next"), TextArea(2,4)]public string afterEventDes;
+    [TitleGroup("After"), ShowIf("@rate == 0")] public bool next;
+    [TitleGroup("After"), ShowIf("@next && rate == 0")] public EventInfo nextEvent;
+    [TitleGroup("After"), ShowIf("@!next && rate == 0"), PreviewField(50)] public Sprite afterEventImg;
+    [TitleGroup("After"), ShowIf("@!next && rate == 0"), TextArea(2,4)]public string afterEventDes;
+    [TitleGroup("After"), ShowIf("@rate > 0")] public EventInfo passEvent;
+    [TitleGroup("After"), ShowIf("@rate > 0")] public EventInfo failEvent;
 
 }
 

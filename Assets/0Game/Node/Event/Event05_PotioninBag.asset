@@ -104,8 +104,8 @@ MonoBehaviour:
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
     afterEventDes: Bitter....It's so bitter.
-  - type: 0
-    sentence: Don't put it to your mouth
+  - type: 3
+    sentence: Drink All Potion
     rate: 0
     required: 0
     requiredType: 0

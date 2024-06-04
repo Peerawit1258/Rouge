@@ -35,55 +35,40 @@ public class CharacterValue : MonoBehaviour
         damageReduce = dmgReduce;
     }
 
-    public void StatusEffectResult(AddStatus status)
-    {
-        switch (status.statusEffect.type)
-        {
-            case StatusType.Buff:
-                StatusEffect buff = status.statusEffect;
-                if (buff.effect == Effect.Stat)
-                {
-                    
-                }
-                break;
-            case StatusType.Debuff:
-
-                break;
-        }
-    }
-
     public void StatUp(StatValue stat, bool assign = true)
     {
         if (assign)
         {
-            if (stat.type == StatType.Atk)
-            {
-                atkValue += (b_atk * stat.value / 100);
-                p_atk += stat.value;
-            }
-            else if (stat.type == StatType.Def)
-            {
-                defValue += (b_def * stat.value / 100);
-                p_def += stat.value;
-            }
+            if (stat.type == StatType.Atk) p_atk += stat.value;
+            else if (stat.type == StatType.Def) p_def += stat.value;
             else if (stat.type == StatType.DmgBonus) damageBonus += stat.value;
             else damageReduce += stat.value;
         }
         else
         {
-            if (stat.type == StatType.Atk)
-            {
-                atkValue -= (b_atk * stat.value / 100);
-                p_atk -= stat.value;
-            }
-            else if (stat.type == StatType.Def)
-            {
-                defValue -= (b_def * stat.value / 100);
-                p_def -= stat.value;
-            }
+            if (stat.type == StatType.Atk) p_atk -= stat.value;
+            else if (stat.type == StatType.Def) p_def -= stat.value;
             else if (stat.type == StatType.DmgBonus) damageBonus -= stat.value;
             else damageReduce -= stat.value;
         }
+
+        UpdateStatValue();
+    }
+
+    public void BaseStatUpdate(StatValue stat)
+    {
+        if (stat.type == StatType.Atk) b_atk += stat.value;
+        else if (stat.type == StatType.Def) b_def += stat.value;
+
+        UpdateStatValue();
+    }
+
+    public void UpdateStatValue()
+    {
+        atkValue = b_atk + (b_atk * p_atk / 100);
+        if(atkValue < 0) atkValue = 0;
+        defValue = b_def + (b_def * p_def / 100);
+        if(defValue < 0) defValue = 0;
     }
 
     public int GetDamageBonus()
