@@ -14,7 +14,7 @@ public class SkillAction : ScriptableObject
     public Rarity rarity;
     public TargetType targetType;
     public GameObject particleEffect;
-    [TextArea(4,10)] public string descrition;
+    [TextArea(4,10)] public string description;
 
     [Title("Skill Detail")]
     [SerializeField] ActionDetail actionDetail;

@@ -115,4 +115,15 @@ public class SkillShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public RectTransform GetObjPos() => objPos;
     public string GetId() => id;
     public SkillAction GetSkillAction() => skillAction;
+    public int GetPrice()
+    {
+        int price = 0;
+        switch (skillAction.rarity)
+        {
+            case Rarity.Common: price = GameManager.instance.shopSystem.skillPrice[0]; break;
+            case Rarity.Epic: price = GameManager.instance.shopSystem.skillPrice[1]; break;
+            case Rarity.Legendary: price = GameManager.instance.shopSystem.skillPrice[2]; break;
+        }
+        return price;
+    }
 }

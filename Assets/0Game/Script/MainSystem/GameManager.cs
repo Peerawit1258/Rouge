@@ -17,10 +17,11 @@ public class GameManager : MonoBehaviour
     [TabGroup("System")] public RelicManagerSystem relicManagerSystem;
     [TabGroup("Battle")] public BattleSetup battleSetup;
     [TabGroup("Battle")] public GaugeHpEnemy gaugeHpEnemy;
-    [TabGroup("Battle")] public ResultBattle resultBattle;
-    [TabGroup("Battle")] public EventManager eventManager;
-    [TabGroup("Battle")] public DetailPanel detailPanel;
-    [TabGroup("Battle")] public InventoryManager inventoryManager;
+    [TabGroup("UI")] public ResultBattle resultBattle;
+    [TabGroup("UI")] public EventManager eventManager;
+    [TabGroup("UI")] public DetailPanel detailPanel;
+    [TabGroup("UI")] public InventoryManager inventoryManager;
+    [TabGroup("UI")] public ShopSystem shopSystem;
     [TabGroup("Manager")] public AllData allData;
     [TabGroup("Manager")] public PlayerData playerData;
 

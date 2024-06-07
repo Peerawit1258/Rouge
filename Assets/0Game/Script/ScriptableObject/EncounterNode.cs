@@ -29,5 +29,6 @@ public enum Node
     Boss,
     Rest,
     Event,
-    Treasure
+    Treasure,
+    Shop
 }

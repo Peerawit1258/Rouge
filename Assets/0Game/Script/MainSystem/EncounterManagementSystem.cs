@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class EncounterManagementSystem : SerializedMonoBehaviour
 {
     //[TabGroup("Value"), SerializeField] Dictionary<string, int> stage = new Dictionary<string, int>();
-    [TableList(ShowIndexLabels = true)] public List<StageDetail> stageDetail = new List<StageDetail>();
+    public List<StageDetail> stageDetail = new List<StageDetail>();
     public StageDetail restArea;
     [ReadOnly, TabGroup("Value")] public string stageName;
     [ReadOnly, TabGroup("Value")] public int stageCount = 0;

@@ -16,11 +16,14 @@ MonoBehaviour:
   eventName: 
   eventImage: {fileID: 0}
   description: 
+  unlockEvent: []
   choices:
-  - type: 4
+  - type: 5
     sentence: 
     rate: 0
+    exit: 0
     required: 0
+    disappear: 0
     requiredType: 2
     useGold: 0
     useSkill: {fileID: 0}
@@ -39,7 +42,12 @@ MonoBehaviour:
       removeEffect: {fileID: 0}
     status: []
     enemyGroup: {fileID: 0}
-    next: 0
+    statValue:
+      type: 0
+      value: 5
+    next: 1
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
     afterEventDes: 
+    passEvent: {fileID: 0}
+    failEvent: {fileID: 0}
