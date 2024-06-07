@@ -19,7 +19,7 @@ MonoBehaviour:
   rarity: 0
   targetType: 0
   particleEffect: {fileID: 0}
-  descrition: Apply 2 Curse stacks (Max at 5 stacks)
+  description: Apply 2 Curse stacks (Max at 5 stacks)
   actionDetail:
     skillType: 2
     percentDMG: 

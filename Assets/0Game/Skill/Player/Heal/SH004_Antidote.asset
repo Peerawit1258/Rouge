@@ -19,7 +19,7 @@ MonoBehaviour:
   rarity: 0
   targetType: 3
   particleEffect: {fileID: 0}
-  descrition: 'Remove '
+  description: 'Remove '
   actionDetail:
     skillType: 3
     percentDMG: 

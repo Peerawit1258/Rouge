@@ -19,7 +19,7 @@ MonoBehaviour:
   rarity: 1
   targetType: 0
   particleEffect: {fileID: 0}
-  descrition: Remove 1 Buff
+  description: Remove 1 Buff
   actionDetail:
     skillType: 2
     percentDMG: 

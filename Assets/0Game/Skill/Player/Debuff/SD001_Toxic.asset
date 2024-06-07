@@ -19,7 +19,7 @@ MonoBehaviour:
   rarity: 0
   targetType: 0
   particleEffect: {fileID: 0}
-  descrition: Apply 2 Posion (Max at 10 stacks)
+  description: Apply 2 Posion (Max at 10 stacks)
   actionDetail:
     skillType: 2
     percentDMG: 

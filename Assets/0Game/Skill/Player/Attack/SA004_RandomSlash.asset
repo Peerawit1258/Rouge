@@ -16,9 +16,10 @@ MonoBehaviour:
   skillName: Random Slash
   skillIcon: {fileID: 0}
   frame: {fileID: 21300000, guid: eb1ca71453326334e9162a52d2471c66, type: 3}
+  rarity: 0
   targetType: 2
   particleEffect: {fileID: 0}
-  descrition: Deal damage 5x25% of ATK to random enemies.
+  description: Deal damage 5x25% of ATK to random enemies.
   actionDetail:
     skillType: 0
     percentDMG: 1900000019000000190000001900000019000000
@@ -30,9 +31,11 @@ MonoBehaviour:
       damageForEffect: {fileID: 0}
       percentEffect: 0
     isHeal: 0
-    healType: 0
-    percentHeal: 0
-    removeEffect: {fileID: 0}
+    healDetail:
+      isAll: 0
+      healType: 0
+      percentHeal: 0
+      removeEffect: {fileID: 0}
     isTakeDamage: 0
     percentHp: 50
     hpCompare: 0
