@@ -6,9 +6,7 @@ using Sirenix.OdinInspector;
 public class AllData : MonoBehaviour
 {
     [TabGroup("PlayerData")] public List<SkillAction> allSkill;
-    [TabGroup("PlayerData")] public List<SkillAction> s;
     [TabGroup("PlayerData")] public List<Relic> allRelics;
-    [TabGroup("PlayerData")] public List<Relic> r;
 
     [TabGroup("EnemyData")] public List<CharacterDetail> allEnemy;
 
@@ -17,25 +15,62 @@ public class AllData : MonoBehaviour
 
     private void Start()
     {
-        if (GameManager.instance.isTest)
-        {
-            foreach(SkillAction action in s)
-                GameManager.instance.playerData.currentSkills.Add(action);
 
-            foreach(Relic relic in r)
-                GameManager.instance.playerData.currentRelics.Add(relic);
-        }
     }
 
+    #region Skill
+    public SkillAction GetSkillWithID(string id)
+    {
+        foreach (SkillAction action in allSkill)
+            if (action.id == id)
+                return action;
+
+        return null;
+    }
+
+    public List<SkillAction> GetSkillWithRarity(Rarity rarity)
+    {
+        List<SkillAction> lists = new List<SkillAction>();
+
+        foreach(SkillAction action in allSkill)
+            if(action.rarity == rarity)
+                lists.Add(action);
+
+        return lists;
+    }
+    #endregion
+    #region Relic
+    public Relic GetRelicWithID(string id)
+    {
+        foreach (Relic relic in allRelics)
+            if (relic.id == id)
+                return relic;
+
+        return null;
+    }
+
+    public List<Relic> GetRelicWithRarity(Rarity rarity)
+    {
+        List<Relic> lists = new List<Relic>();
+
+        foreach (Relic relic in allRelics)
+            if (relic.rarity == rarity && relic.relicType == RelicType.Normal)
+                lists.Add(relic);
+
+        return lists;
+    }
+    #endregion
+    #region Status
     public AddStatus GetStatusWithID(string id)
     {
         AddStatus statusEffect = new AddStatus();
 
-        foreach(var status in allStatus)
+        foreach(StatusEffect status in allStatus)
             if(status.id == id)
                 statusEffect.statusEffect = status;
         statusEffect.count = 1;
 
         return statusEffect;
     }
+    #endregion
 }

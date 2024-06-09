@@ -23,7 +23,7 @@ public class SkillBuy : MonoBehaviour
 
     public void SetupMerchandise(SkillAction skill)
     {
-        skillShow.SetSkillShowAnimation(skill, 0);
+        skillShow.SetSkillShow(skill, false);
 
         skillName.text = skill.skillName;
         skillDesc.text = skill.description;

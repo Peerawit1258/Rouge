@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     [TabGroup("UI")] public ShopSystem shopSystem;
     [TabGroup("Manager")] public AllData allData;
     [TabGroup("Manager")] public PlayerData playerData;
+    [TabGroup("Test")] public List<SkillAction> skills;
+    [TabGroup("Test")] public List<Relic> relics;
 
     public CameraControl mainCamera;
     [SerializeField] CharacterDetail playerDetail;
@@ -38,6 +40,29 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        List<SkillAction> currentSkill = new List<SkillAction>();
+        List<Relic> currentRelic = new List<Relic>();
+        if (isTest)
+        {
+            foreach (SkillAction action in skills)
+                currentSkill.Add(action);
+
+            foreach (Relic relic in relics)
+                currentRelic.Add(relic);
+        }
+        else
+        {
+            currentSkill.Add(allData.GetSkillWithID("SA001"));
+            currentSkill.Add(allData.GetSkillWithID("SB002"));
+            currentSkill.Add(allData.GetSkillWithID("SH001"));
+            currentSkill.Add(allData.GetSkillWithID("SA005"));
+            currentSkill.Add(allData.GetSkillWithID("SB001"));
+        }
+
+        if (currentSkill.Count > 0)
+            inventoryManager.CreateSkillShow(currentSkill);
+        if(currentRelic.Count > 0)
+            relicManagerSystem.AddRelic(currentRelic);
         SetupBattleStage();
         
         //Debug.Log(t);

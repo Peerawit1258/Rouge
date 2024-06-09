@@ -85,12 +85,10 @@ public class InventoryManager : MonoBehaviour, IDropHandler
         }
     }
 
-    //public void 
     bool isActive = false;
-
     public void OpenInventory()
     {
-        if (isActive) return;
+        if (isActive || GameManager.instance.shopSystem.GetCheckOpen()) return;
         canvasGroup.interactable = false;
         isActive = true;
         iconBtn.interactable = !iconBtn.interactable;
@@ -110,8 +108,24 @@ public class InventoryManager : MonoBehaviour, IDropHandler
             });
         }
     }
+
+    public void CreateSkillShow(List<SkillAction> skill) // Triger when start
+    {
+        foreach(var action in skill)
+        {
+            PlaceForSkill place = GetPlace();
+            SkillShow show = Instantiate(skillPrefab, place.pos).GetComponent<SkillShow>();
+            show.SetSkillShow(action);
+            skillShows.Add(show);
+
+            
+            place.SetSkill(show);
+        }
+        
+    }
+
     [Button]
-    public void CreateSkillShow(SkillAction skill)
+    public void CreateSkillShow(SkillAction skill) // Add new skill
     {
         SkillShow show = Instantiate(skillPrefab, placePos).GetComponent<SkillShow>();
         show.SetSkillShow(skill, false);
@@ -132,11 +146,6 @@ public class InventoryManager : MonoBehaviour, IDropHandler
                 
             }
         });
-        //show.skillCanvas.alpha = 0;
-
-        //if(!isOpen) OpenInventory();
-        //show.skillCanvas.DOFade(1, time);
-        
     }
 
     public void CreateSkillSpareShow(SkillAction skill)

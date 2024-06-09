@@ -40,7 +40,19 @@ public class RelicManagerSystem : MonoBehaviour
         //Debug.Log(10 * ((posionDmg + dotDmg) / 100) + " " + (int)(10 * ((posionDmg + dotDmg) / 100)));
     }
 
-    public void AddRelic(Relic relic)
+    public void AddRelic(List<Relic> relics) // Triger when start
+    {
+        foreach (Relic relic in relics)
+        {
+            RelicWidget widget = Instantiate(relicPrefab, GameManager.instance.detailPanel.GetRelicPlace()).GetComponent<RelicWidget>();
+            widget.SetupRelic(relic);
+            GameManager.instance.detailPanel.GetRelicWidgets().Add(widget);
+            AddRelic(relic);
+        }
+        GameManager.instance.detailPanel.OrderRelic();
+    }
+
+    public void AddRelic(Relic relic) // Add new skill
     {
         if(player == null) player = FindAnyObjectByType<PlayerController>();
         foreach(var detail in relic.relicDetails)

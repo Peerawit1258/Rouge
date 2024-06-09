@@ -18,7 +18,7 @@ public class RelicWidget : MonoBehaviour
 
     public void SetupRelic(Relic relic)
     {
-        icon.sprite = relic.icon;
+        if(relic.icon != null) icon.sprite = relic.icon;
         this.relic = relic;
     }
 
