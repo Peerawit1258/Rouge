@@ -53,6 +53,17 @@ public class ShopSystem : MonoBehaviour
         }
     }
 
+    public void StartCloseShop()=> StartCoroutine(CloseShop());
+    IEnumerator CloseShop()
+    {
+        shopPlace.DOAnchorPosY(1000, time).SetEase(ease);
+        shopCanvas.DOFade(0, time);
+
+        isOpen = false;
+        yield return new WaitForSeconds(time);
+        GameManager.instance.encounterManagementSystem.CreateNextDoorNode();
+    }
+
     public void CreateSkillForBuy()
     {
         List<SkillAction> common = GameManager.instance.allData.GetSkillWithRarity(Rarity.Common);

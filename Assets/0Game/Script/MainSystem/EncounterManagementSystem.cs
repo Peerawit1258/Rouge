@@ -13,6 +13,7 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
     public StageDetail restArea;
     [ReadOnly, TabGroup("Value")] public string stageName;
     [ReadOnly, TabGroup("Value")] public int stageCount = 0;
+    [ReadOnly, TabGroup("Value")] public int maxDelayShop;
     [TabGroup("Value")] public List<Node> nodes;
 
     [TabGroup("Reward")]public List<SkillAction> skillDrops;
@@ -76,12 +77,8 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
         
         if(stageCount == current.stageCount - 1)// Boss Stage
         {
-
+            doors[1].DoorSetup(GetStageDetailwithName().bossNode);
             
-        }
-        else if(stageCount == current.stageCount)// Rest Stage
-        {
-
         }
         else
         {
@@ -93,11 +90,13 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
                 lists = GetStageDetailwithName().GetEncounterList(GetNodeType());
                 do
                 {
-                    newNode = lists[Random.Range(0, lists.Count)];
+                    if (lists.Count > 1)
+                        newNode = lists[Random.Range(0, lists.Count)];
+                    else
+                        newNode = lists[0];
                 } while (CheckAlreadyHaveEncounter(newNode));
 
                 doors[i].DoorSetup(newNode);
-                //Debug.Log(newNode.nodeID);
             }
         }
     }
@@ -123,7 +122,7 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
         }
         return false;
     }
-
+    int delayShop = 0;
     private bool CheckAlreadyHaveEncounter(EncounterNode node)
     {
         int count = 0;
@@ -136,19 +135,24 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
                         count++;
                 if (count == node.eventInfo.unlockEvent.Count)
                     return true;
-                else 
+                else
                     return false;
-            }    
+            }
         }
+        else if (node.node == Node.Shop)
+            if (delayShop > 0)
+                return true;
+            else
+                delayShop = maxDelayShop;
             
-
         foreach (var door in doors)
             if (door.GetEncounter() != null)
                 if (door.GetEncounter().nodeID == node.nodeID)
                     return true;
 
-        if (node.node != Node.Treasure && previousNode.Contains(node.nodeID))
-            return true;
+        if (previousNode.Contains(node.nodeID))
+            if(node.node != Node.Treasure && node.node != Node.Shop)
+                return true;
 
 
         return false;
@@ -174,15 +178,17 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
         stageCount++;
         if (stageCount >= GetCurrentStageCountwithName())
         {
+            delayShop = 0;
             ChangeStage();
             return;
         }
         else
         {
+            if (delayShop > 0) delayShop--;
             GameManager.instance.animationChangeSceneSystem.BlackFade(1, 1, () =>
             {
                 turnManager.player.animationAction.WalkInSceneAction();
-                if (node.node == Node.Normal)
+                if (node.node == Node.Normal || node.node == Node.Elite)
                 {
                     GameManager.instance.battleSetup.SetupEnemyBattle(node.enemyGroup.enemies);
                     DOVirtual.DelayedCall(1, () =>
@@ -200,6 +206,10 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
                     //GameManager.instance.battleSetup.SetupSpecialEnemyBattle(node.chest, 1);EnemyController enemy;
                     Instantiate(node.chest.character, GameManager.instance.battleSetup.GetEnemyPos()[1]);
                     
+                }
+                else if(node.node == Node.Shop)
+                {
+                    GameManager.instance.shopSystem.OpenShop();
                 }
                 previousNode.Add(node.nodeID);
                 SetActiveDoor(false);
@@ -290,6 +300,7 @@ public class StageDetail
     [TabGroup("Detail", "Detail")]public List<EncounterNode> eliteNode;
     [TabGroup("Detail", "Detail")]public List<EncounterNode> eventNode;
     [TabGroup("Detail", "Detail")]public List<EncounterNode> treasureNode;
+    [TabGroup("Detail", "Detail")]public List<EncounterNode> shopNode;
     [TabGroup("Detail", "Detail")]public EncounterNode bossNode;
 
     public List<EncounterNode> GetEncounterList(Node type)
@@ -297,6 +308,7 @@ public class StageDetail
         if (type == Node.Treasure) return treasureNode;
         else if (type == Node.Elite) return eliteNode;
         else if (type == Node.Event) return eventNode;
+        else if (type == Node.Shop) return shopNode;
         else return normalNode;
     }
 
