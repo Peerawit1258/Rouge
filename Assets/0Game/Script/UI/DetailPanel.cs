@@ -4,15 +4,22 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using UnityEngine.Events;
+using Sirenix.OdinInspector;
 
 public class DetailPanel : MonoBehaviour
 {
-    [SerializeField] private TMP_Text turnText;
-    [SerializeField] private TMP_Text skillText;
-    [SerializeField] private TMP_Text actionTurnText;
-    [SerializeField] private RectTransform actionTurnPos;
-    [SerializeField] private RectTransform relicPlace;
-    [SerializeField] private TMP_Text relicCount;
+    [TabGroup("Detail"), SerializeField] private TMP_Text turnText;
+    [TabGroup("Detail"), SerializeField] private TMP_Text skillText;
+    [TabGroup("Detail"), SerializeField] private TMP_Text actionTurnText;
+    [TabGroup("Detail"), SerializeField] private RectTransform actionTurnPos;
+
+    [TabGroup("Relic"), SerializeField] private RectTransform relicPlace;
+    [TabGroup("Relic"), SerializeField] private TMP_Text relicCount;
+
+    [TabGroup("Info"), SerializeField] private TMP_Text atkValue;
+    [TabGroup("Info"), SerializeField] private TMP_Text defValue;
+    [TabGroup("Info"), SerializeField] private TMP_Text goldValue;
+    [TabGroup("Info"), SerializeField] private TMP_Text encounterValue;
 
     List<RelicWidget> relicWidgets = new List<RelicWidget>();
     public List<RelicWidget> GetRelicWidgets() => relicWidgets;
@@ -22,6 +29,21 @@ public class DetailPanel : MonoBehaviour
         
     }
 
+    #region TopDetailPanel
+    public void SetStartDetail(int atk, int def, int gold)
+    {
+        atkValue.text = atk.ToString();
+        defValue.text = def.ToString();
+        goldValue.text = gold.ToString();
+    }
+    public void ChangeGoldValue(int value)
+    {
+        int currentGold = GameManager.instance.playerData.gold;
+        DOVirtual.Int(currentGold, value, 0.5f, (x) => goldValue.text = x.ToString());
+        GameManager.instance.playerData.gold = value;
+    }
+    public void SetEncounter(int count) => encounterValue.text = count.ToString();
+    #endregion
     Tween tween;
     public void ShowSkillActionName(string name)
     {

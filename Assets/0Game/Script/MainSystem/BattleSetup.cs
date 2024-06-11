@@ -58,6 +58,7 @@ public class BattleSetup : SerializedMonoBehaviour
     public void SetupPlayerBattle(CharacterDetail player)
     {
         PlayerController character = Instantiate(player.character, playerPos).GetComponent<PlayerController>();
+        GameManager.instance.detailPanel.SetStartDetail(player.atk, player.def, GameManager.instance.playerData.GetCurrentGold());
         character.SetStatValue(player.maxHP, player.atk, player.def, player.damageReduce);
         character.name = player.characterName;
 

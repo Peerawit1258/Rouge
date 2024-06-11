@@ -18,6 +18,7 @@ public class InventoryManager : MonoBehaviour, IDropHandler
     [SerializeField] private List<PlaceForSkill> place;
     [SerializeField] private List<PlaceForSkill> spare;
     [SerializeField] private Button iconBtn;
+    [SerializeField] public RectTransform iconPos;
     [SerializeField] private Button backBtn;
     //[SerializeField] private CanvasGroup placeCanvas;
     [SerializeField] private RectTransform placePos;
@@ -73,16 +74,10 @@ public class InventoryManager : MonoBehaviour, IDropHandler
         }
     }
 
-    public void SkillMoveToPlace()
+    public void SkillMoveToPlace(SkillShow show)
     {
-        foreach(var show in skillShows)
-        {
-            if (!show.inventory)
-            {
-                PlaceForSkill place = GetPlace();
-                place.SetSkill(show);
-            }
-        }
+        PlaceForSkill place = GetPlace();
+        place.SetSkill(show);
     }
 
     bool isActive = false;

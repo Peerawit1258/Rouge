@@ -23,21 +23,24 @@ MonoBehaviour:
   - type: 1
     sentence: Open it!
     rate: 0
+    exit: 0
     required: 0
+    disappear: 0
     requiredType: 0
     useGold: 0
     useSkill: {fileID: 0}
     useRelic: {fileID: 0}
     useHp: 0
     reward:
-      rewardType: 0
+      rewardType: 2
       min: 10
       max: 200
       skills:
       - {fileID: 11400000, guid: 09998b01e4a23bf44b2b1d17f508136f, type: 2}
       - {fileID: 11400000, guid: e4b9a4f34eca3c84b97f76545fc32da5, type: 2}
       - {fileID: 11400000, guid: b96d1ccb195793d4587882d1a69ec230, type: 2}
-      relics: []
+      relics:
+      - {fileID: 11400000, guid: 551e84ee3a2669049aba905201bf64a4, type: 2}
     heal:
       isAll: 0
       healType: 0
@@ -45,16 +48,21 @@ MonoBehaviour:
       removeEffect: {fileID: 0}
     status: []
     enemyGroup: {fileID: 0}
-    statType: 0
-    statValue: 0
+    statValue:
+      type: 0
+      value: 0
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 21300000, guid: d589952d97bfbeb459de357fc7fdc3fc, type: 3}
     afterEventDes: You got REPLACE.
+    passEvent: {fileID: 0}
+    failEvent: {fileID: 0}
   - type: 0
     sentence: Do nothing
     rate: 0
+    exit: 0
     required: 0
+    disappear: 0
     requiredType: 0
     useGold: 0
     useSkill: {fileID: 0}
@@ -73,9 +81,12 @@ MonoBehaviour:
       removeEffect: {fileID: 0}
     status: []
     enemyGroup: {fileID: 0}
-    statType: 0
-    statValue: 0
+    statValue:
+      type: 0
+      value: 0
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
     afterEventDes: This bag isn't mine.
+    passEvent: {fileID: 0}
+    failEvent: {fileID: 0}

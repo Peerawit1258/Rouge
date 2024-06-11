@@ -9,6 +9,7 @@ public class RelicBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 {
     [SerializeField] RectTransform relicPos;
     [SerializeField] RelicWidget relicWidget;
+    [SerializeField] CanvasGroup relicCanvas;
     [SerializeField] CanvasGroup descriptionFade;
     [SerializeField] TMP_Text relicName;
     [SerializeField] TMP_Text relicDesc;
@@ -16,6 +17,7 @@ public class RelicBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     [SerializeField] float time;
 
     int cost;
+    bool canBuy;
     RelicManagerSystem relicManagerSystem;
     // Start is called before the first frame update
     void Start()
@@ -34,31 +36,77 @@ public class RelicBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
         cost = relicWidget.GetPrice();
         costText.text = cost.ToString();
+        if (GameManager.instance.playerData.gold < cost)
+        {
+            costText.color = Color.red;
+            canBuy = false;
+        }
+        else
+        {
+            canBuy = true;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         descriptionFade.DOFade(1, time);
+        relicPos.DOScale(1.2f, time);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         descriptionFade.DOFade(0, time);
+        relicPos.DOScale(1, time);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (canBuy)
+        {
+            GameManager.instance.detailPanel.ChangeGoldValue(GameManager.instance.playerData.gold - cost);
+            GetWidgettoInventory();
+        }
+        else
+        {
 
+        }
     }
 
     public void GetWidgettoInventory()
     {
         if (relicManagerSystem == null) relicManagerSystem = GameManager.instance.relicManagerSystem;
+
         relicWidget.GetWidgetPos().parent = GameManager.instance.detailPanel.GetRelicPlace();
+        relicCanvas.alpha = 0;
+        relicCanvas.blocksRaycasts = false;
+        relicCanvas.interactable = false;
+
         GameManager.instance.detailPanel.GetRelicWidgets().Insert(0, relicWidget);
         GameManager.instance.detailPanel.OrderRelic();
+
+        GameManager.instance.shopSystem.GetRelicBuys().Remove(this);
+        GameManager.instance.shopSystem.OrderRelicBuy();
+        GameManager.instance.shopSystem.CheckAllPrice();
+
         relicManagerSystem.AddRelic(relicWidget.GetRelic());
+
         descriptionFade.DOFade(0, time).OnComplete(() => Destroy(gameObject));
         //canvasGroup.DOFade(0, 0.5f).OnComplete(() => Destroy(gameObject));
     }
+
+    public void CheckCurrentGold()
+    {
+        if (GameManager.instance.playerData.gold < cost)
+        {
+            costText.color = Color.red;
+            canBuy = false;
+        }
+        else
+        {
+            costText.color = Color.white;
+            canBuy = true;
+        }
+    }
+
+    public RectTransform GetRelicBuyPos() => relicPos;
 }

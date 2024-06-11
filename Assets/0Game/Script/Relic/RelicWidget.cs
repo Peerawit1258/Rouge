@@ -20,6 +20,7 @@ public class RelicWidget : MonoBehaviour
     {
         if(relic.icon != null) icon.sprite = relic.icon;
         this.relic = relic;
+        gameObject.name = relic.relicName + "_Relic";
     }
 
     public RectTransform GetWidgetPos() => widgetPos;

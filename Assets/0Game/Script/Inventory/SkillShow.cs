@@ -30,7 +30,6 @@ public class SkillShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         if (inventory)
         {
-            Debug.Log("Re");
             if(inventoryManager.removeCount > 0)
                 removeIcon.DOFade(1, 0.2f);
         }
@@ -98,6 +97,7 @@ public class SkillShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         delay *= 0.7f;
         skillPos.DOAnchorPosX(100, 1.5f).From().SetEase(Ease.OutQuart).SetDelay(delay).OnComplete(()=> skillCanvas.blocksRaycasts = true);
         skillCanvas.DOFade(0, 1f).From().SetDelay(delay);
+        gameObject.name = skill.skillName + "_Show";
     }
 
     public void SetSkillShow(SkillAction skill, bool isInventory = true)

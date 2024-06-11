@@ -1385,10 +1385,9 @@ MonoBehaviour:
   - {fileID: 8062549840827035954}
   - {fileID: 4932422955999923436}
   iconBtn: {fileID: 8229297819743049464}
+  iconPos: {fileID: 4689676449990966343}
   backBtn: {fileID: 7963908634005584213}
-  placeCanvas: {fileID: 0}
   placePos: {fileID: 2134744733884286395}
-  placeText: {fileID: 0}
   time: 0.7
   ease: 28
   isOpen: 0

@@ -13,6 +13,7 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
     public StageDetail restArea;
     [ReadOnly, TabGroup("Value")] public string stageName;
     [ReadOnly, TabGroup("Value")] public int stageCount = 0;
+    [ReadOnly, TabGroup("Value")] public int allCount = 0;
     [ReadOnly, TabGroup("Value")] public int maxDelayShop;
     [TabGroup("Value")] public List<Node> nodes;
 
@@ -175,8 +176,8 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
     [Button]
     public void StartSetupNextEncounter(EncounterNode node = null)
     {
-        stageCount++;
-        if (stageCount >= GetCurrentStageCountwithName())
+        IncreaseStageCount();
+        if (stageCount > GetCurrentStageCountwithName())
         {
             delayShop = 0;
             ChangeStage();
@@ -215,6 +216,13 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
                 SetActiveDoor(false);
             }); 
         }
+    }
+
+    public void IncreaseStageCount()
+    {
+        stageCount++;
+        allCount++;
+        GameManager.instance.detailPanel.SetEncounter(allCount);
     }
 
     void ChangeStage()

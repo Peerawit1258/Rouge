@@ -78,18 +78,18 @@ public class ResultBattle : MonoBehaviour
         goldText.DOFade(1, time).SetDelay(time / 4).OnComplete(() =>
         {
             DOVirtual.Int(0, encounterManagementSystem.gold, time, (x) => goldText.text = "Gold : +" + x.ToString());
-            GameManager.instance.playerData.gold += encounterManagementSystem.gold;
+            GameManager.instance.detailPanel.ChangeGoldValue(GameManager.instance.playerData.gold + encounterManagementSystem.gold);
         });
 
-        skillDropPos.DOAnchorPosX(-280, time).From().SetEase(Ease.InOutQuart).SetDelay(time/2);
-        skillDropText.DOFade(1, time).SetDelay(time/2).OnComplete(() =>
+        if (encounterManagementSystem.skillDrops.Count > 0)
         {
-            //Debug.Log(encounterManagementSystem.skillDrops.Count);
-            skillPlaceCanvas.alpha = 1;
-            if (encounterManagementSystem.relicDrops.Count > 0)
-                CreateRelicDetail(encounterManagementSystem.relicDrops);
-            if(encounterManagementSystem.skillDrops.Count > 0)
+            skillDropPos.DOAnchorPosX(-280, time).From().SetEase(Ease.InOutQuart).SetDelay(time / 2);
+            skillDropText.DOFade(1, time).SetDelay(time / 2).OnComplete(() =>
             {
+                //Debug.Log(encounterManagementSystem.skillDrops.Count);
+                skillPlaceCanvas.alpha = 1;
+                if (encounterManagementSystem.relicDrops.Count > 0)
+                    CreateRelicDetail(encounterManagementSystem.relicDrops);
                 for (int i = 0; i < encounterManagementSystem.skillDrops.Count; i++)
                 {
                     SkillShow skill = Instantiate(skillShowPrefab, skillPlace).GetComponent<SkillShow>();
@@ -103,16 +103,18 @@ public class ResultBattle : MonoBehaviour
                     GameManager.instance.inventoryManager.OpenInventory();
                     GameManager.instance.inventoryManager.SetAmountRecieveSkill(1);
                 }
-                    
+
                 if (!GameManager.instance.inventoryManager.CheckPlaceEmpty())
                     nextButton.gameObject.SetActive(true);
                 else nextButton.gameObject.SetActive(false);
-            }
-            else
-            {
-                nextButton.gameObject.SetActive(true);
-            }
-        });
+
+            });
+        }
+        else
+        {
+            nextButton.gameObject.SetActive(true);
+        }
+
 
 
     }

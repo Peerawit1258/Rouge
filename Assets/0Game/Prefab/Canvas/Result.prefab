@@ -292,7 +292,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Fragment : '
+  m_text: 'Gold : '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2aaf7339c20d6c3499508fcd60621008, type: 2}
   m_sharedMaterial: {fileID: 2605271119990599334, guid: 2aaf7339c20d6c3499508fcd60621008, type: 2}

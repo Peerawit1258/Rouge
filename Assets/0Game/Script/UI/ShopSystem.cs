@@ -116,6 +116,7 @@ public class ShopSystem : MonoBehaviour
                 skillBuys.Add(buy);
             }
         }
+        OrderSkillBuy();
     }
 
     public void CreateRelicForBuy()
@@ -128,7 +129,6 @@ public class ShopSystem : MonoBehaviour
         Debug.Log(common.Count + " " + epic.Count + " " + legendary.Count);
         for (int i = 0; i < 5; i++)
         {
-           
             do
             {
                 if (i < 2)
@@ -164,7 +164,7 @@ public class ShopSystem : MonoBehaviour
                     }
                     relic = legendary[Random.Range(0, legendary.Count)];
                 }
-            } while (GameManager.instance.playerData.CheckAlreadyHaveSkill(relic.id));
+            } while (GameManager.instance.playerData.CheckAlreadyHaveRelic(relic.id));
 
             if (relic != null)
             {
@@ -175,6 +175,7 @@ public class ShopSystem : MonoBehaviour
                 relicBuys.Add(buy);
             }
         }
+        OrderRelicBuy();
     }
 
     public void ClearShop()
@@ -188,5 +189,31 @@ public class ShopSystem : MonoBehaviour
         skillBuys.Clear();
     }
 
+    public void OrderSkillBuy()
+    {
+        for(int i = 0; i < skillBuys.Count ;i++)
+        {
+            skillBuys[i].GetSkillBuyPos().anchoredPosition = new Vector2(i * 250, 0);
+        }    
+    }
+
+    public void OrderRelicBuy()
+    {
+        for (int i = 0; i < relicBuys.Count; i++)
+        {
+            relicBuys[i].GetRelicBuyPos().anchoredPosition = new Vector2(i * 250, 0);
+        }
+    }
+
+    public void CheckAllPrice()
+    {
+        foreach(var skill in skillBuys)
+            skill.CheckCurrentGold();
+        foreach(var relic in relicBuys)
+            relic.CheckCurrentGold();
+    }
+
     public bool GetCheckOpen() => isOpen;
+    public List<SkillBuy> GetSkillBuys() => skillBuys;
+    public List<RelicBuy> GetRelicBuys() => relicBuys;
 }
