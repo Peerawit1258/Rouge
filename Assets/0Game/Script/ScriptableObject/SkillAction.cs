@@ -13,6 +13,7 @@ public class SkillAction : ScriptableObject
     [PreviewField] public Sprite frame;
     public Rarity rarity;
     public TargetType targetType;
+    public int cooldown;
     public GameObject particleEffect;
     [TextArea(4,10)] public string description;
 

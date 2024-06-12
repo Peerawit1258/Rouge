@@ -5,17 +5,21 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.EventSystems;
 using Sirenix.OdinInspector;
+using TMPro;
 
 public class SkillShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler
 {
     [ReadOnly, SerializeField] string id;
     [SerializeField] public CanvasGroup skillCanvas;
+    [SerializeField] CanvasGroup descriptionFade;
     [SerializeField] RectTransform objPos;
     [SerializeField] RectTransform skillPos;
     [SerializeField] Image frame;
     [SerializeField] Image icon;
     [SerializeField] Image removeIcon;
-    
+    [SerializeField] GameObject cooldownObj;
+    [SerializeField] TMP_Text cooldownText;
+
     SkillAction skillAction;
     InventoryManager inventoryManager;
     [ReadOnly] public bool inventory = false;
@@ -51,33 +55,68 @@ public class SkillShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             {
                 Debug.Log("Remove");
             }
-                
+        }
+        else
+        {
+
+            GameManager.instance.inventoryManager.GetSkillShows().Add(this);
+            if(GameManager.instance.resultBattle.GetSkillShows().Contains(this))
+                GameManager.instance.resultBattle.GetSkillShows().Remove(this);
+            objPos.parent = GameManager.instance.inventoryManager.iconPos;
+
+            if (GameManager.instance.inventoryManager.GetSkillShows().Count <= 20)
+            {
+                objPos.DOAnchorPos(Vector2.zero, 1).SetEase(Ease.OutQuart);
+                objPos.DOScale(1, 1);
+                objPos.DOSizeDelta(Vector2.zero, 1).SetEase(Ease.OutQuart).OnComplete(() =>
+                {
+                    objPos.sizeDelta = new Vector2(100, 100);
+                    GameManager.instance.inventoryManager.SkillMoveToPlace(this);
+                    GameManager.instance.inventoryManager.recieveCount--;
+                    
+
+                    if (GameManager.instance.resultBattle.result)
+                    {
+                        if ((GameManager.instance.inventoryManager.recieveCount == 0 && 
+                        GameManager.instance.inventoryManager.removeCount == 0) || 
+                        GameManager.instance.resultBattle.GetSkillShows().Count == 0)
+                            GameManager.instance.resultBattle.CloseResultPanel();
+                    }
+                    else
+                    {
+                        if (GameManager.instance.inventoryManager.recieveCount == 0 && GameManager.instance.inventoryManager.removeCount == 0)
+                        {
+
+                        }
+                    }
+                });
+            }
         }
     }
 
     Vector2 currentPos;
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (inventory) return;
-        skillCanvas.blocksRaycasts = false;
-        currentPos = objPos.anchoredPosition;
-        //objPos.parent = null;
+        //if (inventory) return;
+        //skillCanvas.blocksRaycasts = false;
+        //currentPos = objPos.anchoredPosition;
+        ////objPos.parent = null;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (inventory) return;
-        objPos.anchoredPosition += eventData.delta;
+        //if (inventory) return;
+        //objPos.anchoredPosition += eventData.delta;
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-        skillCanvas.blocksRaycasts = true;
-        if (inventory) return;
-        if (!inventory)
-        {
-            objPos.parent = GameManager.instance.resultBattle.GetSkillPlace();
-            objPos.DOAnchorPos(currentPos, 0.1f);
-        }
+        //skillCanvas.blocksRaycasts = true;
+        //if (inventory) return;
+        //if (!inventory)
+        //{
+        //    objPos.parent = GameManager.instance.resultBattle.GetSkillPlace();
+        //    objPos.DOAnchorPos(currentPos, 0.1f);
+        //}
         //else
         //{
         //    objPos.DOAnchorPos(currentPos, 0.1f);
@@ -109,6 +148,34 @@ public class SkillShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         name = skill.name;
         skillAction = skill;
         inventory = isInventory;
+    }
+
+    int cooldownValue;
+    public void SetCoolDown()
+    {
+        if (skillAction.cooldown == 0) return;
+
+        inventoryManager.GetSkillActive().Remove(this);
+        inventoryManager.GetSkillCoolDown().Add(this);
+        cooldownObj.SetActive(true);
+        cooldownValue = skillAction.cooldown + 1;
+        cooldownText.text = (cooldownValue - 1).ToString();
+    }
+
+    public void DecreaseCooldown(int value)
+    {
+        cooldownValue--;
+        cooldownText.text = cooldownValue.ToString();
+        if(cooldownValue <= 0)
+            ReadyToActionSkill();
+    }
+
+    public void ReadyToActionSkill()
+    {
+        inventoryManager.GetSkillCoolDown().Remove(this);
+        inventoryManager.GetSkillActive().Add(this);
+
+        cooldownObj.SetActive(false);
     }
 
     public void ResetCurrentPos() => currentPos = objPos.anchoredPosition;

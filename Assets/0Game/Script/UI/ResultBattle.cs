@@ -98,15 +98,16 @@ public class ResultBattle : MonoBehaviour
 
                     skillShows.Add(skill);
                 }
-                if (!GameManager.instance.inventoryManager.isOpen)
-                {
-                    GameManager.instance.inventoryManager.OpenInventory();
-                    GameManager.instance.inventoryManager.SetAmountRecieveSkill(1);
-                }
-
-                if (!GameManager.instance.inventoryManager.CheckPlaceEmpty())
-                    nextButton.gameObject.SetActive(true);
-                else nextButton.gameObject.SetActive(false);
+                GameManager.instance.inventoryManager.SetAmountRecieveSkill(1);
+                //if (!GameManager.instance.inventoryManager.isOpen)
+                //{
+                //    GameManager.instance.inventoryManager.OpenInventory();
+                    
+                //}
+                nextButton.gameObject.SetActive(true);
+                //if (!GameManager.instance.inventoryManager.CheckPlaceEmpty())
+                //    nextButton.gameObject.SetActive(true);
+                //else nextButton.gameObject.SetActive(false);
 
             });
         }

@@ -31,6 +31,8 @@ public class InventoryManager : MonoBehaviour, IDropHandler
     [ReadOnly] public int recieveCount = 0;
     [ReadOnly] public int removeCount = 0;
     List<SkillShow> skillShows = new List<SkillShow>();
+    List<SkillShow> activeSkill = new List<SkillShow>();
+    List<SkillShow> cooldownSkill = new List<SkillShow>();
 
     ResultBattle resultBattle;
     // Start is called before the first frame update
@@ -56,6 +58,7 @@ public class InventoryManager : MonoBehaviour, IDropHandler
             if (show.inventory || !CheckPlaceEmpty()) return;
             place.SetSkill(show);
             skillShows.Add(show);
+            activeSkill.Add(show);
             recieveCount--;
             resultBattle.GetSkillShows().Remove(show);
 
@@ -104,7 +107,7 @@ public class InventoryManager : MonoBehaviour, IDropHandler
         }
     }
 
-    public void CreateSkillShow(List<SkillAction> skill) // Triger when start
+    public void CreateSkillShow(List<SkillAction> skill, int cooldown = 0) // Triger when start
     {
         foreach(var action in skill)
         {
@@ -112,8 +115,11 @@ public class InventoryManager : MonoBehaviour, IDropHandler
             SkillShow show = Instantiate(skillPrefab, place.pos).GetComponent<SkillShow>();
             show.SetSkillShow(action);
             skillShows.Add(show);
+            if (cooldown > 0)
+                cooldownSkill.Add(show);
+            else
+                activeSkill.Add(show);
 
-            
             place.SetSkill(show);
         }
         
@@ -129,7 +135,8 @@ public class InventoryManager : MonoBehaviour, IDropHandler
         show.GetObjPos().DOJumpAnchorPos(show.GetObjPos().anchoredPosition,30,1, time).SetEase(Ease.OutBounce).OnComplete(() =>
         {
             skillShows.Add(show);
-            if(skillShows.Count <= 20)
+            activeSkill.Add(show);
+            if (skillShows.Count <= 20)
             {
                 show.GetObjPos().DOAnchorPos(new Vector2(-810, -540), 1).SetDelay(0.3f);
                 show.GetObjPos().DOSizeDelta(Vector2.zero, 1).SetEase(Ease.OutQuart).SetDelay(1).OnComplete(() =>
@@ -165,11 +172,20 @@ public class InventoryManager : MonoBehaviour, IDropHandler
             if (p.GetSkill().GetId() == remove.id)
             {
                 skillShows.Remove(p.GetSkill());
+                if (activeSkill.Contains(p.GetSkill())) activeSkill.Remove(p.GetSkill());
+                else if (cooldownSkill.Contains(p.GetSkill())) cooldownSkill.Remove(p.GetSkill());
                 Destroy(p.GetSkill().gameObject);
                 p.ClearValue();
             }   
         }
         GameManager.instance.playerData.RemoveCurrentSkill(remove);
+    }
+
+    public void DecreaseCooldownSkill()
+    {
+        if (cooldownSkill.Count == 0) return;
+        foreach (var skill in cooldownSkill)
+            skill.DecreaseCooldown(1);
     }
 
     void ClearSpare()
@@ -207,4 +223,6 @@ public class InventoryManager : MonoBehaviour, IDropHandler
     }
 
     public List<SkillShow> GetSkillShows() => skillShows;
+    public List<SkillShow> GetSkillActive() => activeSkill;
+    public List<SkillShow> GetSkillCoolDown() => cooldownSkill;
 }

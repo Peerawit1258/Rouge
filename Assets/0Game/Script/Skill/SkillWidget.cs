@@ -25,6 +25,7 @@ public class SkillWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     bool inSlot = false;
     List<int> specific;
+    [ReadOnly] public SkillShow skillShow;
     SlotSkill slotSkill;
     SkillOrderSystem skillOrderSystem;
     // Start is called before the first frame update

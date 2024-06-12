@@ -574,7 +574,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 200233520097399990}
         m_TargetAssemblyTypeName: ShopSystem, Assembly-CSharp
-        m_MethodName: OpenShop
+        m_MethodName: StartCloseShop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -28,6 +28,7 @@ public class SkillOrderSystem : MonoBehaviour
     TurnManager turnManager;
     StatusEffectSystem statusEffectSystem;
     RelicManagerSystem relicManagerSystem;
+    InventoryManager inventoryManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +37,7 @@ public class SkillOrderSystem : MonoBehaviour
         turnManager = GameManager.instance.turnManager;
         statusEffectSystem = GameManager.instance.statusEffectSystem;
         relicManagerSystem = GameManager.instance.relicManagerSystem;
+        inventoryManager = GameManager.instance.inventoryManager;
         currentSlot = 0;
         CreateSlot();
     }
@@ -96,10 +98,11 @@ public class SkillOrderSystem : MonoBehaviour
                 AdditionEffectinCondition(skill.GetConditionDetail());
 
             yield return new WaitForSeconds(1f);
+            allSlot[currentSkill].GetSkillWidget().skillShow.SetCoolDown(); 
         }
         //else
             //yield return new WaitForSeconds(0.5f);
-
+        
         currentSkill++;
         if (currentSkill < allSlot.Count)
             StartCoroutine(ActiveSkillAttack());
@@ -357,17 +360,21 @@ public class SkillOrderSystem : MonoBehaviour
         skillPlace.gameObject.SetActive(true);
         for(int i = 0; i < skillCount + relicManagerSystem.randomSkill; i++)
         {
-            if (i > GameManager.instance.playerData.currentSkills.Count - 1)
+            if (i > inventoryManager.GetSkillActive().Count - 1)
             {
                 break;
             }
             SkillAction skill;
+            int random;
             do
             {
-                skill = GameManager.instance.playerData.currentSkills[Random.Range(0, GameManager.instance.playerData.currentSkills.Count)];
+                random = Random.Range(0, inventoryManager.GetSkillActive().Count);
+                skill = inventoryManager.GetSkillActive()[random].GetSkillAction();
+                //skill = GameManager.instance.playerData.currentSkills[Random.Range(0, GameManager.instance.playerData.currentSkills.Count)];
             } while (CheckAllSkillWidget(skill));
             
             SkillWidget widget = Instantiate(skillPrefab,skillPlace).GetComponent<SkillWidget>();
+            widget.skillShow = inventoryManager.GetSkillActive()[random];
             widget.SetDetail(skill);
             widget.name = skill.skillName + "_" + i;
             allSkillWidget.Add(widget);

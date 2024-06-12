@@ -17,7 +17,7 @@ public class SlotSkill : MonoBehaviour ,IPointerEnterHandler,IPointerExitHandler
 
     [SerializeField] TMP_Text percentText;
     SkillOrderSystem skillOrderSystem;
-
+    SkillWidget skillWidget;
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +67,7 @@ public class SlotSkill : MonoBehaviour ,IPointerEnterHandler,IPointerExitHandler
     {
         skillWidgetOBJ = widget.gameObject;
         skill = widget.skill;
+        skillWidget = widget;
         if (skill.GetHaveCondition() && skill.GetLockNum().Contains(numSlot) )
         {
             if (skill.GetConditonType() == ConditionType.SlotDamageOrder)
@@ -148,7 +149,7 @@ public class SlotSkill : MonoBehaviour ,IPointerEnterHandler,IPointerExitHandler
             else
                 percentText.text = "0%";
         });
-
-        
     }
+
+    public SkillWidget GetSkillWidget() => skillWidget;
 }

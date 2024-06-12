@@ -687,7 +687,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Choose 1 skill
+  m_text: Select 1 skill
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2aaf7339c20d6c3499508fcd60621008, type: 2}
   m_sharedMaterial: {fileID: 2605271119990599334, guid: 2aaf7339c20d6c3499508fcd60621008, type: 2}
@@ -1034,8 +1034,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Result
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2aaf7339c20d6c3499508fcd60621008, type: 2}
-  m_sharedMaterial: {fileID: 2605271119990599334, guid: 2aaf7339c20d6c3499508fcd60621008, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 366394e8d5c3e884aa86760824df136c, type: 2}
+  m_sharedMaterial: {fileID: 2605271119990599334, guid: 366394e8d5c3e884aa86760824df136c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -44,6 +44,7 @@ public class TurnManager : MonoBehaviour
     public void StartPlayerTurn()
     {
         actionTurn = ActionTurn.player;
+        GameManager.instance.inventoryManager.DecreaseCooldownSkill();
         GameManager.instance.battleSetup.arrow.gameObject.SetActive(true);
         GameManager.instance.detailPanel.ShowActionTurn(actionTurn, () =>
         {
