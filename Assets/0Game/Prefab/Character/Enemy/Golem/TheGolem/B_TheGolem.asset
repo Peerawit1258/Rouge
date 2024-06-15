@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: B_TheGolem
   m_EditorClassIdentifier: 
   character: {fileID: 738212554523699806, guid: d445f66d14192a04facb575ce7f7f19e, type: 3}
-  characterName: TheGolem
+  characterName: The Golem
   characterType: 1
   e_type: 2
   goldDrop: 300

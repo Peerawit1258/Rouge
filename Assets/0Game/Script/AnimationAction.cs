@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 
 public class AnimationAction : MonoBehaviour
 {
-    [SerializeField] Animator animator;
+    public Animator animator;
     [SerializeField] SpriteRenderer character;
     [TabGroup("Attack"), SerializeField] float attackPos;
     [TabGroup("Attack")] public float attackTime;

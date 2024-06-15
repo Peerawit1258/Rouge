@@ -33,7 +33,6 @@ public class PlayerController : CharacterValue
         return currentDef;
     }
 
-    float ratio;
     public void StartDamageTaken(int damage, float delay = 0, bool notDie = false, GameObject effect = null) => StartCoroutine(DamageTaken(damage, delay, notDie, effect));
 
     IEnumerator DamageTaken(int damage, float delay, bool notDie, GameObject effect)
@@ -48,8 +47,7 @@ public class PlayerController : CharacterValue
             if (notDie)
             {
                 hpValue = 1;
-                ratio = (float)hpValue / maxHpValue;
-                gaugeHp.HpGaugeChange(ratio);
+                gaugeHp.HpGaugeChange(hpValue, maxHpValue);
 
             }
             else
@@ -57,16 +55,14 @@ public class PlayerController : CharacterValue
                 hpValue = 0;
                 yield return new WaitForSeconds(0.2f);
                 
-                ratio = (float)hpValue / maxHpValue;
-                gaugeHp.HpGaugeChange(ratio);
+                gaugeHp.HpGaugeChange(hpValue, maxHpValue);
                 yield return new WaitForSeconds(0.5f);
                 //DestroySelf();
             }
         }
         else
         {
-            ratio = (float)hpValue / maxHpValue;
-            gaugeHp.HpGaugeChange(ratio);
+            gaugeHp.HpGaugeChange(hpValue, maxHpValue);
             animationAction.TakeDamageAction();
         }
         
@@ -86,8 +82,7 @@ public class PlayerController : CharacterValue
         if (effect != null) Instantiate(effect, gameObject.transform);
 
         yield return new WaitForSeconds(0.2f);
-        float ratio = (float)hpValue / maxHpValue;
-        gaugeHp.HpGaugeChange(ratio);
+        gaugeHp.HpGaugeChange(hpValue, maxHpValue);
         //if (hpValue <= 0) DestroySelf();
     }
 
@@ -125,8 +120,7 @@ public class PlayerController : CharacterValue
         yield return new WaitForSeconds(0.2f);
         GameManager.instance.numberDamageSystem.CreateHealNumber(gameObject.transform, value.ToString());
 
-        float ratio = (float)hpValue / maxHpValue;
-        gaugeHp.HpGaugeChange(ratio);
+        gaugeHp.HpGaugeChange(hpValue, maxHpValue);
 
     }
 

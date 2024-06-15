@@ -20,7 +20,7 @@ public class EnemyController : CharacterValue
     [TabGroup("1", "Drop"), SerializeField, ReadOnly] List<Relic> dropRelics = new List<Relic>();
     [TabGroup("1", "Drop"), SerializeField, ReadOnly] int gold;
 
-    SkillAction currentSkill;
+    [ReadOnly, ShowInInspector]SkillAction currentSkill;
     public void SetDrop(List<SkillAction> skills, List<Relic> relics, int gold)
     {
         foreach(var skill in skills)
@@ -42,6 +42,17 @@ public class EnemyController : CharacterValue
         turnManager = GameManager.instance.turnManager;
         statusEffectSystem = GameManager.instance.statusEffectSystem;
 
+        StartCoroutine(StartAction());
+    }
+
+    IEnumerator StartAction()
+    {
+        if(e_type == EnemyType.Boss)
+        {
+            yield return new WaitUntil(() => animationAction.animator != null);
+            animationAction.animator.SetTrigger("Start");
+        }
+        
     }
 
     // Update is called once per frame
@@ -77,6 +88,7 @@ public class EnemyController : CharacterValue
         orderSkill = detail.orderSkill;
         indexSkill = 0;
         e_type = detail.e_type;
+            
 
         if(!orderSkill)
             currentSkill = GetRandomSkill();
@@ -86,11 +98,9 @@ public class EnemyController : CharacterValue
             indexSkill++;
             if (indexSkill >= allSkill.Count) indexSkill = 0;
         }
-        ShowNextAction(currentSkill);
     }
 
     #region taken
-    float ratio;
     public void StartDamageTaken(int damage, float delay = 0, bool notDie = false, GameObject effect = null)=> StartCoroutine(DamageTaken(damage, delay, notDie, effect));
 
     IEnumerator DamageTaken(int damage, float delay, bool notDie, GameObject effect)
@@ -105,23 +115,21 @@ public class EnemyController : CharacterValue
             if (notDie)
             {
                 hpValue = 1;
-                ratio = (float)hpValue / maxHpValue;
-                gaugeHP.HpGaugeChange(ratio);
+                gaugeHP.HpGaugeChange(hpValue, maxHpValue);
 
             }
             else
             {
                 hpValue = 0;
                 //ratio = (float)hpValue / maxHpValue;
-                gaugeHP.HpGaugeChange(0);
+                gaugeHP.HpGaugeChange(hpValue, maxHpValue);
                 yield return new WaitForSeconds(0.5f);
                 DestroySelf();
             }
         }
         else
         {
-            ratio = (float)hpValue / maxHpValue;
-            gaugeHP.HpGaugeChange(ratio);
+            gaugeHP.HpGaugeChange(hpValue, maxHpValue);
             animationAction.TakeDamageAction();
         }
     }
@@ -139,8 +147,7 @@ public class EnemyController : CharacterValue
         GameManager.instance.numberDamageSystem.CreateDamageNumber(gameObject.transform, damage, status);
         if (hpValue <= 0) hpValue = 0;
 
-        float ratio = (float)hpValue / maxHpValue;
-        gaugeHP.HpGaugeChange(ratio);
+        gaugeHP.HpGaugeChange(hpValue, maxHpValue);
         if (hpValue <= 0) DestroySelf();
     }
 
@@ -154,8 +161,7 @@ public class EnemyController : CharacterValue
 
         GameManager.instance.numberDamageSystem.CreateHealNumber(gameObject.transform, value.ToString());
 
-        float ratio = (float)hpValue / maxHpValue;
-        gaugeHP.HpGaugeChange(ratio);
+        gaugeHP.HpGaugeChange(hpValue, maxHpValue);
 
     }
     #endregion
@@ -207,7 +213,35 @@ public class EnemyController : CharacterValue
             if (indexSkill >= allSkill.Count) indexSkill = 0;
         }
 
-        ShowNextAction(currentSkill);
+        
+        ShowNextAction();
+    }
+    [Button]
+    public void ShowNextAction()
+    {
+        if(turnManager == null) turnManager = GameManager.instance.turnManager;
+
+        List<int> damage = new List<int>();
+        if (currentSkill.GetSkillType() == SkillType.Attack)
+        {
+            for(int i = 0; i < currentSkill.GetPercentDamage().Count; i++)
+            {
+                Debug.Log(currentSkill.GetPercentDamage()[i] + " " + i);
+                int percentSkill = currentSkill.GetPercentDamage()[i] +
+                currentSkill.GetDamageSpecific().CheckStatus(turnManager.player.gaugeHp.CheckSameStatus(currentSkill.GetDamageSpecific().damageForEffect)) +
+                currentSkill.GetHpPercentSkill(hpValue / maxHpValue);
+
+                damage.Add(GameManager.instance.damageCalculator.DamageResult((int)atkValue, percentSkill,
+                                                (int)turnManager.player.GetPlayerDef(), GetDamageBonus(), turnManager.player.GetDamageReduce()));
+            }
+
+            if(damage.Count > 1) gaugeHP.SetNextAction(SkillType.Attack, damage[0].ToString() + "x" + damage.Count.ToString());
+            else gaugeHP.SetNextAction(SkillType.Attack, damage[0].ToString());
+        }
+        else
+        {
+            gaugeHP.SetNextAction(currentSkill.GetSkillType());
+        }
     }
 
     public SkillAction GetSkill()
@@ -232,7 +266,7 @@ public class EnemyController : CharacterValue
         if (skill.GetSkillType() == SkillType.Wait)
         {
             isWait = true;
-            cd_wait = 3;
+            cd_wait = allSkill.Count;
         }
         else
         {
@@ -297,6 +331,9 @@ public class EnemyController : CharacterValue
             if(isWait) return false;
             //if(currentSkill != null)
             //    if (currentSkill.GetSkillType() == SkillType.Wait) return false;
+        }else if(skill.GetSkillType() == SkillType.Attack)
+        {
+
         }
 
         return true;
@@ -459,10 +496,6 @@ public class EnemyController : CharacterValue
         
     }
 
-    private void ShowNextAction(SkillAction skill)
-    {
-
-    }
     public Transform GetGuagePos() => gaugePos;
     public void SetGaugePos(Transform pos) => gaugePos = pos;
     public List<StatusWidget> GetStatusWidgets() => gaugeHP.statusWidgets;

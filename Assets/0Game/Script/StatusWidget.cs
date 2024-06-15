@@ -135,7 +135,7 @@ public class StatusWidget : MonoBehaviour
 
     public bool CheckSameStatus(AddStatus status)
     {
-        if(status.statusEffect.name == this.status.name)
+        if(status.statusEffect.statusName == this.status.statusName)
         {
             if (this.status.canStack)
             {

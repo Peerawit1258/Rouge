@@ -82,7 +82,8 @@ public class GameManager : MonoBehaviour
             encounterManagementSystem.stageCount++;
             encounterManagementSystem.stageDetail[0].encounterMap.SetActive(true);
             if (turnManager.player == null) battleSetup.SetupPlayerBattle(playerDetail);
-            battleSetup.SetupEnemyBattle(group.enemies);
+            battleSetup.SetupEnemyBattle(encounterManagementSystem.stageDetail[0].startNode.enemyGroup.enemies);
+            detailPanel.SetEncounter(encounterManagementSystem.stageCount);
 
             DOVirtual.DelayedCall(1,() =>
             {

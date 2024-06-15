@@ -23,6 +23,11 @@ public class BattleSetup : SerializedMonoBehaviour
     {
         for(int i = 0; i < enemies.Count; i++)
         {
+            if(enemies[i].e_type == EnemyType.Boss)
+            {
+                if (enemies[i].characterName == "The Golem") SetupSpecialEnemyBattle(enemies[i], 1);
+                continue;
+            }
             EnemyController enemy;
             if (enemyPos[i].childCount == 0)
             {

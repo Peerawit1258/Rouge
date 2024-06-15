@@ -1811,7 +1811,8 @@ MonoBehaviour:
   stageDetail:
   - encounterMap: {fileID: 197091903}
     stageName: The Cave
-    stageCount: 8
+    stageCount: 2
+    startNode: {fileID: 11400000, guid: 5e56ad1133b11bd429d3e41de84c534b, type: 2}
     normalNode:
     - {fileID: 11400000, guid: 5b3b9dda3fcc5b04dbe43dfb3384a7a1, type: 2}
     - {fileID: 11400000, guid: b8996a8c6d7f30f499ea03c71fced536, type: 2}
@@ -1859,33 +1860,29 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 64acc5b78cf4cd34382413f6d6e243b8, type: 2}
     shopNode:
     - {fileID: 11400000, guid: 97c8df719fc94ac4f9165c2dc670e775, type: 2}
+    restNode:
+    - {fileID: 11400000, guid: c72a81ca39b5fd84986d9fcdf26f5744, type: 2}
     bossNode: {fileID: 11400000, guid: 4da0839ce88e9794b803a193d9b9cac7, type: 2}
   - encounterMap: {fileID: 197091903}
     stageName: Test2
     stageCount: 8
+    startNode: {fileID: 0}
     normalNode: []
     eliteNode: []
     eventNode: []
     treasureNode: []
     shopNode: []
-    bossNode: {fileID: 0}
-  restArea:
-    encounterMap: {fileID: 0}
-    stageName: 
-    stageCount: 0
-    normalNode: []
-    eliteNode: []
-    eventNode: []
-    treasureNode: []
-    shopNode: []
+    restNode: []
     bossNode: {fileID: 0}
   stageName: 
   stageCount: 0
-  maxDelayShop: 0
-  nodes: 00000000040000000500000006000000
+  allCount: 0
   skillDrops: []
   relicDrops: []
   gold: 0
+  maxDelayShop: 3
+  maxDelayRest: 3
+  nodes: 000000000400000005000000060000000300000001000000
   doors:
   - {fileID: 711678760}
   - {fileID: 1460719736}

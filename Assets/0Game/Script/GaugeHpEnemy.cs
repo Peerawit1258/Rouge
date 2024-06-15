@@ -18,12 +18,15 @@ public class GaugeHpEnemy : MonoBehaviour
     {
         GaugeHpWidget gauge = Instantiate(gaugeHp, enemy.GetGuagePos().position, Quaternion.identity).GetComponent<GaugeHpWidget>();
         enemy.gaugeHP = gauge;
+        gauge.HpGaugeChange(enemy.hpValue, enemy.maxHpValue);
         gauge.gameObject.transform.parent = parent;
         gauge.name = "Gauge_" + enemy.name;
+        enemy.ShowNextAction();
     }
 
     public void SetPlayerHpWidget(PlayerController player)
     {
         player.gaugeHp = hpWidget;
+        hpWidget.HpGaugeChange(player.hpValue, player.maxHpValue);
     }
 }

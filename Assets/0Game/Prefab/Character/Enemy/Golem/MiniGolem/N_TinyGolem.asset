@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b2398380e91401498d98425e65bb784, type: 3}
-  m_Name: N_MiniGolem
+  m_Name: N_TinyGolem
   m_EditorClassIdentifier: 
   character: {fileID: 575632567392266518, guid: cca14d93db39e6f4e8812d1b62fc5095, type: 3}
-  characterName: Mini Golem
+  characterName: Tiny Golem
   characterType: 1
   e_type: 0
   goldDrop: 0
