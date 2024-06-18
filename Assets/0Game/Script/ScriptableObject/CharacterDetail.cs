@@ -11,6 +11,7 @@ public class CharacterDetail : ScriptableObject
     
     [TabGroup("CharacterType")] public CharacterType characterType;
     [TabGroup("CharacterType"), ShowIf("@characterType == CharacterType.Enemy"), EnumToggleButtons] public EnemyType e_type;
+    [TabGroup("CharacterType"), ShowIf("@characterType == CharacterType.Enemy && e_type != EnemyType.Normal")] public string minion;
     [TabGroup("CharacterType"), ShowIf("@characterType == CharacterType.Enemy")] public int goldDrop;
     [TabGroup("CharacterType"), ShowIf("@characterType == CharacterType.Enemy")] public int expDrop;
     [TabGroup("CharacterType"), ShowIf("@characterType == CharacterType.Enemy")] public bool orderSkill;

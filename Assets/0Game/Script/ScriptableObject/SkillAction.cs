@@ -214,7 +214,8 @@ public enum SkillType
     Buff,
     Debuff,
     Heal,
-    Wait
+    Wait,
+    Summon
 }
 
 public enum TargetType

@@ -12,19 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527b5e7a31fb5af41bffa1ee16130bda, type: 3}
   m_Name: ZGolem01_AfterShock
   m_EditorClassIdentifier: 
-  id: 
-  skillName: 
+  id: ZGolem01
+  skillName: After Shock
   skillIcon: {fileID: 0}
   frame: {fileID: 0}
   rarity: 0
   targetType: 0
+  cooldown: 0
   particleEffect: {fileID: 0}
-  descrition: 
+  description: 
   actionDetail:
     skillType: 0
     percentDMG: 4b0000004b000000
     isRemoveBuff: 0
-    statusEnemy: []
+    statusEnemy:
+    - statusEffect: {fileID: 11400000, guid: d27321ff839cdcd42b136c70aed4bf97, type: 2}
+      count: 3
     statusSelf: []
     removeBuff: 0
     damageSpecific:

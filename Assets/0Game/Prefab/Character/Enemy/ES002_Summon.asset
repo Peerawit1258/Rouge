@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 527b5e7a31fb5af41bffa1ee16130bda, type: 3}
-  m_Name: Z_Wait
+  m_Name: ES002_Summon
   m_EditorClassIdentifier: 
-  id: Z
-  skillName: Wait
+  id: ES002
+  skillName: Summon
   skillIcon: {fileID: 0}
   frame: {fileID: 0}
   rarity: 0
-  targetType: 0
+  targetType: 3
+  cooldown: 0
   particleEffect: {fileID: 0}
-  descrition: 
+  description: 
   actionDetail:
-    skillType: 4
-    percentDMG: 
+    skillType: 5
+    percentDMG: 64000000
     isRemoveBuff: 0
     statusEnemy: []
     statusSelf: []
@@ -36,8 +37,8 @@ MonoBehaviour:
       healType: 0
       percentHeal: 0
       removeEffect: {fileID: 0}
-    isTakeDamage: 0
-    percentHp: 0
+    isTakeDamage: 1
+    percentHp: 5
     hpCompare: 0
     hpAbility:
       hpCompare: 0

@@ -74,6 +74,7 @@ public class AnimationAction : MonoBehaviour
         });
     }
 
+    #region PlayerOnly
     [ButtonGroup("3")]
     public void WalkInSceneAction()
     {
@@ -85,4 +86,19 @@ public class AnimationAction : MonoBehaviour
             isAction = false;
         });
     }
+    #endregion
+    #region EnemyOnly
+    public void ShowInScene()
+    {
+        isAction = true;
+        //animator.SetTrigger("Run");
+        gameObject.transform.position = GameManager.instance.battleSetup.backStage.position;
+        gameObject.transform.DOLocalJump(Vector3.zero, 0.3f, 1, 0.3f).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            animator.SetTrigger("Idle");
+            isAction = false;
+        });
+    }
+    
+    #endregion
 }

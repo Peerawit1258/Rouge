@@ -29,21 +29,22 @@ public class StatusEffectSystem : MonoBehaviour
         if (add == null) return;
         if (enemy.gaugeHP.statusWidgets.Count > 0)
         {
-            foreach(var widget in enemy.gaugeHP.statusWidgets)
+            foreach(var w in enemy.gaugeHP.statusWidgets)
             {
-                if (widget.CheckSameStatus(add)) return;
+                if (w.CheckSameStatus(add)) return;
             }
-        }   
+        }
 
+        StatusWidget widget = Instantiate(statusWidgetEnemyPrefab, enemy.gaugeHP.GetStatusPlace()).GetComponent<StatusWidget>();
+        widget.SetStatus(add, enemy);
+        enemy.GetStatusWidgets().Add(widget);
         if (enemy.e_type == EnemyType.Boss)
         {
 
         }
         else
         {
-            StatusWidget widget = Instantiate(statusWidgetEnemyPrefab, enemy.gaugeHP.GetStatusPlace()).GetComponent<StatusWidget>();
-            widget.SetStatus(add, enemy);
-            enemy.GetStatusWidgets().Add(widget);
+            
         }
         GameManager.instance.numberDamageSystem.CreateStatusText(enemy.transform, add.statusEffect);
         if (add.statusEffect.particleEffect != null) Instantiate(add.statusEffect.particleEffect, enemy.transform);

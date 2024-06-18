@@ -10,6 +10,7 @@ public class BattleSetup : SerializedMonoBehaviour
     [SerializeField] List<Transform> enemyPos;
     public GameObject eventSymbol;
     public Transform arrow;
+    public Transform backStage;
 
     //public Dictionary<string, GameObject> battleScene;
 
@@ -40,7 +41,7 @@ public class BattleSetup : SerializedMonoBehaviour
             }
             enemy.transform.localPosition = Vector3.zero;
             enemy.SetInfoEnemy(enemies[i]);
-            enemy.SetDrop(enemies[i].skillDrop, enemies[i].relicDrop, enemies[i].goldDrop);
+            //enemy.SetDrop(enemies[i].skillDrop, enemies[i].relicDrop, enemies[i].goldDrop);
             enemy.name = enemies[i].characterName + "_" + i;
             GameManager.instance.gaugeHpEnemy.SetPositionGauge(enemy);
             GameManager.instance.turnManager.enemies.Add(enemy);
@@ -53,7 +54,7 @@ public class BattleSetup : SerializedMonoBehaviour
         enemy = Instantiate(special.character, enemyPos[index]).GetComponent<EnemyController>();
         enemy.transform.localPosition = Vector3.zero;
         enemy.SetInfoEnemy(special);
-        enemy.SetDrop(special.skillDrop, special.relicDrop, special.goldDrop);
+        //enemy.SetDrop(special.skillDrop, special.relicDrop, special.goldDrop);
         enemy.name = special.characterName;
         GameManager.instance.gaugeHpEnemy.SetPositionGauge(enemy);
         GameManager.instance.turnManager.enemies.Add(enemy);
@@ -74,7 +75,7 @@ public class BattleSetup : SerializedMonoBehaviour
     public void SetPositionArrow(Transform pos)
     {
         if (GameManager.instance.turnManager.CheckEnemyTaunt()) return;
-        arrow.position = pos.position + new Vector3(0, 0.3f, 0);
+        arrow.position = pos.position + new Vector3(0, 0.2f, 0);
     }
 
     public List<Transform> GetEnemyPos() => enemyPos;

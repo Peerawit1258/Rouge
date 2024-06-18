@@ -16,6 +16,7 @@ MonoBehaviour:
   characterName: The Golem
   characterType: 1
   e_type: 2
+  minion: Bat
   goldDrop: 300
   expDrop: 30
   orderSkill: 0
@@ -26,12 +27,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 701b306911d301248b10a98bd9aa2ba5, type: 2}
   - {fileID: 11400000, guid: 1d69e64380cc31e4e9fc3c047b3f626a, type: 2}
   - {fileID: 11400000, guid: 859ce62386aafb84c847f4ea957514f3, type: 2}
+  - {fileID: 11400000, guid: 0528362818b56e04088fdb86c08e2f59, type: 2}
   skillDrop:
   - {fileID: 11400000, guid: 5701f1ee798330147bb593bca7046f5b, type: 2}
   - {fileID: 11400000, guid: b96d1ccb195793d4587882d1a69ec230, type: 2}
   relicDrop:
   - {fileID: 11400000, guid: 661938700ac39b040a6e20c0fe6ac6e8, type: 2}
-  maxHP: 70
+  maxHP: 100
   atk: 25
   def: 20
   damageBonus: 0

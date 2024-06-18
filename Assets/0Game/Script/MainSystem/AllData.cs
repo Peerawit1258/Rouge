@@ -73,4 +73,14 @@ public class AllData : MonoBehaviour
         return statusEffect;
     }
     #endregion
+    #region Enemy
+    public CharacterDetail GetEnemyWithName(string e_name)
+    {
+        foreach (var enemy in allEnemy)
+            if (enemy.characterName == e_name)
+                return enemy;
+
+        return null;
+    }
+    #endregion
 }

@@ -20,7 +20,8 @@ public class EnemyController : CharacterValue
     [TabGroup("1", "Drop"), SerializeField, ReadOnly] List<Relic> dropRelics = new List<Relic>();
     [TabGroup("1", "Drop"), SerializeField, ReadOnly] int gold;
 
-    [ReadOnly, ShowInInspector]SkillAction currentSkill;
+    [ReadOnly, ShowInInspector] SkillAction currentSkill;
+    [ReadOnly, ShowInInspector] CharacterDetail minion;
     public void SetDrop(List<SkillAction> skills, List<Relic> relics, int gold)
     {
         foreach(var skill in skills)
@@ -88,7 +89,11 @@ public class EnemyController : CharacterValue
         orderSkill = detail.orderSkill;
         indexSkill = 0;
         e_type = detail.e_type;
-            
+
+        SetDrop(detail.skillDrop, detail.relicDrop, detail.goldDrop);
+
+        if(detail.minion != "" && e_type != EnemyType.Normal)
+            minion = GameManager.instance.allData.GetEnemyWithName(detail.minion);
 
         if(!orderSkill)
             currentSkill = GetRandomSkill();
@@ -98,6 +103,8 @@ public class EnemyController : CharacterValue
             indexSkill++;
             if (indexSkill >= allSkill.Count) indexSkill = 0;
         }
+
+        if(e_type != EnemyType.Boss || e_type != EnemyType.Special) animationAction.ShowInScene();
     }
 
     #region taken
@@ -197,6 +204,30 @@ public class EnemyController : CharacterValue
                 break;
             case SkillType.Heal:
                 HealSkill(currentSkill);
+                break;
+            case SkillType.Summon:
+                //int num = 3 - turnManager.enemies.Count;
+                //if(num > 0)
+                //{
+                //    for(int i = 0; i < num; i++)
+                //    {
+                //        EnemyController enemy;
+                //        if()
+                //    }
+                //}
+                foreach(var pos in GameManager.instance.battleSetup.GetEnemyPos())
+                {
+                    if(pos.childCount == 0)
+                    {
+                        EnemyController enemy = Instantiate(minion.character, pos).GetComponent<EnemyController>();
+                        enemy.transform.localPosition = Vector3.zero;
+                        enemy.SetInfoEnemy(minion);
+                        //enemy.SetDrop(minion.skillDrop, enemies[i].relicDrop, enemies[i].goldDrop);
+                        enemy.name = minion.characterName + "_minion";
+                        GameManager.instance.gaugeHpEnemy.SetPositionGauge(enemy);
+                        turnManager.enemies.Add(enemy);
+                    }
+                }
                 break;
         }
         if (currentSkill.GetCheckTakeDamage())
@@ -334,6 +365,9 @@ public class EnemyController : CharacterValue
         }else if(skill.GetSkillType() == SkillType.Attack)
         {
 
+        }else if (skill.GetSkillType() == SkillType.Summon)
+        {
+            if(turnManager.enemies.Count == 3 || minion == null) return false;
         }
 
         return true;
