@@ -4261,14 +4261,19 @@ MonoBehaviour:
   nextButton: {fileID: 3162785397995729770}
   resultPanel: {fileID: 7966741205934565247}
   totalPos: {fileID: 4844318525775896354}
+  totalCan: {fileID: 7537553277250159246}
   totalValue: {fileID: 807041849500740810}
   battlePos: {fileID: 3989973295755688527}
+  battleCan: {fileID: 9043054117104270575}
   battleValue: {fileID: 5686286652570139536}
   treasurePos: {fileID: 123379232932929311}
+  treasureCan: {fileID: 1162061822357397034}
   treasureValue: {fileID: 4058625497644853205}
   eventPos: {fileID: 8184129532049737690}
+  eventCan: {fileID: 1644021541382045584}
   eventValue: {fileID: 7639524567818030485}
   bossPos: {fileID: 4264440632962566060}
+  bossCan: {fileID: 4202328279147443360}
   bossValue: {fileID: 6331512603335942616}
   buttonPos: {fileID: 6940717506480766451}
   endButton: {fileID: 2956891260797964859}
