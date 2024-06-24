@@ -92,8 +92,9 @@ public class AnimationAction : MonoBehaviour
     {
         isAction = true;
         //animator.SetTrigger("Run");
-        gameObject.transform.position = GameManager.instance.battleSetup.backStage.position;
-        gameObject.transform.DOLocalJump(Vector3.zero, 0.3f, 1, 0.3f).SetEase(Ease.Linear).OnComplete(() =>
+        Vector2 origin = gameObject.transform.GetChild(0).localPosition;
+        gameObject.transform.GetChild(0).localPosition = GameManager.instance.battleSetup.backStage.position;
+        gameObject.transform.GetChild(0).DOLocalJump(origin, 0.3f, 1, 0.3f).SetEase(Ease.Linear).OnComplete(() =>
         {
             animator.SetTrigger("Idle");
             isAction = false;

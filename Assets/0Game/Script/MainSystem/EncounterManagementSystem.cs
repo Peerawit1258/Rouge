@@ -24,6 +24,7 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
 
     [SerializeField] List<DoorNode> doors;
     [SerializeField, ReadOnly] List<string> previousNode;
+    public List<string> GetPreviousNode() => previousNode;
 
     TurnManager turnManager;
     // Start is called before the first frame update
