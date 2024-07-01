@@ -79,10 +79,11 @@ public class GameManager : MonoBehaviour
         if (isTest)
         {
             encounterManagementSystem.stageName = encounterManagementSystem.stageDetail[0].stageName;
-            encounterManagementSystem.stageCount++;
+            encounterManagementSystem.IncreaseStageCount();
             encounterManagementSystem.stageDetail[0].encounterMap.SetActive(true);
             if (turnManager.player == null) battleSetup.SetupPlayerBattle(playerDetail);
             battleSetup.SetupEnemyBattle(encounterManagementSystem.stageDetail[0].startNode.enemyGroup.enemies);
+            encounterManagementSystem.GetPreviousNode().Add(encounterManagementSystem.stageDetail[0].startNode.nodeID);
             detailPanel.SetEncounter(encounterManagementSystem.stageCount);
 
             DOVirtual.DelayedCall(1,() =>

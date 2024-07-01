@@ -6,16 +6,16 @@ using DG.Tweening;
 
 public class ShopSystem : MonoBehaviour
 {
-    [TabGroup("Price")] public List<int> skillPrice = new List<int>();
-    [TabGroup("Price")] public List<int> relicPrice = new List<int>();
+    [TabGroup("1", "Price")] public List<int> skillPrice = new List<int>();
+    [TabGroup("1", "Price")] public List<int> relicPrice = new List<int>();
 
-    [TabGroup("Place"), SerializeField] RectTransform skillPlace;
-    [TabGroup("Place"), SerializeField] RectTransform relicPlace;
-    [TabGroup("Place"), SerializeField] RectTransform shopPlace;
-    [TabGroup("Place"), SerializeField] CanvasGroup shopCanvas;
+    [TabGroup("1", "Place"), SerializeField] RectTransform skillPlace;
+    [TabGroup("1", "Place"), SerializeField] RectTransform relicPlace;
+    [TabGroup("1", "Place"), SerializeField] RectTransform shopPlace;
+    [TabGroup("1", "Place"), SerializeField] CanvasGroup shopCanvas;
 
-    [TabGroup("Setup"), SerializeField] float time;
-    [TabGroup("Setup"), SerializeField] Ease ease;
+    [TabGroup("1", "Setup"), SerializeField] float time;
+    [TabGroup("1", "Setup"), SerializeField] Ease ease;
 
     [SerializeField] GameObject skillPrefab;
     [SerializeField] GameObject relicPrefab;

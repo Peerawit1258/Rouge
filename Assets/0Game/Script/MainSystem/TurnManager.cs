@@ -43,6 +43,11 @@ public class TurnManager : MonoBehaviour
 
     public void StartPlayerTurn()
     {
+        //if(player.hpValue <= 0)
+        //{
+        //    GameManager.instance.resultBattle.StartFinishPanel();
+        //    return;
+        //}
         actionTurn = ActionTurn.player;
         GameManager.instance.inventoryManager.DecreaseCooldownSkill();
         GameManager.instance.battleSetup.arrow.gameObject.SetActive(true);
@@ -64,7 +69,11 @@ public class TurnManager : MonoBehaviour
             GameManager.instance.resultBattle.StartWinResult();
             return;
         }
-        if (player.hpValue <= 0) return;
+        if (player.hpValue <= 0)
+        {
+            GameManager.instance.resultBattle.StartFinishPanel(false);
+            return;
+        }
 
         if (targetEnemy == null) targetEnemy = enemies[0];
 

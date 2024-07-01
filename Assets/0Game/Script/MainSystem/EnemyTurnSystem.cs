@@ -27,12 +27,21 @@ public class EnemyTurnSystem : MonoBehaviour
             GameManager.instance.resultBattle.StartWinResult();
             return;
         }
+        if (GameManager.instance.turnManager.player.hpValue <= 0)
+        {
+            GameManager.instance.resultBattle.StartFinishPanel(false);
+            return;
+        }
         currentEnemy = 0;
         StartCoroutine(OrderEnemyAttack());
     }
     IEnumerator OrderEnemyAttack()
     {
-        if (turnManager.player.hpValue <= 0) yield break;
+        if (turnManager.player.hpValue <= 0)
+        {
+            GameManager.instance.resultBattle.StartFinishPanel(false);
+            yield break;
+        }
         turnManager.enemies[currentEnemy].StartEnemyAttack();
 
         

@@ -230,9 +230,11 @@ public class ResultBattle : MonoBehaviour
     }
     #endregion
     #region Result
-    public void StartFinishPanel() => StartCoroutine(FinishPanel());
-    IEnumerator FinishPanel(/*bool isWin*/)
+    [Button]
+    public void StartFinishPanel(bool isWin) => StartCoroutine(FinishPanel(isWin));
+    IEnumerator FinishPanel(bool isWin)
     {
+        
         int n_battle = 0, n_event = 0, n_treasure = 0, n_boss = 0;
         //if (!isWin)
             //GameManager.instance.encounterManagementSystem.GetPreviousNode().RemoveAt(GameManager.instance.encounterManagementSystem.GetPreviousNode().Count - 1);
@@ -247,32 +249,42 @@ public class ResultBattle : MonoBehaviour
             else if(node.Contains("BB"))
                 n_boss++;
         }
+        resultPanel.alpha = 0;
+        totalCan.alpha = 0;
+        battleCan.alpha = 0;
+        treasureCan.alpha = 0;
+        eventCan.alpha = 0;
+        bossCan.alpha = 0;
+        endButton.alpha = 0;
 
         resultPanel.GetComponent<RectTransform>().DOAnchorPosY(-115, time).From().SetEase(Ease.InOutQuart);
-        yield return new WaitForSeconds(0.3f);
+        resultPanel.DOFade(1, time);
+        resultPanel.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f); 
         DOVirtual.Int(0, GameManager.instance.encounterManagementSystem.allCount, 1, (x) => totalValue.text = x.ToString());
         totalPos.DOAnchorPosY(totalPos.anchoredPosition.y + 50, time).From().SetEase(Ease.InOutQuart);
-        totalCan.DOFade(0, time);
-        yield return new WaitForSeconds(0.1f);
+        totalCan.DOFade(1, time);
+        yield return new WaitForSeconds(0.2f);
         if(n_battle > 0) DOVirtual.Int(0, n_battle, 1, (x) => battleValue.text = x.ToString());
         battlePos.DOAnchorPosY(battlePos.anchoredPosition.y + 50, time).From().SetEase(Ease.InOutQuart);
-        battleCan.DOFade(0, time);
-        yield return new WaitForSeconds(0.1f);
+        battleCan.DOFade(1, time);
+        yield return new WaitForSeconds(0.2f);
         if (n_treasure > 0) DOVirtual.Int(0, n_treasure, 1, (x) => treasureValue.text = x.ToString());
         treasurePos.DOAnchorPosY(treasurePos.anchoredPosition.y + 50, time).From().SetEase(Ease.InOutQuart);
-        treasureCan.DOFade(0, time);
-        yield return new WaitForSeconds(0.1f);
+        treasureCan.DOFade(1, time);
+        yield return new WaitForSeconds(0.2f);
         if (n_event > 0) DOVirtual.Int(0, n_event, 1, (x) => eventValue.text = x.ToString());
         eventPos.DOAnchorPosY(eventPos.anchoredPosition.y + 50, time).From().SetEase(Ease.InOutQuart);
-        eventCan.DOFade(0, time);
-        yield return new WaitForSeconds(0.1f);
+        eventCan.DOFade(1, time);
+        yield return new WaitForSeconds(0.2f);
         if (n_boss > 0) DOVirtual.Int(0, n_boss, 1, (x) => bossValue.text = x.ToString());
         bossPos.DOAnchorPosY(bossPos.anchoredPosition.y + 50, time).From().SetEase(Ease.InOutQuart);
-        bossCan.DOFade(0, time);
+        bossCan.DOFade(1, time);
         yield return new WaitForSeconds(0.4f);
         buttonPos.DOAnchorPosY(buttonPos.anchoredPosition.y + 50, time).From().SetEase(Ease.InOutQuart);
-        endButton.DOFade(0, time);
+        endButton.DOFade(1, time);
     }
+
     #endregion
 
     void CreateRelicDetail(List<Relic> relics)
