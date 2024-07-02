@@ -1535,6 +1535,7 @@ MonoBehaviour:
   detailPanel: {fileID: 1663457745}
   inventoryManager: {fileID: 33711348}
   shopSystem: {fileID: 1331757040}
+  upgradeSystem: {fileID: 2862811582024360214}
   allData: {fileID: 749476253}
   playerData: {fileID: 749476254}
   skills:
@@ -4298,6 +4299,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 430b0fba72ea1c94080d7e2680bf562e, type: 3}
+--- !u!114 &2862811582024360214 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4284824176108761793, guid: 430b0fba72ea1c94080d7e2680bf562e, type: 3}
+  m_PrefabInstance: {fileID: 2862811582024360213}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c0f2119afec1004888ce11f9d349824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3318197484774590117
 PrefabInstance:
   m_ObjectHideFlags: 0
