@@ -81,7 +81,7 @@ public class EnemyController : CharacterValue
     }
     bool orderSkill;
     int indexSkill = 0;
-    public void SetInfoEnemy(CharacterDetail detail)
+    public void SetInfoEnemy(CharacterDetail detail, bool isMinion = false)
     {
         SetStatValue(detail.maxHP, detail.atk, detail.def, detail.damageReduce);
         allSkill = detail.allSkill;
@@ -104,8 +104,10 @@ public class EnemyController : CharacterValue
             if (indexSkill >= allSkill.Count) indexSkill = 0;
         }
 
-        if(e_type != EnemyType.Boss || e_type != EnemyType.Special) animationAction.ShowInScene();
+        //if(e_type != EnemyType.Boss || e_type != EnemyType.Special) animationAction.ShowInScene();
+        if(isMinion) animationAction.ShowInScene();
     }
+
 
     #region taken
     public void StartDamageTaken(int damage, float delay = 0, bool notDie = false, GameObject effect = null)=> StartCoroutine(DamageTaken(damage, delay, notDie, effect));
@@ -221,7 +223,7 @@ public class EnemyController : CharacterValue
                     {
                         EnemyController enemy = Instantiate(minion.character, pos).GetComponent<EnemyController>();
                         enemy.transform.localPosition = Vector3.zero;
-                        enemy.SetInfoEnemy(minion);
+                        enemy.SetInfoEnemy(minion, true);
                         //enemy.SetDrop(minion.skillDrop, enemies[i].relicDrop, enemies[i].goldDrop);
                         enemy.name = minion.characterName + "_minion";
                         GameManager.instance.gaugeHpEnemy.SetPositionGauge(enemy);

@@ -33,6 +33,7 @@ public class UpgradeSystem : MonoBehaviour
         if (!isOpen)
         {
             isOpen = true;
+            upgradePos.gameObject.SetActive(true);
             priceText.text = requiredValue[rank].ToString();
             if(GameManager.instance.playerData.gold < requiredValue[rank]) priceText.color = Color.red;
             else priceText.color = Color.white;
@@ -56,16 +57,15 @@ public class UpgradeSystem : MonoBehaviour
             upgradePos.DOAnchorPosY(260, time).SetEase(Ease.InOutQuart);
             upgradeCanvas.DOFade(0, time).OnComplete(() =>
             {
-                upgradeCanvas.interactable = true;
-                upgradeCanvas.blocksRaycasts = true;
+                upgradeCanvas.interactable = false;
+                upgradeCanvas.blocksRaycasts = false;
+                upgradePos.gameObject.SetActive(false);
             });
         }
-        
     }
 
     public void UpgradePower(bool isSlot)
     {   
-        
         if (!isSlot)
         {
             if (skillMax.activeSelf) return;

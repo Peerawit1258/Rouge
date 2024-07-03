@@ -243,7 +243,8 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
                 {
                     int heal = (int)Mathf.Floor(turnManager.player.maxHpValue * 25 / 100);
                     turnManager.player.StartHealHP(heal, 1);
-                    CreateNextDoorNode();
+                    GameManager.instance.upgradeSystem.ActiveUpgradeUI();
+                    //CreateNextDoorNode();
                 }
 
                 previousNode.Add(node.nodeID);

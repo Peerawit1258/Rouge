@@ -27,25 +27,28 @@ public class BattleSetup : SerializedMonoBehaviour
             if(enemies[i].e_type == EnemyType.Boss)
             {
                 if (enemies[i].characterName == "The Golem") SetupSpecialEnemyBattle(enemies[i], 1);
-                continue;
-            }
-            EnemyController enemy;
-            if (enemyPos[i].childCount == 0)
-            {
-                 enemy = Instantiate(enemies[i].character, enemyPos[i]).GetComponent<EnemyController>();
             }
             else
             {
-                if (i + 1 >= enemyPos.Count) return;
-                enemy = Instantiate(enemies[i].character, enemyPos[i + 1]).GetComponent<EnemyController>();
+                EnemyController enemy;
+                if (enemyPos[i].childCount == 0)
+                {
+                    enemy = Instantiate(enemies[i].character, enemyPos[i]).GetComponent<EnemyController>();
+                }
+                else
+                {
+                    if (i + 1 >= enemyPos.Count) return;
+                    enemy = Instantiate(enemies[i].character, enemyPos[i + 1]).GetComponent<EnemyController>();
+                }
+                enemy.transform.localPosition = Vector3.zero;
+                enemy.SetInfoEnemy(enemies[i]);
+                //enemy.SetDrop(enemies[i].skillDrop, enemies[i].relicDrop, enemies[i].goldDrop);
+                enemy.name = enemies[i].characterName + "_" + i;
+                GameManager.instance.gaugeHpEnemy.SetPositionGauge(enemy);
+                GameManager.instance.turnManager.enemies.Add(enemy);
             }
-            enemy.transform.localPosition = Vector3.zero;
-            enemy.SetInfoEnemy(enemies[i]);
-            //enemy.SetDrop(enemies[i].skillDrop, enemies[i].relicDrop, enemies[i].goldDrop);
-            enemy.name = enemies[i].characterName + "_" + i;
-            GameManager.instance.gaugeHpEnemy.SetPositionGauge(enemy);
-            GameManager.instance.turnManager.enemies.Add(enemy);
         }
+        Debug.Log("Pass");
     }
 
     public void SetupSpecialEnemyBattle(CharacterDetail special, int index = 1)// boss/special
@@ -75,7 +78,11 @@ public class BattleSetup : SerializedMonoBehaviour
     public void SetPositionArrow(Transform pos)
     {
         if (GameManager.instance.turnManager.CheckEnemyTaunt()) return;
-        arrow.position = pos.position + new Vector3(0, 0.2f, 0);
+        if(!arrow.gameObject.activeSelf) arrow.gameObject.SetActive(true);
+        if(pos.name.Contains("Door"))
+            arrow.position = pos.position + new Vector3(0, 0.8f, 0);
+        else
+            arrow.position = pos.position + new Vector3(0, 0.2f, 0);
     }
 
     public List<Transform> GetEnemyPos() => enemyPos;

@@ -9,16 +9,25 @@ public class DoorNode : MonoBehaviour
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] Animator door;
     [SerializeField, ReadOnly] EncounterNode encounter;
+
+    bool canClick;
     // Start is called before the first frame update
     void Start()
     {
         gameObject.SetActive(false);
     }
 
+    public void OnMouseEnter()
+    {
+        if (!canClick) return;
+        GameManager.instance.battleSetup.SetPositionArrow(transform);
+    }
+
     public void OnMouseUp()
     {
         Debug.Log(name);
-        if (encounter == null) return;
+        if (encounter == null || !canClick) return;
+        GameManager.instance.battleSetup.arrow.gameObject.SetActive(false);
         door.SetTrigger("Open");
         GameManager.instance.encounterManagementSystem.StartSetupNextEncounter(encounter);
         GameManager.instance.encounterManagementSystem.ClearDoorNode();
@@ -32,6 +41,7 @@ public class DoorNode : MonoBehaviour
         sprite.sprite = node.icon;
         encounter = node;
         gameObject.SetActive(true);
+        transform.DOMoveY(-0.9f, 0.5f).From().SetEase(Ease.InOutQuart).OnComplete(()=>canClick = true);
     }
 
     public void ClearDoor() => encounter = null;
