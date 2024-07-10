@@ -70,15 +70,15 @@ public class UpgradeSystem : MonoBehaviour
         {
             if (skillMax.activeSelf) return;
             GameManager.instance.skillOrderSystem.skillCount++;
-            if (GameManager.instance.skillOrderSystem.skillCount == 10)
-                Debug.Log("sd");
+            //if (GameManager.instance.skillOrderSystem.skillCount == 10)
+            //    skillMax.SetActive(true);
         }
         else
         {
             if (slotMax.activeSelf) return;
             GameManager.instance.skillOrderSystem.slotCount++;
-            if (GameManager.instance.skillOrderSystem.slotCount == 7)
-                Debug.Log("sd");
+            //if (GameManager.instance.skillOrderSystem.slotCount == 7)
+            //    slotMax.SetActive(true);
         }
         GameManager.instance.detailPanel.ChangeGoldValue(requiredValue[rank]);
         rank++;

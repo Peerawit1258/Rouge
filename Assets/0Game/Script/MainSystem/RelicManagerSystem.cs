@@ -126,6 +126,7 @@ public class RelicManagerSystem : MonoBehaviour
         }
 
         GameManager.instance.playerData.currentRelics.Add(relic);
+        GameManager.instance.detailPanel.CreateInfo(relic);
     }
 
     public void RemoveRelic(Relic relic)

@@ -15,6 +15,9 @@ public class DetailPanel : MonoBehaviour
 
     [TabGroup("Relic"), SerializeField] private RectTransform relicPlace;
     [TabGroup("Relic"), SerializeField] private TMP_Text relicCount;
+    [TabGroup("Relic"), SerializeField] private GameObject relicInfoPrefab;
+    [TabGroup("Relic"), SerializeField] private RectTransform infoPlace;
+    [TabGroup("Relic"), SerializeField] private CanvasGroup relicInfoFade;
 
     [TabGroup("Info"), SerializeField] private TMP_Text atkValue;
     [TabGroup("Info"), SerializeField] private TMP_Text defValue;
@@ -26,7 +29,7 @@ public class DetailPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        relicInfoFade.alpha = 0;
     }
 
     #region TopDetailPanel
@@ -97,6 +100,29 @@ public class DetailPanel : MonoBehaviour
             relicWidgets[i].GetWidgetPos().DOAnchorPos(new Vector2(i * 65, 0), 0.5f);
             if (i > 8) relicWidgets[i].GetCanvasGroup().DOFade(0, 0.5f);
         }
+    }
+
+    bool infoOpen = false;
+    public void OpenRelicInfo()
+    {
+        if (infoOpen)
+        {
+            relicInfoFade.alpha = 0;
+            infoOpen = false;
+        }
+        else
+        {
+            relicInfoFade.alpha = 1;
+            infoOpen = true;
+        }
+    }
+
+    List<GameObject> infoGroup = new List<GameObject>();
+    public void CreateInfo(Relic relic)
+    {
+        RelicInfo info = Instantiate(relicInfoPrefab, infoPlace).GetComponent<RelicInfo>();
+        info.AssignInfo(relic);
+        infoGroup.Add(info.gameObject);
     }
 
     public RectTransform GetRelicPlace() => relicPlace;

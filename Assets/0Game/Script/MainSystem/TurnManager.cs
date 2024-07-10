@@ -32,10 +32,12 @@ public class TurnManager : MonoBehaviour
         }
 
         actionTurn = ActionTurn.enemies;
+        skillOrderSystem.slotPlace.gameObject.SetActive(false);
+        skillOrderSystem.skillPlace.gameObject.SetActive(false);
         GameManager.instance.battleSetup.arrow.gameObject.SetActive(false);
         GameManager.instance.detailPanel.ShowActionTurn(actionTurn, () =>
         {
-            skillOrderSystem.slotPlace.gameObject.SetActive(false);
+            
             GameManager.instance.enemyTurnSystem.StartOrderEnemyAttack();
         });
         
@@ -58,6 +60,7 @@ public class TurnManager : MonoBehaviour
             skillOrderSystem.ClearSlotSkill();
             skillOrderSystem.isSkillActive = false;
             skillOrderSystem.slotPlace.gameObject.SetActive(true);
+            skillOrderSystem.skillPlace.gameObject.SetActive(true);
             skillOrderSystem.CreateSkillSlot();
         });
     }

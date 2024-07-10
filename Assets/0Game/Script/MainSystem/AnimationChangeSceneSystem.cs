@@ -5,11 +5,14 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using TMPro;
 
 public class AnimationChangeSceneSystem : MonoBehaviour
 {
     [SerializeField] Image blackFade;
     [SerializeField] RectTransform moveFade;
+    [SerializeField] CanvasGroup blackText;
+    [SerializeField] TMP_Text textInfo;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +37,15 @@ public class AnimationChangeSceneSystem : MonoBehaviour
         {
             moveFade.DOAnchorPosX(-2046, time).SetEase(Ease.Linear).SetDelay(delay).OnComplete(()=> moveFade.anchoredPosition = new Vector2(1962, -23.5f));
             if (action != null) action.Invoke();
+        });
+    }
+
+    public void BlackFadeWithText(float time = 1, float delay = 0, string info = "")
+    {
+        textInfo.text = info;
+        blackText.DOFade(1, time).OnComplete(() =>
+        {
+            blackText.DOFade(0, time).SetDelay(delay);
         });
     }
 }

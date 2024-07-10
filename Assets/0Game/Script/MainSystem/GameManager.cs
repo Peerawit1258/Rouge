@@ -63,7 +63,12 @@ public class GameManager : MonoBehaviour
         if (currentSkill.Count > 0)
             inventoryManager.CreateSkillShow(currentSkill);
         if(currentRelic.Count > 0)
+        {
             relicManagerSystem.AddRelic(currentRelic);
+            foreach (var info in currentRelic)
+                detailPanel.CreateInfo(info);
+        }
+            
         SetupBattleStage();
         
         //Debug.Log(t);

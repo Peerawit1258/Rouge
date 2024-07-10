@@ -1845,7 +1845,7 @@ MonoBehaviour:
   stageDetail:
   - encounterMap: {fileID: 197091903}
     stageName: The Cave
-    stageCount: 2
+    stageCount: 12
     startNode: {fileID: 11400000, guid: 5e56ad1133b11bd429d3e41de84c534b, type: 2}
     normalNode:
     - {fileID: 11400000, guid: 5b3b9dda3fcc5b04dbe43dfb3384a7a1, type: 2}
@@ -1897,17 +1897,6 @@ MonoBehaviour:
     restNode:
     - {fileID: 11400000, guid: c72a81ca39b5fd84986d9fcdf26f5744, type: 2}
     bossNode: {fileID: 11400000, guid: 4da0839ce88e9794b803a193d9b9cac7, type: 2}
-  - encounterMap: {fileID: 197091903}
-    stageName: Test2
-    stageCount: 8
-    startNode: {fileID: 0}
-    normalNode: []
-    eliteNode: []
-    eventNode: []
-    treasureNode: []
-    shopNode: []
-    restNode: []
-    bossNode: {fileID: 0}
   stageName: 
   stageCount: 0
   allCount: 0
@@ -3968,6 +3957,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4344084614696108707, guid: 430b0fba72ea1c94080d7e2680bf562e, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032508388648624727, guid: 430b0fba72ea1c94080d7e2680bf562e, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5341919066366149336, guid: 430b0fba72ea1c94080d7e2680bf562e, type: 3}

@@ -1804,12 +1804,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0f2119afec1004888ce11f9d349824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredValue: c80000002c010000c2010000bc020000e8030000dc050000d0070000b80b0000
+  requiredValue: c80000002c010000c2010000bc020000e8030000dc050000d0070000b80b0000881300004c1d000010270000
   upgradeCanvas: {fileID: 8087987308506278883}
   upgradePos: {fileID: 8451201306581234669}
   priceText: {fileID: 1440620131456344459}
-  slotMax: {fileID: 0}
-  skillMax: {fileID: 0}
+  slotMax: {fileID: 1541914572971178399}
+  skillMax: {fileID: 5619357540526554626}
   time: 0
 --- !u!1 &7491666220936679529
 GameObject:
