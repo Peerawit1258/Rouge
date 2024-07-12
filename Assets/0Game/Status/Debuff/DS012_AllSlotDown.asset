@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b917682f7afff274eab4e619c6901b67, type: 3}
+  m_Name: DS012_AllSlotDown
+  m_EditorClassIdentifier: 
+  id: DS012
+  statusName: All Slot Down
+  statusIcon: {fileID: 0}
+  type: 1
+  use: 1
+  trigger: 2
+  skill: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  particleEffect: {fileID: 0}
+  canStack: 0
+  descrition: 
+  effect: 1
+  isSlot: 1
+  statValues:
+  - type: 1
+    value: -40
+  slots:
+  - box: 1
+    bonus: -10
+  - box: 2
+    bonus: -10
+  - box: 3
+    bonus: -10
+  - box: 4
+    bonus: -10
+  - box: 5
+    bonus: -10
+  - box: 6
+    bonus: -10
+  - box: 7
+    bonus: -10
+  heal: 0
+  damage: 0
+  capStack: 0

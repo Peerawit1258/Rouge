@@ -18,6 +18,7 @@ MonoBehaviour:
   frame: {fileID: 21300000, guid: eb1ca71453326334e9162a52d2471c66, type: 3}
   rarity: 0
   targetType: 0
+  cooldown: 0
   particleEffect: {fileID: 0}
   description: 
   actionDetail:
@@ -25,7 +26,9 @@ MonoBehaviour:
     percentDMG: 32000000
     isRemoveBuff: 0
     statusEnemy: []
-    statusSelf: []
+    statusSelf:
+    - statusEffect: {fileID: 11400000, guid: a7a0bb5ecad7c9947bbaac008255dfee, type: 2}
+      count: 1
     removeBuff: 0
     damageSpecific:
       damageForEffect: {fileID: 0}
@@ -50,9 +53,9 @@ MonoBehaviour:
       percentHeal: 0
   conditionDetail:
     isCondition: 1
-    lockNum: 0100000004000000
+    lockNum: 01000000
     condition: 1
-    slots: 
+    slots: 02000000
     bonusSlotDamage: 10
     c_skillType: 0
     percentDmg: 0

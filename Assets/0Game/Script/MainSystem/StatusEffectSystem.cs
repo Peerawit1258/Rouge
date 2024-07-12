@@ -150,7 +150,7 @@ public class StatusEffectSystem : MonoBehaviour
                     //if (status.useAllStack)
                     //    enemy.StartDamageFromDebuff(status.damage * enemy.gaugeHP.GetStatuswithStatus(status).GetCount(), delay, status);
                     //else
-                        enemy.StartDamageFromDebuff(relicManagerSystem.DamageDOTIncrease(status.id, status.damage), delay, status);
+                        enemy.StartDamageFromDebuff(relicManagerSystem.DamageDOTIncrease(status.id, status.damage) * enemy.gaugeHP.GetStatuswithStatus(status).GetCount(), delay, status);
                     break;
                 case Effect.Regen:
                     enemy.StartHealHP(status.heal, delay);

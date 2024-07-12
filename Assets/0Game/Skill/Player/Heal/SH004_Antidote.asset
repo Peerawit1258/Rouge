@@ -18,6 +18,7 @@ MonoBehaviour:
   frame: {fileID: 21300000, guid: 0621de3a9ff9f854ca23f920fa98c186, type: 3}
   rarity: 0
   targetType: 3
+  cooldown: 0
   particleEffect: {fileID: 0}
   description: 'Remove '
   actionDetail:
@@ -49,8 +50,8 @@ MonoBehaviour:
         count: 0
       percentHeal: 0
   conditionDetail:
-    isCondition: 0
-    lockNum: 
+    isCondition: 1
+    lockNum: 0200000005000000
     condition: 2
     slots: 
     bonusSlotDamage: 0
@@ -63,5 +64,5 @@ MonoBehaviour:
       count: 0
     healType: 0
     isPercent: 0
-    c_heal: 0
+    c_heal: 5
     removeEffect: {fileID: 0}

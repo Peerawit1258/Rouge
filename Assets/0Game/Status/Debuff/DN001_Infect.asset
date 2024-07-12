@@ -19,10 +19,13 @@ MonoBehaviour:
   use: 0
   trigger: 3
   skill: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
   particleEffect: {fileID: 0}
   canStack: 1
-  useAllStack: 0
-  descrition: 
+  descrition: 'Healing will decrease this effect''s stacks
+
+    instead of restoring
+    of HP'
   effect: 0
   isSlot: 0
   statValues: []

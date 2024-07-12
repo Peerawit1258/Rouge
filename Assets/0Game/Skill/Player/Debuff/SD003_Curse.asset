@@ -18,6 +18,7 @@ MonoBehaviour:
   frame: {fileID: 21300000, guid: 6ede47321d0bdd44bb9f76962c90e39f, type: 3}
   rarity: 0
   targetType: 0
+  cooldown: 0
   particleEffect: {fileID: 0}
   description: Apply 2 Curse stacks (Max at 5 stacks)
   actionDetail:
@@ -26,7 +27,7 @@ MonoBehaviour:
     isRemoveBuff: 0
     statusEnemy:
     - statusEffect: {fileID: 11400000, guid: 38d140fc4aad39547a576e1e2ff5a7a5, type: 2}
-      count: 2
+      count: 3
     statusSelf: []
     removeBuff: 0
     damageSpecific:

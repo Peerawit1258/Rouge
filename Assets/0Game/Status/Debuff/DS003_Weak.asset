@@ -12,23 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b917682f7afff274eab4e619c6901b67, type: 3}
   m_Name: DS003_Weak
   m_EditorClassIdentifier: 
-  id: 
-  statusName: 
+  id: DS003
+  statusName: Weakness
   statusIcon: {fileID: 0}
   type: 1
   use: 0
   trigger: 2
   skill: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
   particleEffect: {fileID: 0}
   canStack: 0
+  useAllStack: 0
   descrition: 
   effect: 1
   isSlot: 0
   statValues:
-  - type: 3
-    value: 10
   - type: 0
-    value: 10
+    value: -40
   slots: []
   heal: 0
   damage: 0

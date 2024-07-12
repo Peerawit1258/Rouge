@@ -17,7 +17,7 @@ public class StatusEffect : ScriptableObject
     public Color color;
     public GameObject particleEffect;
     public bool canStack;
-    public bool useAllStack;
+    //public bool useAllStack;
     [TextArea(4, 10)] public string descrition;
 
     [Title("Detail")]
@@ -37,6 +37,7 @@ public class StatusEffect : ScriptableObject
         id = st[0];
         statusName = st[1];
     }
+
 }
 
     [Serializable]
