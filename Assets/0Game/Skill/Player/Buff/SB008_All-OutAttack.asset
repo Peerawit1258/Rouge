@@ -27,20 +27,8 @@ MonoBehaviour:
     isRemoveBuff: 0
     statusEnemy: []
     statusSelf:
-    - statusEffect: {fileID: 11400000, guid: 8d07a5f8c3ae7324abe00c1ecc47409b, type: 2}
-      count: 1
-    - statusEffect: {fileID: 11400000, guid: 0630396b988c86a4396703ca85885316, type: 2}
-      count: 1
-    - statusEffect: {fileID: 11400000, guid: 0c37377951e173842a3342eeb1b72866, type: 2}
-      count: 1
-    - statusEffect: {fileID: 11400000, guid: 3945b406c362e15428013fde30cc8553, type: 2}
-      count: 1
-    - statusEffect: {fileID: 11400000, guid: 50a7b73474e7ee948951edf47d508804, type: 2}
-      count: 1
-    - statusEffect: {fileID: 11400000, guid: 0da6e047ad6e68644a7673a3992949cf, type: 2}
-      count: 1
-    - statusEffect: {fileID: 11400000, guid: 0b947d9188f37a74580e832e9941d49f, type: 2}
-      count: 1
+    - statusEffect: {fileID: 11400000, guid: 58cc6150e2a3d4749ada596817ef8247, type: 2}
+      count: 3
     removeBuff: 0
     damageSpecific:
       damageForEffect: {fileID: 0}

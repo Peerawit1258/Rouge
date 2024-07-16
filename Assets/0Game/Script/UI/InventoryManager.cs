@@ -184,8 +184,16 @@ public class InventoryManager : MonoBehaviour, IDropHandler
     public void DecreaseCooldownSkill()
     {
         if (cooldownSkill.Count == 0) return;
-        foreach (var skill in cooldownSkill)
-            skill.DecreaseCooldown(1);
+        //foreach (var skill in cooldownSkill)
+        //    skill.DecreaseCooldown(1);
+        for (int i = cooldownSkill.Count - 1; i >= 0; i--)
+            cooldownSkill[i].DecreaseCooldown(1);
+    }
+
+    public void ClearCooldownSkill()
+    {
+        for (int i = cooldownSkill.Count - 1; i >= 0; i--)
+            cooldownSkill[i].ReadyToActionSkill();
     }
 
     void ClearSpare()

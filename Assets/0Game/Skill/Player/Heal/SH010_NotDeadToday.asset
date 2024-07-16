@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 527b5e7a31fb5af41bffa1ee16130bda, type: 3}
-  m_Name: SA008_FullSwing
+  m_Name: SH010_NotDeadToday
   m_EditorClassIdentifier: 
-  id: SA008
-  skillName: Full Swing
+  id: SH010
+  skillName: Not Dead Today
   skillIcon: {fileID: 0}
-  frame: {fileID: 21300000, guid: eb1ca71453326334e9162a52d2471c66, type: 3}
-  rarity: 1
-  targetType: 1
-  cooldown: 2
+  frame: {fileID: 21300000, guid: 0621de3a9ff9f854ca23f920fa98c186, type: 3}
+  rarity: 0
+  targetType: 3
+  cooldown: 3
   particleEffect: {fileID: 0}
   description: 
   actionDetail:
-    skillType: 0
-    percentDMG: 64000000
+    skillType: 3
+    percentDMG: 
     isRemoveBuff: 0
     statusEnemy: []
     statusSelf: []
@@ -35,23 +35,23 @@ MonoBehaviour:
     healDetail:
       isAll: 0
       healType: 0
-      percentHeal: 0
-      removeEffect: {fileID: 0}
+      percentHeal: 10
+      removeEffect: {fileID: 11400000, guid: 38d140fc4aad39547a576e1e2ff5a7a5, type: 2}
     isTakeDamage: 0
     percentHp: 0
-    hpCompare: 0
+    hpCompare: 1
     hpAbility:
       hpCompare: 0
-      hpPercent: 0
-      type: 0
+      hpPercent: 30
+      type: 3
       percentSkill: 0
       status:
         statusEffect: {fileID: 0}
         count: 0
-      percentHeal: 0
+      percentHeal: 10
   conditionDetail:
-    isCondition: 1
-    lockNum: 050000000600000007000000
+    isCondition: 0
+    lockNum: 
     condition: 0
     slots: 
     bonusSlotDamage: 0

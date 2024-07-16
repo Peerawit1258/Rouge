@@ -173,6 +173,7 @@ public class SkillOrderSystem : MonoBehaviour
 
         List<EnemyController> enemies = new List<EnemyController>();
         List<EnemyController> randomEnemy = new List<EnemyController>();
+        StatusWidget widget = new StatusWidget();
         float ratio = turnManager.player.hpValue / turnManager.player.maxHpValue;
         //Debug.Log("Hp: " + ratio);
         turnManager.player.animationAction.AttackAction();
@@ -193,6 +194,9 @@ public class SkillOrderSystem : MonoBehaviour
 
                 enemy.StartDamageTaken(damage, j * 0.2f + turnManager.player.animationAction.attackTime, false, skill.particleEffect);
 
+                if (enemy.gaugeHP.CheckStatuswithID("BD001", ref widget))
+                    turnManager.player.StartDamageTaken(widget.GetStatus().damage, j * 0.2f + turnManager.player.animationAction.attackTime + 0.2f);
+                
                 if (skill.GetIsHeal())
                 {
                     if (skill.GetHealType() == HealType.Heal)
@@ -234,6 +238,9 @@ public class SkillOrderSystem : MonoBehaviour
                                                 (int)enemies[i].defValue, damageBonus, enemies[i].GetDamageReduce());
 
                     enemies[i].StartDamageTaken(damage, (i + j) * 0.2f + turnManager.player.animationAction.attackTime, false, skill.particleEffect);
+                    
+                    if(enemies[i].gaugeHP.CheckStatuswithID("BD001", ref widget))
+                        turnManager.player.StartDamageTaken(widget.GetStatus().damage, (i + j) * 0.2f + turnManager.player.animationAction.attackTime + 0.2f);
 
                     if (skill.GetIsHeal())
                     {
@@ -270,6 +277,7 @@ public class SkillOrderSystem : MonoBehaviour
         if (skill.GetCheckHpCompare())
             if (skill.GetHpAbility().type == SkillType.Buff)
                 statusEffectSystem.GetStatusInPlayer(skill.GetHpStatus(ratio));
+
     }
 
     private void DebuffSkill(SkillAction skill)

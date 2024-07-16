@@ -98,4 +98,16 @@ public class NumberDamageSystem : MonoBehaviour
         damageText.transform.DOLocalMoveY(0.4f, 0.8f).SetRelative().SetEase(Ease.InOutQuart);
         damageText.DOFade(0, 0.4f).SetDelay(0.4f);
     }
+
+    public void CreateFixText(Transform pos, string text) //status only
+    {
+        TMP_Text txt = Instantiate(statusName, pos.position, Quaternion.identity).GetComponent<TMP_Text>();
+        txt.transform.parent = damagePlace;
+        txt.text = text;
+
+        txt.color = buff;
+
+        txt.transform.DOLocalMoveY(0.4f, 0.8f).SetRelative().SetEase(Ease.InOutQuart);
+        txt.DOFade(0, 0.4f).SetDelay(0.4f);
+    }
 }

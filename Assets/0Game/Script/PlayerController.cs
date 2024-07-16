@@ -38,6 +38,16 @@ public class PlayerController : CharacterValue
     IEnumerator DamageTaken(int damage, float delay, bool notDie, GameObject effect)
     {
         yield return new WaitForSeconds(delay);
+        if(damage > 0)
+        {
+            StatusWidget widget = new StatusWidget();
+            if (gaugeHp.CheckStatuswithID("BN001", ref widget))
+            {
+                widget.DecreaseCount();
+                GameManager.instance.numberDamageSystem.CreateFixText(gameObject.transform, "Dodge");
+                yield break;
+            }
+        }
         hpValue -= damage;
         if (effect != null) Instantiate(effect, gameObject.transform);
         yield return new WaitForSeconds(0.2f);

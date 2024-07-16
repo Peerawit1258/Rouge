@@ -379,6 +379,7 @@ public class EnemyController : CharacterValue
     private void AttackSkill(SkillAction skill)
     {
         animationAction.AttackAction();
+        StatusWidget widget = new StatusWidget();
         float ratio = hpValue / maxHpValue;
         for (int i = 0; i < skill.GetPercentDamage().Count; i++)
         {
@@ -391,6 +392,9 @@ public class EnemyController : CharacterValue
 
             turnManager.player.StartDamageTaken(damage, i * 0.2f + animationAction.attackTime, skill.particleEffect);
             if (turnManager.player.hpValue <= 0) return;
+
+            if (turnManager.player.gaugeHp.CheckStatuswithID("BD001", ref widget))
+                StartDamageTaken(widget.GetStatus().damage, i * 0.2f + turnManager.player.animationAction.attackTime + 0.2f);
 
             if (skill.GetIsHeal())
             {

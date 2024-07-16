@@ -180,6 +180,7 @@ public class ResultBattle : MonoBehaviour
             encounterManagementSystem.CreateNextDoorNode();
             GameManager.instance.relicManagerSystem.TriggerRelicEffect(TriggerStatus.End);
             GameManager.instance.turnManager.turnCount = 0;
+            GameManager.instance.inventoryManager.ClearCooldownSkill();
             nextButton.gameObject.SetActive(false);
         });
     }

@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 527b5e7a31fb5af41bffa1ee16130bda, type: 3}
-  m_Name: SD007_fsas
+  m_Name: SB012_Reflect
   m_EditorClassIdentifier: 
-  id: SD007
-  skillName: fsas
+  id: SB012
+  skillName: Reflect
   skillIcon: {fileID: 0}
-  frame: {fileID: 21300000, guid: 6ede47321d0bdd44bb9f76962c90e39f, type: 3}
+  frame: {fileID: 21300000, guid: 08d455104ed7da948941af88dd44f763, type: 3}
   rarity: 0
-  targetType: 1
-  cooldown: 0
+  targetType: 3
+  cooldown: 3
   particleEffect: {fileID: 0}
-  description: Remove 1 Buff
+  description: 
   actionDetail:
-    skillType: 2
+    skillType: 1
     percentDMG: 
     isRemoveBuff: 0
-    statusEnemy:
-    - statusEffect: {fileID: 11400000, guid: fb88b506b3003f246aa775d2e9a3e083, type: 2}
-      count: 2
-    statusSelf: []
+    statusEnemy: []
+    statusSelf:
+    - statusEffect: {fileID: 11400000, guid: b0817abb1a4749245bfb0d18ea264e72, type: 2}
+      count: 3
     removeBuff: 0
     damageSpecific:
       damageForEffect: {fileID: 0}
@@ -40,30 +40,30 @@ MonoBehaviour:
       percentHeal: 0
       removeEffect: {fileID: 0}
     isTakeDamage: 0
-    percentHp: 0
+    percentHp: 10
     hpCompare: 0
     hpAbility:
       hpCompare: 0
-      hpPercent: 0
-      type: 0
+      hpPercent: 20
+      type: 3
       percentSkill: 0
       status:
         statusEffect: {fileID: 0}
         count: 0
-      percentHeal: 0
+      percentHeal: 10
   conditionDetail:
-    isCondition: 0
-    lockNum: 
+    isCondition: 1
+    lockNum: 0300000007000000
     condition: 2
     slots: 
     bonusSlotDamage: 0
-    c_skillType: 4
+    c_skillType: 1
     percentDmg: 0
-    isRemove: 1
+    isRemove: 0
     c_removeBuff: 0
     c_status:
-      statusEffect: {fileID: 0}
-      count: 0
+      statusEffect: {fileID: 11400000, guid: b0817abb1a4749245bfb0d18ea264e72, type: 2}
+      count: 3
     healType: 0
     isPercent: 0
     c_heal: 0

@@ -10,23 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 527b5e7a31fb5af41bffa1ee16130bda, type: 3}
-  m_Name: SA008_FullSwing
+  m_Name: SB011_Regen
   m_EditorClassIdentifier: 
-  id: SA008
-  skillName: Full Swing
+  id: SB011
+  skillName: Regen
   skillIcon: {fileID: 0}
-  frame: {fileID: 21300000, guid: eb1ca71453326334e9162a52d2471c66, type: 3}
+  frame: {fileID: 21300000, guid: 08d455104ed7da948941af88dd44f763, type: 3}
   rarity: 1
-  targetType: 1
-  cooldown: 2
+  targetType: 3
+  cooldown: 3
   particleEffect: {fileID: 0}
   description: 
   actionDetail:
-    skillType: 0
-    percentDMG: 64000000
+    skillType: 1
+    percentDMG: 
     isRemoveBuff: 0
     statusEnemy: []
-    statusSelf: []
+    statusSelf:
+    - statusEffect: {fileID: 11400000, guid: 06a9e0600d9688648a8d36be779be6a9, type: 2}
+      count: 3
     removeBuff: 0
     damageSpecific:
       damageForEffect: {fileID: 0}
@@ -38,30 +40,30 @@ MonoBehaviour:
       percentHeal: 0
       removeEffect: {fileID: 0}
     isTakeDamage: 0
-    percentHp: 0
+    percentHp: 10
     hpCompare: 0
     hpAbility:
       hpCompare: 0
-      hpPercent: 0
-      type: 0
+      hpPercent: 20
+      type: 3
       percentSkill: 0
       status:
         statusEffect: {fileID: 0}
         count: 0
-      percentHeal: 0
+      percentHeal: 10
   conditionDetail:
-    isCondition: 1
-    lockNum: 050000000600000007000000
-    condition: 0
+    isCondition: 0
+    lockNum: 07000000
+    condition: 2
     slots: 
     bonusSlotDamage: 0
-    c_skillType: 0
+    c_skillType: 1
     percentDmg: 0
     isRemove: 0
     c_removeBuff: 0
     c_status:
-      statusEffect: {fileID: 0}
-      count: 0
+      statusEffect: {fileID: 11400000, guid: a7a0bb5ecad7c9947bbaac008255dfee, type: 2}
+      count: 2
     healType: 0
     isPercent: 0
     c_heal: 0

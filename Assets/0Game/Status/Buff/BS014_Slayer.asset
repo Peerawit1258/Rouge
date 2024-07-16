@@ -10,23 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b917682f7afff274eab4e619c6901b67, type: 3}
-  m_Name: BN001_Dodge
+  m_Name: BS014_Slayer
   m_EditorClassIdentifier: 
-  id: BN001
-  statusName: Dodge
+  id: BS014
+  statusName: Slayer
   statusIcon: {fileID: 0}
   type: 0
-  use: 0
-  trigger: 0
+  use: 1
+  trigger: 3
   skill: 0
   color: {r: 0.32953006, g: 0.71416867, b: 0.9339623, a: 1}
   particleEffect: {fileID: 0}
   canStack: 1
-  descrition: 'Evade '
-  effect: 0
+  descrition: 
+  effect: 1
   isSlot: 0
-  statValues: []
+  statValues:
+  - type: 0
+    value: 1
   slots: []
   heal: 0
   damage: 0
-  capStack: 1
+  capStack: 99

@@ -18,6 +18,7 @@ MonoBehaviour:
   frame: {fileID: 21300000, guid: eb1ca71453326334e9162a52d2471c66, type: 3}
   rarity: 0
   targetType: 2
+  cooldown: 1
   particleEffect: {fileID: 0}
   description: Deal damage 5x25% of ATK to random enemies.
   actionDetail:

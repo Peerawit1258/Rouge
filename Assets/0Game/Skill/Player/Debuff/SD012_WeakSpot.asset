@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 527b5e7a31fb5af41bffa1ee16130bda, type: 3}
-  m_Name: SD009_sd
+  m_Name: SD012_WeakSpot
   m_EditorClassIdentifier: 
-  id: SD009
-  skillName: sd
+  id: SD012
+  skillName: Weak Spot
   skillIcon: {fileID: 0}
   frame: {fileID: 21300000, guid: 6ede47321d0bdd44bb9f76962c90e39f, type: 3}
-  rarity: 1
-  targetType: 1
-  cooldown: 0
+  rarity: 0
+  targetType: 0
+  cooldown: 2
   particleEffect: {fileID: 0}
   description: Remove 1 Buff
   actionDetail:
@@ -26,8 +26,8 @@ MonoBehaviour:
     percentDMG: 
     isRemoveBuff: 0
     statusEnemy:
-    - statusEffect: {fileID: 11400000, guid: 316ffb50944025e4b93ba0383ae74861, type: 2}
-      count: 1
+    - statusEffect: {fileID: 11400000, guid: d27321ff839cdcd42b136c70aed4bf97, type: 2}
+      count: 2
     statusSelf: []
     removeBuff: 0
     damageSpecific:
