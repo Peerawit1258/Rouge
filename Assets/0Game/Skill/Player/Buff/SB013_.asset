@@ -27,7 +27,7 @@ MonoBehaviour:
     isRemoveBuff: 0
     statusEnemy: []
     statusSelf:
-    - statusEffect: {fileID: 11400000, guid: b0817abb1a4749245bfb0d18ea264e72, type: 2}
+    - statusEffect: {fileID: 11400000, guid: 48966e71dca640a40b4f7ea44fe97b01, type: 2}
       count: 3
     removeBuff: 0
     damageSpecific:
