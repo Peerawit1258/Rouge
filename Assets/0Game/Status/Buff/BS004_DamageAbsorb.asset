@@ -22,13 +22,12 @@ MonoBehaviour:
   color: {r: 0.32953006, g: 0.71416867, b: 0.9339623, a: 1}
   particleEffect: {fileID: 0}
   canStack: 0
-  useAllStack: 0
   descrition: 
   effect: 1
   isSlot: 0
   statValues:
   - type: 3
-    value: 10
+    value: 20
   slots: []
   heal: 0
   damage: 0

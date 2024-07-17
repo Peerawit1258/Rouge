@@ -16,7 +16,7 @@ MonoBehaviour:
   skillName: Not Dead Today
   skillIcon: {fileID: 0}
   frame: {fileID: 21300000, guid: 0621de3a9ff9f854ca23f920fa98c186, type: 3}
-  rarity: 0
+  rarity: 1
   targetType: 3
   cooldown: 3
   particleEffect: {fileID: 0}

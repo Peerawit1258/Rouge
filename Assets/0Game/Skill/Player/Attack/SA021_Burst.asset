@@ -17,7 +17,7 @@ MonoBehaviour:
   skillIcon: {fileID: 0}
   frame: {fileID: 21300000, guid: eb1ca71453326334e9162a52d2471c66, type: 3}
   rarity: 1
-  targetType: 0
+  targetType: 1
   cooldown: 5
   particleEffect: {fileID: 0}
   description: 
@@ -26,7 +26,9 @@ MonoBehaviour:
     percentDMG: 96000000
     isRemoveBuff: 0
     statusEnemy: []
-    statusSelf: []
+    statusSelf:
+    - statusEffect: {fileID: 11400000, guid: a0fbf3267f0e6e645b394554fc6b090e, type: 2}
+      count: 1
     removeBuff: 0
     damageSpecific:
       damageForEffect: {fileID: 0}

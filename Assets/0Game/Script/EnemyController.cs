@@ -191,7 +191,7 @@ public class EnemyController : CharacterValue
             DestroySelf();
         }
 
-        statusEffectSystem.TriggerStatusAction(currentSkill.GetSkillType(), this);
+        
         GameManager.instance.detailPanel.ShowSkillActionName(currentSkill.skillName);
         switch (currentSkill.GetSkillType())
         {
@@ -208,15 +208,6 @@ public class EnemyController : CharacterValue
                 HealSkill(currentSkill);
                 break;
             case SkillType.Summon:
-                //int num = 3 - turnManager.enemies.Count;
-                //if(num > 0)
-                //{
-                //    for(int i = 0; i < num; i++)
-                //    {
-                //        EnemyController enemy;
-                //        if()
-                //    }
-                //}
                 foreach(var pos in GameManager.instance.battleSetup.GetEnemyPos())
                 {
                     if(pos.childCount == 0)
@@ -232,6 +223,7 @@ public class EnemyController : CharacterValue
                 }
                 break;
         }
+        statusEffectSystem.TriggerStatusAction(currentSkill.GetSkillType(), this);
         if (currentSkill.GetCheckTakeDamage())
             StartDamageTaken((int)maxHpValue * currentSkill.GetTakeDamagePercent() / 100, 0, true);
         yield return new WaitForSeconds(0.5f);
@@ -389,7 +381,8 @@ public class EnemyController : CharacterValue
 
             int damage = GameManager.instance.damageCalculator.DamageResult((int)atkValue,percentSkill,
                                             (int)turnManager.player.GetPlayerDef(), GetDamageBonus(), turnManager.player.GetDamageReduce());
-
+            if (gaugeHP.CheckStatuswithID("BN002"))
+                damage *= 2;
             turnManager.player.StartDamageTaken(damage, i * 0.2f + animationAction.attackTime, skill.particleEffect);
             if (turnManager.player.hpValue <= 0) return;
 

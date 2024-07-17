@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b917682f7afff274eab4e619c6901b67, type: 3}
-  m_Name: BS014_Slayer
+  m_Name: BS006_SecondSlotUp
   m_EditorClassIdentifier: 
-  id: BS014
-  statusName: Slayer
+  id: BS006
+  statusName: Second Slot Up
   statusIcon: {fileID: 0}
   type: 0
   use: 1
-  trigger: 3
-  skill: 0
+  trigger: 0
+  skill: 1
   color: {r: 0.32953006, g: 0.71416867, b: 0.9339623, a: 1}
   particleEffect: {fileID: 0}
-  canStack: 1
-  descrition: 
+  canStack: 0
+  descrition: Slot1 is increase 10% DmgBonus.
   effect: 1
-  isSlot: 0
-  statValues:
-  - type: 0
-    value: 1
-  slots: []
+  isSlot: 1
+  statValues: []
+  slots:
+  - box: 2
+    bonus: 20
   heal: 0
   damage: 0
-  capStack: 99
+  capStack: 0

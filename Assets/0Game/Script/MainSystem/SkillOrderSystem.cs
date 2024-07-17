@@ -70,8 +70,6 @@ public class SkillOrderSystem : MonoBehaviour
             }
             SkillAction skill = allSlot[currentSkill].skill;
 
-            statusEffectSystem.TriggerStatusAction(skill.GetSkillType());
-
             GameManager.instance.detailPanel.ShowSkillActionName(skill.skillName);
             switch (skill.GetSkillType())
             {
@@ -88,7 +86,7 @@ public class SkillOrderSystem : MonoBehaviour
                     HealSkill(skill);
                 break;
             }
-            
+            statusEffectSystem.TriggerStatusAction(skill.GetSkillType());
             yield return new WaitUntil(() => !turnManager.player.animationAction.isAction);
             if (skill.GetCheckTakeDamage())
                 turnManager.player.StartDamageTaken((int)turnManager.player.maxHpValue * skill.GetTakeDamagePercent() / 100, 0, true);
@@ -191,7 +189,8 @@ public class SkillOrderSystem : MonoBehaviour
 
                 int damage = damageCalculator.DamageResult((int)turnManager.player.atkValue, percentSkill,
                                             (int)enemies[Random.Range(0, enemies.Count)].defValue, damageBonus, enemy.GetDamageReduce());
-
+                if (turnManager.player.gaugeHp.CheckStatuswithID("BN002"))
+                    damage *= 2;
                 enemy.StartDamageTaken(damage, j * 0.2f + turnManager.player.animationAction.attackTime, false, skill.particleEffect);
 
                 if (enemy.gaugeHP.CheckStatuswithID("BD001", ref widget))
@@ -236,7 +235,8 @@ public class SkillOrderSystem : MonoBehaviour
                     
                     int damage = damageCalculator.DamageResult((int)turnManager.player.atkValue, percentSkill,
                                                 (int)enemies[i].defValue, damageBonus, enemies[i].GetDamageReduce());
-
+                    if (turnManager.player.gaugeHp.CheckStatuswithID("BN002"))
+                        damage *= 2;
                     enemies[i].StartDamageTaken(damage, (i + j) * 0.2f + turnManager.player.animationAction.attackTime, false, skill.particleEffect);
                     
                     if(enemies[i].gaugeHP.CheckStatuswithID("BD001", ref widget))

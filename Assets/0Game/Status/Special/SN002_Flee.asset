@@ -16,7 +16,7 @@ MonoBehaviour:
   statusName: Flee
   statusIcon: {fileID: 0}
   type: 0
-  use: 0
+  use: 2
   trigger: 0
   skill: 0
   color: {r: 0, g: 0, b: 0, a: 0}

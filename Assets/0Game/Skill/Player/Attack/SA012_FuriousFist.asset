@@ -10,25 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 527b5e7a31fb5af41bffa1ee16130bda, type: 3}
-  m_Name: SB008_All-OutAttack
+  m_Name: SA012_FuriousFist
   m_EditorClassIdentifier: 
-  id: SB008
-  skillName: All-Out Attack
+  id: SA012
+  skillName: Furious Fist
   skillIcon: {fileID: 0}
-  frame: {fileID: 21300000, guid: 08d455104ed7da948941af88dd44f763, type: 3}
+  frame: {fileID: 21300000, guid: eb1ca71453326334e9162a52d2471c66, type: 3}
   rarity: 1
-  targetType: 3
-  cooldown: 3
+  targetType: 0
+  cooldown: 5
   particleEffect: {fileID: 0}
   description: 
   actionDetail:
-    skillType: 1
-    percentDMG: 
+    skillType: 0
+    percentDMG: 96000000
     isRemoveBuff: 0
     statusEnemy: []
-    statusSelf:
-    - statusEffect: {fileID: 11400000, guid: 58cc6150e2a3d4749ada596817ef8247, type: 2}
-      count: 3
+    statusSelf: []
     removeBuff: 0
     damageSpecific:
       damageForEffect: {fileID: 0}
@@ -39,8 +37,8 @@ MonoBehaviour:
       healType: 0
       percentHeal: 0
       removeEffect: {fileID: 0}
-    isTakeDamage: 0
-    percentHp: 0
+    isTakeDamage: 1
+    percentHp: 10
     hpCompare: 0
     hpAbility:
       hpCompare: 0
@@ -52,19 +50,19 @@ MonoBehaviour:
         count: 0
       percentHeal: 0
   conditionDetail:
-    isCondition: 0
+    isCondition: 1
     lockNum: 07000000
-    condition: 2
-    slots: 
-    bonusSlotDamage: 0
-    c_skillType: 1
+    condition: 1
+    slots: 07000000
+    bonusSlotDamage: 15
+    c_skillType: 3
     percentDmg: 0
     isRemove: 0
     c_removeBuff: 0
     c_status:
-      statusEffect: {fileID: 11400000, guid: a7a0bb5ecad7c9947bbaac008255dfee, type: 2}
-      count: 2
+      statusEffect: {fileID: 0}
+      count: 0
     healType: 0
-    isPercent: 0
-    c_heal: 0
+    isPercent: 1
+    c_heal: 4
     removeEffect: {fileID: 0}

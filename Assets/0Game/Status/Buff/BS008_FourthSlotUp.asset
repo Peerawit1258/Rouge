@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b917682f7afff274eab4e619c6901b67, type: 3}
-  m_Name: BS012_SeventhSlotUp
+  m_Name: BS008_FourthSlotUp
   m_EditorClassIdentifier: 
-  id: BS012
-  statusName: Seventh Slot Up
+  id: BS008
+  statusName: Fourth Slot Up
   statusIcon: {fileID: 0}
   type: 0
   use: 1
@@ -27,7 +27,7 @@ MonoBehaviour:
   isSlot: 1
   statValues: []
   slots:
-  - box: 7
+  - box: 4
     bonus: 20
   heal: 0
   damage: 0

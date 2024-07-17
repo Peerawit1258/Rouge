@@ -74,19 +74,26 @@ public class StatusEffectSystem : MonoBehaviour
         if(enemy != null)
         {
             if (enemy.GetStatusWidgets().Count == 0) return;
-            if (enemy.e_type == EnemyType.Boss)
-            {
+            //if (enemy.e_type == EnemyType.Boss)
+            //{
 
-            }
-            else
+            //}
+            //else
+            //{
+            //    List<StatusWidget> status = enemy.gaugeHP.GetStatusWithTrigger(trigger);
+            //    for(int i = 0; i < status.Count; i++)
+            //    {
+            //        if(status[i].GetStatus().effect != Effect.Stat)
+            //            TriggerStatusEffect(status[i].GetStatus(), i * 0.2f, enemy);
+            //        status[i].DecreaseCount();
+            //    }
+            //}
+            List<StatusWidget> status = enemy.gaugeHP.GetStatusWithTrigger(trigger);
+            for (int i = 0; i < status.Count; i++)
             {
-                List<StatusWidget> status = enemy.gaugeHP.GetStatusWithTrigger(trigger);
-                for(int i = 0; i < status.Count; i++)
-                {
-                    if(status[i].GetStatus().effect != Effect.Stat)
-                        TriggerStatusEffect(status[i].GetStatus(), i * 0.2f, enemy);
-                    status[i].DecreaseCount();
-                }
+                if (status[i].GetStatus().effect != Effect.Stat)
+                    TriggerStatusEffect(status[i].GetStatus(), i * 0.2f, enemy);
+                status[i].DecreaseCount();
             }
         }
         else
@@ -107,21 +114,31 @@ public class StatusEffectSystem : MonoBehaviour
         if(enemy != null)
         {
             if (enemy.GetStatusWidgets().Count == 0) return;
-            if (enemy.e_type == EnemyType.Boss)
-            {
+            //if (enemy.e_type == EnemyType.Boss)
+            //{
 
-            }
-            else
+            //}
+            //else
+            //{
+            //    List<StatusWidget> status = enemy.gaugeHP.GetStatusWithTrigger(TriggerStatus.Action);
+            //    for (int i = 0; i < status.Count; i++)
+            //    {
+            //        if (status[i].GetStatus().skill == type)
+            //        {
+            //            if (status[i].GetStatus().effect != Effect.Stat)
+            //                TriggerStatusEffect(status[i].GetStatus(), i * 0.2f, enemy);
+            //            status[i].DecreaseCount();
+            //        }
+            //    }
+            //}
+            List<StatusWidget> status = enemy.gaugeHP.GetStatusWithTrigger(TriggerStatus.Action);
+            for (int i = 0; i < status.Count; i++)
             {
-                List<StatusWidget> status = enemy.gaugeHP.GetStatusWithTrigger(TriggerStatus.Action);
-                for (int i = 0; i < status.Count; i++)
+                if (status[i].GetStatus().skill == type)
                 {
-                    if (status[i].GetStatus().skill == type)
-                    {
-                        if (status[i].GetStatus().effect != Effect.Stat)
-                            TriggerStatusEffect(status[i].GetStatus(), i * 0.2f, enemy);
-                        status[i].DecreaseCount();
-                    }
+                    if (status[i].GetStatus().effect != Effect.Stat)
+                        TriggerStatusEffect(status[i].GetStatus(), i * 0.2f, enemy);
+                    status[i].DecreaseCount();
                 }
             }
         }

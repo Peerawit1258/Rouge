@@ -18,7 +18,7 @@ MonoBehaviour:
   frame: {fileID: 21300000, guid: 6ede47321d0bdd44bb9f76962c90e39f, type: 3}
   rarity: 0
   targetType: 0
-  cooldown: 0
+  cooldown: 1
   particleEffect: {fileID: 0}
   description: Apply 2 Curse stacks (Max at 5 stacks)
   actionDetail:
