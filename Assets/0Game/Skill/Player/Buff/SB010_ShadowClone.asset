@@ -16,7 +16,7 @@ MonoBehaviour:
   skillName: Shadow Clone
   skillIcon: {fileID: 0}
   frame: {fileID: 21300000, guid: 08d455104ed7da948941af88dd44f763, type: 3}
-  rarity: 1
+  rarity: 0
   targetType: 3
   cooldown: 4
   particleEffect: {fileID: 0}

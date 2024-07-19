@@ -20,7 +20,7 @@ MonoBehaviour:
   targetType: 0
   cooldown: 3
   particleEffect: {fileID: 0}
-  description: Remove 1 Buff
+  description: Apply 7 Posion (Max at 99 stacks)
   actionDetail:
     skillType: 2
     percentDMG: 

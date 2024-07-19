@@ -56,7 +56,7 @@ MonoBehaviour:
     lockNum: 01000000
     condition: 1
     slots: 020000000300000004000000050000000600000007000000
-    bonusSlotDamage: 20
+    bonusSlotDamage: -20
     c_skillType: 0
     percentDmg: 0
     isRemove: 0

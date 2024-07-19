@@ -13,6 +13,7 @@ public class SkillWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] CanvasGroup canvasGroup;
     [SerializeField] Image icon;
     [SerializeField] Image bgFrame;
+    [SerializeField] SkillDesc skillDesc;
 
     [ReadOnly] public SkillAction skill;
     [Header("Move")]

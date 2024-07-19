@@ -21,7 +21,7 @@ MonoBehaviour:
   skill: 0
   color: {r: 0.32953006, g: 0.71416867, b: 0.9339623, a: 1}
   particleEffect: {fileID: 0}
-  canStack: 0
+  canStack: 1
   descrition: Double damage next Attack
   effect: 0
   isSlot: 0
