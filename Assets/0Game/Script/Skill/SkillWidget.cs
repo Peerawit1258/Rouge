@@ -42,6 +42,8 @@ public class SkillWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         bgFrame.sprite = skill.frame;
         if (skill.GetHaveCondition())
             specific = skill.GetLockNum();
+
+        skillDesc.SetDetailBox(skill);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -49,6 +51,8 @@ public class SkillWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (inSlot) return;
         iconFrame.DOAnchorPosY(50, time).SetEase(Ease.InOutQuart);
         iconFrame.DOScale(1.3f, time);
+
+        skillDesc.FadeIn();
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -58,6 +62,8 @@ public class SkillWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             if (skillOrderSystem.selectWidget == this) return;
         iconFrame.DOAnchorPosY(0, time).SetEase(Ease.OutBounce);
         iconFrame.DOScale(1, time);
+
+        skillDesc.FadeOut();
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -72,6 +78,7 @@ public class SkillWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (skillOrderSystem.isOrder) return;
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0.6f;
+        skillDesc.FadeOut();
         if (slotSkill != null) ExitSlot();
     }
 

@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class StatusInfo : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] TMP_Text statusName;
+    [SerializeField] TMP_Text statusDescription;
+    [SerializeField] RectTransform infoPos;
+    
+    public void SetInfo(StatusEffect status)
     {
-        
-    }
+        statusName.text = status.statusName;
+        statusDescription.text = status.descrition;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(statusDescription.preferredHeight > 40)
+            infoPos.sizeDelta = new Vector2(infoPos.sizeDelta.x, infoPos.sizeDelta.y + (statusDescription.preferredHeight - 40));
     }
 }
