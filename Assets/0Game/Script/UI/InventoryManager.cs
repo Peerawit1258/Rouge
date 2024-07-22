@@ -15,13 +15,14 @@ public class InventoryManager : MonoBehaviour, IDropHandler
     [SerializeField] private RectTransform skillSparePos;
     [SerializeField] private RectTransform skillSparePlace;
     [SerializeField] private GameObject skillPrefab;
-    [SerializeField] private List<PlaceForSkill> place;
+    [SerializeField] private List<PlaceForSkill> plac;
     [SerializeField] private List<PlaceForSkill> spare;
     [SerializeField] private Button iconBtn;
     [SerializeField] public RectTransform iconPos;
     [SerializeField] private Button backBtn;
     //[SerializeField] private CanvasGroup placeCanvas;
     [SerializeField] private RectTransform placePos;
+
     //[SerializeField] private TMP_Text placeText;
 
     [TabGroup("Setting"), SerializeField] float time;
@@ -56,12 +57,13 @@ public class InventoryManager : MonoBehaviour, IDropHandler
 
             SkillShow show = eventData.pointerDrag.GetComponent<SkillShow>();
             if (show.inventory || !CheckPlaceEmpty()) return;
-            place.SetSkill(show);
+            //place.SetSkill(show);
+            show.GetObjPos().parent = skillPlace.transform;
             skillShows.Add(show);
             activeSkill.Add(show);
             recieveCount--;
             resultBattle.GetSkillShows().Remove(show);
-
+            GameManager.instance.playerData.AddNewSkill(show.GetSkillAction());
             if (resultBattle.result)
             {
                 if ((recieveCount == 0 && removeCount == 0) || resultBattle.GetSkillShows().Count == 0)
@@ -79,8 +81,10 @@ public class InventoryManager : MonoBehaviour, IDropHandler
 
     public void SkillMoveToPlace(SkillShow show)
     {
-        PlaceForSkill place = GetPlace();
-        place.SetSkill(show);
+        //PlaceForSkill place = GetPlace();
+        //place.SetSkill(show);
+        show.GetObjPos().parent = skillPlace.transform;
+        GameManager.instance.playerData.AddNewSkill(show.GetSkillAction());
     }
 
     bool isActive = false;
@@ -111,8 +115,8 @@ public class InventoryManager : MonoBehaviour, IDropHandler
     {
         foreach(var action in skill)
         {
-            PlaceForSkill place = GetPlace();
-            SkillShow show = Instantiate(skillPrefab, place.pos).GetComponent<SkillShow>();
+            //PlaceForSkill place = GetPlace();
+            SkillShow show = Instantiate(skillPrefab, skillPlace).GetComponent<SkillShow>();
             show.SetSkillShow(action);
             skillShows.Add(show);
             if (cooldown > 0)
@@ -120,7 +124,9 @@ public class InventoryManager : MonoBehaviour, IDropHandler
             else
                 activeSkill.Add(show);
 
-            place.SetSkill(show);
+            show.GetObjPos().parent = skillPlace.transform;
+            GameManager.instance.playerData.AddNewSkill(show.GetSkillAction());
+            //place.SetSkill(show);
         }
         
     }
@@ -167,18 +173,18 @@ public class InventoryManager : MonoBehaviour, IDropHandler
 
     public void RemoveSkill(SkillAction remove)
     {
-        foreach (var p in place)
-        {
-            if (p.GetSkill().GetId() == remove.id)
-            {
-                skillShows.Remove(p.GetSkill());
-                if (activeSkill.Contains(p.GetSkill())) activeSkill.Remove(p.GetSkill());
-                else if (cooldownSkill.Contains(p.GetSkill())) cooldownSkill.Remove(p.GetSkill());
-                Destroy(p.GetSkill().gameObject);
-                p.ClearValue();
-            }   
-        }
-        GameManager.instance.playerData.RemoveCurrentSkill(remove);
+        //foreach (var p in place)
+        //{
+        //    if (p.GetSkill().GetId() == remove.id)
+        //    {
+        //        skillShows.Remove(p.GetSkill());
+        //        if (activeSkill.Contains(p.GetSkill())) activeSkill.Remove(p.GetSkill());
+        //        else if (cooldownSkill.Contains(p.GetSkill())) cooldownSkill.Remove(p.GetSkill());
+        //        Destroy(p.GetSkill().gameObject);
+        //        p.ClearValue();
+        //    }   
+        //}
+        //GameManager.instance.playerData.RemoveCurrentSkill(remove);
     }
 
     public void DecreaseCooldownSkill()
@@ -210,22 +216,22 @@ public class InventoryManager : MonoBehaviour, IDropHandler
 
     PlaceForSkill GetPlace()
     {
-        foreach (var p in place)
-        {
-            if (p.GetSkill() == null)
-                return p;
-        }
+        //foreach (var p in place)
+        //{
+        //    if (p.GetSkill() == null)
+        //        return p;
+        //}
 
         return null;
     }
 
     public bool CheckPlaceEmpty()
     {
-        foreach (var p in place)
-        {
-            if (p.GetSkill() == null)
-                return true;
-        }
+        //foreach (var p in place)
+        //{
+        //    if (p.GetSkill() == null)
+        //        return true;
+        //}
 
         return false;
     }

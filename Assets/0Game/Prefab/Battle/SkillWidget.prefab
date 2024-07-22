@@ -315,6 +315,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 764096456246915453}
     m_Modifications:
+    - target: {fileID: 4906413341528230462, guid: ac91ce67a15f6cf4aa6317f7d2f5f5ab, type: 3}
+      propertyPath: disY
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 8771615928805012779, guid: ac91ce67a15f6cf4aa6317f7d2f5f5ab, type: 3}
       propertyPath: m_Name
       value: SkillDesc

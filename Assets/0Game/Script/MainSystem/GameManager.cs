@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     [TabGroup("UI")] public InventoryManager inventoryManager;
     [TabGroup("UI")] public ShopSystem shopSystem;
     [TabGroup("UI")] public UpgradeSystem upgradeSystem;
+    [TabGroup("UI")] public SkillDesc skillDesc;
     [TabGroup("Manager")] public AllData allData;
     [TabGroup("Manager")] public PlayerData playerData;
     [TabGroup("Test")] public List<SkillAction> skills;

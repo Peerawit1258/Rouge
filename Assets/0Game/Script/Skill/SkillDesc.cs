@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 
 public class SkillDesc : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class SkillDesc : MonoBehaviour
     [SerializeField] RectTransform descBox;
     [SerializeField] RectTransform statusPlace;
     [SerializeField] GameObject statusPrefab;
+    [SerializeField] float disY;
+    [SerializeField] float disY2;
+
+    List<StatusInfo> statusList = new List<StatusInfo>();
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +31,14 @@ public class SkillDesc : MonoBehaviour
         nameText.text = skill.skillName;
         descText.text = skill.description;
         cooldownText.text = "Cooldown:" + skill.cooldown;
+
+        if(statusList.Count > 0)
+        {
+            for(int i = statusList.Count - 1; i >= 0; i--)
+                Destroy(statusList[i].gameObject);
+            statusList.Clear();
+            allStatus.Clear();
+        }
 
         if(skill.GetStatusTarget().Count > 0)
         {
@@ -59,10 +72,14 @@ public class SkillDesc : MonoBehaviour
 
         ChangeBoxSize();
     }
-
-    public void FadeIn()
+    [Button]
+    public void FadeIn(RectTransform rect = null, float y = 0)
     {
         fadeDesc.DOFade(1, 0.2f);
+        if (rect != null)
+        {
+            descBox.position = rect.position + new Vector3(0, y, 0);
+        }
     }
 
     public void FadeOut()
@@ -74,6 +91,8 @@ public class SkillDesc : MonoBehaviour
     {
         StatusInfo info = Instantiate(statusPrefab, statusPlace).GetComponent<StatusInfo>();
         info.SetInfo(status);
+
+        statusList.Add(info);
     }
 
     private void AddAllStatus(StatusEffect statusEffect)
@@ -93,12 +112,12 @@ public class SkillDesc : MonoBehaviour
         if(descText.preferredHeight > 100)
         {
             descBox.sizeDelta = new Vector2(descBox.sizeDelta.x, 190 + (descText.preferredHeight - 100));
-            descBox.anchoredPosition = new Vector2(descBox.anchoredPosition.x, 250 + ((descText.preferredHeight - 100) / 2));
+            descBox.anchoredPosition = new Vector2(descBox.anchoredPosition.x, disY + ((descText.preferredHeight - 100) / 2));
         }
         else
         {
             descBox.sizeDelta = new Vector2(descBox.sizeDelta.x, 190);
-            descBox.anchoredPosition = new Vector2(descBox.anchoredPosition.x, 250);
+            descBox.anchoredPosition = new Vector2(descBox.anchoredPosition.x, disY);
         }
     }
 }

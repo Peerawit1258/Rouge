@@ -19,6 +19,7 @@ public class SkillShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [SerializeField] Image removeIcon;
     [SerializeField] GameObject cooldownObj;
     [SerializeField] TMP_Text cooldownText;
+    [SerializeField] SkillDesc skillDesc;
 
     SkillAction skillAction;
     InventoryManager inventoryManager;
@@ -36,15 +37,21 @@ public class SkillShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             if(inventoryManager.removeCount > 0)
                 removeIcon.DOFade(1, 0.2f);
+            
         }
+
+        GameManager.instance.skillDesc.SetDetailBox(skillAction);
+        GameManager.instance.skillDesc.FadeIn(objPos, 175);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (inventory)
         {
-            removeIcon.DOFade(0, 0.2f);
+            if (inventoryManager.removeCount > 0)
+                removeIcon.DOFade(0, 0.2f);
         }
+        GameManager.instance.skillDesc.FadeOut();
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -137,6 +144,8 @@ public class SkillShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         skillPos.DOAnchorPosX(100, 1.5f).From().SetEase(Ease.OutQuart).SetDelay(delay).OnComplete(()=> skillCanvas.blocksRaycasts = true);
         skillCanvas.DOFade(0, 1f).From().SetDelay(delay);
         gameObject.name = skill.skillName + "_Show";
+
+        skillDesc.SetDetailBox(skill);
     }
 
     public void SetSkillShow(SkillAction skill, bool isInventory = true)
@@ -148,6 +157,8 @@ public class SkillShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         name = skill.name;
         skillAction = skill;
         inventory = isInventory;
+
+        skillDesc.SetDetailBox(skill);
     }
 
     int cooldownValue;
