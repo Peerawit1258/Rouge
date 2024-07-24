@@ -75,7 +75,12 @@ public class SlotSkill : MonoBehaviour ,IPointerEnterHandler,IPointerExitHandler
                 foreach (int num in skill.GetSpecificSlotBonus())
                 {
                     if (skill.GetConditionBonusDamage() >= 0)
-                        skillOrderSystem.GetAllSlot()[num-1].IncreaseValueBonusDMG(skill.GetConditionBonusDamage());
+                    {
+                        if(num == 7 && skillOrderSystem.slotCount < 7)
+                            skillOrderSystem.GetAllSlot()[skillOrderSystem.slotCount - 1].IncreaseValueBonusDMG(skill.GetConditionBonusDamage());
+                        else
+                            skillOrderSystem.GetAllSlot()[num - 1].IncreaseValueBonusDMG(skill.GetConditionBonusDamage());
+                    }
                     else
                         skillOrderSystem.GetAllSlot()[num-1].DecreaseValueBonusDMG(skill.GetConditionBonusDamage());
                 }

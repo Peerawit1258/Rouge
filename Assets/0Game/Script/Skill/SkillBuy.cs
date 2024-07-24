@@ -18,10 +18,11 @@ public class SkillBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     int cost;
     bool canBuy;
+    SkillDesc skillDetail;
     // Start is called before the first frame update
     void Start()
     {
-        
+        skillDetail = GameManager.instance.skillDesc;
     }
 
     public void SetupMerchandise(SkillAction skill)
@@ -47,11 +48,15 @@ public class SkillBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     public void OnPointerEnter(PointerEventData eventData)
     {
         //descriptionFade.DOFade(1, time);
+        skillDetail.SetDetailBox(skillShow.GetSkillAction());
+        skillDetail.FadeIn();
+
         skillPos.DOScale(1.2f, time);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        skillDetail.FadeOut();
         //descriptionFade.DOFade(0, time);
         skillPos.DOScale(1, time);
     }
@@ -62,6 +67,7 @@ public class SkillBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         {
             GameManager.instance.detailPanel.ChangeGoldValue(GameManager.instance.playerData.gold - cost);
 
+            skillDetail.FadeOut();
             GameManager.instance.inventoryManager.GetSkillShows().Add(skillShow);
             skillShow.GetObjPos().parent = GameManager.instance.inventoryManager.iconPos;
 

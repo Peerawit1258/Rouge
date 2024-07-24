@@ -19,11 +19,12 @@ public class RelicBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     int cost;
     bool canBuy;
     RelicManagerSystem relicManagerSystem;
+    SkillDesc skillDesc;
     // Start is called before the first frame update
     void Start()
     {
         relicManagerSystem = GameManager.instance.relicManagerSystem;
-
+        skillDesc = GameManager.instance.skillDesc;
         descriptionFade.alpha = 0;
     }
 
@@ -49,13 +50,15 @@ public class RelicBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        descriptionFade.DOFade(1, time);
+        //descriptionFade.DOFade(1, time);
+        skillDesc.SetDetailBox(relicWidget.GetRelic());
+        skillDesc.FadeIn();
         relicPos.DOScale(1.2f, time);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        descriptionFade.DOFade(0, time);
+        skillDesc.FadeOut();
         relicPos.DOScale(1, time);
     }
 
@@ -63,6 +66,7 @@ public class RelicBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     {
         if (canBuy)
         {
+            skillDesc.FadeOut();
             GameManager.instance.detailPanel.ChangeGoldValue(GameManager.instance.playerData.gold - cost);
             GetWidgettoInventory();
         }

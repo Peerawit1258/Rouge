@@ -20,7 +20,7 @@ MonoBehaviour:
   destroyWhenUse: 0
   description: Change x% to be target
   relicDetails:
-  - type: 5
+  - type: 2
     isSlot: 0
     hpCompare: 0
     compare: 0
@@ -28,10 +28,12 @@ MonoBehaviour:
     statValues: []
     slots: []
     trigger: 0
-    statusType: 0
+    main: 0
+    mainTrigger: 0
     status:
       statusEffect: {fileID: 0}
       count: 0
+    healTrigger: 0
     isStack: 0
     stack: 0
     dotID: 

@@ -72,6 +72,37 @@ public class SkillDesc : MonoBehaviour
 
         ChangeBoxSize();
     }
+
+    public void SetDetailBox(Relic relic)
+    {
+        nameText.text = relic.relicName;
+        descText.text = relic.description;
+        cooldownText.text = "";
+
+        if (statusList.Count > 0)
+        {
+            for (int i = statusList.Count - 1; i >= 0; i--)
+                Destroy(statusList[i].gameObject);
+            statusList.Clear();
+            allStatus.Clear();
+        }
+
+        foreach(var set in relic.relicDetails)
+        {
+            if(set.type == RelicEffectType.DOT)
+            {
+                if(set.dotID != "")
+                    allStatus.Add(GameManager.instance.allData.GetStatusWithID(set.dotID).statusEffect);
+            }
+        }
+        
+
+        if (allStatus.Count > 0)
+            foreach (StatusEffect effect in allStatus)
+                CreateStatusInfo(effect);
+
+        ChangeBoxSize();
+    }
     [Button]
     public void FadeIn(RectTransform rect = null, float y = 0)
     {

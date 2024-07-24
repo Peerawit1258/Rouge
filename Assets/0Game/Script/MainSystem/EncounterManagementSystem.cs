@@ -97,16 +97,18 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
             int num = Random.Range(2, 4);
             EncounterNode newNode = new EncounterNode();
             List<EncounterNode> lists = new List<EncounterNode>();
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < num; i++)
             {
                 lists = GetStageDetailwithName().GetEncounterList(GetNodeType());
-                do
+                if(lists.Count > 1)
                 {
-                    if (lists.Count > 1)
+                    do
+                    {
                         newNode = lists[Random.Range(0, lists.Count)];
-                    else
-                        newNode = lists[0];
-                } while (CheckAlreadyHaveEncounter(newNode));
+                    } while (CheckAlreadyHaveEncounter(newNode));
+                }else
+                    newNode = lists[0];
+
 
                 doors[i].DoorSetup(newNode);
             }
@@ -132,6 +134,22 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
                 if (door.GetEncounter().node == type)
                     return true;
         }
+
+        if (type == Node.Shop)// Check Cooldown Shop
+        {
+            if (delayShop > 0)
+                return true;
+            else
+                delayShop = maxDelayShop;
+        }
+        else if (type == Node.Rest) // Check Cooldown Rest
+        {
+            if (delayRest > 0)
+                return true;
+            else
+                delayRest = maxDelayRest;
+        }
+
         return false;
     }
     int delayShop = 0;
