@@ -1684,7 +1684,7 @@ MonoBehaviour:
   actionTurnPos: {fileID: 8762319382748577220}
   relicPlace: {fileID: 4855358300843224797}
   relicCount: {fileID: 6924105812136703006}
-  relicInfoPrefab: {fileID: 0}
+  relicInfoPrefab: {fileID: 7966789811233229041, guid: 62abdf74622725347922fcf7de91917f, type: 3}
   infoPlace: {fileID: 5603435357697415445}
   relicInfoFade: {fileID: 4175774752552216346}
   atkValue: {fileID: 7300063031405692553}

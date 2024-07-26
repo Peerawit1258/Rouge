@@ -50,6 +50,7 @@ public class SkillOrderSystem : MonoBehaviour
             if (isSkillActive) return;
             currentSkill = 0;
             skillPlace.gameObject.SetActive(false);
+            GameManager.instance.skillDesc.FadeOut();
             StartCoroutine(ActiveSkillAttack());
         }
     }

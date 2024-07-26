@@ -1558,7 +1558,7 @@ MonoBehaviour:
   mainCamera: {fileID: 963194229}
   playerDetail: {fileID: 11400000, guid: 7f19437e87341f4408bdb5a00df307e2, type: 2}
   group: {fileID: 11400000, guid: dea9b22a71280d54ca773f3213ccfb5d, type: 2}
-  isTest: 1
+  isTest: 0
 --- !u!4 &749476252
 Transform:
   m_ObjectHideFlags: 0
@@ -1971,7 +1971,7 @@ MonoBehaviour:
   gold: 0
   maxDelayShop: 3
   maxDelayRest: 3
-  nodes: 000000000400000005000000060000000300000001000000
+  nodes: 040000000100000005000000
   doors:
   - {fileID: 711678760}
   - {fileID: 1460719736}

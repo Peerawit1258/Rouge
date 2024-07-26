@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527b5e7a31fb5af41bffa1ee16130bda, type: 3}
   m_Name: SA002_DoubleHit
   m_EditorClassIdentifier: 
-  id: S002
+  id: SA002
   skillName: Double Hit
   skillIcon: {fileID: 21300000, guid: cd5bdca7322255541a3eeb7319f1e85a, type: 3}
   frame: {fileID: 21300000, guid: eb1ca71453326334e9162a52d2471c66, type: 3}
   rarity: 0
   targetType: 0
+  cooldown: 2
   particleEffect: {fileID: 0}
   description: 
   actionDetail:

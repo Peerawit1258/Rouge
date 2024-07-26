@@ -50,33 +50,33 @@ public class InventoryManager : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag != null)
-        {
-            PlaceForSkill place = GetPlace();
-            if (place == null) return;
+        //if (eventData.pointerDrag != null)
+        //{
+        //    PlaceForSkill place = GetPlace();
+        //    if (place == null) return;
 
-            SkillShow show = eventData.pointerDrag.GetComponent<SkillShow>();
-            if (show.inventory || !CheckPlaceEmpty()) return;
-            //place.SetSkill(show);
-            show.GetObjPos().parent = skillPlace.transform;
-            skillShows.Add(show);
-            activeSkill.Add(show);
-            recieveCount--;
-            resultBattle.GetSkillShows().Remove(show);
-            GameManager.instance.playerData.AddNewSkill(show.GetSkillAction());
-            if (resultBattle.result)
-            {
-                if ((recieveCount == 0 && removeCount == 0) || resultBattle.GetSkillShows().Count == 0)
-                    resultBattle.CloseResultPanel();
-            }
-            else
-            {
-                if (recieveCount == 0 && removeCount == 0)
-                {
+        //    SkillShow show = eventData.pointerDrag.GetComponent<SkillShow>();
+        //    if (show.inventory || !CheckPlaceEmpty()) return;
+        //    //place.SetSkill(show);
+        //    show.GetObjPos().parent = skillPlace.transform;
+        //    skillShows.Add(show);
+        //    activeSkill.Add(show);
+        //    recieveCount--;
+        //    resultBattle.GetSkillShows().Remove(show);
+        //    GameManager.instance.playerData.AddNewSkill(show.GetSkillAction());
+        //    if (resultBattle.result)
+        //    {
+        //        if ((recieveCount == 0 && removeCount == 0) || resultBattle.GetSkillShows().Count == 0)
+        //            resultBattle.CloseResultPanel();
+        //    }
+        //    else
+        //    {
+        //        if (recieveCount == 0 && removeCount == 0)
+        //        {
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
     }
 
     public void SkillMoveToPlace(SkillShow show)
@@ -85,6 +85,7 @@ public class InventoryManager : MonoBehaviour, IDropHandler
         //place.SetSkill(show);
         show.GetObjPos().parent = skillPlace.transform;
         GameManager.instance.playerData.AddNewSkill(show.GetSkillAction());
+        activeSkill.Add(show);
     }
 
     bool isActive = false;

@@ -149,7 +149,8 @@ public class ResultBattle : MonoBehaviour
     public void CloseResultPanel()
     {
         StopCoroutine(WinResult());
-        if(GameManager.instance.inventoryManager.isOpen)
+        nextButton.gameObject.SetActive(false);
+        if (GameManager.instance.inventoryManager.isOpen)
             GameManager.instance.inventoryManager.OpenInventory();
         GameManager.instance.inventoryManager.removeCount = 0;
         GameManager.instance.inventoryManager.recieveCount = 0;
@@ -171,17 +172,18 @@ public class ResultBattle : MonoBehaviour
 
         skillDropPos.DOAnchorPosX(-280, time).SetEase(Ease.InOutQuart).SetDelay(time / 2).OnComplete(() => skillDropPos.anchoredPosition = new Vector2(-230, skillDropPos.anchoredPosition.y)); ;
         skillDropText.DOFade(0, time).SetDelay(time / 2);
-        skillPlace.DOAnchorPosX(190, time).SetDelay(3*time / 4).OnComplete(()=> skillPlace.anchoredPosition = new Vector2(240, skillPlace.anchoredPosition.y));
+        skillPlace.DOAnchorPosX(190, time).SetDelay(3*time / 4).OnComplete(()=> skillPlace.anchoredPosition = new Vector2(167.5f, skillPlace.anchoredPosition.y));
         skillPlaceCanvas.DOFade(0, time).SetDelay(3*time / 4).OnComplete(() =>
         {
             goldPos.anchoredPosition = new Vector2(-205, 225);
             skillDropPos.anchoredPosition = new Vector2(-157.5f, 150);
             winPanel.gameObject.SetActive(false);
             encounterManagementSystem.CreateNextDoorNode();
+            encounterManagementSystem.ResetValue();
             GameManager.instance.relicManagerSystem.TriggerRelicEffect(TriggerStatus.End);
             GameManager.instance.turnManager.turnCount = 0;
             GameManager.instance.inventoryManager.ClearCooldownSkill();
-            nextButton.gameObject.SetActive(false);
+            
         });
     }
 

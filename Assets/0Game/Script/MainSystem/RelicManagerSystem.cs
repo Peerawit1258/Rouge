@@ -8,8 +8,8 @@ public class RelicManagerSystem : MonoBehaviour
     [TabGroup("Game"), Unit(Units.Percent), ReadOnly] public int increaseMoney;
     [TabGroup("Game"), Unit(Units.Percent), ReadOnly] public int discount;
     [TabGroup("Game"), Unit(Units.Percent), ReadOnly] public int increaseExp;
-    [TabGroup("Game"), Unit(Units.Percent), ReadOnly] public int randomSkill;
-    [TabGroup("Game"), Unit(Units.Percent), ReadOnly] public int dropSkill;
+    [TabGroup("Game"), ReadOnly] public int randomSkill;
+    [TabGroup("Game"), ReadOnly] public int dropSkill;
 
     [TabGroup("Turn"), ReadOnly] public List<AddStatus> startStatus;
     [TabGroup("Turn"), ReadOnly] public List<AddStatus> endStatus;

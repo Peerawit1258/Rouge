@@ -100,6 +100,22 @@ public class GameManager : MonoBehaviour
             });
             return;
         }
+        else
+        {
+            encounterManagementSystem.stageName = encounterManagementSystem.stageDetail[0].stageName;
+            encounterManagementSystem.IncreaseStageCount();
+            encounterManagementSystem.stageDetail[0].encounterMap.SetActive(true);
+            if (turnManager.player == null) battleSetup.SetupPlayerBattle(playerDetail);
+            battleSetup.SetupEnemyBattle(encounterManagementSystem.stageDetail[0].startNode.enemyGroup.enemies);
+            encounterManagementSystem.GetPreviousNode().Add(encounterManagementSystem.stageDetail[0].startNode.nodeID);
+            detailPanel.SetEncounter(encounterManagementSystem.stageCount);
+
+            DOVirtual.DelayedCall(1, () =>
+            {
+                Debug.Log("Create");
+                turnManager.StartTurn();
+            });
+        }
     }
 
 }

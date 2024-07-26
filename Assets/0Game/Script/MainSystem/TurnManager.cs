@@ -101,8 +101,12 @@ public class TurnManager : MonoBehaviour
     {
         enemies.Remove(enemy);
         if(enemies.Count > 0)
+        {
             targetEnemy = enemies[0];
-        targetEnemy.OnMouseUp();
+            targetEnemy.OnMouseUp();
+        }  
+        else 
+            targetEnemy = null;
     }
 
     public bool CheckEnemyTaunt()

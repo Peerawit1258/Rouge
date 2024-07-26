@@ -44,7 +44,12 @@ public class SlotSkill : MonoBehaviour ,IPointerEnterHandler,IPointerExitHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if(eventData.pointerDrag != null)
+        if (skillWidget != null)
+        {
+            skillOrderSystem.OrderDistanceSkill();
+            return;
+        }
+        if (eventData.pointerDrag != null)
         {
             SkillWidget skill = eventData.pointerDrag.GetComponent<SkillWidget>();
             //if (skill.skill.targetType == TargetType.SingleTarget)
@@ -97,6 +102,7 @@ public class SlotSkill : MonoBehaviour ,IPointerEnterHandler,IPointerExitHandler
     {
         if(isDestroy) Destroy(skillWidgetOBJ);
         skillWidgetOBJ = null;
+        skillWidget = null;
         if(skill != null)
         {
             if (skill.GetHaveCondition() && skill.GetConditonType() == ConditionType.SlotDamageOrder)
