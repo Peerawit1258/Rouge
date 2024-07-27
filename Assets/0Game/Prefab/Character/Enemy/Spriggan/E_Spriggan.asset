@@ -16,6 +16,7 @@ MonoBehaviour:
   characterName: Spriggan
   characterType: 1
   e_type: 1
+  minion: 
   goldDrop: 0
   expDrop: 0
   orderSkill: 0
@@ -31,9 +32,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2ddc122ffa46c67468b88ea64dfefe7a, type: 2}
   relicDrop:
   - {fileID: 11400000, guid: d54db220dae61a340a6187486e9dedf6, type: 2}
-  maxHP: 30
-  atk: 25
-  def: 7
+  maxHP: 62
+  atk: 24
+  def: 13
   damageBonus: 0
   damageReduce: 10
   startEffect: []

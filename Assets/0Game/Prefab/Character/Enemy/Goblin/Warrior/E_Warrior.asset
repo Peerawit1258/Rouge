@@ -16,6 +16,7 @@ MonoBehaviour:
   characterName: Warrior
   characterType: 1
   e_type: 1
+  minion: 
   goldDrop: 120
   expDrop: 20
   orderSkill: 0
@@ -34,8 +35,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a2bd0bb8cde966342a86a1be4d3b54c4, type: 2}
   - {fileID: 11400000, guid: b3b762f33315ff8429016a0f2e1daf12, type: 2}
   - {fileID: 11400000, guid: a80bf61fea10eec4f80878511b1997f7, type: 2}
-  maxHP: 40
-  atk: 25
+  maxHP: 67
+  atk: 27
   def: 10
   damageBonus: 0
   damageReduce: 10

@@ -16,6 +16,7 @@ MonoBehaviour:
   characterName: Bat
   characterType: 1
   e_type: 0
+  minion: 
   goldDrop: 50
   expDrop: 10
   orderSkill: 0
@@ -26,7 +27,7 @@ MonoBehaviour:
   skillDrop:
   - {fileID: 11400000, guid: 9b0a2018e3d9ea64ba7887e6c1263284, type: 2}
   relicDrop: []
-  maxHP: 20
+  maxHP: 35
   atk: 20
   def: 5
   damageBonus: 0

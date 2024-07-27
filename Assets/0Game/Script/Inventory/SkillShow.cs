@@ -65,7 +65,7 @@ public class SkillShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
         else
         {
-
+            if (!GameManager.instance.resultBattle.getReward) return;
             GameManager.instance.inventoryManager.GetSkillShows().Add(this);
             if(GameManager.instance.resultBattle.GetSkillShows().Contains(this))
                 GameManager.instance.resultBattle.GetSkillShows().Remove(this);

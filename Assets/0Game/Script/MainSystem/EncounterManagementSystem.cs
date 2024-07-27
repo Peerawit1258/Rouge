@@ -329,6 +329,7 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
     public void ResetValue()
     {
         skillDrops.Clear();
+        relicDrops.Clear();
         gold = 0;
     }
 

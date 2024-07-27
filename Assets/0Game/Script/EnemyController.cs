@@ -22,6 +22,7 @@ public class EnemyController : CharacterValue
 
     [ReadOnly, ShowInInspector] SkillAction currentSkill;
     [ReadOnly, ShowInInspector] CharacterDetail minion;
+    public SkillAction GetCurrentSkill() => currentSkill;
     public void SetDrop(List<SkillAction> skills, List<Relic> relics, int gold)
     {
         foreach(var skill in skills)
@@ -91,11 +92,11 @@ public class EnemyController : CharacterValue
         e_type = detail.e_type;
 
         SetDrop(detail.skillDrop, detail.relicDrop, detail.goldDrop);
-
+        if (detail.minion == "") Debug.Log("Have Minion");
         if(detail.minion != "" && e_type != EnemyType.Normal)
             minion = GameManager.instance.allData.GetEnemyWithName(detail.minion);
-
-        if(!orderSkill)
+        GameManager.instance.gaugeHpEnemy.SetPositionGauge(this);
+        if (!orderSkill)
             currentSkill = GetRandomSkill();
         else
         {
@@ -282,8 +283,10 @@ public class EnemyController : CharacterValue
 
     private SkillAction GetRandomSkill()
     {
+        Debug.Log("Random");
         if (allSkill.Count < 3) return allSkill[Random.Range(0, allSkill.Count)];
         SkillAction skill = new SkillAction();
+        //Debug.LogError(name + "i");
         do
         {
             skill = allSkill[Random.Range(0, allSkill.Count)];
@@ -300,8 +303,7 @@ public class EnemyController : CharacterValue
                 cd_wait--;
                 if(cd_wait <= 0) isWait = false;
             }
-        }  
-
+        }
         return skill;
     }
 
@@ -309,7 +311,9 @@ public class EnemyController : CharacterValue
     int cd_wait;
     private bool CheckRandomSkill(SkillAction skill)
     {
-        if(skill.GetSkillType() == SkillType.Buff)
+        Debug.Log("Check");
+        Debug.Log(skill.skillName);
+        if (skill.GetSkillType() == SkillType.Buff)
         {
             foreach(var self in skill.GetStatusSelf())
                 foreach (var widget in gaugeHP.statusWidgets)
@@ -363,7 +367,7 @@ public class EnemyController : CharacterValue
         {
             if(turnManager.enemies.Count == 3 || minion == null) return false;
         }
-
+        Debug.Log("Check");
         return true;
     }
 

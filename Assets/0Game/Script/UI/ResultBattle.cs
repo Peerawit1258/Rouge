@@ -57,6 +57,8 @@ public class ResultBattle : MonoBehaviour
 
     [TabGroup("Setup"), SerializeField] float time;
 
+    [ReadOnly] public bool getReward;
+
     [SerializeField] GameObject skillShowPrefab;
     [SerializeField] GameObject relicDetailPrefab;
 
@@ -83,6 +85,7 @@ public class ResultBattle : MonoBehaviour
     IEnumerator WinResult()
     {
         result = true;
+        getReward = true;
         GameManager.instance.battleSetup.arrow.gameObject.SetActive(false);
         GameManager.instance.skillOrderSystem.slotPlace.gameObject.SetActive(false);
         GameManager.instance.skillOrderSystem.skillPlace.gameObject.SetActive(false);
@@ -183,7 +186,7 @@ public class ResultBattle : MonoBehaviour
             GameManager.instance.relicManagerSystem.TriggerRelicEffect(TriggerStatus.End);
             GameManager.instance.turnManager.turnCount = 0;
             GameManager.instance.inventoryManager.ClearCooldownSkill();
-            
+            GameManager.instance.skillDesc.FadeOut();
         });
     }
 
@@ -227,7 +230,7 @@ public class ResultBattle : MonoBehaviour
         selectText.GetComponent<RectTransform>().DOAnchorPosX(-50, time).SetEase(Ease.InOutQuart);
         selectText.DOFade(0, time).OnComplete(() =>
         {
-            selectText.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+            selectText.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 325);
             GameManager.instance.encounterManagementSystem.CreateNextDoorNode();
             rewardObj.SetActive(false);
         });

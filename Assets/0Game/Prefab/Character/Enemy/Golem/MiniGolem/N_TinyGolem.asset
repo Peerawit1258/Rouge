@@ -16,6 +16,7 @@ MonoBehaviour:
   characterName: Tiny Golem
   characterType: 1
   e_type: 0
+  minion: 
   goldDrop: 0
   expDrop: 0
   orderSkill: 0
@@ -29,9 +30,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 262265fe4f856b44c881bfacd6cfb1c0, type: 2}
   - {fileID: 11400000, guid: ea05e7eb3206ee54b84887eb6bedde16, type: 2}
   relicDrop: []
-  maxHP: 30
-  atk: 20
-  def: 10
+  maxHP: 62
+  atk: 23
+  def: 12
   damageBonus: 0
   damageReduce: 10
   startEffect: []

@@ -16,6 +16,7 @@ MonoBehaviour:
   characterName: Scout
   characterType: 1
   e_type: 0
+  minion: 
   goldDrop: 60
   expDrop: 10
   orderSkill: 0
@@ -27,9 +28,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4e4dfa7b8b62d104aa15e5842b8f573f, type: 2}
   - {fileID: 11400000, guid: 262265fe4f856b44c881bfacd6cfb1c0, type: 2}
   relicDrop: []
-  maxHP: 32
-  atk: 15
-  def: 7
+  maxHP: 54
+  atk: 25
+  def: 10
   damageBonus: 0
   damageReduce: 10
   startEffect: []

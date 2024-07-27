@@ -16,6 +16,7 @@ MonoBehaviour:
   characterName: Shaman
   characterType: 1
   e_type: 0
+  minion: 
   goldDrop: 50
   expDrop: 15
   orderSkill: 0
@@ -26,9 +27,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 859ce62386aafb84c847f4ea957514f3, type: 2}
   skillDrop: []
   relicDrop: []
-  maxHP: 24
-  atk: 17
-  def: 3
+  maxHP: 37
+  atk: 23
+  def: 6
   damageBonus: 0
   damageReduce: 10
   startEffect: []

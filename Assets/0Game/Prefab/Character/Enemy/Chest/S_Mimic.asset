@@ -16,6 +16,7 @@ MonoBehaviour:
   characterName: Mimic
   characterType: 1
   e_type: 3
+  minion: 
   goldDrop: 500
   expDrop: 0
   orderSkill: 0
@@ -24,8 +25,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 61e453f84ccdd9a43a741a78d85ec701, type: 2}
   skillDrop: []
   relicDrop: []
-  maxHP: 100
-  atk: 10
+  maxHP: 300
+  atk: 20
   def: 10
   damageBonus: 0
   damageReduce: 20

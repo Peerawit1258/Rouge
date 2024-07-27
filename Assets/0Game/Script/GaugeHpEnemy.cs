@@ -21,6 +21,12 @@ public class GaugeHpEnemy : MonoBehaviour
         gauge.HpGaugeChange(enemy.hpValue, enemy.maxHpValue);
         gauge.gameObject.transform.parent = parent;
         gauge.name = "Gauge_" + enemy.name;
+        StartCoroutine(WaitForSkill(enemy));
+    }
+
+    IEnumerator WaitForSkill(EnemyController enemy)
+    {
+        yield return new WaitUntil(() => enemy.GetCurrentSkill() != null);
         enemy.ShowNextAction();
     }
 

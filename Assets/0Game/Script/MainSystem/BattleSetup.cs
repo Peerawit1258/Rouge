@@ -41,10 +41,11 @@ public class BattleSetup : SerializedMonoBehaviour
                     enemy = Instantiate(enemies[i].character, enemyPos[i + 1]).GetComponent<EnemyController>();
                 }
                 enemy.transform.localPosition = Vector3.zero;
+                
                 enemy.SetInfoEnemy(enemies[i]);
                 //enemy.SetDrop(enemies[i].skillDrop, enemies[i].relicDrop, enemies[i].goldDrop);
                 enemy.name = enemies[i].characterName + "_" + i;
-                GameManager.instance.gaugeHpEnemy.SetPositionGauge(enemy);
+                
                 GameManager.instance.turnManager.enemies.Add(enemy);
             }
         }

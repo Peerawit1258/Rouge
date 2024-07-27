@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527b5e7a31fb5af41bffa1ee16130bda, type: 3}
   m_Name: ZScout02_Throw
   m_EditorClassIdentifier: 
-  id: 
-  skillName: 
+  id: ZScout02
+  skillName: Throw
   skillIcon: {fileID: 0}
   frame: {fileID: 0}
   rarity: 0
   targetType: 0
+  cooldown: 0
   particleEffect: {fileID: 0}
-  descrition: 
+  description: 
   actionDetail:
     skillType: 0
     percentDMG: 1e000000

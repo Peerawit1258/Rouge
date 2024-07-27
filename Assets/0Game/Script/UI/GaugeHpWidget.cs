@@ -58,6 +58,7 @@ public class GaugeHpWidget : MonoBehaviour
                 actionImg.sprite = wait;
                 break;
         }
+        actionImg.color = new Color(actionImg.color.r, actionImg.color.g, actionImg.color.b, 1);
     }
 
     #region Status

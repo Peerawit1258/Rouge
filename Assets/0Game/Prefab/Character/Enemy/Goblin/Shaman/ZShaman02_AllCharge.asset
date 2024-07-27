@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: ZShaman02_AllCharge
   m_EditorClassIdentifier: 
   id: ZShaman02
-  skillName: AllCharge
+  skillName: All Charge
   skillIcon: {fileID: 0}
   frame: {fileID: 0}
   rarity: 0
   targetType: 4
+  cooldown: 0
   particleEffect: {fileID: 0}
-  descrition: 
+  description: 
   actionDetail:
     skillType: 1
     percentDMG: 

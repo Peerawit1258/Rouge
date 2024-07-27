@@ -16,6 +16,7 @@ MonoBehaviour:
   characterName: Player
   characterType: 0
   e_type: 0
+  minion: 
   goldDrop: 0
   expDrop: 0
   orderSkill: 0
@@ -24,7 +25,7 @@ MonoBehaviour:
   relicDrop: []
   maxHP: 80
   atk: 20
-  def: 5
+  def: 10
   damageBonus: 0
   damageReduce: 10
   startEffect: []

@@ -25,7 +25,7 @@ public class DoorNode : MonoBehaviour
 
     public void OnMouseUp()
     {
-        Debug.Log(name);
+        Debug.Log(encounter.nodeID);
         if (encounter == null || !canClick) return;
         GameManager.instance.battleSetup.arrow.gameObject.SetActive(false);
         door.SetTrigger("Open");
