@@ -16,7 +16,7 @@ MonoBehaviour:
   skillName: Flame Strike
   skillIcon: {fileID: 0}
   frame: {fileID: 21300000, guid: eb1ca71453326334e9162a52d2471c66, type: 3}
-  rarity: 1
+  rarity: 0
   targetType: 0
   cooldown: 2
   particleEffect: {fileID: 0}

@@ -49,7 +49,7 @@ public class SkillBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     {
         //descriptionFade.DOFade(1, time);
         skillDetail.SetDetailBox(skillShow.GetSkillAction());
-        skillDetail.FadeIn();
+        skillDetail.FadeIn(skillPos, 250);
 
         skillPos.DOScale(1.2f, time);
     }
@@ -114,4 +114,5 @@ public class SkillBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     }
 
     public RectTransform GetSkillBuyPos() => skillPos;
+    public SkillShow GetSkillShow() => skillShow;
 }

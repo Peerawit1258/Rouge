@@ -541,13 +541,14 @@ public class EnemyController : CharacterValue
     {
         if (dropSkills.Count == 0) return null;
         SkillAction skill = new SkillAction();
-        int num = 0;
-        do
-        {
-            skill = dropSkills[Random.Range(0, dropSkills.Count)];
-            if (num == dropSkills.Count) return null;
-            num++;
-        } while (GameManager.instance.playerData.CheckAlreadyHaveSkill(skill.id));
+        //int num = 0;
+        //do
+        //{
+        //    skill = dropSkills[Random.Range(0, dropSkills.Count)];
+        //    if (num == dropSkills.Count) return null;
+        //    num++;
+        //} while (GameManager.instance.playerData.CheckAlreadyHaveSkill(skill.id));
+        skill = dropSkills[Random.Range(0, dropSkills.Count)];
 
         return skill;
     }

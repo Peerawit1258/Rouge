@@ -203,7 +203,11 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
     public void SetActiveDoor(bool active)
     {
         foreach(var door in doors)
+        {
             door.gameObject.SetActive(active);
+            door.SetCanClick(active);
+        }
+            
     }
 
     public void ClearDoorNode()

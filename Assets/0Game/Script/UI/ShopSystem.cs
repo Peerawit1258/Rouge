@@ -105,7 +105,7 @@ public class ShopSystem : MonoBehaviour
                     }
                     skill = legendary[Random.Range(0, legendary.Count)];
                 }
-            } while (GameManager.instance.playerData.CheckAlreadyHaveSkill(skill.id));
+            } while (CheckAlreadyHaveSkillShop(skill.id));
 
             if(skill != null)
             {
@@ -117,6 +117,18 @@ public class ShopSystem : MonoBehaviour
             }
         }
         OrderSkillBuy();
+    }
+
+    private bool CheckAlreadyHaveSkillShop(string id)
+    {
+        if(skillBuys.Count == 0) return false;
+        foreach (var sk in skillBuys)
+        {
+            if (sk.GetSkillShow().GetSkillAction().id == id)
+                return true;
+        }
+
+        return false;
     }
 
     public void CreateRelicForBuy()

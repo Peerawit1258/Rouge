@@ -23,13 +23,16 @@ MonoBehaviour:
   allSkill:
   - {fileID: 11400000, guid: 781a0844dc67589489071dafda83fad8, type: 2}
   - {fileID: 11400000, guid: 94269dbd5d4d5f24d8e99ad1a4efe07f, type: 2}
+  - {fileID: 11400000, guid: 7e3f0adc54660354ea7dca7cb0b765bc, type: 2}
   - {fileID: 11400000, guid: 859ce62386aafb84c847f4ea957514f3, type: 2}
   skillDrop:
   - {fileID: 11400000, guid: 239877b3023f64d43b51f412a233f080, type: 2}
+  - {fileID: 11400000, guid: 262265fe4f856b44c881bfacd6cfb1c0, type: 2}
+  - {fileID: 11400000, guid: 129f104ac86b4194caa5f101567c5eee, type: 2}
   relicDrop: []
   maxHP: 46
   atk: 30
   def: 7
   damageBonus: 0
-  damageReduce: 10
+  damageReduce: 0
   startEffect: []

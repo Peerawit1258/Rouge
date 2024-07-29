@@ -45,6 +45,6 @@ public class DoorNode : MonoBehaviour
     }
 
     public void ClearDoor() => encounter = null;
-
+    public void SetCanClick(bool active) => canClick = active;
     public EncounterNode GetEncounter() => encounter;
 }

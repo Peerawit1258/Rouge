@@ -25,7 +25,7 @@ MonoBehaviour:
   relicDrop: []
   maxHP: 80
   atk: 20
-  def: 10
+  def: 8
   damageBonus: 0
-  damageReduce: 10
+  damageReduce: 0
   startEffect: []

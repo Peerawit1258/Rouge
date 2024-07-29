@@ -31,5 +31,5 @@ MonoBehaviour:
   atk: 23
   def: 6
   damageBonus: 0
-  damageReduce: 10
+  damageReduce: 0
   startEffect: []
