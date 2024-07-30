@@ -1233,14 +1233,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36ae3a656e0e8e4fb0cd0efd3459880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 25
+  atk: 28
   atkBonus: 
-  percentSkill: 1e000000
+  percentSkill: 32000000
   damageBonus: 
   def: 8
   defBonus: 
   damageReduce: 00000000
-  result: 'Atk : 25
+  result: 'Atk : 28
 
     DamageBonus : 0%
 
@@ -1250,7 +1250,7 @@ MonoBehaviour:
 
 
     Hit1:
-    -1'
+    6'
 --- !u!1 &616881667
 GameObject:
   m_ObjectHideFlags: 0

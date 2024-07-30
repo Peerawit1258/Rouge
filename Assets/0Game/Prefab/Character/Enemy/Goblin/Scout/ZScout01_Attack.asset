@@ -18,11 +18,12 @@ MonoBehaviour:
   frame: {fileID: 0}
   rarity: 0
   targetType: 0
+  cooldown: 0
   particleEffect: {fileID: 3413073025142944745, guid: a218468c61dd7ff41883ad5ac993df47, type: 3}
-  descrition: 
+  description: 
   actionDetail:
     skillType: 0
-    percentDMG: 64000000
+    percentDMG: 46000000
     isRemoveBuff: 0
     statusEnemy: []
     statusSelf: []

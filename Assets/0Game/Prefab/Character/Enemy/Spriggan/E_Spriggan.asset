@@ -33,7 +33,7 @@ MonoBehaviour:
   relicDrop:
   - {fileID: 11400000, guid: d54db220dae61a340a6187486e9dedf6, type: 2}
   maxHP: 62
-  atk: 24
+  atk: 28
   def: 13
   damageBonus: 0
   damageReduce: 10

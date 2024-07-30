@@ -28,7 +28,7 @@ MonoBehaviour:
   skillDrop: []
   relicDrop: []
   maxHP: 37
-  atk: 23
+  atk: 25
   def: 6
   damageBonus: 0
   damageReduce: 0
