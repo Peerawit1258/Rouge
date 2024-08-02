@@ -21,7 +21,9 @@ MonoBehaviour:
   - type: 4
     sentence: Greeting
     rate: 0
+    exit: 0
     required: 0
+    disappear: 0
     requiredType: 0
     useGold: 0
     useSkill: {fileID: 0}
@@ -42,17 +44,22 @@ MonoBehaviour:
       percentHeal: 0
       removeEffect: {fileID: 0}
     status: []
-    enemyGroup: {fileID: 0}
-    statType: 0
-    statValue: 0
+    enemyGroup: {fileID: 11400000, guid: f2c96bdf60216434f80e013206ca6a16, type: 2}
+    statValue:
+      type: 0
+      value: 0
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 21300000, guid: d589952d97bfbeb459de357fc7fdc3fc, type: 3}
-    afterEventDes: cs
+    afterEventDes: eedededsc
+    passEvent: {fileID: 0}
+    failEvent: {fileID: 0}
   - type: 1
     sentence: Steal
     rate: 0
+    exit: 0
     required: 0
+    disappear: 0
     requiredType: 0
     useGold: 0
     useSkill: {fileID: 0}
@@ -60,8 +67,8 @@ MonoBehaviour:
     useHp: 0
     reward:
       rewardType: 0
-      min: 30
-      max: 200
+      min: 100
+      max: 500
       skills: []
       relics: []
     heal:
@@ -71,16 +78,21 @@ MonoBehaviour:
       removeEffect: {fileID: 0}
     status: []
     enemyGroup: {fileID: 0}
-    statType: 0
-    statValue: 0
+    statValue:
+      type: 0
+      value: 0
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: -1945859540, guid: f8061cbd7a8029945be0521a2339905e, type: 3}
-    afterEventDes: You got REPLACE.
+    afterEventDes: You got REPLACE golds.
+    passEvent: {fileID: 0}
+    failEvent: {fileID: 0}
   - type: 0
     sentence: Avoid
     rate: 0
+    exit: 0
     required: 0
+    disappear: 0
     requiredType: 0
     useGold: 0
     useSkill: {fileID: 0}
@@ -99,9 +111,12 @@ MonoBehaviour:
       removeEffect: {fileID: 0}
     status: []
     enemyGroup: {fileID: 0}
-    statType: 0
-    statValue: 0
+    statValue:
+      type: 0
+      value: 0
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
     afterEventDes: 
+    passEvent: {fileID: 0}
+    failEvent: {fileID: 0}

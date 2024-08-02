@@ -23,7 +23,9 @@ MonoBehaviour:
   - type: 1
     sentence: Open Chest
     rate: 0
+    exit: 0
     required: 1
+    disappear: 0
     requiredType: 3
     useGold: 0
     useSkill: {fileID: 0}
@@ -37,7 +39,15 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 09998b01e4a23bf44b2b1d17f508136f, type: 2}
       - {fileID: 11400000, guid: e4b9a4f34eca3c84b97f76545fc32da5, type: 2}
       - {fileID: 11400000, guid: b96d1ccb195793d4587882d1a69ec230, type: 2}
-      relics: []
+      relics:
+      - {fileID: 11400000, guid: 1db6bd7ef840dc34f93dcde07e8b2912, type: 2}
+      - {fileID: 11400000, guid: 16a3a6265e71b844caab281835999d03, type: 2}
+      - {fileID: 11400000, guid: a2bd0bb8cde966342a86a1be4d3b54c4, type: 2}
+      - {fileID: 11400000, guid: b3b762f33315ff8429016a0f2e1daf12, type: 2}
+      - {fileID: 11400000, guid: 551e84ee3a2669049aba905201bf64a4, type: 2}
+      - {fileID: 11400000, guid: a80bf61fea10eec4f80878511b1997f7, type: 2}
+      - {fileID: 11400000, guid: c72796afa32a5504ab3a22059456a4ed, type: 2}
+      - {fileID: 11400000, guid: 5d9b73f7c1c59d74d94997c46e913285, type: 2}
     heal:
       isAll: 0
       healType: 0
@@ -45,8 +55,9 @@ MonoBehaviour:
       removeEffect: {fileID: 0}
     status: []
     enemyGroup: {fileID: 0}
-    statType: 0
-    statValue: 0
+    statValue:
+      type: 0
+      value: 0
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 306701449, guid: f8061cbd7a8029945be0521a2339905e, type: 3}
@@ -54,10 +65,14 @@ MonoBehaviour:
 
       it hurt you but you
       got something in chest.'
+    passEvent: {fileID: 0}
+    failEvent: {fileID: 0}
   - type: 0
     sentence: 'It '
     rate: 0
+    exit: 0
     required: 0
+    disappear: 0
     requiredType: 0
     useGold: 0
     useSkill: {fileID: 0}
@@ -76,9 +91,12 @@ MonoBehaviour:
       removeEffect: {fileID: 0}
     status: []
     enemyGroup: {fileID: 0}
-    statType: 0
-    statValue: 0
+    statValue:
+      type: 0
+      value: 0
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: -1945859540, guid: f8061cbd7a8029945be0521a2339905e, type: 3}
     afterEventDes: 
+    passEvent: {fileID: 0}
+    failEvent: {fileID: 0}

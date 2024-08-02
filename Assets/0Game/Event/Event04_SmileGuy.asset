@@ -22,7 +22,9 @@ MonoBehaviour:
   - type: 1
     sentence: Right Hand
     rate: 0
+    exit: 0
     required: 0
+    disappear: 0
     requiredType: 0
     useGold: 0
     useSkill: {fileID: 0}
@@ -32,7 +34,17 @@ MonoBehaviour:
       rewardType: 1
       min: 0
       max: 0
-      skills: []
+      skills:
+      - {fileID: 11400000, guid: 2178117fa42c6f347b4335904528c2ef, type: 2}
+      - {fileID: 11400000, guid: a3cb5283cc7260e41afbdec9f4326d61, type: 2}
+      - {fileID: 11400000, guid: b96d1ccb195793d4587882d1a69ec230, type: 2}
+      - {fileID: 11400000, guid: a3cb5283cc7260e41afbdec9f4326d61, type: 2}
+      - {fileID: 11400000, guid: 0450945252df66c49ac420355625bbec, type: 2}
+      - {fileID: 11400000, guid: 98001319293ef1745bf0ee2ec3a34da2, type: 2}
+      - {fileID: 11400000, guid: 3d775b76606d7f0459e71516af88e9bc, type: 2}
+      - {fileID: 11400000, guid: 4982533e47c875d439bf4d495f71c60b, type: 2}
+      - {fileID: 11400000, guid: 6fd04011dce9dc84a99715b91409b457, type: 2}
+      - {fileID: 11400000, guid: d0f3448bd50444b4b8581bfa618fa35c, type: 2}
       relics: []
     heal:
       isAll: 0
@@ -41,16 +53,21 @@ MonoBehaviour:
       removeEffect: {fileID: 0}
     status: []
     enemyGroup: {fileID: 0}
-    statType: 0
-    statValue: 0
+    statValue:
+      type: 0
+      value: 0
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 21300000, guid: 17ceab46e3fcbfb448eabb617aecf934, type: 3}
     afterEventDes: This REPLACE is yours.
+    passEvent: {fileID: 0}
+    failEvent: {fileID: 0}
   - type: 1
     sentence: Left Hand
     rate: 0
+    exit: 0
     required: 0
+    disappear: 0
     requiredType: 0
     useGold: 0
     useSkill: {fileID: 0}
@@ -61,7 +78,15 @@ MonoBehaviour:
       min: 0
       max: 0
       skills: []
-      relics: []
+      relics:
+      - {fileID: 11400000, guid: 6c4b890a4fde5ac4ebd95059cf3fc651, type: 2}
+      - {fileID: 11400000, guid: f57bd5206d452b842a666359ebd7eeeb, type: 2}
+      - {fileID: 11400000, guid: 551e84ee3a2669049aba905201bf64a4, type: 2}
+      - {fileID: 11400000, guid: b3b762f33315ff8429016a0f2e1daf12, type: 2}
+      - {fileID: 11400000, guid: 1db6bd7ef840dc34f93dcde07e8b2912, type: 2}
+      - {fileID: 11400000, guid: 962f9e85c64f6ac4c8ea3f6c0ea5aa11, type: 2}
+      - {fileID: 11400000, guid: a80bf61fea10eec4f80878511b1997f7, type: 2}
+      - {fileID: 11400000, guid: a80bf61fea10eec4f80878511b1997f7, type: 2}
     heal:
       isAll: 0
       healType: 0
@@ -69,27 +94,34 @@ MonoBehaviour:
       removeEffect: {fileID: 0}
     status: []
     enemyGroup: {fileID: 0}
-    statType: 0
-    statValue: 0
+    statValue:
+      type: 0
+      value: 0
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
     afterEventDes: 
+    passEvent: {fileID: 0}
+    failEvent: {fileID: 0}
   - type: 1
     sentence: Both
     rate: 0
+    exit: 0
     required: 0
+    disappear: 0
     requiredType: 0
     useGold: 0
     useSkill: {fileID: 0}
     useRelic: {fileID: 0}
     useHp: 0
     reward:
-      rewardType: 0
+      rewardType: 2
       min: 0
       max: 0
       skills: []
-      relics: []
+      relics:
+      - {fileID: 11400000, guid: ce6f1fedf364e8448ab085b26cc2d47f, type: 2}
+      - {fileID: 11400000, guid: 1b9648ebe3aae3847926aed23b04cc6e, type: 2}
     heal:
       isAll: 0
       healType: 0
@@ -97,8 +129,9 @@ MonoBehaviour:
       removeEffect: {fileID: 0}
     status: []
     enemyGroup: {fileID: 0}
-    statType: 0
-    statValue: 0
+    statValue:
+      type: 0
+      value: 0
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
@@ -111,3 +144,5 @@ MonoBehaviour:
 
       you got something in your
       hand.'
+    passEvent: {fileID: 0}
+    failEvent: {fileID: 0}

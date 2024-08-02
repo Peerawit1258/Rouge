@@ -21,7 +21,9 @@ MonoBehaviour:
   - type: 5
     sentence: Drink Red Potion
     rate: 0
+    exit: 0
     required: 0
+    disappear: 0
     requiredType: 0
     useGold: 0
     useSkill: {fileID: 0}
@@ -40,16 +42,21 @@ MonoBehaviour:
       removeEffect: {fileID: 0}
     status: []
     enemyGroup: {fileID: 0}
-    statType: 4
-    statValue: 5
+    statValue:
+      type: 0
+      value: 30
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 21300000, guid: d589952d97bfbeb459de357fc7fdc3fc, type: 3}
     afterEventDes: After you drink it,you feel stronger than before.
+    passEvent: {fileID: 0}
+    failEvent: {fileID: 0}
   - type: 2
     sentence: Drink Green Potion
     rate: 0
+    exit: 0
     required: 0
+    disappear: 0
     requiredType: 0
     useGold: 0
     useSkill: {fileID: 0}
@@ -64,20 +71,25 @@ MonoBehaviour:
     heal:
       isAll: 0
       healType: 0
-      percentHeal: 20
+      percentHeal: 40
       removeEffect: {fileID: 0}
     status: []
     enemyGroup: {fileID: 0}
-    statType: 0
-    statValue: 0
+    statValue:
+      type: 0
+      value: 0
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 21300000, guid: 3f2aa276726e7ee41b11b56fa1365ee6, type: 3}
     afterEventDes: 
+    passEvent: {fileID: 0}
+    failEvent: {fileID: 0}
   - type: 3
     sentence: 
     rate: 0
+    exit: 0
     required: 1
+    disappear: 0
     requiredType: 3
     useGold: 0
     useSkill: {fileID: 0}
@@ -98,16 +110,21 @@ MonoBehaviour:
     - statusEffect: {fileID: 11400000, guid: a7a0bb5ecad7c9947bbaac008255dfee, type: 2}
       count: 5
     enemyGroup: {fileID: 0}
-    statType: 0
-    statValue: 0
+    statValue:
+      type: 0
+      value: 0
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
     afterEventDes: Bitter....It's so bitter.
+    passEvent: {fileID: 0}
+    failEvent: {fileID: 0}
   - type: 3
     sentence: Drink All Potion
     rate: 0
+    exit: 0
     required: 0
+    disappear: 0
     requiredType: 0
     useGold: 0
     useSkill: {fileID: 0}
@@ -124,11 +141,16 @@ MonoBehaviour:
       healType: 0
       percentHeal: 0
       removeEffect: {fileID: 0}
-    status: []
+    status:
+    - statusEffect: {fileID: 11400000, guid: 8a58b0f02fd63a042a87eaafa8e39664, type: 2}
+      count: 15
     enemyGroup: {fileID: 0}
-    statType: 0
-    statValue: 0
+    statValue:
+      type: 0
+      value: 0
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
     afterEventDes: 
+    passEvent: {fileID: 0}
+    failEvent: {fileID: 0}

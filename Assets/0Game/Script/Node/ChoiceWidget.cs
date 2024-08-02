@@ -141,12 +141,9 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     eventManager.SetAfterEvent(() => GameManager.instance.resultBattle.StartCreateSpecificRelicDetail(relic));
                     replace = relic.relicName + "(Relic)";
                 }
-                if(choiceDetail.rate <= 0)
-                {
-                    if (choiceDetail.exit) eventManager.ExitEvent();
-                    else eventManager.AfterSelectChoice(choiceDetail, replace);
-                }else
-                    eventManager.NextEvent(choiceDetail.passEvent, true);
+
+                if (choiceDetail.exit) eventManager.ExitEvent();
+                else eventManager.AfterSelectChoice(choiceDetail, replace);
                 break;
 
             case ChoiceType.Heal:
@@ -163,12 +160,9 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     else
                         eventManager.SetAfterEvent(() => GameManager.instance.statusEffectSystem.RemoveAllStatus(StatusType.Debuff));
                 }
-                if(choiceDetail.rate <= 0)
-                {
-                    if (choiceDetail.exit) eventManager.ExitEvent();
-                    else eventManager.AfterSelectChoice(choiceDetail);
-                }else
-                    eventManager.NextEvent(choiceDetail.passEvent, true);
+
+                if (choiceDetail.exit) eventManager.ExitEvent();
+                else eventManager.AfterSelectChoice(choiceDetail);
                 break;
 
             case ChoiceType.BuffDebuff:
@@ -177,13 +171,8 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                         GameManager.instance.statusEffectSystem.GetStatusInPlayer(status);
                 });
 
-                if (choiceDetail.rate <= 0)
-                {
-                    if (choiceDetail.exit) eventManager.ExitEvent();
-                    else eventManager.AfterSelectChoice(choiceDetail);
-                }
-                else
-                    eventManager.NextEvent(choiceDetail.passEvent, true);
+                if (choiceDetail.exit) eventManager.ExitEvent();
+                else eventManager.AfterSelectChoice(choiceDetail);
                 break;
 
             case ChoiceType.Enemy:
@@ -197,24 +186,14 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     });
                 });
 
-                if (choiceDetail.rate <= 0)
-                {
-                    if (choiceDetail.exit) eventManager.ExitEvent();
-                    else eventManager.AfterSelectChoice(choiceDetail);
-                }
-                else
-                    eventManager.NextEvent(choiceDetail.passEvent, true);
+                if (choiceDetail.exit) eventManager.ExitEvent();
+                else eventManager.AfterSelectChoice(choiceDetail);
                 break;
 
             case ChoiceType.BaseStat:
                 eventManager.SetAfterEvent(() => GameManager.instance.turnManager.player.BaseStatUpdate(choiceDetail.statValue));
-                if (choiceDetail.rate <= 0)
-                {
-                    if (choiceDetail.exit) eventManager.ExitEvent();
-                    else eventManager.AfterSelectChoice(choiceDetail);
-                }
-                else
-                    eventManager.NextEvent(choiceDetail.passEvent, true);
+                if (choiceDetail.exit) eventManager.ExitEvent();
+                else eventManager.AfterSelectChoice(choiceDetail);
                 break;
 
             default:

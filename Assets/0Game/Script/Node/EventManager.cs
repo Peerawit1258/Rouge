@@ -97,13 +97,13 @@ public class EventManager : MonoBehaviour
         
     }
 
-    public void AfterSelectChoice(ChoiceDetail choice, bool pass)
-    {
-        if (pass)
-            NextEvent(choice.passEvent);
-        else
-            NextEvent(choice.failEvent);
-    }
+    //public void AfterSelectChoice(ChoiceDetail choice, bool pass)
+    //{
+    //    if (pass)
+    //        NextEvent(choice.passEvent);
+    //    else
+    //        NextEvent(choice.failEvent);
+    //}
 
     public void AfterSelectChoice(ChoiceDetail choice, string replace) // Reward Gold
     {
@@ -113,7 +113,22 @@ public class EventManager : MonoBehaviour
         eventImg.DOColor(Color.black, time).From();
 
         ClearChoice();
-        if (exitChoice != null) exitChoice.gameObject.SetActive(true);
+        if (choice.next)
+        {
+
+            for (int i = 0; i < choice.nextEvent.choices.Count; i++)
+            {
+                ChoiceWidget choiceWidget = Instantiate(choicePrefab, choicePlace).GetComponent<ChoiceWidget>();
+                choiceWidget.ChoiceSetup(choice.nextEvent.choices[i]);
+                choiceWidget.gameObject.name += "_" + i.ToString();
+                choiceLists.Add(choiceWidget);
+            }
+        }
+        else
+        {
+            if (exitChoice != null) exitChoice.gameObject.SetActive(true);
+        }
+            
     }
 
     #endregion
