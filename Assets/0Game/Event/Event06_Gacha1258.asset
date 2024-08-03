@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827c4f8ac7d1c4c4b8782176243823e7, type: 3}
+  m_Name: Event06_Gacha1258
+  m_EditorClassIdentifier: 
+  eventId: Event06
+  eventName: Gacha1258
+  eventImage: {fileID: 21300000, guid: 13cb87c0adc0fd444ac4bb4150a6608e, type: 3}
+  description: 
+  unlockEvent: []
+  choices:
+  - type: 1
+    sentence: (50%Change) Lose 100 gold
+    rate: 50
+    exit: 0
+    required: 1
+    disappear: 0
+    requiredType: 0
+    useGold: 100
+    useSkill: {fileID: 0}
+    useRelic: {fileID: 0}
+    useHp: 0
+    reward:
+      rewardType: 1
+      min: 100
+      max: 100
+      skills:
+      - {fileID: 11400000, guid: 4fd447c529e29d949a5b523c21da192a, type: 2}
+      - {fileID: 11400000, guid: 8c2f120ae7009984687b25ac53fbee76, type: 2}
+      - {fileID: 11400000, guid: e18a8fc70e437654abaea0c240aea172, type: 2}
+      - {fileID: 11400000, guid: 180aedb4979d20c4991fc30e8fd3412c, type: 2}
+      - {fileID: 11400000, guid: 6af15e38cf6c46842ba57c30e68c9d6e, type: 2}
+      - {fileID: 11400000, guid: 7a78b26a362e7e44a821276dea14fcd9, type: 2}
+      - {fileID: 11400000, guid: f92d9d69c4e81a44eaaf6f97fbcd58dd, type: 2}
+      - {fileID: 11400000, guid: b969a7e617220a64d83f6ab511807d16, type: 2}
+      relics: []
+    heal:
+      isAll: 0
+      healType: 0
+      percentHeal: 0
+      removeEffect: {fileID: 0}
+    status: []
+    enemyGroup: {fileID: 0}
+    statValue:
+      type: 0
+      value: 0
+    next: 1
+    nextEvent: {fileID: 11400000, guid: 0db3737b4b6663f47b0047c003925430, type: 2}
+    afterEventImg: {fileID: 0}
+    afterEventDes: 
+    failEvent: {fileID: 11400000, guid: e51776dfe41c6524da7b1c9dd92f5e91, type: 2}
+  - type: 0
+    sentence: Exit
+    rate: 0
+    exit: 1
+    required: 0
+    disappear: 0
+    requiredType: 0
+    useGold: 0
+    useSkill: {fileID: 0}
+    useRelic: {fileID: 0}
+    useHp: 0
+    reward:
+      rewardType: 0
+      min: 0
+      max: 0
+      skills: []
+      relics: []
+    heal:
+      isAll: 0
+      healType: 0
+      percentHeal: 0
+      removeEffect: {fileID: 0}
+    status: []
+    enemyGroup: {fileID: 0}
+    statValue:
+      type: 0
+      value: 0
+    next: 0
+    nextEvent: {fileID: 0}
+    afterEventImg: {fileID: 0}
+    afterEventDes: 
+    failEvent: {fileID: 0}

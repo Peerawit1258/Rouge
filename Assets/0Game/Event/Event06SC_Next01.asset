@@ -10,27 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 827c4f8ac7d1c4c4b8782176243823e7, type: 3}
-  m_Name: Event06_
+  m_Name: Event06SC_Next01
   m_EditorClassIdentifier: 
-  eventId: Event06
-  eventName: 
+  eventId: Event06SC
+  eventName: Next01
   eventImage: {fileID: 21300000, guid: 13cb87c0adc0fd444ac4bb4150a6608e, type: 3}
   description: 
   unlockEvent: []
   choices:
-  - type: 1
-    sentence: 
-    rate: 25
-    required: 1
+  - type: 0
+    sentence: Exit
+    rate: 0
+    exit: 1
+    required: 0
+    disappear: 0
     requiredType: 0
-    useGold: 50
+    useGold: 0
     useSkill: {fileID: 0}
     useRelic: {fileID: 0}
     useHp: 0
     reward:
-      rewardType: 1
-      min: 100
-      max: 100
+      rewardType: 0
+      min: 0
+      max: 0
       skills: []
       relics: []
     heal:
@@ -40,9 +42,11 @@ MonoBehaviour:
       removeEffect: {fileID: 0}
     status: []
     enemyGroup: {fileID: 0}
-    statType: 0
-    statValue: 0
-    next: 1
-    nextEvent: {fileID: 11400000}
+    statValue:
+      type: 0
+      value: 0
+    next: 0
+    nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
     afterEventDes: 
+    failEvent: {fileID: 0}

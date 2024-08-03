@@ -100,7 +100,9 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     
                     break;
                 case RewardType.Relic:
-                    break;
+                    if (choiceDetail.disappear)
+                        GameManager.instance.relicManagerSystem.RemoveRelic(choiceDetail.useRelic);
+                        break;
                 case RewardType.Gold:
                     GameManager.instance.playerData.gold -= choiceDetail.useGold;
                     if (GameManager.instance.playerData.gold < 0) GameManager.instance.playerData.gold = 0;
