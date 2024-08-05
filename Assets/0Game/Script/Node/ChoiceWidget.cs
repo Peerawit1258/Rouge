@@ -11,6 +11,7 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] RectTransform rect;
     [SerializeField] TMP_Text txt;
     [SerializeField] bool exit;
+    [SerializeField] GameObject notPassObj;
 
     [ReadOnly, SerializeField] ChoiceDetail choiceDetail;
     EventManager eventManager;
@@ -30,7 +31,8 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (!CheckRequired(detail)) 
         { 
             notPass = true;
-
+            txt.color = Color.red;
+            notPassObj.SetActive(true);
         }
     }
 

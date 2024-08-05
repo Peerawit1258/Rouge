@@ -49,7 +49,6 @@ MonoBehaviour:
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
     afterEventDes: 
-    passEvent: {fileID: 0}
     failEvent: {fileID: 0}
   - type: 2
     sentence: Rest
@@ -82,10 +81,9 @@ MonoBehaviour:
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
     afterEventDes: 
-    passEvent: {fileID: 0}
     failEvent: {fileID: 0}
   - type: 5
-    sentence: 
+    sentence: base up
     rate: 0
     exit: 0
     required: 0
@@ -110,10 +108,9 @@ MonoBehaviour:
     enemyGroup: {fileID: 0}
     statValue:
       type: 0
-      value: 0
+      value: 5
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
     afterEventDes: 
-    passEvent: {fileID: 0}
     failEvent: {fileID: 0}

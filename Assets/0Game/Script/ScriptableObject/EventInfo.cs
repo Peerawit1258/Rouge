@@ -53,8 +53,8 @@ public class ChoiceDetail
     [TitleGroup("Choice"), ShowIf("@type == ChoiceType.Enemy")] public EnemyGroup enemyGroup;
     [TitleGroup("Choice"), ShowIf("@type == ChoiceType.BaseStat")] public StatValue statValue;
 
-    [TitleGroup("After"), ShowIf("@rate == 0")] public bool next;
-    [TitleGroup("After"), ShowIf("@next || rate > 0")] public EventInfo nextEvent;
+    [TitleGroup("After")] public bool next;
+    [TitleGroup("After"), ShowIf("@next")] public EventInfo nextEvent;
     [TitleGroup("After"), PreviewField(50)] public Sprite afterEventImg;
     [TitleGroup("After"), TextArea(2,4)]public string afterEventDes;
     //[TitleGroup("After"), ShowIf("@rate > 0")] public EventInfo passEvent;

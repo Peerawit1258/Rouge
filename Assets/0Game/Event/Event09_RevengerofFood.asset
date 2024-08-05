@@ -20,9 +20,11 @@ MonoBehaviour:
   - 08
   choices:
   - type: 4
-    sentence: 
+    sentence: Battle
     rate: 0
+    exit: 0
     required: 0
+    disappear: 0
     requiredType: 0
     useGold: 0
     useSkill: {fileID: 0}
@@ -40,10 +42,12 @@ MonoBehaviour:
       percentHeal: 0
       removeEffect: {fileID: 0}
     status: []
-    enemyGroup: {fileID: 0}
-    statType: 0
-    statValue: 0
+    enemyGroup: {fileID: 11400000, guid: 667e3344b01f4c9488e4b5c5364c74a9, type: 2}
+    statValue:
+      type: 0
+      value: 0
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
     afterEventDes: 
+    failEvent: {fileID: 0}

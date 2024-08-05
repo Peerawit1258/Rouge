@@ -375,13 +375,15 @@ public class SkillOrderSystem : MonoBehaviour
             }
             SkillAction skill;
             int random;
-            do
-            {
-                random = Random.Range(0, inventoryManager.GetSkillActive().Count);
-                skill = inventoryManager.GetSkillActive()[random].GetSkillAction();
-                //skill = GameManager.instance.playerData.currentSkills[Random.Range(0, GameManager.instance.playerData.currentSkills.Count)];
-            } while (CheckAllSkillWidget(skill));
-            
+            //do
+            //{
+            //    random = Random.Range(0, inventoryManager.GetSkillActive().Count);
+            //    skill = inventoryManager.GetSkillActive()[random].GetSkillAction();
+            //    //skill = GameManager.instance.playerData.currentSkills[Random.Range(0, GameManager.instance.playerData.currentSkills.Count)];
+            //} while (CheckAllSkillWidget(skill));
+            random = Random.Range(0, inventoryManager.GetSkillActive().Count);
+            skill = inventoryManager.GetSkillActive()[random].GetSkillAction();
+
             SkillWidget widget = Instantiate(skillPrefab,skillPlace).GetComponent<SkillWidget>();
             widget.skillShow = inventoryManager.GetSkillActive()[random];
             widget.SetDetail(skill);
