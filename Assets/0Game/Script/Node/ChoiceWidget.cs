@@ -182,6 +182,7 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             case ChoiceType.Enemy:
                 eventManager.SetAfterEvent(() =>
                 {
+                    //eventManager.ExitEvent();
                     GameManager.instance.battleSetup.SetupEnemyBattle(choiceDetail.enemyGroup.enemies);
                     DOVirtual.DelayedCall(1, () =>
                     {
@@ -190,8 +191,8 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     });
                 });
 
-                if (choiceDetail.exit) eventManager.ExitEvent();
-                else eventManager.AfterSelectChoice(choiceDetail);
+                if(choiceDetail.next) eventManager.AfterSelectChoice(choiceDetail);
+                else eventManager.ExitEvent();
                 break;
 
             case ChoiceType.BaseStat:

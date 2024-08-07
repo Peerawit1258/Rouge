@@ -65,10 +65,20 @@ public class CharacterValue : MonoBehaviour
 
     public void UpdateStatValue()
     {
-        atkValue = b_atk + (b_atk * p_atk / 100);
-        if(atkValue < 0) atkValue = 0;
-        defValue = b_def + (b_def * p_def / 100);
-        if(defValue < 0) defValue = 0;
+        float atkTarget = b_atk + (b_atk * p_atk / 100);
+        if (atkValue != atkTarget)
+        {
+            GameManager.instance.detailPanel.ChangeAtkValue((int)atkTarget, (int)atkValue);
+            atkValue = b_atk + (b_atk * p_atk / 100);
+            if (atkValue < 1) atkValue = 1;
+        }
+        float defTarget = b_def + (b_def * p_def / 100);
+        if (defValue != defTarget)
+        {
+            GameManager.instance.detailPanel.ChangeAtkValue((int)defTarget, (int)defValue);
+            defValue = defTarget;
+            if (defValue < 0) defValue = 0;
+        }
     }
 
     public int GetDamageBonus()

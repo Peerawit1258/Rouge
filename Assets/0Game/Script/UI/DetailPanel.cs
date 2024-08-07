@@ -39,6 +39,20 @@ public class DetailPanel : MonoBehaviour
         defValue.text = def.ToString();
         goldValue.text = gold.ToString();
     }
+    public void ChangeAtkValue(int value, int baseValue) 
+    {
+        DOVirtual.Int(baseValue, value, 0.5f, (x) => {
+            if (x >= 1)
+                atkValue.text = x.ToString();
+        });
+    }
+    public void ChangedefValue(int value, int baseValue) 
+    {
+        DOVirtual.Int(baseValue, value, 0.5f, (x) => {
+            if (x >= 0)
+                defValue.text = x.ToString();
+        });
+    }
     public void ChangeGoldValue(int value)
     {
         int currentGold = GameManager.instance.playerData.gold;

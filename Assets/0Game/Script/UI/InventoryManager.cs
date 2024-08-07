@@ -149,8 +149,9 @@ public class InventoryManager : MonoBehaviour, IDropHandler
                 show.GetObjPos().DOSizeDelta(Vector2.zero, 1).SetEase(Ease.OutQuart).SetDelay(1).OnComplete(() =>
                 {
                     show.GetObjPos().sizeDelta = new Vector2(100, 100);
-                    PlaceForSkill place = GetPlace();
-                    place.SetSkill(show);
+                    show.GetObjPos().parent = skillPlace;
+                    //PlaceForSkill place = GetPlace();
+                    //place.SetSkill(show);
                 });
                 
             }

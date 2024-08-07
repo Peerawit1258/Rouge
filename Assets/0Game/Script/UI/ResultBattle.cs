@@ -231,7 +231,7 @@ public class ResultBattle : MonoBehaviour
         selectText.DOFade(0, time).OnComplete(() =>
         {
             selectText.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 325);
-            GameManager.instance.encounterManagementSystem.CreateNextDoorNode();
+            //GameManager.instance.encounterManagementSystem.CreateNextDoorNode();
             rewardObj.SetActive(false);
         });
     }

@@ -1569,6 +1569,8 @@ MonoBehaviour:
   playerDetail: {fileID: 11400000, guid: 7f19437e87341f4408bdb5a00df307e2, type: 2}
   group: {fileID: 11400000, guid: dea9b22a71280d54ca773f3213ccfb5d, type: 2}
   isTest: 0
+  isEvent: 1
+  eventTest: {fileID: 11400000, guid: c46f78f77ab40e443bc55379afe6a11d, type: 2}
 --- !u!4 &749476252
 Transform:
   m_ObjectHideFlags: 0

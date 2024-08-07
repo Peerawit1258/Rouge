@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] CharacterDetail playerDetail;
     [SerializeField] public EnemyGroup group ;
     [SerializeField] public bool isTest;
+    [SerializeField] public bool isEvent;
+    [SerializeField, ShowIf("@isEvent")] EventInfo eventTest;
 
     public static GameManager instance;
     private void Awake()
@@ -106,15 +108,27 @@ public class GameManager : MonoBehaviour
             encounterManagementSystem.IncreaseStageCount();
             encounterManagementSystem.stageDetail[0].encounterMap.SetActive(true);
             if (turnManager.player == null) battleSetup.SetupPlayerBattle(playerDetail);
-            battleSetup.SetupEnemyBattle(encounterManagementSystem.stageDetail[0].startNode.enemyGroup.enemies);
-            encounterManagementSystem.GetPreviousNode().Add(encounterManagementSystem.stageDetail[0].startNode.nodeID);
-            detailPanel.SetEncounter(encounterManagementSystem.stageCount);
-
-            DOVirtual.DelayedCall(1, () =>
+            if (isEvent)
             {
-                Debug.Log("Create");
-                turnManager.StartTurn();
-            });
+                
+                DOVirtual.DelayedCall(1, () =>
+                {
+                    eventManager.EventSetup(eventTest);
+                });
+            }
+            else
+            {
+                battleSetup.SetupEnemyBattle(encounterManagementSystem.stageDetail[0].startNode.enemyGroup.enemies);
+                encounterManagementSystem.GetPreviousNode().Add(encounterManagementSystem.stageDetail[0].startNode.nodeID);
+                detailPanel.SetEncounter(encounterManagementSystem.stageCount);
+
+                DOVirtual.DelayedCall(1, () =>
+                {
+                    Debug.Log("Create");
+                    turnManager.StartTurn();
+                });
+            }
+            
         }
     }
 
