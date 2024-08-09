@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetupBattleStage();
         List<SkillAction> currentSkill = new List<SkillAction>();
         List<Relic> currentRelic = new List<Relic>();
         if (isTest)
@@ -61,6 +62,10 @@ public class GameManager : MonoBehaviour
             currentSkill.Add(allData.GetSkillWithID("SH001"));
             currentSkill.Add(allData.GetSkillWithID("SA005"));
             currentSkill.Add(allData.GetSkillWithID("SB001"));
+
+            if(relics.Count > 0)
+                foreach (Relic relic in relics)
+                    currentRelic.Add(relic);
         }
 
         if (currentSkill.Count > 0)
@@ -68,11 +73,11 @@ public class GameManager : MonoBehaviour
         if(currentRelic.Count > 0)
         {
             relicManagerSystem.AddRelic(currentRelic);
-            foreach (var info in currentRelic)
-                detailPanel.CreateInfo(info);
+            //foreach (var info in currentRelic)
+            //    detailPanel.CreateInfo(info);
         }
             
-        SetupBattleStage();
+        
         
         //Debug.Log(t);
     }

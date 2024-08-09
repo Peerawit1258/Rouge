@@ -1564,13 +1564,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea05e7eb3206ee54b84887eb6bedde16, type: 2}
   - {fileID: 11400000, guid: 2ddc122ffa46c67468b88ea64dfefe7a, type: 2}
   - {fileID: 11400000, guid: 4e4dfa7b8b62d104aa15e5842b8f573f, type: 2}
-  relics: []
+  relics:
+  - {fileID: 11400000, guid: 1db6bd7ef840dc34f93dcde07e8b2912, type: 2}
+  - {fileID: 11400000, guid: a2bd0bb8cde966342a86a1be4d3b54c4, type: 2}
   mainCamera: {fileID: 963194229}
   playerDetail: {fileID: 11400000, guid: 7f19437e87341f4408bdb5a00df307e2, type: 2}
   group: {fileID: 11400000, guid: dea9b22a71280d54ca773f3213ccfb5d, type: 2}
   isTest: 0
   isEvent: 1
-  eventTest: {fileID: 11400000, guid: c46f78f77ab40e443bc55379afe6a11d, type: 2}
+  eventTest: {fileID: 11400000, guid: e15c4e784aa7cb2489970763c7bb3e57, type: 2}
 --- !u!4 &749476252
 Transform:
   m_ObjectHideFlags: 0
@@ -1663,7 +1665,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f68aaf38e4b9ade4fae72dd88435f293, type: 2}
   - {fileID: 11400000, guid: 7a78b26a362e7e44a821276dea14fcd9, type: 2}
   allRelics:
+  - {fileID: 11400000, guid: ce6f1fedf364e8448ab085b26cc2d47f, type: 2}
+  - {fileID: 11400000, guid: 1b9648ebe3aae3847926aed23b04cc6e, type: 2}
   - {fileID: 11400000, guid: 1db6bd7ef840dc34f93dcde07e8b2912, type: 2}
+  - {fileID: 11400000, guid: 16a3a6265e71b844caab281835999d03, type: 2}
+  - {fileID: 11400000, guid: a2bd0bb8cde966342a86a1be4d3b54c4, type: 2}
+  - {fileID: 11400000, guid: b3b762f33315ff8429016a0f2e1daf12, type: 2}
+  - {fileID: 11400000, guid: 551e84ee3a2669049aba905201bf64a4, type: 2}
+  - {fileID: 11400000, guid: e24d12d6327bc3a4dacc4e434ba4e3db, type: 2}
+  - {fileID: 11400000, guid: d54db220dae61a340a6187486e9dedf6, type: 2}
+  - {fileID: 11400000, guid: 735f2658a375bcb4aa520861553e7965, type: 2}
+  - {fileID: 11400000, guid: f57bd5206d452b842a666359ebd7eeeb, type: 2}
+  - {fileID: 11400000, guid: a80bf61fea10eec4f80878511b1997f7, type: 2}
+  - {fileID: 11400000, guid: a91d84bb9b6345b439063f2f276b5ae5, type: 2}
+  - {fileID: 11400000, guid: 5d9b73f7c1c59d74d94997c46e913285, type: 2}
+  - {fileID: 11400000, guid: 6c4b890a4fde5ac4ebd95059cf3fc651, type: 2}
+  - {fileID: 11400000, guid: 962f9e85c64f6ac4c8ea3f6c0ea5aa11, type: 2}
+  - {fileID: 11400000, guid: 661938700ac39b040a6e20c0fe6ac6e8, type: 2}
+  - {fileID: 11400000, guid: c72796afa32a5504ab3a22059456a4ed, type: 2}
+  - {fileID: 11400000, guid: c69954acd7d188c44b6d3610c1170944, type: 2}
   allEnemy:
   - {fileID: 11400000, guid: 67564b33ee783864bb2eaa6228944370, type: 2}
   - {fileID: 11400000, guid: 6b3004ad29ff8034d83e9659d151d496, type: 2}
@@ -4111,7 +4131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5032508388648624727, guid: 430b0fba72ea1c94080d7e2680bf562e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000061035156
+      value: 0.00024414062
       objectReference: {fileID: 0}
     - target: {fileID: 5341919066366149336, guid: 430b0fba72ea1c94080d7e2680bf562e, type: 3}
       propertyPath: m_AnchorMax.y

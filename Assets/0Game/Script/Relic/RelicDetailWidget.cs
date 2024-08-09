@@ -59,6 +59,7 @@ public class RelicDetailWidget : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         if(relicManagerSystem == null) relicManagerSystem = GameManager.instance.relicManagerSystem;
         relicWidget.GetWidgetPos().parent = GameManager.instance.detailPanel.GetRelicPlace();
+        relicWidget.SetRelicInfo(GameManager.instance.detailPanel.CreateInfo(relicWidget.GetRelic()));
         GameManager.instance.detailPanel.GetRelicWidgets().Insert(0 , relicWidget);
         GameManager.instance.detailPanel.OrderRelic();
         relicManagerSystem.AddRelic(relicWidget.GetRelic());

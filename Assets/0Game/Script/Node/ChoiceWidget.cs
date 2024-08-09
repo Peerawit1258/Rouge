@@ -27,6 +27,7 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         choiceDetail = detail;
         txt.text = choiceDetail.sentence;
+        exit = choiceDetail.exit;
 
         if (!CheckRequired(detail)) 
         { 
@@ -106,8 +107,7 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                         GameManager.instance.relicManagerSystem.RemoveRelic(choiceDetail.useRelic);
                         break;
                 case RewardType.Gold:
-                    GameManager.instance.playerData.gold -= choiceDetail.useGold;
-                    if (GameManager.instance.playerData.gold < 0) GameManager.instance.playerData.gold = 0;
+                    GameManager.instance.detailPanel.ChangeGoldValue(GameManager.instance.playerData.gold - choiceDetail.useGold);
                     break;
                 case RewardType.Hp:
                     GameManager.instance.turnManager.player.StartDamageTaken(choiceDetail.useHp, 0, true);
@@ -120,9 +120,14 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             int random = Random.Range(0, 100);
             if (random >= choiceDetail.rate)
             {
+                Debug.LogError("Fail");
                 eventManager.NextEvent(choiceDetail.failEvent);
                 return;
-            } 
+            }
+            else
+            {
+                Debug.LogError("Success");
+            }
         }
         switch (choiceDetail.type) 
         {

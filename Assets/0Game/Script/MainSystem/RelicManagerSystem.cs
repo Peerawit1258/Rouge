@@ -32,24 +32,28 @@ public class RelicManagerSystem : MonoBehaviour
 
     PlayerController player;
     StatusEffectSystem statusEffectSystem;
+    DetailPanel detailPanel;
     // Start is called before the first frame update
     void Start()
     {
         player = FindAnyObjectByType<PlayerController>();
         statusEffectSystem = GameManager.instance.statusEffectSystem;
+        detailPanel = GameManager.instance.detailPanel;
         //Debug.Log(10 * ((posionDmg + dotDmg) / 100) + " " + (int)(10 * ((posionDmg + dotDmg) / 100)));
     }
 
     public void AddRelic(List<Relic> relics) // Triger when start
     {
+        if(detailPanel == null) detailPanel = GameManager.instance.detailPanel;
         foreach (Relic relic in relics)
         {
-            RelicWidget widget = Instantiate(relicPrefab, GameManager.instance.detailPanel.GetRelicPlace()).GetComponent<RelicWidget>();
+            RelicWidget widget = Instantiate(relicPrefab, detailPanel.GetRelicPlace()).GetComponent<RelicWidget>();
             widget.SetupRelic(relic);
-            GameManager.instance.detailPanel.GetRelicWidgets().Add(widget);
+            detailPanel.GetRelicWidgets().Add(widget);
+            widget.SetRelicInfo(detailPanel.CreateInfo(relic));
             AddRelic(relic);
         }
-        GameManager.instance.detailPanel.OrderRelic();
+        detailPanel.OrderRelic();
     }
 
     public void AddRelic(Relic relic) // Add new skill
@@ -126,7 +130,7 @@ public class RelicManagerSystem : MonoBehaviour
         }
 
         GameManager.instance.playerData.currentRelics.Add(relic);
-        GameManager.instance.detailPanel.CreateInfo(relic);
+        //GameManager.instance.detailPanel.CreateInfo(relic);
     }
 
     public void RemoveRelic(Relic relic)
@@ -207,6 +211,18 @@ public class RelicManagerSystem : MonoBehaviour
                 GameManager.instance.playerData.currentRelics.Remove(re);
                 break;
             }
+
+        foreach (var re in detailPanel.GetRelicWidgets())
+        {
+            if(re.GetRelic().id == relic.id)
+            {
+                detailPanel.RemoveRelicInfo(re);
+                detailPanel.GetRelicWidgets().Remove(re);
+                Destroy(re.gameObject);
+                if (detailPanel.GetRelicWidgets().Count > 0) detailPanel.OrderRelic();
+                break;
+            }
+        }
                 
     }
 

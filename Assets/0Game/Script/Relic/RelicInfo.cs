@@ -17,5 +17,6 @@ public class RelicInfo : MonoBehaviour
         relicName.text = relic.relicName;
         if (relic.relicType == RelicType.Curse) relicName.color = curse;
         relicDesc.text = relic.description;
+        name = relic.name + "_info";
     }
 }

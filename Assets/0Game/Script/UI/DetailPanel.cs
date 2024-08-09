@@ -41,12 +41,13 @@ public class DetailPanel : MonoBehaviour
     }
     public void ChangeAtkValue(int value, int baseValue) 
     {
+        Debug.Log(value);
         DOVirtual.Int(baseValue, value, 0.5f, (x) => {
             if (x >= 1)
                 atkValue.text = x.ToString();
         });
     }
-    public void ChangedefValue(int value, int baseValue) 
+    public void ChangeDefValue(int value, int baseValue) 
     {
         DOVirtual.Int(baseValue, value, 0.5f, (x) => {
             if (x >= 0)
@@ -131,12 +132,22 @@ public class DetailPanel : MonoBehaviour
         }
     }
 
-    List<GameObject> infoGroup = new List<GameObject>();
-    public void CreateInfo(Relic relic)
+    [ReadOnly] public List<GameObject> infoGroup = new List<GameObject>();
+    public RelicInfo CreateInfo(Relic relic)
     {
         RelicInfo info = Instantiate(relicInfoPrefab, infoPlace).GetComponent<RelicInfo>();
         info.AssignInfo(relic);
         infoGroup.Add(info.gameObject);
+
+        return info;
+    }
+
+    public void RemoveRelicInfo(RelicWidget widget)
+    {
+        infoGroup.Remove(widget.relicInfo.gameObject);
+        Destroy(widget.relicInfo.gameObject);
+        widget.relicInfo = null;
+
     }
 
     public RectTransform GetRelicPlace() => relicPlace;

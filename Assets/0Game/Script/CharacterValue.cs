@@ -39,6 +39,7 @@ public class CharacterValue : MonoBehaviour
     {
         if (assign)
         {
+            
             if (stat.type == StatType.Atk) p_atk += stat.value;
             else if (stat.type == StatType.Def) p_def += stat.value;
             else if (stat.type == StatType.DmgBonus) damageBonus += stat.value;
@@ -75,7 +76,7 @@ public class CharacterValue : MonoBehaviour
         float defTarget = b_def + (b_def * p_def / 100);
         if (defValue != defTarget)
         {
-            GameManager.instance.detailPanel.ChangeAtkValue((int)defTarget, (int)defValue);
+            GameManager.instance.detailPanel.ChangeDefValue((int)defTarget, (int)defValue);
             defValue = defTarget;
             if (defValue < 0) defValue = 0;
         }
