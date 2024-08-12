@@ -58,14 +58,16 @@ public class GameManager : MonoBehaviour
         else
         {
             currentSkill.Add(allData.GetSkillWithID("SA001"));
+            currentSkill.Add(allData.GetSkillWithID("SA001"));
+            currentSkill.Add(allData.GetSkillWithID("SA001"));
             currentSkill.Add(allData.GetSkillWithID("SB002"));
             currentSkill.Add(allData.GetSkillWithID("SH001"));
             currentSkill.Add(allData.GetSkillWithID("SA005"));
             currentSkill.Add(allData.GetSkillWithID("SB001"));
 
-            if(relics.Count > 0)
-                foreach (Relic relic in relics)
-                    currentRelic.Add(relic);
+            //if(relics.Count > 0)
+            //    foreach (Relic relic in relics)
+            //        currentRelic.Add(relic);
         }
 
         if (currentSkill.Count > 0)

@@ -51,6 +51,9 @@ public class SkillOrderSystem : MonoBehaviour
             currentSkill = 0;
             skillPlace.gameObject.SetActive(false);
             GameManager.instance.skillDesc.FadeOut();
+            if (allSkillWidget.Count > 0)
+                foreach (SkillWidget show in allSkillWidget)
+                    show.skillShow.SetCoolDown();
             StartCoroutine(ActiveSkillAttack());
         }
     }
@@ -99,9 +102,6 @@ public class SkillOrderSystem : MonoBehaviour
             yield return new WaitForSeconds(1f);
             allSlot[currentSkill].GetSkillWidget().skillShow.SetCoolDown(); 
         }
-        //else
-            //yield return new WaitForSeconds(0.5f);
-        
         currentSkill++;
         if (currentSkill < allSlot.Count)
             StartCoroutine(ActiveSkillAttack());
@@ -367,28 +367,31 @@ public class SkillOrderSystem : MonoBehaviour
     public void CreateSkillSlot()
     {
         skillPlace.gameObject.SetActive(true);
+        if (inventoryManager.GetSkillActive().Count == 0) return;
         for(int i = 0; i < skillCount + relicManagerSystem.randomSkill; i++)
         {
-            if (i > inventoryManager.GetSkillActive().Count - 1)
+            if (i > inventoryManager.GetSkillActive().Count + inventoryManager.GetSkillUsable().Count - 1)
             {
                 break;
             }
             SkillAction skill;
             int random;
-            //do
-            //{
-            //    random = Random.Range(0, inventoryManager.GetSkillActive().Count);
-            //    skill = inventoryManager.GetSkillActive()[random].GetSkillAction();
-            //    //skill = GameManager.instance.playerData.currentSkills[Random.Range(0, GameManager.instance.playerData.currentSkills.Count)];
-            //} while (CheckAllSkillWidget(skill));
             random = Random.Range(0, inventoryManager.GetSkillActive().Count);
             skill = inventoryManager.GetSkillActive()[random].GetSkillAction();
+
+            
 
             SkillWidget widget = Instantiate(skillPrefab,skillPlace).GetComponent<SkillWidget>();
             widget.skillShow = inventoryManager.GetSkillActive()[random];
             widget.SetDetail(skill);
             widget.name = skill.skillName + "_" + i;
             allSkillWidget.Add(widget);
+
+            SkillShow show = inventoryManager.GetSkillActive()[random];
+            Debug.Log(show.GetSkillAction().skillName);
+            inventoryManager.GetSkillUsable().Add(show);
+            inventoryManager.GetSkillActive().Remove(show);
+            
         }
         OrderDistanceSkill();
         slotPlace.gameObject.SetActive(true);
@@ -414,7 +417,7 @@ public class SkillOrderSystem : MonoBehaviour
 
     public void ClearSlotSkill()
     {
-        foreach(var slot in allSlot)
+        foreach(SlotSkill slot in allSlot)
             slot.ClearData(true);
         for(int i = 0; i < allSkillWidget.Count;i++)
             Destroy(allSkillWidget[i].gameObject);
@@ -427,7 +430,7 @@ public class SkillOrderSystem : MonoBehaviour
     {
         if(allSkillWidget.Count == 0) return false;
         
-        foreach (var widget in allSkillWidget)
+        foreach (SkillWidget widget in allSkillWidget)
         {
             if (widget.skill.id == skill.id)
                 return true;

@@ -9,20 +9,15 @@ using TMPro;
 
 public class InventoryManager : MonoBehaviour, IDropHandler
 {
-    [SerializeField] private RectTransform inventoryPos;
-    [SerializeField] private CanvasGroup canvasGroup;
-    [SerializeField] private RectTransform skillPlace;
-    [SerializeField] private RectTransform skillSparePos;
-    [SerializeField] private RectTransform skillSparePlace;
-    [SerializeField] private GameObject skillPrefab;
-    [SerializeField] private List<PlaceForSkill> plac;
-    [SerializeField] private List<PlaceForSkill> spare;
-    [SerializeField] private Button iconBtn;
-    [SerializeField] public RectTransform iconPos;
-    [SerializeField] private Button backBtn;
-    //[SerializeField] private CanvasGroup placeCanvas;
-    [SerializeField] private RectTransform placePos;
+    [SerializeField, TabGroup("UI")] private RectTransform inventoryPos;
+    [SerializeField, TabGroup("UI")] private CanvasGroup canvasGroup;
+    [SerializeField, TabGroup("UI")] private RectTransform skillPlace;
+    [SerializeField, TabGroup("UI")] private Button iconBtn;
+    [SerializeField, TabGroup("UI")] public RectTransform iconPos;
+    [SerializeField, TabGroup("UI")] private Button backBtn;
+    [SerializeField, TabGroup("UI")] private RectTransform placePos;
 
+    [SerializeField] private GameObject skillPrefab;
     //[SerializeField] private TMP_Text placeText;
 
     [TabGroup("Setting"), SerializeField] float time;
@@ -31,9 +26,10 @@ public class InventoryManager : MonoBehaviour, IDropHandler
     [ReadOnly] public bool isOpen = false;
     [ReadOnly] public int recieveCount = 0;
     [ReadOnly] public int removeCount = 0;
-    List<SkillShow> skillShows = new List<SkillShow>();
-    List<SkillShow> activeSkill = new List<SkillShow>();
-    List<SkillShow> cooldownSkill = new List<SkillShow>();
+    [ReadOnly, ShowInInspector, TabGroup("2","Store")] List<SkillShow> skillShows = new List<SkillShow>();
+    [ReadOnly, ShowInInspector, TabGroup("2", "Store")] List<SkillShow> activeSkill = new List<SkillShow>();
+    [ReadOnly, ShowInInspector, TabGroup("2", "Store")] List<SkillShow> usableSkill = new List<SkillShow>();
+    [ReadOnly, ShowInInspector, TabGroup("2", "Store")] List<SkillShow> cooldownSkill = new List<SkillShow>();
 
     ResultBattle resultBattle;
     // Start is called before the first frame update
@@ -158,14 +154,6 @@ public class InventoryManager : MonoBehaviour, IDropHandler
         });
     }
 
-    public void CreateSkillSpareShow(SkillAction skill)
-    {
-        SkillShow show = Instantiate(skillPrefab, skillSparePlace).GetComponent<SkillShow>();
-        show.SetSkillShow(skill);
-
-        //skillShows.Add(show);
-    }
-
     public void SetAmountRecieveSkill(int num)
     {
         recieveCount = num;
@@ -204,41 +192,18 @@ public class InventoryManager : MonoBehaviour, IDropHandler
             cooldownSkill[i].ReadyToActionSkill();
     }
 
-    void ClearSpare()
+    public SkillShow GetActiveSkillShowWithSkill(SkillAction skill)
     {
-        foreach (var s in spare)
-        {
-            if (s.GetSkill() != null)
-            {
-                Destroy(s.GetSkill().gameObject);
-                s.ClearValue();
-            }   
-        }
-    }
+        SkillShow show = new SkillShow();
+        foreach(var s in activeSkill)
+            if(s.GetSkillAction().id == skill.id)
+                show = s;
 
-    PlaceForSkill GetPlace()
-    {
-        //foreach (var p in place)
-        //{
-        //    if (p.GetSkill() == null)
-        //        return p;
-        //}
-
-        return null;
-    }
-
-    public bool CheckPlaceEmpty()
-    {
-        //foreach (var p in place)
-        //{
-        //    if (p.GetSkill() == null)
-        //        return true;
-        //}
-
-        return false;
+        return show;
     }
 
     public List<SkillShow> GetSkillShows() => skillShows;
     public List<SkillShow> GetSkillActive() => activeSkill;
+    public List<SkillShow> GetSkillUsable() => usableSkill;
     public List<SkillShow> GetSkillCoolDown() => cooldownSkill;
 }

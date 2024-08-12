@@ -1564,14 +1564,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea05e7eb3206ee54b84887eb6bedde16, type: 2}
   - {fileID: 11400000, guid: 2ddc122ffa46c67468b88ea64dfefe7a, type: 2}
   - {fileID: 11400000, guid: 4e4dfa7b8b62d104aa15e5842b8f573f, type: 2}
-  relics:
-  - {fileID: 11400000, guid: 1db6bd7ef840dc34f93dcde07e8b2912, type: 2}
-  - {fileID: 11400000, guid: a2bd0bb8cde966342a86a1be4d3b54c4, type: 2}
+  relics: []
   mainCamera: {fileID: 963194229}
   playerDetail: {fileID: 11400000, guid: 7f19437e87341f4408bdb5a00df307e2, type: 2}
   group: {fileID: 11400000, guid: dea9b22a71280d54ca773f3213ccfb5d, type: 2}
   isTest: 0
-  isEvent: 1
+  isEvent: 0
   eventTest: {fileID: 11400000, guid: e15c4e784aa7cb2489970763c7bb3e57, type: 2}
 --- !u!4 &749476252
 Transform:
@@ -3763,6 +3761,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 154929422056419620, guid: 430b0fba72ea1c94080d7e2680bf562e, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 166297635217520732, guid: 430b0fba72ea1c94080d7e2680bf562e, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 166297635217520732, guid: 430b0fba72ea1c94080d7e2680bf562e, type: 3}
