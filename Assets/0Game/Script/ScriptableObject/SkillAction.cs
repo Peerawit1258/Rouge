@@ -15,6 +15,8 @@ public class SkillAction : ScriptableObject
     public TargetType targetType;
     public int cooldown;
     public GameObject particleEffect;
+    public bool shakeCam;
+    [ShowIf("@shakeCam")] public int shakeCount;
     [TextArea(4,10)] public string description;
 
     [Title("Skill Detail")]

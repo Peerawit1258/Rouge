@@ -26,12 +26,12 @@ public class CameraControl : MonoBehaviour
         
     }
     [Button]
-    public void CameraShake()
+    public void CameraShake(float delay)
     {
         cameraPos.DOShakePosition(duration, strength, vibrato, random, false, true, ShakeRandomnessMode.Harmonic).OnComplete(() =>
         {
             cameraPos.DOMove(origin, 0.1f);
-        });
+        }).SetDelay(delay);
           
     }
 }

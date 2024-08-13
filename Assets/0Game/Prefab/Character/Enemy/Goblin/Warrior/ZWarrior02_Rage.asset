@@ -17,9 +17,11 @@ MonoBehaviour:
   skillIcon: {fileID: 0}
   frame: {fileID: 0}
   rarity: 0
-  targetType: 0
+  targetType: 3
+  cooldown: 0
   particleEffect: {fileID: 0}
-  descrition: 
+  shakeCam: 0
+  description: 
   actionDetail:
     skillType: 1
     percentDMG: 

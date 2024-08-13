@@ -20,6 +20,7 @@ MonoBehaviour:
   targetType: 4
   cooldown: 0
   particleEffect: {fileID: 0}
+  shakeCam: 0
   description: 
   actionDetail:
     skillType: 1
@@ -28,7 +29,7 @@ MonoBehaviour:
     statusEnemy: []
     statusSelf:
     - statusEffect: {fileID: 11400000, guid: a7a0bb5ecad7c9947bbaac008255dfee, type: 2}
-      count: 2
+      count: 3
     removeBuff: 0
     damageSpecific:
       damageForEffect: {fileID: 0}

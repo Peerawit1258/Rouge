@@ -21,6 +21,7 @@ public class SkillOrderSystem : MonoBehaviour
     [TabGroup("Value"), SerializeField] int space;
 
     [ReadOnly] public SkillWidget selectWidget;
+    public GameObject actionBtn;
 
     List<SkillWidget> allSkillWidget = new List<SkillWidget>();
     List<SlotSkill> allSlot = new List<SlotSkill>();
@@ -57,6 +58,20 @@ public class SkillOrderSystem : MonoBehaviour
             StartCoroutine(ActiveSkillAttack());
         }
     }
+
+    public void ActionOrder()
+    {
+        if (isSkillActive) return;
+        currentSkill = 0;
+        skillPlace.gameObject.SetActive(false);
+        actionBtn.gameObject.SetActive(false);
+        GameManager.instance.skillDesc.FadeOut();
+        if (allSkillWidget.Count > 0)
+            foreach (SkillWidget show in allSkillWidget)
+                show.skillShow.SetCoolDown();
+        StartCoroutine(ActiveSkillAttack());
+    }
+
     int currentSkill = 0;
     int heal = 0;
     [HideInInspector] public bool isSkillActive;
@@ -74,6 +89,11 @@ public class SkillOrderSystem : MonoBehaviour
             }
             SkillAction skill = allSlot[currentSkill].skill;
 
+            if (skill.shakeCam)
+            {
+                for (int i = 0; i < skill.shakeCount; i++)
+                    GameManager.instance.mainCamera.CameraShake(i * 0.2f + 0.3f);
+            }
             GameManager.instance.detailPanel.ShowSkillActionName(skill.skillName);
             switch (skill.GetSkillType())
             {

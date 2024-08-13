@@ -58,11 +58,9 @@ public class GameManager : MonoBehaviour
         else
         {
             currentSkill.Add(allData.GetSkillWithID("SA001"));
-            currentSkill.Add(allData.GetSkillWithID("SA001"));
-            currentSkill.Add(allData.GetSkillWithID("SA001"));
-            currentSkill.Add(allData.GetSkillWithID("SB002"));
-            currentSkill.Add(allData.GetSkillWithID("SH001"));
+            currentSkill.Add(allData.GetSkillWithID("SA016"));
             currentSkill.Add(allData.GetSkillWithID("SA005"));
+            currentSkill.Add(allData.GetSkillWithID("SB002"));
             currentSkill.Add(allData.GetSkillWithID("SB001"));
 
             //if(relics.Count > 0)

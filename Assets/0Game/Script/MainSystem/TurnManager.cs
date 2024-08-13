@@ -61,6 +61,7 @@ public class TurnManager : MonoBehaviour
             skillOrderSystem.isSkillActive = false;
             skillOrderSystem.slotPlace.gameObject.SetActive(true);
             skillOrderSystem.skillPlace.gameObject.SetActive(true);
+            skillOrderSystem.actionBtn.gameObject.SetActive(true);
             skillOrderSystem.CreateSkillSlot();
         });
     }

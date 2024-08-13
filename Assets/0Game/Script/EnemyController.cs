@@ -182,6 +182,7 @@ public class EnemyController : CharacterValue
     {
         if (turnManager.player.hpValue <= 0)
         {
+            GameManager.instance.resultBattle.StartFinishPanel(false);
             yield break;
         }
 
@@ -192,7 +193,11 @@ public class EnemyController : CharacterValue
             DestroySelf();
         }
 
-        
+        if (currentSkill.shakeCam)
+        {
+            for (int i = 0; i < currentSkill.shakeCount; i++)
+                GameManager.instance.mainCamera.CameraShake(i * 0.2f);
+        }
         GameManager.instance.detailPanel.ShowSkillActionName(currentSkill.skillName);
         switch (currentSkill.GetSkillType())
         {
@@ -362,7 +367,8 @@ public class EnemyController : CharacterValue
             //    if (currentSkill.GetSkillType() == SkillType.Wait) return false;
         }else if(skill.GetSkillType() == SkillType.Attack)
         {
-
+            if(currentSkill != null)
+                if(currentSkill.id == skill.id) return false;
         }else if (skill.GetSkillType() == SkillType.Summon)
         {
             if(turnManager.enemies.Count == 3 || minion == null) return false;

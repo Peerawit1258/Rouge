@@ -89,6 +89,16 @@ public class ResultBattle : MonoBehaviour
         GameManager.instance.battleSetup.arrow.gameObject.SetActive(false);
         GameManager.instance.skillOrderSystem.slotPlace.gameObject.SetActive(false);
         GameManager.instance.skillOrderSystem.skillPlace.gameObject.SetActive(false);
+        GameManager.instance.skillOrderSystem.actionBtn.SetActive(false);
+        if(GameManager.instance.inventoryManager.GetSkillUsable().Count > 0)
+        {
+            foreach(SkillShow show in GameManager.instance.inventoryManager.GetSkillUsable())
+            {
+                GameManager.instance.inventoryManager.GetSkillActive().Add(show);
+                GameManager.instance.inventoryManager.GetSkillUsable().Remove(show);
+            }
+        }
+
         yield return new WaitForSeconds(1);
         ClearResult();
         winPanel.gameObject.SetActive(true);
@@ -128,16 +138,7 @@ public class ResultBattle : MonoBehaviour
                     skillShows.Add(skill);
                 }
                 GameManager.instance.inventoryManager.SetAmountRecieveSkill(1);
-                //if (!GameManager.instance.inventoryManager.isOpen)
-                //{
-                //    GameManager.instance.inventoryManager.OpenInventory();
-                    
-                //}
                 nextButton.gameObject.SetActive(true);
-                //if (!GameManager.instance.inventoryManager.CheckPlaceEmpty())
-                //    nextButton.gameObject.SetActive(true);
-                //else nextButton.gameObject.SetActive(false);
-
             });
         }
         else

@@ -27,6 +27,7 @@ public class StatusEffectSystem : MonoBehaviour
     public void GetStatusInEnemy(EnemyController enemy,AddStatus add)
     {
         if (add == null) return;
+        Debug.Log(add.statusEffect.statusName);
         if (enemy.gaugeHP.statusWidgets.Count > 0)
         {
             foreach(var w in enemy.gaugeHP.statusWidgets)
