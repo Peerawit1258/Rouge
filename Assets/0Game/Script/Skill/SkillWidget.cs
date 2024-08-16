@@ -13,7 +13,7 @@ public class SkillWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] CanvasGroup canvasGroup;
     [SerializeField] Image icon;
     [SerializeField] Image bgFrame;
-    [SerializeField] SkillDesc skillDesc;
+    [SerializeField] public SkillNumSlot skillNumSlot;
 
     [ReadOnly] public SkillAction skill;
     [Header("Move")]
@@ -40,6 +40,7 @@ public class SkillWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         this.skill = skill;
         icon.sprite = skill.skillIcon;
         bgFrame.sprite = skill.frame;
+        skillNumSlot.SetNumber(skill.GetConditionDetail());
         if (skill.GetHaveCondition())
             specific = skill.GetLockNum();
 
@@ -96,16 +97,21 @@ public class SkillWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (skillOrderSystem.isOrder) return;
         canvasGroup.blocksRaycasts = true;
         canvasGroup.alpha = 1;
-        if (!inSlot) skillOrderSystem.OrderDistanceSkill();
+        if (!inSlot)
+        {
+            skillOrderSystem.OrderDistanceSkill();
+            if (!skillNumSlot.gameObject.activeSelf)
+                skillNumSlot.gameObject.SetActive(true);
+        }
         //else if(slotSkill != null) ExitSlot()
     }
 
-
-    public void AddSkilltoSlotBar(SlotSkill slot,bool allEnemy = false)
+        public void AddSkilltoSlotBar(SlotSkill slot,bool allEnemy = false)
     {
 
         slotSkill = slot;
         slotSkill.AssignSkill(this);
+        skillNumSlot.gameObject.SetActive(false);
         widgetPos.parent = slotSkill.gameObject.transform;
         skillOrderSystem.currentSlot++;
         skillOrderSystem.GetAllSkillWidget().Remove(this);

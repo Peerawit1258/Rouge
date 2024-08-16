@@ -92,10 +92,10 @@ public class ResultBattle : MonoBehaviour
         GameManager.instance.skillOrderSystem.actionBtn.SetActive(false);
         if(GameManager.instance.inventoryManager.GetSkillUsable().Count > 0)
         {
-            foreach(SkillShow show in GameManager.instance.inventoryManager.GetSkillUsable())
+            for(int i = GameManager.instance.inventoryManager.GetSkillUsable().Count - 1;i >= 0; i--)
             {
-                GameManager.instance.inventoryManager.GetSkillActive().Add(show);
-                GameManager.instance.inventoryManager.GetSkillUsable().Remove(show);
+                GameManager.instance.inventoryManager.GetSkillActive().Add(GameManager.instance.inventoryManager.GetSkillUsable()[i]);
+                GameManager.instance.inventoryManager.GetSkillUsable().Remove(GameManager.instance.inventoryManager.GetSkillUsable()[i]);
             }
         }
 
@@ -232,7 +232,7 @@ public class ResultBattle : MonoBehaviour
         selectText.DOFade(0, time).OnComplete(() =>
         {
             selectText.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 325);
-            //GameManager.instance.encounterManagementSystem.CreateNextDoorNode();
+            GameManager.instance.encounterManagementSystem.CreateNextDoorNode();
             rewardObj.SetActive(false);
         });
     }

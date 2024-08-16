@@ -145,7 +145,7 @@ public class SkillShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         skillCanvas.DOFade(0, 1f).From().SetDelay(delay);
         gameObject.name = skill.skillName + "_Show";
 
-        skillDesc.SetDetailBox(skill);
+        //skillDesc.SetDetailBox(skill);
     }
 
     public void SetSkillShow(SkillAction skill, bool isInventory = true)
@@ -158,7 +158,7 @@ public class SkillShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         skillAction = skill;
         inventory = isInventory;
 
-        skillDesc.SetDetailBox(skill);
+        //skillDesc.SetDetailBox(skill);
     }
 
     int cooldownValue;

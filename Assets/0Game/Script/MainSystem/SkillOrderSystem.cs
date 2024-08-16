@@ -429,6 +429,8 @@ public class SkillOrderSystem : MonoBehaviour
             //Debug.Log(index);
             distance = index * space;
             allSkillWidget[i].GetWidgetPos().DOAnchorPos(new Vector2(distance, 0), 0.2f).SetEase(Ease.InOutQuart);
+            //if (!allSkillWidget[i].skillNumSlot.gameObject.activeSelf)
+            //    allSkillWidget[i].skillNumSlot.gameObject.SetActive(true);
             index++;
             if (i == allSkillWidget.Count - 1)
                 isOrder = false;

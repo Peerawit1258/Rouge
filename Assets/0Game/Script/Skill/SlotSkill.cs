@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using Sirenix.OdinInspector;
@@ -16,6 +17,7 @@ public class SlotSkill : MonoBehaviour ,IPointerEnterHandler,IPointerExitHandler
     [ReadOnly] public bool sameConditon = false;
 
     [SerializeField] TMP_Text percentText;
+    [SerializeField] Image slotImg;
     SkillOrderSystem skillOrderSystem;
     SkillWidget skillWidget;
     // Start is called before the first frame update
@@ -64,7 +66,11 @@ public class SlotSkill : MonoBehaviour ,IPointerEnterHandler,IPointerExitHandler
             if (skill.CheckCondition(numSlot))
                 skill.AddSkilltoSlotBar(this);
             else
+            {
                 skillOrderSystem.OrderDistanceSkill();
+                //slotImg.DOColor(Color.red, 0.3f);
+            }
+                
         }
     }
 
