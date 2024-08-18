@@ -18,8 +18,11 @@ MonoBehaviour:
   frame: {fileID: 0}
   rarity: 0
   targetType: 0
+  cooldown: 0
   particleEffect: {fileID: 0}
-  descrition: 
+  shakeCam: 0
+  shakeCount: 0
+  description: 
   actionDetail:
     skillType: 3
     percentDMG: 

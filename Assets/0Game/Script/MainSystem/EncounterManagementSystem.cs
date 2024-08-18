@@ -76,6 +76,7 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
     #region Door
     public void CreateNextDoorNode()
     {
+        if (CheckHaveDoorNode()) return;
         StageDetail current = GetStageDetailwithName();
         
         if(stageCount == current.stageCount - 1)// Boss Stage
@@ -184,7 +185,11 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
             else
                 delayRest = maxDelayRest;
         }
-
+        else if(node.node == Node.Treasure)
+        {
+            if((stageCount >= 1 && stageCount <= 2) || (stageCount >= 6 && stageCount <= 8) || (stageCount >= 14 && stageCount <= 16))
+                return true;
+        }
             
 
         foreach (var door in doors)
@@ -215,6 +220,17 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
         foreach (var door in doors)
             if (door.GetEncounter() != null)
                 door.ClearDoor();
+    }
+
+    public bool CheckHaveDoorNode()
+    {
+        for(int i = 0; i < doors.Count; i++)
+        {
+            if (doors[i].GetEncounter() != null)
+                return true;
+        }
+
+        return false;
     }
     #endregion
     #region Stage

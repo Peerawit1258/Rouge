@@ -19,10 +19,8 @@ MonoBehaviour:
   minion: 
   goldDrop: 500
   expDrop: 0
-  orderSkill: 0
-  allSkill:
-  - {fileID: 11400000, guid: 662d9df003a1e5443a94097b4db7a0ab, type: 2}
-  - {fileID: 11400000, guid: 61e453f84ccdd9a43a741a78d85ec701, type: 2}
+  orderSkill: 1
+  allSkill: []
   skillDrop: []
   relicDrop: []
   maxHP: 300

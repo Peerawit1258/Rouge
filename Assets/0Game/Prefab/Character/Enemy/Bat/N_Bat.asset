@@ -17,7 +17,7 @@ MonoBehaviour:
   characterType: 1
   e_type: 0
   minion: 
-  goldDrop: 50
+  goldDrop: 80
   expDrop: 10
   orderSkill: 0
   allSkill:
@@ -26,8 +26,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 859ce62386aafb84c847f4ea957514f3, type: 2}
   skillDrop:
   - {fileID: 11400000, guid: 9b0a2018e3d9ea64ba7887e6c1263284, type: 2}
+  - {fileID: 11400000, guid: d8c02aa16d5e35c46852d262ba46c9b4, type: 2}
+  - {fileID: 11400000, guid: b969a7e617220a64d83f6ab511807d16, type: 2}
+  - {fileID: 11400000, guid: 4982533e47c875d439bf4d495f71c60b, type: 2}
+  - {fileID: 11400000, guid: 6af15e38cf6c46842ba57c30e68c9d6e, type: 2}
+  - {fileID: 11400000, guid: 449c2bb5b744b9c47b0407bc5ebee6e4, type: 2}
   relicDrop: []
-  maxHP: 35
+  maxHP: 24
   atk: 23
   def: 5
   damageBonus: 0

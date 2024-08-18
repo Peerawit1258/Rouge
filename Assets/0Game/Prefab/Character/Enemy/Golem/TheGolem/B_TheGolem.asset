@@ -31,9 +31,13 @@ MonoBehaviour:
   skillDrop:
   - {fileID: 11400000, guid: 5701f1ee798330147bb593bca7046f5b, type: 2}
   - {fileID: 11400000, guid: b96d1ccb195793d4587882d1a69ec230, type: 2}
+  - {fileID: 11400000, guid: f27e96f778668c345aca12a903b2be99, type: 2}
+  - {fileID: 11400000, guid: dbc4ce6221f63194b9cffe57da911b86, type: 2}
+  - {fileID: 11400000, guid: fda653f08c4acf8479ae0dbf1b3518c7, type: 2}
+  - {fileID: 11400000, guid: df38b453f669938468029110d113d87b, type: 2}
   relicDrop:
   - {fileID: 11400000, guid: 661938700ac39b040a6e20c0fe6ac6e8, type: 2}
-  maxHP: 150
+  maxHP: 125
   atk: 35
   def: 20
   damageBonus: 0

@@ -27,7 +27,7 @@ MonoBehaviour:
   isSlot: 0
   statValues:
   - type: 1
-    value: 20
+    value: 30
   slots: []
   heal: 0
   damage: 0

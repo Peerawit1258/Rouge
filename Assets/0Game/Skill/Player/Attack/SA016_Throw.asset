@@ -20,12 +20,16 @@ MonoBehaviour:
   targetType: 0
   cooldown: 0
   particleEffect: {fileID: 0}
+  shakeCam: 0
+  shakeCount: 0
   description: 
   actionDetail:
     skillType: 0
     percentDMG: 1e000000
     isRemoveBuff: 0
-    statusEnemy: []
+    statusEnemy:
+    - statusEffect: {fileID: 11400000, guid: d27321ff839cdcd42b136c70aed4bf97, type: 2}
+      count: 1
     statusSelf: []
     removeBuff: 0
     damageSpecific:

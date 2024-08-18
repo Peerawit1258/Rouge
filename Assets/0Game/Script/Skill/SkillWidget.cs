@@ -100,7 +100,7 @@ public class SkillWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (!inSlot)
         {
             skillOrderSystem.OrderDistanceSkill();
-            if (!skillNumSlot.gameObject.activeSelf)
+            if (!skillNumSlot.gameObject.activeSelf && skill.GetHaveCondition())
                 skillNumSlot.gameObject.SetActive(true);
         }
         //else if(slotSkill != null) ExitSlot()

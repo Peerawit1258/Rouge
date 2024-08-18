@@ -18,9 +18,13 @@ MonoBehaviour:
   frame: {fileID: 21300000, guid: 0621de3a9ff9f854ca23f920fa98c186, type: 3}
   rarity: 0
   targetType: 3
-  cooldown: 7
+  cooldown: 3
   particleEffect: {fileID: 0}
-  description: Heal 15% of HP
+  shakeCam: 0
+  shakeCount: 0
+  description: 'Heal 15% of HP
+
+    In Slot 3,7 : Addition heal 5 % of HP'
   actionDetail:
     skillType: 3
     percentDMG: 
@@ -55,7 +59,7 @@ MonoBehaviour:
     condition: 2
     slots: 
     bonusSlotDamage: 0
-    c_skillType: 4
+    c_skillType: 3
     percentDmg: 0
     isRemove: 0
     c_removeBuff: 0

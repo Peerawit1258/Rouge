@@ -159,7 +159,7 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             case ChoiceType.Heal:
                 if(choiceDetail.heal.healType == HealType.Heal)
                 {
-                    int value = GameManager.instance.turnManager.player.hpValue * choiceDetail.heal.percentHeal / 100;
+                    int value = (int)GameManager.instance.turnManager.player.maxHpValue * choiceDetail.heal.percentHeal / 100;
                     eventManager.SetAfterEvent(() => GameManager.instance.turnManager.player.StartHealHP(value, 0));
                     replace = "+" + value.ToString() + " HP";
                 }

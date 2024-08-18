@@ -84,7 +84,7 @@ public class EnemyController : CharacterValue
     int indexSkill = 0;
     public void SetInfoEnemy(CharacterDetail detail, bool isMinion = false)
     {
-        SetStatValue(detail.maxHP, detail.atk, detail.def, detail.damageReduce);
+        SetStatValue(detail.maxHP, detail.atk, detail.def, detail.damageReduce, true);
         allSkill = detail.allSkill;
 
         orderSkill = detail.orderSkill;
@@ -291,7 +291,7 @@ public class EnemyController : CharacterValue
         Debug.Log("Random");
         if (allSkill.Count < 3) return allSkill[Random.Range(0, allSkill.Count)];
         SkillAction skill = new SkillAction();
-        //Debug.LogError(name + "i");
+        Debug.LogError(name + "i");
         do
         {
             skill = allSkill[Random.Range(0, allSkill.Count)];
@@ -318,6 +318,7 @@ public class EnemyController : CharacterValue
     {
         Debug.Log("Check");
         Debug.Log(skill.skillName);
+        if (turnManager == null) turnManager = GameManager.instance.turnManager;
         if (skill.GetSkillType() == SkillType.Buff)
         {
             foreach(var self in skill.GetStatusSelf())
@@ -339,6 +340,7 @@ public class EnemyController : CharacterValue
                 }
                 else
                 {
+                    if (turnManager == null) Debug.LogError("Null");
                     if (turnManager.CheckHpEnemy(heal)) return true;
                     else return false;
                 }
