@@ -526,7 +526,7 @@ public class EnemyController : CharacterValue
     {
         if (GameManager.instance.playerData.CheckAlreadyHaveRelic("RN010"))
         {
-            statusEffectSystem.GetStatusInPlayer(GameManager.instance.allData.GetStatusWithID("BN002"));
+            statusEffectSystem.GetStatusInPlayer(GameManager.instance.allData.GetStatusWithID("SN003"));
         }
 
         GameManager.instance.turnManager.RemoveEnemy(this);

@@ -14,7 +14,7 @@ public class StatusInfo : MonoBehaviour
         statusName.text = status.statusName;
         statusDescription.text = status.descrition;
 
-        if(statusDescription.preferredHeight > 40)
-            infoPos.sizeDelta = new Vector2(infoPos.sizeDelta.x, infoPos.sizeDelta.y + (statusDescription.preferredHeight - 40));
+        if(statusDescription.preferredHeight > 51)
+            infoPos.sizeDelta = new Vector2(infoPos.sizeDelta.x, 80 + (statusDescription.preferredHeight - 51));
     }
 }

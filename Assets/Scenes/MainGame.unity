@@ -1570,7 +1570,7 @@ MonoBehaviour:
   group: {fileID: 11400000, guid: dea9b22a71280d54ca773f3213ccfb5d, type: 2}
   isTest: 0
   isEvent: 0
-  eventTest: {fileID: 11400000, guid: e15c4e784aa7cb2489970763c7bb3e57, type: 2}
+  eventTest: {fileID: 11400000, guid: 948516e156c5595499c0156db578c2b8, type: 2}
 --- !u!4 &749476252
 Transform:
   m_ObjectHideFlags: 0
@@ -2001,6 +2001,7 @@ MonoBehaviour:
   gold: 0
   maxDelayShop: 3
   maxDelayRest: 3
+  maxDelayElite: 2
   nodes: 000000000100000004000000060000000500000003000000
   doors:
   - {fileID: 711678760}
@@ -3700,8 +3701,11 @@ MonoBehaviour:
   increaseExp: 0
   randomSkill: 0
   dropSkill: 0
-  startStatus: []
-  endStatus: []
+  startPlayerStatus: []
+  endPlayerStatus: []
+  startEnemyStatus: []
+  startHeal: 0
+  endHeal: 0
   increaseStack: 0
   posionDmg: 0
   burnDmg: 0

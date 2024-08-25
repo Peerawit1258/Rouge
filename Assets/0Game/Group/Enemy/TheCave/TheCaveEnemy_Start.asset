@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: TheCaveEnemy_Start
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 11400000, guid: 67564b33ee783864bb2eaa6228944370, type: 2}
-  - {fileID: 11400000, guid: 714621de45e3a3146afd872eee7b7411, type: 2}
-  - {fileID: 11400000, guid: bf4c52555b354d34ca77c368c6aa17c3, type: 2}
+  - {fileID: 11400000, guid: e858decdd786ac34fa4478e98f91f92b, type: 2}

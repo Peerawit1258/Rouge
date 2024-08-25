@@ -20,6 +20,7 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
 
     [TabGroup("Set")] public int maxDelayShop;
     [TabGroup("Set")] public int maxDelayRest;
+    [TabGroup("Set")] public int maxDelayElite;
     [TabGroup("Set")] public List<Node> nodes;
 
     [SerializeField] List<DoorNode> doors;
@@ -141,20 +142,30 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
             if (delayShop > 0)
                 return true;
             else
-                delayShop = maxDelayShop;
+                delayShop = 1;
         }
         else if (type == Node.Rest) // Check Cooldown Rest
         {
             if (delayRest > 0)
                 return true;
-            else
-                delayRest = maxDelayRest;
+            
+        }
+        else if (type == Node.Elite)
+        {
+            if (delayElite > 0)
+                return true;
+        }
+        else if (type == Node.Treasure)
+        {
+            if ((stageCount >= 1 && stageCount <= 3) || (stageCount >= 6 && stageCount <= 8) || (stageCount >= 11 && stageCount <= 15))
+                return true;
         }
 
         return false;
     }
     int delayShop = 0;
     int delayRest = 0;
+    int delayElite = 0;
     private bool CheckAlreadyHaveEncounter(EncounterNode node)
     {
         int count = 0;
@@ -166,30 +177,35 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
                     if (previousNode.Contains(id))
                         count++;
                 if (count == node.eventInfo.unlockEvent.Count)
-                    return true;
-                else
                     return false;
+                else
+                    return true;
             }
         }
-        else if (node.node == Node.Shop)// Check Cooldown Shop
-        {
-            if (delayShop > 0)
-                return true;
-            else
-                delayShop = maxDelayShop;
-        }
-        else if (node.node == Node.Rest) // Check Cooldown Rest
-        {
-            if (delayRest > 0)
-                return true;
-            else
-                delayRest = maxDelayRest;
-        }
-        else if(node.node == Node.Treasure)
-        {
-            if((stageCount >= 1 && stageCount <= 2) || (stageCount >= 6 && stageCount <= 8) || (stageCount >= 14 && stageCount <= 16))
-                return true;
-        }
+        //else if (node.node == Node.Shop)// Check Cooldown Shop
+        //{
+        //    if (delayShop > 0)
+        //        return true;
+        //    //else
+        //    //    delayShop = maxDelayShop;
+        //}
+        //else if (node.node == Node.Rest) // Check Cooldown Rest
+        //{
+        //    if (delayRest > 0)
+        //        return true;
+        //    //else
+        //    //    delayRest = maxDelayRest;
+        //}
+        //else if(node.node == Node.Treasure)
+        //{
+        //    if((stageCount >= 1 && stageCount <= 3) || (stageCount >= 6 && stageCount <= 8) || (stageCount >= 11 && stageCount <= 15))
+        //        return true;
+        //}
+        //else if(node.node == Node.Elite)
+        //{
+        //    if (delayElite > 0)
+        //        return true;
+        //}
             
 
         foreach (var door in doors)
@@ -256,6 +272,7 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
                 turnManager.player.animationAction.WalkInSceneAction();
                 if (node.node == Node.Normal || node.node == Node.Elite || node.node == Node.Boss)
                 {
+                    if (node.node == Node.Elite) delayElite = maxDelayElite;
                     GameManager.instance.battleSetup.SetupEnemyBattle(node.enemyGroup.enemies);
                     DOVirtual.DelayedCall(1, () =>
                     {
@@ -275,10 +292,12 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
                 }
                 else if(node.node == Node.Shop)
                 {
+                    delayShop = maxDelayShop;
                     GameManager.instance.shopSystem.OpenShop();
                 }
                 else if(node.node == Node.Rest)
                 {
+                    delayRest = maxDelayRest;
                     int heal = (int)Mathf.Floor(turnManager.player.maxHpValue * 25 / 100);
                     turnManager.player.StartHealHP(heal, 1);
                     GameManager.instance.upgradeSystem.ActiveUpgradeUI();

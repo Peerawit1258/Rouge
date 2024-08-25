@@ -11,8 +11,11 @@ public class RelicManagerSystem : MonoBehaviour
     [TabGroup("Game"), ReadOnly] public int randomSkill;
     [TabGroup("Game"), ReadOnly] public int dropSkill;
 
-    [TabGroup("Turn"), ReadOnly] public List<AddStatus> startStatus;
-    [TabGroup("Turn"), ReadOnly] public List<AddStatus> endStatus;
+    [TabGroup("Turn"), ReadOnly] public List<AddStatus> startPlayerStatus;
+    [TabGroup("Turn"), ReadOnly] public List<AddStatus> endPlayerStatus;
+    [TabGroup("Turn"), ReadOnly] public List<AddStatus> startEnemyStatus;
+    [TabGroup("Turn"), ReadOnly] public int startHeal;
+    [TabGroup("Turn"), ReadOnly] public int endHeal;
 
     [TabGroup("DOT"), SerializeField, ReadOnly] int increaseStack;
     [Header("Damage")]
@@ -86,7 +89,7 @@ public class RelicManagerSystem : MonoBehaviour
                             }
                             player.StatUp(set);
                         }
-                        
+
                     }
                     break;
                 case RelicEffectType.Skill:
@@ -118,7 +121,16 @@ public class RelicManagerSystem : MonoBehaviour
                     }
                     break;
                 case RelicEffectType.TurnTrigger:
-
+                    if (detail.mainTrigger == SkillType.Buff || detail.mainTrigger == SkillType.Debuff)
+                        AddStatusEffect(detail.main, detail.trigger, detail.status);
+                    else if (detail.mainTrigger == SkillType.Heal)
+                    {
+                        if (detail.trigger == TriggerStatus.Start)
+                            startHeal += detail.healTrigger;
+                        else
+                            endHeal += detail.healTrigger;
+                    }
+                        
                     break;
                 case RelicEffectType.Money:
                     if (detail.isShop)
@@ -191,9 +203,17 @@ public class RelicManagerSystem : MonoBehaviour
                         }
                     }
                     break;
-                //case RelicEffectType.BuffDebuff:
-
-                //    break;
+                case RelicEffectType.TurnTrigger:
+                    if (detail.mainTrigger == SkillType.Buff || detail.mainTrigger == SkillType.Debuff)
+                        AddStatusEffect(detail.main, detail.trigger, detail.status, false);
+                    else if (detail.mainTrigger == SkillType.Heal)
+                    {
+                        if (detail.trigger == TriggerStatus.Start)
+                            startHeal -= detail.healTrigger;
+                        else
+                            endHeal -= detail.healTrigger;
+                    }
+                    break;
                 case RelicEffectType.Money:
                     if (detail.isShop)
                         discount -= detail.discount;
@@ -228,7 +248,34 @@ public class RelicManagerSystem : MonoBehaviour
 
     public void TriggerRelicEffect(TriggerStatus trigger)
     {
-        if (GameManager.instance.playerData.currentRelics.Count == 0) return;
+        //if (GameManager.instance.playerData.currentRelics.Count == 0) return;
+        if(trigger == TriggerStatus.Start)
+        {
+            if(startPlayerStatus.Count > 0)
+                foreach (var add in startPlayerStatus)
+                    statusEffectSystem.GetStatusInPlayer(add);
+            if(startHeal > 0)
+            {
+                int value = (int)GameManager.instance.turnManager.player.maxHpValue * startHeal / 100;
+                GameManager.instance.turnManager.player.StartHealHP(value, 0);
+            }
+                
+            if (startEnemyStatus.Count > 0)
+                foreach (var enemy in GameManager.instance.turnManager.enemies)
+                    foreach (var add in startEnemyStatus)
+                        statusEffectSystem.GetStatusInEnemy(enemy, add);
+        }
+        else
+        {
+            if (endPlayerStatus.Count > 0)
+                foreach (var add in endPlayerStatus)
+                    statusEffectSystem.GetStatusInPlayer(add);
+            if (endHeal > 0)
+            {
+                int value = (int)GameManager.instance.turnManager.player.maxHpValue * startHeal / 100;
+                GameManager.instance.turnManager.player.StartHealHP(value, 0);
+            }
+        }
 
         //foreach (var relic in GameManager.instance.playerData.currentRelics)
         //    foreach (var detail in relic.relicDetails)
@@ -257,6 +304,77 @@ public class RelicManagerSystem : MonoBehaviour
         return stat;
     }
 
+    void AddStatusEffect(ActionTurn action, TriggerStatus trigger, AddStatus status, bool isAdd = true)
+    {
+        if (action == ActionTurn.player)
+        {
+            if(trigger == TriggerStatus.Start)
+            {
+                foreach(AddStatus add in startPlayerStatus)
+                {
+                    if (add.statusEffect.id == status.statusEffect.id)
+                    {
+                        if(isAdd)
+                            add.count += status.count;
+                        else
+                        {
+                            add.count -= status.count;
+                            if(add.count <= 0)
+                                startPlayerStatus.Remove(add);
+                        }
+                        return;
+                    }
+                }
+                
+                if(isAdd)
+                    startPlayerStatus.Add(status);      
+            }else if(trigger == TriggerStatus.End)
+            {
+                foreach (AddStatus add in endPlayerStatus)
+                {
+                    if (add.statusEffect.id == status.statusEffect.id)
+                    {
+                        if (isAdd)
+                            add.count += status.count;
+                        else
+                        {
+                            add.count -= status.count;
+                            if (add.count <= 0)
+                                endPlayerStatus.Remove(add);
+                        }
+                        return;
+                    }
+                }
+
+                if (isAdd)
+                    endPlayerStatus.Add(status);
+            }
+        }
+        else
+        {
+            if (trigger == TriggerStatus.Start)
+            {
+                foreach (AddStatus add in startEnemyStatus)
+                {
+                    if (add.statusEffect.id == status.statusEffect.id)
+                    {
+                        if (isAdd)
+                            add.count += status.count;
+                        else
+                        {
+                            add.count -= status.count;
+                            if (add.count <= 0)
+                                startEnemyStatus.Remove(add);
+                        }
+                        return;
+                    }
+                }
+
+                if (isAdd)
+                    startEnemyStatus.Add(status);
+            }
+        }
+    }
     #region Dot
     public int DamageDOTIncrease(string dotID, int damage)
     {

@@ -60,7 +60,6 @@ MonoBehaviour:
       escape.
 
       DEATH DEATH DEATH'
-    passEvent: {fileID: 0}
     failEvent: {fileID: 0}
   - type: 3
     sentence: Run Away
@@ -100,7 +99,6 @@ MonoBehaviour:
       the ground.
 
       Got some hurt but at least you isn''t in the darkness'
-    passEvent: {fileID: 0}
     failEvent: {fileID: 0}
   - type: 1
     sentence: Ignite a Torch
@@ -133,11 +131,8 @@ MonoBehaviour:
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
-    afterEventDes: 'You ignite a torch.The darkness around
+    afterEventDes: 'You ignite a torch.The darkness are dissapear.
 
-      you are dissapear.No
-      one follow you and
-
-      you got something place on the ground'
-    passEvent: {fileID: 0}
+      Have something
+      place on the ground'
     failEvent: {fileID: 0}

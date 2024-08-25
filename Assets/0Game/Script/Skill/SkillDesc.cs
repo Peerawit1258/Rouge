@@ -94,6 +94,12 @@ public class SkillDesc : MonoBehaviour
                 if(set.dotID != "")
                     allStatus.Add(GameManager.instance.allData.GetStatusWithID(set.dotID).statusEffect);
             }
+            else if(set.type == RelicEffectType.TurnTrigger)
+            {
+                if (set.mainTrigger == SkillType.Buff || set.mainTrigger == SkillType.Debuff)
+                    allStatus.Add(GameManager.instance.allData.GetStatusWithID(set.status.statusEffect.id).statusEffect);
+            }
+
         }
         
 
@@ -140,14 +146,14 @@ public class SkillDesc : MonoBehaviour
     }
     private void ChangeBoxSize()
     {
-        if(descText.preferredHeight > 100)
+        if(descText.preferredHeight > 70)
         {
-            descBox.sizeDelta = new Vector2(descBox.sizeDelta.x, 190 + (descText.preferredHeight - 100));
-            descBox.anchoredPosition = new Vector2(descBox.anchoredPosition.x, disY + ((descText.preferredHeight - 100) / 2));
+            descBox.sizeDelta = new Vector2(descBox.sizeDelta.x, 150 + (descText.preferredHeight - 76));
+            descBox.anchoredPosition = new Vector2(descBox.anchoredPosition.x, disY + ((descText.preferredHeight - 76) / 2));
         }
         else
         {
-            descBox.sizeDelta = new Vector2(descBox.sizeDelta.x, 190);
+            descBox.sizeDelta = new Vector2(descBox.sizeDelta.x, 150);
             descBox.anchoredPosition = new Vector2(descBox.anchoredPosition.x, disY);
         }
     }

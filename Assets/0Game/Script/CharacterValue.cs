@@ -39,9 +39,10 @@ public class CharacterValue : MonoBehaviour
     {
         if (assign)
         {
-            
+
             if (stat.type == StatType.Atk) p_atk += stat.value;
             else if (stat.type == StatType.Def) p_def += stat.value;
+            else if (stat.type == StatType.Hp) Debug.Log("HP");
             else if (stat.type == StatType.DmgBonus) damageBonus += stat.value;
             else damageReduce += stat.value;
         }
@@ -49,6 +50,7 @@ public class CharacterValue : MonoBehaviour
         {
             if (stat.type == StatType.Atk) p_atk -= stat.value;
             else if (stat.type == StatType.Def) p_def -= stat.value;
+            else if (stat.type == StatType.Hp) Debug.Log("HP");
             else if (stat.type == StatType.DmgBonus) damageBonus -= stat.value;
             else damageReduce -= stat.value;
         }

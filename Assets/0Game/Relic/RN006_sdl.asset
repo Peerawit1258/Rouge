@@ -22,15 +22,20 @@ MonoBehaviour:
   relicDetails:
   - type: 5
     isSlot: 0
+    hpCompare: 0
+    compare: 0
+    hpPercent: 0
     statValues:
     - type: 1
       value: 20
     slots: []
     trigger: 0
-    statusType: 0
+    main: 0
+    mainTrigger: 1
     status:
       statusEffect: {fileID: 11400000, guid: a7a0bb5ecad7c9947bbaac008255dfee, type: 2}
       count: 1
+    healTrigger: 0
     isStack: 0
     stack: 0
     dotID: 
@@ -38,4 +43,7 @@ MonoBehaviour:
     isShop: 0
     discount: 0
     extraMoney: 0
+    skillRelic: 0
     increaseRandomSkill: 1
+    increaseDropSkill: 0
+    percentExp: 0

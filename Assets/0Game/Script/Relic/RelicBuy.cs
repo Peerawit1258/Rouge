@@ -52,7 +52,7 @@ public class RelicBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     {
         //descriptionFade.DOFade(1, time);
         skillDesc.SetDetailBox(relicWidget.GetRelic());
-        skillDesc.FadeIn(relicPos, 250);
+        skillDesc.FadeIn(relicPos, 150);
         relicPos.DOScale(1.2f, time);
     }
 

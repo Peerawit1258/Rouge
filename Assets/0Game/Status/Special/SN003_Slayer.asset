@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b917682f7afff274eab4e619c6901b67, type: 3}
-  m_Name: BS013_Slayer
+  m_Name: SN003_Slayer
   m_EditorClassIdentifier: 
-  id: BS013
+  id: SN003
   statusName: Slayer
   statusIcon: {fileID: 0}
-  type: 0
+  type: 2
   use: 1
   trigger: 3
   skill: 0
