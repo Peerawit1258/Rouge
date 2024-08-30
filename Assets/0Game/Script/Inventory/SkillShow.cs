@@ -162,9 +162,9 @@ public class SkillShow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
 
     int cooldownValue;
-    public void SetCoolDown()
+    public void SetCoolDown(bool nonCooldown = false)
     {
-        if (skillAction.cooldown == 0)
+        if (skillAction.cooldown == 0 || nonCooldown)
         {
             inventoryManager.GetSkillUsable().Remove(this);
             inventoryManager.GetSkillActive().Add(this);

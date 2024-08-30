@@ -116,10 +116,9 @@ public class ResultBattle : MonoBehaviour
         goldPos.DOAnchorPosX(-255, time).From().SetEase(Ease.InOutQuart).SetDelay(time / 4);
         goldText.DOFade(1, time).SetDelay(time / 4).OnComplete(() =>
         {
-            DOVirtual.Int(0, encounterManagementSystem.gold, time, (x) => goldText.text = "Gold : +" + x.ToString());
             GameManager.instance.detailPanel.ChangeGoldValue(GameManager.instance.playerData.gold + encounterManagementSystem.gold);
         });
-
+        DOVirtual.Int(0, encounterManagementSystem.gold, time, (x) => goldText.text = "Gold : +" + x.ToString()).SetDelay(time / 4);
         if (encounterManagementSystem.skillDrops.Count > 0)
         {
             skillDropPos.DOAnchorPosX(-280, time).From().SetEase(Ease.InOutQuart).SetDelay(time / 2);

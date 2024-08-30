@@ -68,7 +68,7 @@ public class SkillOrderSystem : MonoBehaviour
         GameManager.instance.skillDesc.FadeOut();
         if (allSkillWidget.Count > 0)
             foreach (SkillWidget show in allSkillWidget)
-                show.skillShow.SetCoolDown();
+                show.skillShow.SetCoolDown(true);
         StartCoroutine(ActiveSkillAttack());
     }
 
@@ -376,6 +376,12 @@ public class SkillOrderSystem : MonoBehaviour
     #region SkillSlot
     public void CreateSlot()
     {
+        if(allSlot.Count > 0)
+        {
+            foreach (var slot in allSlot)
+                Destroy(slot.gameObject);
+            allSlot.Clear();
+        }
         for (int i = 0; i < slotCount; i++)
         {
             SlotSkill slot = Instantiate(slotPrefab, slotPlace).GetComponent<SlotSkill>();

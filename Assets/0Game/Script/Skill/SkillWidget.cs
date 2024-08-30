@@ -79,7 +79,7 @@ public class SkillWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (skillOrderSystem.isOrder) return;
+        if (skillOrderSystem.isOrder || skillOrderSystem.isSkillActive) return;
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0.6f;
         GameManager.instance.skillDesc.FadeOut();

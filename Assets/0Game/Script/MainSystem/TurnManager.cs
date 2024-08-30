@@ -82,7 +82,11 @@ public class TurnManager : MonoBehaviour
         if (targetEnemy == null) targetEnemy = enemies[0];
         
         turnCount++;
-        if (turnCount == 1) GameManager.instance.relicManagerSystem.TriggerRelicEffect(TriggerStatus.Start);
+        if (turnCount == 1)
+        {
+            GameManager.instance.relicManagerSystem.TriggerRelicEffect(TriggerStatus.Start);
+            skillOrderSystem.CreateSlot();
+        }
 
         StartCoroutine(StartDelayPlayerTurn());
     }
