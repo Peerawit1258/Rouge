@@ -5,6 +5,11 @@ using Sirenix.OdinInspector;
 
 public class PlayerData : MonoBehaviour
 {
+    [TabGroup("Stat")] public float maxHp;
+    [TabGroup("Stat")] public float baseAtk;
+    [TabGroup("Stat")] public float baseDef;
+    [TabGroup("Stat")] public int damageBonus;
+    [TabGroup("Stat")] public int damageReduce;
     public List<SkillAction> currentSkills = new List<SkillAction>();
     public List<Relic> currentRelics = new List<Relic>();
     public int gold;

@@ -291,7 +291,7 @@ public class EnemyController : CharacterValue
         Debug.Log("Random");
         if (allSkill.Count < 3) return allSkill[Random.Range(0, allSkill.Count)];
         SkillAction skill = new SkillAction();
-        Debug.LogError(name + "i");
+        
         do
         {
             skill = allSkill[Random.Range(0, allSkill.Count)];

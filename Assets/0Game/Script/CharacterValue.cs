@@ -27,7 +27,8 @@ public class CharacterValue : MonoBehaviour
         hpValue = hp;
         atkValue = atk;
         defValue = def;
-        Debug.Log((int)atkValue + " " + atkValue);
+
+        b_hp = maxHpValue;
         b_atk = atkValue;
         b_def = defValue;
         damageReduce = dmgReduce;
@@ -39,10 +40,8 @@ public class CharacterValue : MonoBehaviour
     {
         if (assign)
         {
-
             if (stat.type == StatType.Atk) p_atk += stat.value;
             else if (stat.type == StatType.Def) p_def += stat.value;
-            else if (stat.type == StatType.Hp) Debug.Log("HP");
             else if (stat.type == StatType.DmgBonus) damageBonus += stat.value;
             else damageReduce += stat.value;
         }
@@ -50,40 +49,69 @@ public class CharacterValue : MonoBehaviour
         {
             if (stat.type == StatType.Atk) p_atk -= stat.value;
             else if (stat.type == StatType.Def) p_def -= stat.value;
-            else if (stat.type == StatType.Hp) Debug.Log("HP");
             else if (stat.type == StatType.DmgBonus) damageBonus -= stat.value;
             else damageReduce -= stat.value;
         }
 
-        UpdateStatValue();
+        UpdateStatValue(stat.type);
     }
 
-    public void BaseStatUpdate(StatValue stat)
+    float b_hp;
+    public void BaseStatUpdate(StatValue stat, bool decrease = false)
     {
-        if (stat.type == StatType.Atk) b_atk += stat.value;
-        else if (stat.type == StatType.Def) b_def += stat.value;
+        if (!decrease)
+        {
+            if (stat.type == StatType.Atk) b_atk += stat.value;
+            else if (stat.type == StatType.Def) b_def += stat.value;
+            else if (stat.type == StatType.Hp) b_hp += stat.value;
+        }
+        else
+        {
+            if (stat.type == StatType.Atk) b_atk -= stat.value;
+            else if (stat.type == StatType.Def) b_def -= stat.value;
+            else if (stat.type == StatType.Hp) b_hp -= stat.value;
+        }
 
-        UpdateStatValue();
+        UpdateStatValue(stat.type);
     }
 
-    public void UpdateStatValue()
+    public void UpdateStatValue(StatType type)
     {
-        float atkTarget = b_atk + (b_atk * p_atk / 100);
-        if (atkValue != atkTarget)
+        if(type == StatType.Atk)
         {
-            if(!isEnemy)
-                GameManager.instance.detailPanel.ChangeAtkValue((int)atkTarget, (int)atkValue);
-            atkValue = b_atk + (b_atk * p_atk / 100);
-            if (atkValue < 1) atkValue = 1;
+            float atkTarget = b_atk + (b_atk * p_atk / 100);
+            if (atkValue != atkTarget)
+            {
+                if (!isEnemy)
+                    GameManager.instance.detailPanel.ChangeAtkValue((int)atkTarget, (int)atkValue);
+                atkValue = b_atk + (b_atk * p_atk / 100);
+                if (atkValue < 1) atkValue = 1;
+            }
         }
-        float defTarget = b_def + (b_def * p_def / 100);
-        if (defValue != defTarget)
+        else if(type == StatType.Def)
         {
-            if (!isEnemy)
-                GameManager.instance.detailPanel.ChangeDefValue((int)defTarget, (int)defValue);
-            defValue = defTarget;
-            if (defValue < 0) defValue = 0;
+            float defTarget = b_def + (b_def * p_def / 100);
+            if (defValue != defTarget)
+            {
+                if (!isEnemy)
+                    GameManager.instance.detailPanel.ChangeDefValue((int)defTarget, (int)defValue);
+                defValue = defTarget;
+                if (defValue < 0) defValue = 0;
+            }
         }
+        else if (type == StatType.Hp)
+        {
+            if(b_hp != maxHpValue)
+            {
+                float hpTarget = b_hp * (hpValue / maxHpValue);
+                maxHpValue = b_hp;
+                hpValue = (int)hpTarget;
+                if (!isEnemy)
+                    GameManager.instance.turnManager.player.gaugeHp.HpGaugeChange(hpValue, maxHpValue);
+            }
+        }
+        
+        
     }
 
     public int GetDamageBonus()

@@ -9,6 +9,9 @@ public class UpgradeSystem : MonoBehaviour
 {
     [TabGroup("Value"), SerializeField] List<int> slotPrice;
     [TabGroup("Value"), SerializeField] List<int> statPrice;
+    [TabGroup("Value"), SerializeField] int hpIncrease;
+    [TabGroup("Value"), SerializeField] int atkIncrease;
+    [TabGroup("Value"), SerializeField] int defIncrease;
     [TabGroup("Rank"), SerializeField] int slotRank;
     [TabGroup("Rank"), SerializeField] int skillRank;
     [TabGroup("Rank"), SerializeField] int hpRank;
@@ -51,7 +54,7 @@ public class UpgradeSystem : MonoBehaviour
             //priceText.text = requiredValue[rank].ToString();
             //if(GameManager.instance.playerData.gold < requiredValue[rank]) priceText.color = Color.red;
             //else priceText.color = Color.white;
-            CheckGoldUpgrade();
+            SetRequiredGoldUpgrade();
 
             upgradePos.DOAnchorPosY(245, time).SetEase(Ease.InOutQuart);
             upgradeCanvas.DOFade(1, time).OnComplete(() =>
@@ -73,7 +76,7 @@ public class UpgradeSystem : MonoBehaviour
         }
     }
 
-    private void CheckGoldUpgrade()
+    private void SetRequiredGoldUpgrade()
     {
         if (GameManager.instance.skillOrderSystem.slotCount == 7)
         {
@@ -151,29 +154,60 @@ public class UpgradeSystem : MonoBehaviour
         }
     }
 
+    private bool CheckGoldUpgrade(int current, int target)
+    {
+        if (current < target)
+        {
+
+            return false;
+        }
+        else
+            return true;
+    }
+
+    StatValue stat = new StatValue();
     public void UpgradePower(int upgrade)
     {   
         switch(upgrade)
         {
             case 0://Slot
-                if (slotMax.activeSelf) return;
+                if (slotMax.activeSelf || !CheckGoldUpgrade(GameManager.instance.playerData.gold, slotPrice[slotRank])) return;
                 GameManager.instance.skillOrderSystem.slotCount++;
-                GameManager.instance.detailPanel.ChangeGoldValue(slotPrice[slotRank]);
+                GameManager.instance.detailPanel.ChangeGoldValue(GameManager.instance.playerData.gold - slotPrice[slotRank]);
                 slotRank++;
                 break;
             case 1://Hand
-                if (skillMax.activeSelf) return;
+                if (skillMax.activeSelf || !CheckGoldUpgrade(GameManager.instance.playerData.gold, slotPrice[skillRank])) return;
                 GameManager.instance.skillOrderSystem.skillCount++;
-                GameManager.instance.detailPanel.ChangeGoldValue(slotPrice[skillRank]);
+                GameManager.instance.detailPanel.ChangeGoldValue(GameManager.instance.playerData.gold - slotPrice[skillRank]);
                 skillRank++;
                 break;
             case 2://Hp
+                if (hpMax.activeSelf || !CheckGoldUpgrade(GameManager.instance.playerData.gold, statPrice[hpRank])) return;
+                stat.type = StatType.Hp;
+                stat.value = hpIncrease;
+                GameManager.instance.turnManager.player.BaseStatUpdate(stat);
+                GameManager.instance.detailPanel.ChangeGoldValue(GameManager.instance.playerData.gold - statPrice[hpRank]);
+                hpRank++;
                 break;
             case 3://Atk
+                if (atkMax.activeSelf || !CheckGoldUpgrade(GameManager.instance.playerData.gold, statPrice[atkRank])) return;
+                stat.type = StatType.Atk;
+                stat.value = atkIncrease;
+                GameManager.instance.turnManager.player.BaseStatUpdate(stat);
+                GameManager.instance.detailPanel.ChangeGoldValue(GameManager.instance.playerData.gold - statPrice[atkRank]);
+                atkRank++;
                 break;
             case 4://Def
+                if (defMax.activeSelf || !CheckGoldUpgrade(GameManager.instance.playerData.gold, statPrice[defRank])) return;
+                stat.type = StatType.Def;
+                stat.value = defIncrease;
+                GameManager.instance.turnManager.player.BaseStatUpdate(stat);
+                GameManager.instance.detailPanel.ChangeGoldValue(GameManager.instance.playerData.gold - statPrice[defRank]);
+                defRank++;
                 break;
         }
+        SetRequiredGoldUpgrade();
         //.instance.detailPanel.ChangeGoldValue(requiredValue[rank]);
         //++;
         //CloseButton();
