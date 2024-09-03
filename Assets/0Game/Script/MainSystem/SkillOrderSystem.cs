@@ -258,9 +258,17 @@ public class SkillOrderSystem : MonoBehaviour
                                                 (int)enemies[i].defValue, damageBonus, enemies[i].GetDamageReduce());
                     if (turnManager.player.gaugeHp.CheckStatuswithID("BN002"))
                         damage *= 2;
-                    enemies[i].StartDamageTaken(damage, (i + j) * 0.2f + turnManager.player.animationAction.attackTime, false, skill.particleEffect);
-                    
-                    if(enemies[i].gaugeHP.CheckStatuswithID("BD001", ref widget))
+                    enemies[i].StartDamageTaken(damage, (i + j) * 0.2f + turnManager.player.animationAction.attackTime, false);
+                    if(enemies.Count > 1)
+                    {
+                        if (skill.particleEffect != null && i == 0) Instantiate(skill.particleEffect, enemies[1].gameObject.transform);
+                    }
+                    else
+                    {
+                        if (skill.particleEffect != null) Instantiate(skill.particleEffect, enemies[i].gameObject.transform);
+                    }
+                        
+                    if (enemies[i].gaugeHP.CheckStatuswithID("BD001", ref widget))
                         turnManager.player.StartDamageTaken(widget.GetStatus().damage, (i + j) * 0.2f + turnManager.player.animationAction.attackTime + 0.2f);
 
                     if (skill.GetIsHeal())

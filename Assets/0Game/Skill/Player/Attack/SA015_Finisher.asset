@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 527b5e7a31fb5af41bffa1ee16130bda, type: 3}
-  m_Name: SA015_FinalSlash
+  m_Name: SA015_Finisher
   m_EditorClassIdentifier: 
   id: SA015
-  skillName: FinalSlash
+  skillName: Finisher
   skillIcon: {fileID: 0}
   frame: {fileID: 21300000, guid: eb1ca71453326334e9162a52d2471c66, type: 3}
   rarity: 2
   targetType: 0
   cooldown: 12
   particleEffect: {fileID: 0}
+  shakeCam: 0
+  shakeCount: 0
   description: 
   actionDetail:
     skillType: 0

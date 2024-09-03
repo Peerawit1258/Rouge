@@ -202,7 +202,13 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 break;
 
             case ChoiceType.BaseStat:
-                eventManager.SetAfterEvent(() => GameManager.instance.turnManager.player.BaseStatUpdate(choiceDetail.statValue));
+                eventManager.SetAfterEvent(() =>
+                {
+                    if (choiceDetail.statValue.value > 0)
+                        GameManager.instance.turnManager.player.BaseStatUpdate(choiceDetail.statValue);
+                    else
+                        GameManager.instance.turnManager.player.BaseStatUpdate(choiceDetail.statValue, true);
+                });
                 if (choiceDetail.exit) eventManager.ExitEvent();
                 else eventManager.AfterSelectChoice(choiceDetail);
                 break;

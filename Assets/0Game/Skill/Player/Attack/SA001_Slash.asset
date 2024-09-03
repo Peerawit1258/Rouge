@@ -20,7 +20,7 @@ MonoBehaviour:
   targetType: 0
   cooldown: 0
   particleEffect: {fileID: 3413073025142944745, guid: a218468c61dd7ff41883ad5ac993df47, type: 3}
-  shakeCam: 1
+  shakeCam: 0
   shakeCount: 1
   description: Deal damage 100% of ATK to one Enemy
   actionDetail:

@@ -84,10 +84,11 @@ public class RelicManagerSystem : MonoBehaviour
                             StatValue set = new StatValue();
                             foreach (var stat in detail.statValues)
                             {
-                                set.type = stat.type;
-                                set.value = stat.value;
+                                //set.type = stat.type;
+                                //set.value = stat.value;
+                                player.StatUp(stat);
                             }
-                            player.StatUp(set);
+                            
                         }
 
                     }
@@ -168,10 +169,9 @@ public class RelicManagerSystem : MonoBehaviour
                         StatValue set = new StatValue();
                         foreach (var stat in detail.statValues)
                         {
-                            set.type = stat.type;
-                            set.value = stat.value;
+                            player.StatUp(stat, false);
                         }
-                        player.StatUp(set, false);
+                        
                     }
                     
                     break;

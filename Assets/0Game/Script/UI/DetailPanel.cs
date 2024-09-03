@@ -32,6 +32,8 @@ public class DetailPanel : MonoBehaviour
         relicInfoFade.alpha = 0;
     }
 
+    public void ActionSkillActive() => GameManager.instance.skillOrderSystem.ActionOrder();
+
     #region TopDetailPanel
     public void SetStartDetail(int atk, int def, int gold)
     {
