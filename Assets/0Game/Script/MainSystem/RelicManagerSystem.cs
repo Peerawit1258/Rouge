@@ -58,7 +58,7 @@ public class RelicManagerSystem : MonoBehaviour
         }
         detailPanel.OrderRelic();
     }
-
+    [Button]
     public void AddRelic(Relic relic) // Add new skill
     {
         if(player == null) player = FindAnyObjectByType<PlayerController>();
@@ -306,6 +306,7 @@ public class RelicManagerSystem : MonoBehaviour
 
     void AddStatusEffect(ActionTurn action, TriggerStatus trigger, AddStatus status, bool isAdd = true)
     {
+        Debug.Log(status.statusEffect.id);
         if (action == ActionTurn.player)
         {
             if(trigger == TriggerStatus.Start)

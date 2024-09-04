@@ -32,10 +32,12 @@ MonoBehaviour:
     statValues: []
     slots: []
     trigger: 0
-    statusType: 0
+    main: 0
+    mainTrigger: 1
     status:
       statusEffect: {fileID: 11400000, guid: e738dfa65b41faa4688e646e40c0e452, type: 2}
       count: 3
+    healTrigger: 0
     isStack: 0
     stack: 0
     dotID: 
@@ -57,10 +59,12 @@ MonoBehaviour:
       value: 20
     slots: []
     trigger: 0
-    statusType: 0
+    main: 0
+    mainTrigger: 0
     status:
       statusEffect: {fileID: 0}
       count: 0
+    healTrigger: 0
     isStack: 0
     stack: 0
     dotID: 

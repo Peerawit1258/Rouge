@@ -152,7 +152,7 @@ public class EncounterManagementSystem : SerializedMonoBehaviour
         }
         else if (type == Node.Elite)
         {
-            if (delayElite > 0)
+            if (delayElite > 0 || (stageCount >= 1 && stageCount <= 3) || (stageCount >= 6 && stageCount <= 8) || (stageCount >= 11 && stageCount <= 15))
                 return true;
         }
         else if (type == Node.Treasure)

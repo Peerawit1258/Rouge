@@ -20,7 +20,7 @@ MonoBehaviour:
   destroyWhenUse: 0
   description: Change x% to be target
   relicDetails:
-  - type: 2
+  - type: 5
     isSlot: 0
     hpCompare: 0
     compare: 0

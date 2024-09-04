@@ -111,7 +111,7 @@ public class SlotSkill : MonoBehaviour ,IPointerEnterHandler,IPointerExitHandler
         skillWidget = null;
         if(skill != null)
         {
-            if (skill.GetHaveCondition() && skill.GetConditonType() == ConditionType.SlotDamageOrder)
+            if (skill.GetHaveCondition() && skill.GetConditonType() == ConditionType.SlotDamageOrder && skill.GetLockNum().Contains(numSlot))
             {
                 foreach (int num in skill.GetSpecificSlotBonus())
                 {

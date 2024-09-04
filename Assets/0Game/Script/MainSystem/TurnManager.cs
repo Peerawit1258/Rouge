@@ -31,7 +31,7 @@ public class TurnManager : MonoBehaviour
             return;
         }
 
-        actionTurn = ActionTurn.enemies;
+        actionTurn = ActionTurn.enemy;
         skillOrderSystem.slotPlace.gameObject.SetActive(false);
         skillOrderSystem.skillPlace.gameObject.SetActive(false);
         GameManager.instance.battleSetup.arrow.gameObject.SetActive(false);
@@ -151,5 +151,5 @@ public class TurnManager : MonoBehaviour
 public enum ActionTurn
 {
     player,
-    enemies
+    enemy
 }
