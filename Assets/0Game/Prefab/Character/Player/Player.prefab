@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: fe0658ac5cb42d44bb69a512747ec1cc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1997523027
+  m_SortingLayer: 4
   m_SortingOrder: 5
   m_Sprite: {fileID: 1940480075, guid: fff713b73cbb52b488607eac7d8d1494, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4461682603889733131}
+  character: {fileID: 0}
   attackPos: 0.17
   attackTime: 0.15
   attackEase: 13
@@ -183,4 +184,8 @@ MonoBehaviour:
   power: 0.2
   numJump: 2
   buffTime: 0.7
+  dieTime: 0
+  takeTime: 0
+  takePos: 0
+  takeEase: 0
   isAction: 0

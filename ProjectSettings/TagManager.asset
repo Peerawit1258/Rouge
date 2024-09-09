@@ -11,9 +11,9 @@ TagManager:
   - First
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Background
+  - Scene
+  - Player
   - 
   - 
   - 
@@ -38,6 +38,27 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1537903165
+    locked: 0
+  - name: Object
+    uniqueID: 3660106975
+    locked: 0
+  - name: Scene
+    uniqueID: 4059472709
+    locked: 0
+  - name: Player
+    uniqueID: 1997523027
+    locked: 0
+  - name: Mod
+    uniqueID: 3731861225
+    locked: 0
+  - name: Effect
+    uniqueID: 3874532025
+    locked: 0
+  - name: UI
+    uniqueID: 3037971317
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
