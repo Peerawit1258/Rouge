@@ -10,21 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 527b5e7a31fb5af41bffa1ee16130bda, type: 3}
-  m_Name: SH001_Heal
+  m_Name: SH003_SuperHeal
   m_EditorClassIdentifier: 
-  id: SH001
-  skillName: Heal
+  id: SH003
+  skillName: Super Heal
   skillIcon: {fileID: 0}
   frame: {fileID: 21300000, guid: 0621de3a9ff9f854ca23f920fa98c186, type: 3}
   rarity: 0
   targetType: 3
-  cooldown: 3
+  cooldown: 6
   particleEffect: {fileID: 0}
   shakeCam: 0
   shakeCount: 0
-  description: 'Heal 15% of HP
-
-    In Slot 3,7 : Addition heal 5 % of HP'
+  description: 
   actionDetail:
     skillType: 3
     percentDMG: 
@@ -39,7 +37,7 @@ MonoBehaviour:
     healDetail:
       isAll: 0
       healType: 0
-      percentHeal: 15
+      percentHeal: 20
       removeEffect: {fileID: 0}
     isTakeDamage: 0
     percentHp: 0
@@ -54,12 +52,12 @@ MonoBehaviour:
         count: 0
       percentHeal: 0
   conditionDetail:
-    isCondition: 1
-    lockNum: 0300000007000000
-    condition: 2
+    isCondition: 0
+    lockNum: 
+    condition: 0
     slots: 
     bonusSlotDamage: 0
-    c_skillType: 3
+    c_skillType: 0
     percentDmg: 0
     isRemove: 0
     c_removeBuff: 0
@@ -68,5 +66,5 @@ MonoBehaviour:
       count: 0
     healType: 0
     isPercent: 0
-    c_heal: 5
+    c_heal: 0
     removeEffect: {fileID: 0}

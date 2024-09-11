@@ -25,7 +25,7 @@ MonoBehaviour:
   description: 
   actionDetail:
     skillType: 0
-    percentDMG: 32000000
+    percentDMG: 46000000
     isRemoveBuff: 0
     statusEnemy: []
     statusSelf: []

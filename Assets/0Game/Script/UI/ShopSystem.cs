@@ -71,7 +71,7 @@ public class ShopSystem : MonoBehaviour
         List<SkillAction> legendary = GameManager.instance.allData.GetSkillWithRarity(Rarity.Legendary);
 
         SkillAction skill = new SkillAction();
-        Debug.Log(common.Count + " " + epic.Count + " " + legendary.Count);
+        //Debug.Log(common.Count + " " + epic.Count + " " + legendary.Count);
         for(int i = 0; i < 5; i++)
         {
             do
@@ -109,7 +109,7 @@ public class ShopSystem : MonoBehaviour
 
             if(skill != null)
             {
-                Debug.Log("Skill " + skill.name + " " + skill.rarity);
+                //Debug.Log("Skill " + skill.name + " " + skill.rarity);
                 SkillBuy buy = Instantiate(skillPrefab, skillPlace).GetComponent<SkillBuy>();
                 buy.SetupMerchandise(skill);
 
@@ -138,7 +138,7 @@ public class ShopSystem : MonoBehaviour
         List<Relic> legendary = GameManager.instance.allData.GetRelicWithRarity(Rarity.Legendary);
 
         Relic relic = new Relic();
-        Debug.Log(common.Count + " " + epic.Count + " " + legendary.Count);
+        //Debug.Log(common.Count + " " + epic.Count + " " + legendary.Count);
         for (int i = 0; i < 5; i++)
         {
             do
@@ -146,7 +146,7 @@ public class ShopSystem : MonoBehaviour
                 if (i < 2)
                 {
                     if (common.Contains(relic)) common.Remove(relic);
-                    Debug.Log("C " + common.Count);
+                    //Debug.Log("C " + common.Count);
                     if (common.Count == 0)
                     {
                         relic = null;
@@ -157,7 +157,7 @@ public class ShopSystem : MonoBehaviour
                 else if (i < 4)
                 {
                     if (epic.Contains(relic)) epic.Remove(relic);
-                    Debug.Log("E " + epic.Count);
+                    //Debug.Log("E " + epic.Count);
                     if (epic.Count == 0)
                     {
                         relic = null;
@@ -168,7 +168,7 @@ public class ShopSystem : MonoBehaviour
                 else
                 {
                     if (legendary.Contains(relic)) legendary.Remove(relic);
-                    Debug.Log("L " + legendary.Count);
+                    //Debug.Log("L " + legendary.Count);
                     if (legendary.Count == 0)
                     {
                         relic = null;
@@ -176,11 +176,11 @@ public class ShopSystem : MonoBehaviour
                     }
                     relic = legendary[Random.Range(0, legendary.Count)];
                 }
-            } while (GameManager.instance.playerData.CheckAlreadyHaveRelic(relic.id));
+            } while (GameManager.instance.playerData.CheckAlreadyHaveRelic(relic.id) || relic.id == "RN015");
 
             if (relic != null)
             {
-                Debug.Log("relic " + relic.name + " " + relic.rarity);
+                //Debug.Log("relic " + relic.name + " " + relic.rarity);
                 RelicBuy buy = Instantiate(relicPrefab, relicPlace).GetComponent<RelicBuy>();
                 buy.SetupMerchandise(relic);
 

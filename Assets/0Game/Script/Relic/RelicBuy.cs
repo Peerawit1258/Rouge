@@ -14,6 +14,8 @@ public class RelicBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     [SerializeField] TMP_Text relicName;
     [SerializeField] TMP_Text relicDesc;
     [SerializeField] TMP_Text costText;
+    [SerializeField] TMP_Text discountText;
+    [SerializeField] Color discountColor;
     [SerializeField] float time;
 
     int cost;
@@ -36,16 +38,22 @@ public class RelicBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         relicDesc.text = relic.description;
 
         cost = relicWidget.GetPrice();
-        costText.text = cost.ToString();
-        if (GameManager.instance.playerData.gold < cost)
+        if (GameManager.instance.relicManagerSystem.discount > 0)
         {
-            costText.color = Color.red;
-            canBuy = false;
+            costText.text = relicWidget.GetPrice().ToString();
+            costText.color = discountColor;
+
+            cost *= ((100 - GameManager.instance.relicManagerSystem.discount) / 100);
+            discountText.text = cost.ToString();
         }
         else
         {
-            canBuy = true;
+            costText.text = cost.ToString();
+            costText.color = Color.white;
+
+            discountText.text = "";
         }
+        CheckCurrentGold();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -100,15 +108,31 @@ public class RelicBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     public void CheckCurrentGold()
     {
-        if (GameManager.instance.playerData.gold < cost)
+        if (GameManager.instance.relicManagerSystem.discount > 0)
         {
-            costText.color = Color.red;
-            canBuy = false;
+            if (GameManager.instance.playerData.gold < cost)
+            {
+                discountText.color = Color.red;
+                canBuy = false;
+            }
+            else
+            {
+                discountText.color = Color.white;
+                canBuy = true;
+            }
         }
         else
         {
-            costText.color = Color.white;
-            canBuy = true;
+            if (GameManager.instance.playerData.gold < cost)
+            {
+                costText.color = Color.red;
+                canBuy = false;
+            }
+            else
+            {
+                costText.color = Color.white;
+                canBuy = true;
+            }
         }
     }
 

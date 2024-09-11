@@ -20,10 +20,12 @@ MonoBehaviour:
   targetType: 2
   cooldown: 1
   particleEffect: {fileID: 0}
+  shakeCam: 0
+  shakeCount: 0
   description: Deal damage 5x25% of ATK to random enemies.
   actionDetail:
     skillType: 0
-    percentDMG: 1900000019000000190000001900000019000000
+    percentDMG: 3200000032000000320000003200000032000000
     isRemoveBuff: 0
     statusEnemy: []
     statusSelf: []

@@ -14,7 +14,9 @@ public class SkillBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     [SerializeField] TMP_Text skillName;
     [SerializeField] TMP_Text skillDesc;
     [SerializeField] TMP_Text costText;
+    [SerializeField] TMP_Text discountText;
     [SerializeField] float time;
+    [SerializeField] Color discountColor;
 
     int cost;
     bool canBuy;
@@ -33,16 +35,23 @@ public class SkillBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         skillDesc.text = skill.description;
 
         cost = skillShow.GetPrice();
-        costText.text = cost.ToString();
-        if (GameManager.instance.playerData.gold < cost)
+        if (GameManager.instance.relicManagerSystem.discount > 0)
         {
-            costText.color = Color.red;
-            canBuy = false;
+            costText.text = skillShow.GetPrice().ToString();
+            costText.color = discountColor;
+
+            cost *= ((100 - GameManager.instance.relicManagerSystem.discount) / 100);
+            discountText.text = cost.ToString();
         }
         else
         {
-            canBuy = true;
+            costText.text = cost.ToString();
+            costText.color = Color.white;
+
+            discountText.text = "";
         }
+        
+        CheckCurrentGold();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -101,16 +110,33 @@ public class SkillBuy : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     public void CheckCurrentGold()
     {
-        if (GameManager.instance.playerData.gold < cost)
+        if (GameManager.instance.relicManagerSystem.discount > 0)
         {
-            costText.color = Color.red;
-            canBuy = false;
+            if (GameManager.instance.playerData.gold < cost)
+            {
+                discountText.color = Color.red;
+                canBuy = false;
+            }
+            else
+            {
+                discountText.color = Color.white;
+                canBuy = true;
+            }
         }
         else
         {
-            costText.color = Color.white;
-            canBuy = true;
+            if (GameManager.instance.playerData.gold < cost)
+            {
+                costText.color = Color.red;
+                canBuy = false;
+            }
+            else
+            {
+                costText.color = Color.white;
+                canBuy = true;
+            }
         }
+        
     }
 
     public RectTransform GetSkillBuyPos() => skillPos;

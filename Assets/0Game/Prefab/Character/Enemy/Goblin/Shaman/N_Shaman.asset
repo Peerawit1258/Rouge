@@ -29,6 +29,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea05e7eb3206ee54b84887eb6bedde16, type: 2}
   - {fileID: 11400000, guid: 8ba8ea7c3babe644da1be921da07eb59, type: 2}
   - {fileID: 11400000, guid: 5701f1ee798330147bb593bca7046f5b, type: 2}
+  - {fileID: 11400000, guid: 24cbd9d00cb7bd64498f860a0025c2af, type: 2}
+  - {fileID: 11400000, guid: 4982533e47c875d439bf4d495f71c60b, type: 2}
+  - {fileID: 11400000, guid: dbc4ce6221f63194b9cffe57da911b86, type: 2}
   relicDrop: []
   maxHP: 37
   atk: 23

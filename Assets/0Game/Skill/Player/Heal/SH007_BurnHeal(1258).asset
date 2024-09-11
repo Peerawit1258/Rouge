@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 527b5e7a31fb5af41bffa1ee16130bda, type: 3}
-  m_Name: SH005_Bandage
+  m_Name: SH007_BurnHeal(1258)
   m_EditorClassIdentifier: 
-  id: SH005
-  skillName: Bandage
-  skillIcon: {fileID: 21300000, guid: 641a892403bfccc41bc4d5ac54bb63d6, type: 3}
+  id: SH007
+  skillName: BurnHeal(1258)
+  skillIcon: {fileID: 0}
   frame: {fileID: 21300000, guid: 0621de3a9ff9f854ca23f920fa98c186, type: 3}
   rarity: 0
   targetType: 3
   cooldown: 3
   particleEffect: {fileID: 0}
+  shakeCam: 0
+  shakeCount: 0
   description: 
   actionDetail:
     skillType: 3
@@ -36,7 +38,7 @@ MonoBehaviour:
       isAll: 0
       healType: 2
       percentHeal: 0
-      removeEffect: {fileID: 11400000, guid: ab84b091345805f41a8108685b2d4f9d, type: 2}
+      removeEffect: {fileID: 11400000, guid: 316ffb50944025e4b93ba0383ae74861, type: 2}
     isTakeDamage: 0
     percentHp: 0
     hpCompare: 0

@@ -95,25 +95,23 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         if (choiceDetail.required)
         {
-            if (choiceDetail.disappear)
+            switch (choiceDetail.requiredType)
             {
-                switch (choiceDetail.requiredType)
-                {
-                    case RewardType.Skill:
+                case RewardType.Skill:
+                    if (choiceDetail.disappear)
                         GameManager.instance.inventoryManager.RemoveSkill(choiceDetail.useSkill);
-                        break;
-                    case RewardType.Relic:
+                    break;
+                case RewardType.Relic:
+                    if (choiceDetail.disappear)
                         GameManager.instance.relicManagerSystem.RemoveRelic(choiceDetail.useRelic);
-                        break;
-                    case RewardType.Gold:
-                        GameManager.instance.detailPanel.ChangeGoldValue(GameManager.instance.playerData.gold - choiceDetail.useGold);
-                        break;
-                    case RewardType.Hp:
-                        GameManager.instance.turnManager.player.StartDamageTaken(choiceDetail.useHp, 0, true);
-                        break;
-                }
+                    break;
+                case RewardType.Gold:
+                    GameManager.instance.detailPanel.ChangeGoldValue(GameManager.instance.playerData.gold - choiceDetail.useGold);
+                    break;
+                case RewardType.Hp:
+                    GameManager.instance.turnManager.player.StartDamageTaken(choiceDetail.useHp, 0, true);
+                    break;
             }
-                
         }
 
         if(choiceDetail.rate > 0)
