@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RN_RestNode
   m_EditorClassIdentifier: 
   nodeID: RN_RestNode
-  icon: {fileID: 21300000, guid: d589952d97bfbeb459de357fc7fdc3fc, type: 3}
+  icon: {fileID: 21300000, guid: da7129ed6a246f048a49d8d97de2d2d4, type: 3}
   node: 3
   enemyGroup: {fileID: 0}
   eventInfo: {fileID: 0}

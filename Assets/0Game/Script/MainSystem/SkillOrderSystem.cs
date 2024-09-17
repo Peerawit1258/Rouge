@@ -7,7 +7,6 @@ using DG.Tweening;
 
 public class SkillOrderSystem : MonoBehaviour
 {
-    [ReadOnly] public int currentSlot = 0;
     public int slotCount;
     public int skillCount;
     [Header("SkillCreate")]
@@ -39,7 +38,6 @@ public class SkillOrderSystem : MonoBehaviour
         statusEffectSystem = GameManager.instance.statusEffectSystem;
         relicManagerSystem = GameManager.instance.relicManagerSystem;
         inventoryManager = GameManager.instance.inventoryManager;
-        currentSlot = 0;
         CreateSlot();
     }
 

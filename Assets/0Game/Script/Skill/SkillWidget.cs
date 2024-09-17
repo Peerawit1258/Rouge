@@ -113,7 +113,6 @@ public class SkillWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         slotSkill.AssignSkill(this);
         skillNumSlot.gameObject.SetActive(false);
         widgetPos.parent = slotSkill.gameObject.transform;
-        skillOrderSystem.currentSlot++;
         skillOrderSystem.GetAllSkillWidget().Remove(this);
         inSlot = true;
         skillOrderSystem.selectWidget = null;

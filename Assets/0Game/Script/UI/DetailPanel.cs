@@ -117,6 +117,7 @@ public class DetailPanel : MonoBehaviour
             relicWidgets[i].GetWidgetPos().DOAnchorPos(new Vector2(i * 65, 0), 0.5f);
             if (i > 8) relicWidgets[i].GetCanvasGroup().DOFade(0, 0.5f);
         }
+        relicCount.text = relicWidgets.Count.ToString();
     }
 
     bool infoOpen = false;
