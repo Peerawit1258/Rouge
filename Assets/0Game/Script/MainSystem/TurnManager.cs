@@ -8,7 +8,8 @@ public class TurnManager : MonoBehaviour
     public int turnCount;
     public ActionTurn actionTurn = ActionTurn.player;
     public PlayerController player;
-    [ReadOnly] public EnemyController targetEnemy;
+    [ReadOnly] public EnemyController targetEnem;
+    [ReadOnly] public int targetIndex = 0;
     public List<EnemyController> enemies;
 
     SkillOrderSystem skillOrderSystem;
@@ -56,7 +57,7 @@ public class TurnManager : MonoBehaviour
         GameManager.instance.detailPanel.ShowActionTurn(actionTurn, () =>
         {
             GameManager.instance.statusEffectSystem.TriggerStatusCount(TriggerStatus.Start);
-            targetEnemy.OnMouseUp();
+            enemies[targetIndex].OnMouseUp();
             skillOrderSystem.ClearSlotSkill();
             skillOrderSystem.isSkillActive = false;
             skillOrderSystem.slotPlace.gameObject.SetActive(true);
@@ -79,7 +80,7 @@ public class TurnManager : MonoBehaviour
             return;
         }
 
-        if (targetEnemy == null) targetEnemy = enemies[0];
+        //if (targetEnemy == null) targetEnemy = enemies[0];
         
         turnCount++;
         if (turnCount == 1)
@@ -106,11 +107,11 @@ public class TurnManager : MonoBehaviour
         enemies.Remove(enemy);
         if(enemies.Count > 0)
         {
-            targetEnemy = enemies[0];
-            targetEnemy.OnMouseUp();
+            //targetEnemy = enemies[0];
+            //targetEnemy.OnMouseUp();'
+            enemies[targetIndex].OnMouseUp();
         }  
-        else 
-            targetEnemy = null;
+
     }
 
     public bool CheckEnemyTaunt()
@@ -145,6 +146,11 @@ public class TurnManager : MonoBehaviour
         }
 
         return target;
+    }
+
+    public EnemyController GetTarget()
+    {
+        return enemies[targetIndex];
     }
 }
 

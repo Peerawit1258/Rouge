@@ -10,25 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 282601f5b429a9e48a380149eaddb12b, type: 3}
-  m_Name: RC001_CurseBook
+  m_Name: RC001_RustyCoin
   m_EditorClassIdentifier: 
   id: RC001
-  relicName: Curse Book
+  relicName: Rusty Coin
   icon: {fileID: 0}
   relicType: 1
   rarity: 0
   destroyWhenUse: 0
-  description: Decrease Attack 20%
+  description: Base Atk-2
   relicDetails:
   - type: 0
+    isSlot: 0
+    hpCompare: 0
+    compare: 0
+    hpPercent: 0
     statValues:
     - type: 0
-      value: -20
+      value: -2
+    slots: []
     trigger: 0
-    statusType: 0
+    main: 0
+    mainTrigger: 0
     status:
       statusEffect: {fileID: 0}
       count: 0
+    healTrigger: 0
     isStack: 0
     stack: 0
     dotID: 
@@ -36,4 +43,7 @@ MonoBehaviour:
     isShop: 0
     discount: 0
     extraMoney: 0
+    skillRelic: 0
     increaseRandomSkill: 0
+    increaseDropSkill: 0
+    percentExp: 0

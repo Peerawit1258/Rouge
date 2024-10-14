@@ -20,24 +20,26 @@ MonoBehaviour:
   destroyWhenUse: 0
   description: 
   relicDetails:
-  - type: 0
+  - type: 2
     isSlot: 0
     hpCompare: 0
     compare: 0
     hpPercent: 0
     statValues:
     - type: 1
-      value: 20
+      value: 3
     slots: []
     trigger: 0
-    statusType: 0
+    main: 0
+    mainTrigger: 0
     status:
       statusEffect: {fileID: 0}
       count: 0
+    healTrigger: 0
     isStack: 0
     stack: 0
-    dotID: 
-    dotDamage: 0
+    dotID: DD001
+    dotDamage: 100
     isShop: 0
     discount: 0
     extraMoney: 0

@@ -41,7 +41,7 @@ public class BattleSetup : SerializedMonoBehaviour
                     enemy = Instantiate(enemies[i].character, enemyPos[i + 1]).GetComponent<EnemyController>();
                 }
                 enemy.transform.localPosition = Vector3.zero;
-                
+                enemy.SetIndex(i);
                 enemy.SetInfoEnemy(enemies[i]);
                 //enemy.SetDrop(enemies[i].skillDrop, enemies[i].relicDrop, enemies[i].goldDrop);
                 enemy.name = enemies[i].characterName + "_" + i;
@@ -56,6 +56,7 @@ public class BattleSetup : SerializedMonoBehaviour
     {
         EnemyController enemy;
         enemy = Instantiate(special.character, enemyPos[index]).GetComponent<EnemyController>();
+        enemy.SetIndex(index);
         enemy.transform.localPosition = Vector3.zero;
         enemy.SetInfoEnemy(special);
         //enemy.SetDrop(special.skillDrop, special.relicDrop, special.goldDrop);

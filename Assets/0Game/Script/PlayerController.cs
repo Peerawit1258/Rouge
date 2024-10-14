@@ -26,10 +26,19 @@ public class PlayerController : CharacterValue
             atkValue = 9999;
     }
 
+    public float GetPlayerAtk()
+    {
+        float currentAtk = atkValue +
+            ((atkValue * GameManager.instance.relicManagerSystem.GetBonusStatFromHpCompare(hpValue / maxHpValue, StatType.Atk)) / 100);
+        Debug.Log("sum Atk : " + currentAtk);
+        return currentAtk;
+    }
+
     public float GetPlayerDef()
     {
         float currentDef = defValue + 
             ((defValue * GameManager.instance.relicManagerSystem.GetBonusStatFromHpCompare(hpValue/maxHpValue, StatType.Def))/100);
+        Debug.Log("sum Def : " + currentDef);
         return currentDef;
     }
 

@@ -22,6 +22,8 @@ public class EnemyController : CharacterValue
 
     [ReadOnly, ShowInInspector] SkillAction currentSkill;
     [ReadOnly, ShowInInspector] CharacterDetail minion;
+
+    int index;public void SetIndex(int index)=> this.index=index;
     public SkillAction GetCurrentSkill() => currentSkill;
     public void SetDrop(List<SkillAction> skills, List<Relic> relics, int gold)
     {
@@ -76,7 +78,8 @@ public class EnemyController : CharacterValue
     public void OnMouseUp()
     {
         if (turnManager.actionTurn != ActionTurn.player) return;
-        turnManager.targetEnemy = this;
+        //turnManager.targetEnemy = this;
+        turnManager.targetIndex = index;
         GameManager.instance.battleSetup.arrow.position = gaugePos.position + new Vector3(0, 0.3f, 0) ;
 
     }

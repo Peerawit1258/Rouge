@@ -44,12 +44,11 @@ MonoBehaviour:
     enemyGroup: {fileID: 0}
     statValue:
       type: 0
-      value: 30
+      value: 3
     next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 21300000, guid: d589952d97bfbeb459de357fc7fdc3fc, type: 3}
     afterEventDes: After you drink it,you feel stronger than before.
-    passEvent: {fileID: 0}
     failEvent: {fileID: 0}
   - type: 2
     sentence: Drink Green Potion
@@ -82,7 +81,6 @@ MonoBehaviour:
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 21300000, guid: 3f2aa276726e7ee41b11b56fa1365ee6, type: 3}
     afterEventDes: 
-    passEvent: {fileID: 0}
     failEvent: {fileID: 0}
   - type: 3
     sentence: 
@@ -117,7 +115,6 @@ MonoBehaviour:
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
     afterEventDes: Bitter....It's so bitter.
-    passEvent: {fileID: 0}
     failEvent: {fileID: 0}
   - type: 3
     sentence: Drink All Potion
@@ -152,5 +149,4 @@ MonoBehaviour:
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
     afterEventDes: 
-    passEvent: {fileID: 0}
     failEvent: {fileID: 0}

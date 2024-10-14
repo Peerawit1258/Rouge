@@ -18,7 +18,7 @@ MonoBehaviour:
   relicType: 0
   rarity: 1
   destroyWhenUse: 0
-  description: 'Defense +20%
+  description: 'Base Def+2
 
     When battle is start,
 
@@ -55,8 +55,8 @@ MonoBehaviour:
     compare: 0
     hpPercent: 0
     statValues:
-    - type: 1
-      value: 20
+    - type: 3
+      value: 10
     slots: []
     trigger: 0
     main: 0

@@ -114,7 +114,7 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             }
         }
 
-        if(choiceDetail.rate > 0)
+        if(choiceDetail.rate > 0 && choiceDetail.rate != 100)
         {
             int random = Random.Range(0, 100);
             if (random >= choiceDetail.rate)
@@ -126,6 +126,7 @@ public class ChoiceWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             else
             {
                 Debug.LogError("Success");
+                //eventManager.NextEvent(choiceDetail.nextEvent);
             }
         }
         switch (choiceDetail.type) 

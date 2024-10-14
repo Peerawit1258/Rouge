@@ -20,7 +20,7 @@ MonoBehaviour:
   choices:
   - type: 5
     sentence: 
-    rate: 0
+    rate: 12
     exit: 0
     required: 0
     disappear: 0
@@ -45,9 +45,8 @@ MonoBehaviour:
     statValue:
       type: 0
       value: 5
-    next: 1
+    next: 0
     nextEvent: {fileID: 0}
     afterEventImg: {fileID: 0}
     afterEventDes: 
-    passEvent: {fileID: 0}
     failEvent: {fileID: 0}

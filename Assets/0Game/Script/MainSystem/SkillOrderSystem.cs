@@ -240,7 +240,7 @@ public class SkillOrderSystem : MonoBehaviour
         }
         else
         {
-            if (skill.targetType == TargetType.SingleTarget) enemies.Add(turnManager.targetEnemy);
+            if (skill.targetType == TargetType.SingleTarget) enemies.Add(turnManager.GetTarget());
             else enemies = turnManager.enemies;
             for (int i = 0; i < enemies.Count; i++)
             {
@@ -315,7 +315,7 @@ public class SkillOrderSystem : MonoBehaviour
         List<EnemyController> randomEnemy = new List<EnemyController>();
         turnManager.player.animationAction.AttackAction();
 
-        if (skill.targetType == TargetType.SingleTarget) enemies.Add(turnManager.targetEnemy);
+        if (skill.targetType == TargetType.SingleTarget) enemies.Add(turnManager.GetTarget());
         else enemies = turnManager.enemies;
         for (int i = 0; i < enemies.Count; i++)
         {

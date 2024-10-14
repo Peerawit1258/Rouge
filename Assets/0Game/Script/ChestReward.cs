@@ -18,6 +18,7 @@ public class ChestReward : MonoBehaviour
     [TabGroup("Setup"), SerializeField] int vibrato;
     [TabGroup("Setup"), SerializeField] float random;
 
+    int index;
     bool isMimic;
     bool interact;
     // Start is called before the first frame update

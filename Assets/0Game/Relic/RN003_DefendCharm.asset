@@ -27,13 +27,15 @@ MonoBehaviour:
     hpPercent: 0
     statValues:
     - type: 1
-      value: 20
+      value: 3
     slots: []
     trigger: 0
-    statusType: 0
+    main: 0
+    mainTrigger: 0
     status:
       statusEffect: {fileID: 0}
       count: 0
+    healTrigger: 0
     isStack: 0
     stack: 0
     dotID: 

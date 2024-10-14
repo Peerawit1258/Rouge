@@ -29,7 +29,7 @@ MonoBehaviour:
     slots: []
     trigger: 0
     main: 0
-    mainTrigger: 0
+    mainTrigger: 5
     status:
       statusEffect: {fileID: 0}
       count: 0

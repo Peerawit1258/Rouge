@@ -210,6 +210,12 @@ public class DamageSpecific
     }
 }
 
+[Serializable]
+public class ChangeTarget 
+{ 
+
+}
+
 public enum SkillType
 {
     Attack,
@@ -257,4 +263,11 @@ public enum Compare
     Lower,
     Equal,
     Greater
+}
+
+public enum Direction
+{
+    Right,
+    Middle,
+    Left
 }

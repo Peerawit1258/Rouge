@@ -1414,7 +1414,8 @@ MonoBehaviour:
   turnCount: 0
   actionTurn: 0
   player: {fileID: 0}
-  targetEnemy: {fileID: 0}
+  targetEnem: {fileID: 0}
+  targetIndex: 0
   enemies: []
 --- !u!1 &749476250
 GameObject:
@@ -1477,7 +1478,7 @@ MonoBehaviour:
   group: {fileID: 11400000, guid: dea9b22a71280d54ca773f3213ccfb5d, type: 2}
   isTest: 0
   isEvent: 0
-  eventTest: {fileID: 11400000, guid: 40c7a8a752ca55f42bf30292904c33ae, type: 2}
+  eventTest: {fileID: 11400000, guid: 0f7b47b47ddece84885a5b75b1d52ff9, type: 2}
 --- !u!4 &749476252
 Transform:
   m_ObjectHideFlags: 0
@@ -3023,7 +3024,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: def784c85155d9e4da74b08b66ed5b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSlot: 0
   slotCount: 3
   skillCount: 3
   skillPrefab: {fileID: 7931926909436880801, guid: 7423d8b1c1a7eb646a17c4a5e244b25e, type: 3}
@@ -4046,7 +4046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5032508388648624727, guid: 430b0fba72ea1c94080d7e2680bf562e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000091552734
+      value: 0.0009460449
       objectReference: {fileID: 0}
     - target: {fileID: 8094074305515694604, guid: 430b0fba72ea1c94080d7e2680bf562e, type: 3}
       propertyPath: m_AnchorMax.y
